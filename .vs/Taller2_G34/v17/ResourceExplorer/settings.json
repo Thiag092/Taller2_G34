@@ -1,0 +1,24 @@
+{
+  "ShowEmptyProjects": false,
+  "SelectedGroups": [
+    "C:\\Users\\anafa\\OneDrive\\Escritorio\\Taller de programaci\u00F3n 2\\Practico 1\\Taller2_G34\\Properties\\Resources.resx",
+    "C:\\Users\\anafa\\OneDrive\\Escritorio\\Taller de programaci\u00F3n 2\\Practico 1\\Taller2_G34\\login.resx"
+  ],
+  "ExpandedProjects": [
+    "C:\\Users\\anafa\\OneDrive\\Escritorio\\Taller de programaci\u00F3n 2\\Practico 1\\Taller2_G34\\Taller2_G34.csproj"
+  ],
+  "EnableSpellChecker": true,
+  "ColumnOrder": [
+    "name",
+    "file-path",
+    "file-name",
+    "type",
+    "neutral-value",
+    "neutral-comment"
+  ],
+  "VisibleColumnKeys": [
+    "name",
+    "neutral-comment",
+    "neutral-value"
+  ]
+}

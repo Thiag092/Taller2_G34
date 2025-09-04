@@ -9,3 +9,15 @@ C:\Users\yago_\LIC\Taller 2\Proyecto 34\Taller2_G34\obj\Debug\Taller2_G34.csproj
 C:\Users\yago_\LIC\Taller 2\Proyecto 34\Taller2_G34\obj\Debug\Taller2_G34.exe
 C:\Users\yago_\LIC\Taller 2\Proyecto 34\Taller2_G34\obj\Debug\Taller2_G34.pdb
 C:\Users\yago_\LIC\Taller 2\Proyecto 34\Taller2_G34\obj\Debug\Taller2_G34.exe.config
+C:\Users\anafa\OneDrive\Escritorio\Taller de programación 2\Practico 1\Taller2_G34\bin\Debug\Taller2_G34.exe.config
+C:\Users\anafa\OneDrive\Escritorio\Taller de programación 2\Practico 1\Taller2_G34\bin\Debug\Taller2_G34.exe
+C:\Users\anafa\OneDrive\Escritorio\Taller de programación 2\Practico 1\Taller2_G34\bin\Debug\Taller2_G34.pdb
+C:\Users\anafa\OneDrive\Escritorio\Taller de programación 2\Practico 1\Taller2_G34\obj\Debug\Taller2_G34.csproj.AssemblyReference.cache
+C:\Users\anafa\OneDrive\Escritorio\Taller de programación 2\Practico 1\Taller2_G34\obj\Debug\Taller2_G34.exe.config
+C:\Users\anafa\OneDrive\Escritorio\Taller de programación 2\Practico 1\Taller2_G34\obj\Debug\Taller2_G34.Inicio.resources
+C:\Users\anafa\OneDrive\Escritorio\Taller de programación 2\Practico 1\Taller2_G34\obj\Debug\Taller2_G34.Properties.Resources.resources
+C:\Users\anafa\OneDrive\Escritorio\Taller de programación 2\Practico 1\Taller2_G34\obj\Debug\Taller2_G34.csproj.GenerateResource.cache
+C:\Users\anafa\OneDrive\Escritorio\Taller de programación 2\Practico 1\Taller2_G34\obj\Debug\Taller2_G34.csproj.CoreCompileInputs.cache
+C:\Users\anafa\OneDrive\Escritorio\Taller de programación 2\Practico 1\Taller2_G34\obj\Debug\Taller2_G34.exe
+C:\Users\anafa\OneDrive\Escritorio\Taller de programación 2\Practico 1\Taller2_G34\obj\Debug\Taller2_G34.pdb
+C:\Users\anafa\OneDrive\Escritorio\Taller de programación 2\Practico 1\Taller2_G34\obj\Debug\Taller2_G34.homePageCoach.resources

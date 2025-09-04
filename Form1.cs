@@ -10,11 +10,31 @@ using System.Windows.Forms;
 
 namespace Taller2_G34
 {
-    public partial class Inicio : Form
+    public partial class homePageCoach : Form
     {
-        public Inicio()
+        public homePageCoach()
         {
             InitializeComponent();
+        }
+
+        private void homePageCoach_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void label1_Click(object sender, EventArgs e)
