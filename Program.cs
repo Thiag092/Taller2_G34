@@ -16,7 +16,7 @@ namespace Taller2_G34
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Inicio());
+            Application.Run(new login());
         }
     }
 }

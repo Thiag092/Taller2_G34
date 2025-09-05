@@ -1,6 +1,6 @@
 ﻿namespace Taller2_G34
 {
-    partial class Inicio
+    partial class login
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -166,7 +166,7 @@
             this.panel1.Size = new System.Drawing.Size(822, 886);
             this.panel1.TabIndex = 1;
             // 
-            // Inicio
+            // login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -174,7 +174,7 @@
             this.ClientSize = new System.Drawing.Size(1648, 876);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox1);
-            this.Name = "Inicio";
+            this.Name = "login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inicio de sesion";
             this.Load += new System.EventHandler(this.Inicio_Load);

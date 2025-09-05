@@ -41,5 +41,17 @@ namespace Taller2_G34
         {
 
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            login f = new login();
+            f.Show();          // abre el nuevo formulario
+            this.Close();
+        }
     }
 }

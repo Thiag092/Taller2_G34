@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace Taller2_G34
 {
-    public partial class Inicio : Form
+    public partial class login : Form
     {
-        public Inicio()
+        public login()
         {
             InitializeComponent();
         }
