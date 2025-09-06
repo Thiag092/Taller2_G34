@@ -124,6 +124,8 @@
             // 
             this.BIngresar.BackColor = System.Drawing.Color.OliveDrab;
             this.BIngresar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BIngresar.FlatAppearance.BorderSize = 0;
+            this.BIngresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BIngresar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BIngresar.Location = new System.Drawing.Point(224, 547);
             this.BIngresar.Name = "BIngresar";
@@ -137,6 +139,8 @@
             // 
             this.BCancelar.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.BCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BCancelar.FlatAppearance.BorderSize = 0;
+            this.BCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BCancelar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.BCancelar.Location = new System.Drawing.Point(432, 547);

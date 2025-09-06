@@ -31,11 +31,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.BAgregarAlumno = new System.Windows.Forms.Button();
             this.BVerAlumnos = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -79,6 +79,34 @@
             this.panel1.Size = new System.Drawing.Size(1085, 548);
             this.panel1.TabIndex = 5;
             // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.Black;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button2.Location = new System.Drawing.Point(771, 427);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(265, 97);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "Ver informe mensual";
+            this.button2.UseVisualStyleBackColor = false;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button1.Location = new System.Drawing.Point(771, 173);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(265, 97);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Ver inscriptos";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -91,6 +119,8 @@
             // BAgregarAlumno
             // 
             this.BAgregarAlumno.BackColor = System.Drawing.Color.Black;
+            this.BAgregarAlumno.FlatAppearance.BorderSize = 0;
+            this.BAgregarAlumno.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BAgregarAlumno.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BAgregarAlumno.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.BAgregarAlumno.Location = new System.Drawing.Point(771, 305);
@@ -103,6 +133,8 @@
             // BVerAlumnos
             // 
             this.BVerAlumnos.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.BVerAlumnos.FlatAppearance.BorderSize = 0;
+            this.BVerAlumnos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BVerAlumnos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BVerAlumnos.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.BVerAlumnos.Location = new System.Drawing.Point(771, 47);
@@ -112,30 +144,6 @@
             this.BVerAlumnos.Text = "Ver entrenadores";
             this.BVerAlumnos.UseVisualStyleBackColor = false;
             this.BVerAlumnos.Click += new System.EventHandler(this.BVerAlumnos_Click);
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(771, 173);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(265, 97);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Ver inscriptos";
-            this.button1.UseVisualStyleBackColor = false;
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.Black;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(771, 427);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(265, 97);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Ver informe mensual";
-            this.button2.UseVisualStyleBackColor = false;
             // 
             // Form2
             // 

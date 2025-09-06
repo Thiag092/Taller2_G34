@@ -69,6 +69,8 @@
             // 
             this.BAgregarAlumno.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BAgregarAlumno.BackColor = System.Drawing.Color.Black;
+            this.BAgregarAlumno.FlatAppearance.BorderSize = 0;
+            this.BAgregarAlumno.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BAgregarAlumno.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BAgregarAlumno.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.BAgregarAlumno.Location = new System.Drawing.Point(774, 267);
@@ -82,6 +84,8 @@
             // 
             this.BVerAlumnos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BVerAlumnos.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.BVerAlumnos.FlatAppearance.BorderSize = 0;
+            this.BVerAlumnos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BVerAlumnos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BVerAlumnos.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.BVerAlumnos.Location = new System.Drawing.Point(774, 88);
