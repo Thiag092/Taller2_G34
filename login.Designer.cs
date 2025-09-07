@@ -35,11 +35,12 @@
             this.LDni = new System.Windows.Forms.Label();
             this.LContraseña = new System.Windows.Forms.Label();
             this.LLoginSub = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.TxUsuario = new System.Windows.Forms.TextBox();
+            this.TxContraseña = new System.Windows.Forms.TextBox();
             this.BIngresar = new System.Windows.Forms.Button();
             this.BCancelar = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.CBMostrarContraseña = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -87,7 +88,7 @@
             // 
             this.LContraseña.AutoSize = true;
             this.LContraseña.Font = new System.Drawing.Font("Microsoft PhagsPa", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LContraseña.Location = new System.Drawing.Point(305, 405);
+            this.LContraseña.Location = new System.Drawing.Point(305, 392);
             this.LContraseña.Name = "LContraseña";
             this.LContraseña.Size = new System.Drawing.Size(191, 26);
             this.LContraseña.TabIndex = 2;
@@ -104,21 +105,22 @@
             this.LLoginSub.Text = "Favor de iniciar sesión";
             this.LLoginSub.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox1
+            // TxUsuario
             // 
-            this.textBox1.Location = new System.Drawing.Point(274, 331);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(268, 32);
-            this.textBox1.TabIndex = 4;
+            this.TxUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxUsuario.Location = new System.Drawing.Point(274, 331);
+            this.TxUsuario.Name = "TxUsuario";
+            this.TxUsuario.Size = new System.Drawing.Size(258, 27);
+            this.TxUsuario.TabIndex = 4;
             // 
-            // textBox2
+            // TxContraseña
             // 
-            this.textBox2.Location = new System.Drawing.Point(274, 434);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(268, 32);
-            this.textBox2.TabIndex = 5;
+            this.TxContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxContraseña.Location = new System.Drawing.Point(274, 421);
+            this.TxContraseña.Name = "TxContraseña";
+            this.TxContraseña.Size = new System.Drawing.Size(268, 27);
+            this.TxContraseña.TabIndex = 5;
+            this.TxContraseña.UseSystemPasswordChar = true;
             // 
             // BIngresar
             // 
@@ -156,19 +158,31 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.AutoSize = true;
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(201)))), ((int)(((byte)(19)))));
+            this.panel1.Controls.Add(this.CBMostrarContraseña);
             this.panel1.Controls.Add(this.BCancelar);
             this.panel1.Controls.Add(this.BIngresar);
-            this.panel1.Controls.Add(this.textBox2);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.TxContraseña);
+            this.panel1.Controls.Add(this.TxUsuario);
             this.panel1.Controls.Add(this.LLoginSub);
             this.panel1.Controls.Add(this.LContraseña);
             this.panel1.Controls.Add(this.LDni);
             this.panel1.Controls.Add(this.LBienvenido);
-            this.panel1.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.panel1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel1.Location = new System.Drawing.Point(-3, -1);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(822, 886);
             this.panel1.TabIndex = 1;
+            // 
+            // CBMostrarContraseña
+            // 
+            this.CBMostrarContraseña.AutoSize = true;
+            this.CBMostrarContraseña.Location = new System.Drawing.Point(557, 424);
+            this.CBMostrarContraseña.Name = "CBMostrarContraseña";
+            this.CBMostrarContraseña.Size = new System.Drawing.Size(177, 24);
+            this.CBMostrarContraseña.TabIndex = 8;
+            this.CBMostrarContraseña.Text = "Mostrar contraseña";
+            this.CBMostrarContraseña.UseVisualStyleBackColor = true;
             // 
             // login
             // 
@@ -198,11 +212,12 @@
         private System.Windows.Forms.Label LDni;
         private System.Windows.Forms.Label LContraseña;
         private System.Windows.Forms.Label LLoginSub;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox TxUsuario;
+        private System.Windows.Forms.TextBox TxContraseña;
         private System.Windows.Forms.Button BIngresar;
         private System.Windows.Forms.Button BCancelar;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.CheckBox CBMostrarContraseña;
     }
 }
 

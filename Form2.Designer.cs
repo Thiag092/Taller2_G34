@@ -36,6 +36,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.BAgregarAlumno = new System.Windows.Forms.Button();
             this.BVerAlumnos = new System.Windows.Forms.Button();
+            this.BSalir = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -145,12 +146,27 @@
             this.BVerAlumnos.UseVisualStyleBackColor = false;
             this.BVerAlumnos.Click += new System.EventHandler(this.BVerAlumnos_Click);
             // 
+            // BSalir
+            // 
+            this.BSalir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BSalir.ForeColor = System.Drawing.SystemColors.Control;
+            this.BSalir.Location = new System.Drawing.Point(886, 20);
+            this.BSalir.Name = "BSalir";
+            this.BSalir.Size = new System.Drawing.Size(152, 48);
+            this.BSalir.TabIndex = 8;
+            this.BSalir.Text = "Salir";
+            this.BSalir.UseVisualStyleBackColor = true;
+            this.BSalir.Click += new System.EventHandler(this.button3_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(1087, 620);
+            this.Controls.Add(this.BSalir);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel1);
@@ -174,5 +190,6 @@
         private System.Windows.Forms.Button BVerAlumnos;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BSalir;
     }
 }

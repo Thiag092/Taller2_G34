@@ -30,13 +30,12 @@
         {
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BSalir = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.ContainerAlumnos = new System.Windows.Forms.SplitContainer();
+            this.BAgregar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.BRutinas = new System.Windows.Forms.Button();
-            this.BAlumnos = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.DNI = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,7 +45,8 @@
             this.Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Sexo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BAgregar = new System.Windows.Forms.Button();
+            this.BRutinas = new System.Windows.Forms.Button();
+            this.BAlumnos = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -86,19 +86,20 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // button1
+            // BSalir
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.MenuText;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(840, 20);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(157, 50);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Salir";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.BSalir.BackColor = System.Drawing.SystemColors.MenuText;
+            this.BSalir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BSalir.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BSalir.Location = new System.Drawing.Point(823, 27);
+            this.BSalir.Name = "BSalir";
+            this.BSalir.Size = new System.Drawing.Size(157, 50);
+            this.BSalir.TabIndex = 5;
+            this.BSalir.Text = "Salir";
+            this.BSalir.UseVisualStyleBackColor = false;
+            this.BSalir.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // splitContainer1
             // 
@@ -113,7 +114,7 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.splitContainer1.Panel1.Controls.Add(this.button1);
+            this.splitContainer1.Panel1.Controls.Add(this.BSalir);
             this.splitContainer1.Panel1.Controls.Add(this.pictureBox1);
             this.splitContainer1.Panel1.Controls.Add(this.label2);
             this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint_1);
@@ -171,6 +172,20 @@
             this.ContainerAlumnos.SplitterDistance = 47;
             this.ContainerAlumnos.TabIndex = 0;
             // 
+            // BAgregar
+            // 
+            this.BAgregar.BackColor = System.Drawing.Color.Green;
+            this.BAgregar.FlatAppearance.BorderSize = 0;
+            this.BAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BAgregar.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BAgregar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BAgregar.Location = new System.Drawing.Point(585, 9);
+            this.BAgregar.Name = "BAgregar";
+            this.BAgregar.Size = new System.Drawing.Size(149, 33);
+            this.BAgregar.TabIndex = 6;
+            this.BAgregar.Text = "Agregar alumno";
+            this.BAgregar.UseVisualStyleBackColor = false;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -182,38 +197,6 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "Mis alumnos ";
             this.label1.Click += new System.EventHandler(this.label1_Click_1);
-            // 
-            // BRutinas
-            // 
-            this.BRutinas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BRutinas.AutoSize = true;
-            this.BRutinas.BackColor = System.Drawing.Color.Black;
-            this.BRutinas.FlatAppearance.BorderSize = 0;
-            this.BRutinas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BRutinas.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BRutinas.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BRutinas.Location = new System.Drawing.Point(21, 110);
-            this.BRutinas.Name = "BRutinas";
-            this.BRutinas.Size = new System.Drawing.Size(218, 58);
-            this.BRutinas.TabIndex = 1;
-            this.BRutinas.Text = "Ver rutinas";
-            this.BRutinas.UseVisualStyleBackColor = false;
-            // 
-            // BAlumnos
-            // 
-            this.BAlumnos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BAlumnos.AutoSize = true;
-            this.BAlumnos.BackColor = System.Drawing.Color.Black;
-            this.BAlumnos.FlatAppearance.BorderSize = 0;
-            this.BAlumnos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BAlumnos.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BAlumnos.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BAlumnos.Location = new System.Drawing.Point(21, 22);
-            this.BAlumnos.Name = "BAlumnos";
-            this.BAlumnos.Size = new System.Drawing.Size(218, 56);
-            this.BAlumnos.TabIndex = 0;
-            this.BAlumnos.Text = "Ver alumnos";
-            this.BAlumnos.UseVisualStyleBackColor = false;
             // 
             // dataGridView1
             // 
@@ -288,19 +271,37 @@
             this.Estado.MinimumWidth = 6;
             this.Estado.Name = "Estado";
             // 
-            // BAgregar
+            // BRutinas
             // 
-            this.BAgregar.BackColor = System.Drawing.Color.Green;
-            this.BAgregar.FlatAppearance.BorderSize = 0;
-            this.BAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BAgregar.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BAgregar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BAgregar.Location = new System.Drawing.Point(585, 9);
-            this.BAgregar.Name = "BAgregar";
-            this.BAgregar.Size = new System.Drawing.Size(149, 33);
-            this.BAgregar.TabIndex = 6;
-            this.BAgregar.Text = "Agregar alumno";
-            this.BAgregar.UseVisualStyleBackColor = false;
+            this.BRutinas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BRutinas.AutoSize = true;
+            this.BRutinas.BackColor = System.Drawing.Color.Black;
+            this.BRutinas.FlatAppearance.BorderSize = 0;
+            this.BRutinas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BRutinas.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BRutinas.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BRutinas.Location = new System.Drawing.Point(21, 110);
+            this.BRutinas.Name = "BRutinas";
+            this.BRutinas.Size = new System.Drawing.Size(218, 58);
+            this.BRutinas.TabIndex = 1;
+            this.BRutinas.Text = "Ver rutinas";
+            this.BRutinas.UseVisualStyleBackColor = false;
+            // 
+            // BAlumnos
+            // 
+            this.BAlumnos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BAlumnos.AutoSize = true;
+            this.BAlumnos.BackColor = System.Drawing.Color.Black;
+            this.BAlumnos.FlatAppearance.BorderSize = 0;
+            this.BAlumnos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BAlumnos.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BAlumnos.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BAlumnos.Location = new System.Drawing.Point(21, 22);
+            this.BAlumnos.Name = "BAlumnos";
+            this.BAlumnos.Size = new System.Drawing.Size(218, 56);
+            this.BAlumnos.TabIndex = 0;
+            this.BAlumnos.Text = "Ver alumnos";
+            this.BAlumnos.UseVisualStyleBackColor = false;
             // 
             // homePageCoach
             // 
@@ -336,7 +337,7 @@
         #endregion
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BSalir;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.Button BRutinas;
