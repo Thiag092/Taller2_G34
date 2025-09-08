@@ -19,8 +19,9 @@ C:\Users\anafa\OneDrive\Escritorio\Taller de programación 2\Practico 1\Taller2_
 C:\Users\anafa\OneDrive\Escritorio\Taller de programación 2\Practico 1\Taller2_G34\obj\Debug\Taller2_G34.exe
 C:\Users\anafa\OneDrive\Escritorio\Taller de programación 2\Practico 1\Taller2_G34\obj\Debug\Taller2_G34.pdb
 C:\Users\anafa\OneDrive\Escritorio\Taller de programación 2\Practico 1\Taller2_G34\obj\Debug\Taller2_G34.homePageCoach.resources
-C:\Users\anafa\OneDrive\Escritorio\Taller de programación 2\Practico 1\Taller2_G34\obj\Debug\Taller2_G34.Form2.resources
 C:\Users\anafa\OneDrive\Escritorio\Taller de programación 2\Practico 1\Taller2_G34\obj\Debug\Taller2_G34.login.resources
 C:\Users\yago_\LIC\Taller 2\Proyecto 34\Taller2_G34\obj\Debug\Taller2_G34.homePageCoach.resources
 C:\Users\yago_\LIC\Taller 2\Proyecto 34\Taller2_G34\obj\Debug\Taller2_G34.Form2.resources
 C:\Users\yago_\LIC\Taller 2\Proyecto 34\Taller2_G34\obj\Debug\Taller2_G34.login.resources
+C:\Users\anafa\OneDrive\Escritorio\Taller de programación 2\Practico 1\Taller2_G34\obj\Debug\Taller2_G34.HomePageAdmin.resources
+C:\Users\anafa\OneDrive\Escritorio\Taller de programación 2\Practico 1\Taller2_G34\obj\Debug\Taller2_G34.AgregarUsuario.resources

@@ -54,7 +54,7 @@ namespace Taller2_G34
             }
             else if (usuario == "22222222" && contraseña == "admin")
             {
-                Form2 f = new Form2();
+                HomePageAdmin f = new HomePageAdmin();
                 f.Show();
                 this.Hide();
             }
