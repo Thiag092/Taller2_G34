@@ -62,6 +62,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AgregarRutina.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AgregarRutina.Designer.cs">
+      <DependentUpon>AgregarRutina.cs</DependentUpon>
+    </Compile>
     <Compile Include="HomePageCoach.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +96,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AgregarUsuario.resx">
       <DependentUpon>AgregarUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AgregarRutina.resx">
+      <DependentUpon>AgregarRutina.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HomePageCoach.resx">
       <DependentUpon>HomePageCoach.cs</DependentUpon>

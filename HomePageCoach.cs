@@ -185,8 +185,27 @@ namespace Taller2_G34
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            AgregarUsuario f = new AgregarUsuario();
-            f.Show();
+            if (btnAgregar.Text == "Agregar Alumno")
+            {
+                AgregarAlumno f = new AgregarAlumno();
+                f.Show();
+            }
+            else
+            {
+                AgregarRutina f = new AgregarRutina();
+                f.Show();
+            }
+            
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BBuscar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

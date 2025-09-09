@@ -78,5 +78,59 @@ namespace Taller2_G34
         {
 
         }
+
+        private void BVerUsuarios_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void MostrarVista(string tipo)
+        {
+            // Oculto el label de bienvenida
+            labelTextoBienvenida.Visible = false;
+            // Hago visible el panel de contenido
+            contentPanel.Visible = true;
+            // Limpio DataGridView antes de cargar nuevos datos
+            dataGridView.DataSource = null;
+
+            // Configuro el Label
+            labelTitulo.Text = tipo == "usuarios" ? "Usuarios registrados" : "Mis Rutinas";
+
+            // Configuro los botones
+            btnAgregar.Text = tipo == "alumnos" ? "Agregar Alumno" : "Agregar Rutina";
+            btnEliminar.Text = tipo == "alumnos" ? "Eliminar Alumno" : "Eliminar Rutina";
+
+            // Creo la tabla de datos según tipo
+            DataTable dataTable = new DataTable();
+
+            if (tipo == "alumnos")
+            {
+                dataTable.Columns.Add("DNI");
+                dataTable.Columns.Add("Nombre");
+                dataTable.Columns.Add("Apellido");
+                dataTable.Columns.Add("Fecha de nacimiento");
+                dataTable.Columns.Add("Email");
+                dataTable.Columns.Add("Teléfono");
+                dataTable.Columns.Add("Sexo");
+                dataTable.Columns.Add("Estado");
+
+                dataTable.Rows.Add(12345678, "Juan", "Pérez", "22/10/2001", "juanitoperez@gmail.com", "+543794572343", "M", "Activo");
+                dataTable.Rows.Add(23456789, "Ana", "Fernández", "03/07/1992", "anafnandez@gmail.com", "+543704456200", "F", "Activo");
+            }
+            else
+            {
+                dataTable.Columns.Add("ID");
+                dataTable.Columns.Add("Rutina");
+                dataTable.Columns.Add("Duración (min)");
+
+                dataTable.Rows.Add(1, "Piernas", 45);
+                dataTable.Rows.Add(2, "Espalda", 50);
+            }
+
+            // Asigno la fuente de datos
+            dataGridView.DataSource = dataTable;
+
+            // Ajustes visuales opcionales
+            dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
     }
 }

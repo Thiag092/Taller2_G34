@@ -39,9 +39,9 @@
             this.labelTitulo = new System.Windows.Forms.Label();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.labelTextoBienvenida = new System.Windows.Forms.Label();
+            this.btnVerEntrenadores = new System.Windows.Forms.Button();
             this.BVerUsuarios = new System.Windows.Forms.Button();
             this.BVerAlumnos = new System.Windows.Forms.Button();
-            this.btnVerEntrenadores = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.homeContainer)).BeginInit();
             this.homeContainer.Panel1.SuspendLayout();
             this.homeContainer.Panel2.SuspendLayout();
@@ -162,9 +162,9 @@
             this.btnEliminar.BackColor = System.Drawing.Color.Maroon;
             this.btnEliminar.FlatAppearance.BorderSize = 0;
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEliminar.Location = new System.Drawing.Point(609, 451);
+            this.btnEliminar.Location = new System.Drawing.Point(551, 451);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(119, 45);
+            this.btnEliminar.Size = new System.Drawing.Size(177, 45);
             this.btnEliminar.TabIndex = 3;
             this.btnEliminar.UseVisualStyleBackColor = false;
             // 
@@ -175,7 +175,7 @@
             this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar.Location = new System.Drawing.Point(24, 451);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(123, 45);
+            this.btnAgregar.Size = new System.Drawing.Size(177, 45);
             this.btnAgregar.TabIndex = 2;
             this.btnAgregar.UseVisualStyleBackColor = false;
             // 
@@ -212,6 +212,22 @@
             this.labelTextoBienvenida.Text = "Por favor selecciona la sección que deseas ver";
             this.labelTextoBienvenida.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // btnVerEntrenadores
+            // 
+            this.btnVerEntrenadores.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnVerEntrenadores.AutoSize = true;
+            this.btnVerEntrenadores.BackColor = System.Drawing.Color.Black;
+            this.btnVerEntrenadores.FlatAppearance.BorderSize = 0;
+            this.btnVerEntrenadores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVerEntrenadores.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVerEntrenadores.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnVerEntrenadores.Location = new System.Drawing.Point(42, 259);
+            this.btnVerEntrenadores.Name = "btnVerEntrenadores";
+            this.btnVerEntrenadores.Size = new System.Drawing.Size(218, 56);
+            this.btnVerEntrenadores.TabIndex = 2;
+            this.btnVerEntrenadores.Text = "Ver entrenadores";
+            this.btnVerEntrenadores.UseVisualStyleBackColor = false;
+            // 
             // BVerUsuarios
             // 
             this.BVerUsuarios.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -227,6 +243,7 @@
             this.BVerUsuarios.TabIndex = 1;
             this.BVerUsuarios.Text = "Ver usuarios";
             this.BVerUsuarios.UseVisualStyleBackColor = false;
+            this.BVerUsuarios.Click += new System.EventHandler(this.BVerUsuarios_Click);
             // 
             // BVerAlumnos
             // 
@@ -243,22 +260,6 @@
             this.BVerAlumnos.TabIndex = 0;
             this.BVerAlumnos.Text = "Ver alumnos";
             this.BVerAlumnos.UseVisualStyleBackColor = false;
-            // 
-            // btnVerEntrenadores
-            // 
-            this.btnVerEntrenadores.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnVerEntrenadores.AutoSize = true;
-            this.btnVerEntrenadores.BackColor = System.Drawing.Color.Black;
-            this.btnVerEntrenadores.FlatAppearance.BorderSize = 0;
-            this.btnVerEntrenadores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVerEntrenadores.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVerEntrenadores.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnVerEntrenadores.Location = new System.Drawing.Point(42, 259);
-            this.btnVerEntrenadores.Name = "btnVerEntrenadores";
-            this.btnVerEntrenadores.Size = new System.Drawing.Size(218, 56);
-            this.btnVerEntrenadores.TabIndex = 2;
-            this.btnVerEntrenadores.Text = "Ver entrenadores";
-            this.btnVerEntrenadores.UseVisualStyleBackColor = false;
             // 
             // HomePageAdmin
             // 
