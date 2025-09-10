@@ -34,14 +34,17 @@
             this.labelAdmin = new System.Windows.Forms.Label();
             this.contentContainer = new System.Windows.Forms.SplitContainer();
             this.contentPanel = new System.Windows.Forms.Panel();
+            this.textBoxBusqueda = new System.Windows.Forms.TextBox();
+            this.BBuscar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.labelTitulo = new System.Windows.Forms.Label();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.labelTextoBienvenida = new System.Windows.Forms.Label();
             this.btnVerEntrenadores = new System.Windows.Forms.Button();
-            this.BVerUsuarios = new System.Windows.Forms.Button();
+            this.BVerPersonal = new System.Windows.Forms.Button();
             this.BVerAlumnos = new System.Windows.Forms.Button();
+            this.BVerRutinas = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.homeContainer)).BeginInit();
             this.homeContainer.Panel1.SuspendLayout();
             this.homeContainer.Panel2.SuspendLayout();
@@ -57,11 +60,9 @@
             // 
             // homeContainer
             // 
-            this.homeContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.homeContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(201)))), ((int)(((byte)(19)))));
-            this.homeContainer.Location = new System.Drawing.Point(2, 0);
+            this.homeContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.homeContainer.Location = new System.Drawing.Point(0, 0);
             this.homeContainer.Name = "homeContainer";
             this.homeContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -77,8 +78,8 @@
             // 
             this.homeContainer.Panel2.BackColor = System.Drawing.Color.Gold;
             this.homeContainer.Panel2.Controls.Add(this.contentContainer);
-            this.homeContainer.Size = new System.Drawing.Size(1085, 681);
-            this.homeContainer.SplitterDistance = 87;
+            this.homeContainer.Size = new System.Drawing.Size(1087, 620);
+            this.homeContainer.SplitterDistance = 79;
             this.homeContainer.TabIndex = 7;
             // 
             // BSalir
@@ -89,17 +90,18 @@
             this.BSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BSalir.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BSalir.Location = new System.Drawing.Point(899, 23);
+            this.BSalir.Location = new System.Drawing.Point(901, 23);
             this.BSalir.Name = "BSalir";
             this.BSalir.Size = new System.Drawing.Size(157, 50);
             this.BSalir.TabIndex = 5;
             this.BSalir.Text = "Salir";
             this.BSalir.UseVisualStyleBackColor = false;
+            this.BSalir.Click += new System.EventHandler(this.BSalir_Click);
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Taller2_G34.Properties.Resources.ChatGPT_Image_1_sept_2025__17_46_04;
-            this.pictureBox1.Location = new System.Drawing.Point(36, 0);
+            this.pictureBox1.Location = new System.Drawing.Point(24, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(71, 73);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -111,7 +113,7 @@
             this.labelAdmin.AutoSize = true;
             this.labelAdmin.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelAdmin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(201)))), ((int)(((byte)(19)))));
-            this.labelAdmin.Location = new System.Drawing.Point(135, 27);
+            this.labelAdmin.Location = new System.Drawing.Point(125, 30);
             this.labelAdmin.Name = "labelAdmin";
             this.labelAdmin.Size = new System.Drawing.Size(340, 32);
             this.labelAdmin.TabIndex = 4;
@@ -134,17 +136,20 @@
             // contentContainer.Panel2
             // 
             this.contentContainer.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(201)))), ((int)(((byte)(19)))));
+            this.contentContainer.Panel2.Controls.Add(this.BVerRutinas);
             this.contentContainer.Panel2.Controls.Add(this.btnVerEntrenadores);
-            this.contentContainer.Panel2.Controls.Add(this.BVerUsuarios);
+            this.contentContainer.Panel2.Controls.Add(this.BVerPersonal);
             this.contentContainer.Panel2.Controls.Add(this.BVerAlumnos);
             this.contentContainer.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint_1);
             this.contentContainer.Panel2MinSize = 200;
-            this.contentContainer.Size = new System.Drawing.Size(1085, 590);
-            this.contentContainer.SplitterDistance = 792;
+            this.contentContainer.Size = new System.Drawing.Size(1087, 537);
+            this.contentContainer.SplitterDistance = 778;
             this.contentContainer.TabIndex = 7;
             // 
             // contentPanel
             // 
+            this.contentPanel.Controls.Add(this.textBoxBusqueda);
+            this.contentPanel.Controls.Add(this.BBuscar);
             this.contentPanel.Controls.Add(this.btnEliminar);
             this.contentPanel.Controls.Add(this.btnAgregar);
             this.contentPanel.Controls.Add(this.labelTitulo);
@@ -152,10 +157,34 @@
             this.contentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.contentPanel.Location = new System.Drawing.Point(0, 0);
             this.contentPanel.Name = "contentPanel";
-            this.contentPanel.Size = new System.Drawing.Size(792, 590);
+            this.contentPanel.Size = new System.Drawing.Size(778, 537);
             this.contentPanel.TabIndex = 2;
             this.contentPanel.Visible = false;
             this.contentPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.contentPanel_Paint);
+            // 
+            // textBoxBusqueda
+            // 
+            this.textBoxBusqueda.BackColor = System.Drawing.Color.Cornsilk;
+            this.textBoxBusqueda.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxBusqueda.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxBusqueda.Location = new System.Drawing.Point(347, 12);
+            this.textBoxBusqueda.Name = "textBoxBusqueda";
+            this.textBoxBusqueda.Size = new System.Drawing.Size(288, 24);
+            this.textBoxBusqueda.TabIndex = 7;
+            // 
+            // BBuscar
+            // 
+            this.BBuscar.BackColor = System.Drawing.Color.Black;
+            this.BBuscar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.BBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BBuscar.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.BBuscar.Location = new System.Drawing.Point(641, 10);
+            this.BBuscar.Name = "BBuscar";
+            this.BBuscar.Size = new System.Drawing.Size(87, 27);
+            this.BBuscar.TabIndex = 6;
+            this.BBuscar.Text = "Buscar";
+            this.BBuscar.UseVisualStyleBackColor = false;
+            this.BBuscar.Click += new System.EventHandler(this.BBuscar_Click);
             // 
             // btnEliminar
             // 
@@ -178,6 +207,7 @@
             this.btnAgregar.Size = new System.Drawing.Size(177, 45);
             this.btnAgregar.TabIndex = 2;
             this.btnAgregar.UseVisualStyleBackColor = false;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // labelTitulo
             // 
@@ -196,6 +226,7 @@
             this.dataGridView.GridColor = System.Drawing.Color.Gold;
             this.dataGridView.Location = new System.Drawing.Point(24, 45);
             this.dataGridView.Name = "dataGridView";
+            this.dataGridView.ReadOnly = true;
             this.dataGridView.RowHeadersWidth = 51;
             this.dataGridView.RowTemplate.Height = 24;
             this.dataGridView.Size = new System.Drawing.Size(704, 400);
@@ -214,61 +245,80 @@
             // 
             // btnVerEntrenadores
             // 
-            this.btnVerEntrenadores.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnVerEntrenadores.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnVerEntrenadores.AutoSize = true;
             this.btnVerEntrenadores.BackColor = System.Drawing.Color.Black;
             this.btnVerEntrenadores.FlatAppearance.BorderSize = 0;
             this.btnVerEntrenadores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVerEntrenadores.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVerEntrenadores.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnVerEntrenadores.Location = new System.Drawing.Point(42, 259);
+            this.btnVerEntrenadores.Location = new System.Drawing.Point(50, 259);
             this.btnVerEntrenadores.Name = "btnVerEntrenadores";
-            this.btnVerEntrenadores.Size = new System.Drawing.Size(218, 56);
+            this.btnVerEntrenadores.Size = new System.Drawing.Size(197, 56);
             this.btnVerEntrenadores.TabIndex = 2;
             this.btnVerEntrenadores.Text = "Ver entrenadores";
             this.btnVerEntrenadores.UseVisualStyleBackColor = false;
+            this.btnVerEntrenadores.Click += new System.EventHandler(this.btnVerEntrenadores_Click);
             // 
-            // BVerUsuarios
+            // BVerPersonal
             // 
-            this.BVerUsuarios.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BVerUsuarios.AutoSize = true;
-            this.BVerUsuarios.BackColor = System.Drawing.Color.Black;
-            this.BVerUsuarios.FlatAppearance.BorderSize = 0;
-            this.BVerUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BVerUsuarios.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BVerUsuarios.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BVerUsuarios.Location = new System.Drawing.Point(42, 45);
-            this.BVerUsuarios.Name = "BVerUsuarios";
-            this.BVerUsuarios.Size = new System.Drawing.Size(218, 58);
-            this.BVerUsuarios.TabIndex = 1;
-            this.BVerUsuarios.Text = "Ver usuarios";
-            this.BVerUsuarios.UseVisualStyleBackColor = false;
-            this.BVerUsuarios.Click += new System.EventHandler(this.BVerUsuarios_Click);
+            this.BVerPersonal.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.BVerPersonal.AutoSize = true;
+            this.BVerPersonal.BackColor = System.Drawing.Color.Black;
+            this.BVerPersonal.FlatAppearance.BorderSize = 0;
+            this.BVerPersonal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BVerPersonal.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BVerPersonal.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BVerPersonal.Location = new System.Drawing.Point(50, 45);
+            this.BVerPersonal.Name = "BVerPersonal";
+            this.BVerPersonal.Size = new System.Drawing.Size(197, 58);
+            this.BVerPersonal.TabIndex = 1;
+            this.BVerPersonal.Text = "Ver Personal";
+            this.BVerPersonal.UseVisualStyleBackColor = false;
+            this.BVerPersonal.Click += new System.EventHandler(this.BVerPersonal_Click);
             // 
             // BVerAlumnos
             // 
-            this.BVerAlumnos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BVerAlumnos.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.BVerAlumnos.AutoSize = true;
             this.BVerAlumnos.BackColor = System.Drawing.Color.Black;
             this.BVerAlumnos.FlatAppearance.BorderSize = 0;
             this.BVerAlumnos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BVerAlumnos.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BVerAlumnos.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BVerAlumnos.Location = new System.Drawing.Point(42, 152);
+            this.BVerAlumnos.Location = new System.Drawing.Point(50, 152);
             this.BVerAlumnos.Name = "BVerAlumnos";
-            this.BVerAlumnos.Size = new System.Drawing.Size(218, 56);
+            this.BVerAlumnos.Size = new System.Drawing.Size(197, 56);
             this.BVerAlumnos.TabIndex = 0;
             this.BVerAlumnos.Text = "Ver alumnos";
             this.BVerAlumnos.UseVisualStyleBackColor = false;
+            this.BVerAlumnos.Click += new System.EventHandler(this.BVerAlumnos_Click);
+            // 
+            // BVerRutinas
+            // 
+            this.BVerRutinas.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.BVerRutinas.AutoSize = true;
+            this.BVerRutinas.BackColor = System.Drawing.Color.Black;
+            this.BVerRutinas.FlatAppearance.BorderSize = 0;
+            this.BVerRutinas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BVerRutinas.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BVerRutinas.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BVerRutinas.Location = new System.Drawing.Point(50, 360);
+            this.BVerRutinas.Name = "BVerRutinas";
+            this.BVerRutinas.Size = new System.Drawing.Size(197, 56);
+            this.BVerRutinas.TabIndex = 3;
+            this.BVerRutinas.Text = "Ver Rutinas";
+            this.BVerRutinas.UseVisualStyleBackColor = false;
+            this.BVerRutinas.Click += new System.EventHandler(this.BVerRutinas_Click);
             // 
             // HomePageAdmin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(1087, 620);
             this.Controls.Add(this.homeContainer);
             this.Name = "HomePageAdmin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Panel de administrador";
             this.Load += new System.EventHandler(this.Form2_Load);
             this.homeContainer.Panel1.ResumeLayout(false);
@@ -303,8 +353,11 @@
         private System.Windows.Forms.Label labelTitulo;
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.Label labelTextoBienvenida;
-        private System.Windows.Forms.Button BVerUsuarios;
+        private System.Windows.Forms.Button BVerPersonal;
         private System.Windows.Forms.Button BVerAlumnos;
         private System.Windows.Forms.Button btnVerEntrenadores;
+        private System.Windows.Forms.TextBox textBoxBusqueda;
+        private System.Windows.Forms.Button BBuscar;
+        private System.Windows.Forms.Button BVerRutinas;
     }
 }
