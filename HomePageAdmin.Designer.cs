@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.homeContainer = new System.Windows.Forms.SplitContainer();
             this.BSalir = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -41,10 +42,10 @@
             this.labelTitulo = new System.Windows.Forms.Label();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.labelTextoBienvenida = new System.Windows.Forms.Label();
+            this.BVerRutinas = new System.Windows.Forms.Button();
             this.btnVerEntrenadores = new System.Windows.Forms.Button();
             this.BVerPersonal = new System.Windows.Forms.Button();
             this.BVerAlumnos = new System.Windows.Forms.Button();
-            this.BVerRutinas = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.homeContainer)).BeginInit();
             this.homeContainer.Panel1.SuspendLayout();
             this.homeContainer.Panel2.SuspendLayout();
@@ -222,13 +223,24 @@
             // dataGridView
             // 
             this.dataGridView.BackgroundColor = System.Drawing.Color.Goldenrod;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Goldenrod;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.GridColor = System.Drawing.Color.Gold;
+            this.dataGridView.GridColor = System.Drawing.Color.DarkGoldenrod;
             this.dataGridView.Location = new System.Drawing.Point(24, 45);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
             this.dataGridView.RowHeadersWidth = 51;
+            this.dataGridView.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.Goldenrod;
+            this.dataGridView.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.dataGridView.RowTemplate.Height = 24;
+            this.dataGridView.RowTemplate.ReadOnly = true;
             this.dataGridView.Size = new System.Drawing.Size(704, 400);
             this.dataGridView.TabIndex = 0;
             // 
@@ -242,6 +254,23 @@
             this.labelTextoBienvenida.TabIndex = 1;
             this.labelTextoBienvenida.Text = "Por favor selecciona la sección que deseas ver";
             this.labelTextoBienvenida.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // BVerRutinas
+            // 
+            this.BVerRutinas.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.BVerRutinas.AutoSize = true;
+            this.BVerRutinas.BackColor = System.Drawing.Color.Black;
+            this.BVerRutinas.FlatAppearance.BorderSize = 0;
+            this.BVerRutinas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BVerRutinas.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BVerRutinas.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BVerRutinas.Location = new System.Drawing.Point(50, 360);
+            this.BVerRutinas.Name = "BVerRutinas";
+            this.BVerRutinas.Size = new System.Drawing.Size(197, 56);
+            this.BVerRutinas.TabIndex = 3;
+            this.BVerRutinas.Text = "Ver Rutinas";
+            this.BVerRutinas.UseVisualStyleBackColor = false;
+            this.BVerRutinas.Click += new System.EventHandler(this.BVerRutinas_Click);
             // 
             // btnVerEntrenadores
             // 
@@ -293,23 +322,6 @@
             this.BVerAlumnos.Text = "Ver alumnos";
             this.BVerAlumnos.UseVisualStyleBackColor = false;
             this.BVerAlumnos.Click += new System.EventHandler(this.BVerAlumnos_Click);
-            // 
-            // BVerRutinas
-            // 
-            this.BVerRutinas.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.BVerRutinas.AutoSize = true;
-            this.BVerRutinas.BackColor = System.Drawing.Color.Black;
-            this.BVerRutinas.FlatAppearance.BorderSize = 0;
-            this.BVerRutinas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BVerRutinas.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BVerRutinas.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BVerRutinas.Location = new System.Drawing.Point(50, 360);
-            this.BVerRutinas.Name = "BVerRutinas";
-            this.BVerRutinas.Size = new System.Drawing.Size(197, 56);
-            this.BVerRutinas.TabIndex = 3;
-            this.BVerRutinas.Text = "Ver Rutinas";
-            this.BVerRutinas.UseVisualStyleBackColor = false;
-            this.BVerRutinas.Click += new System.EventHandler(this.BVerRutinas_Click);
             // 
             // HomePageAdmin
             // 
