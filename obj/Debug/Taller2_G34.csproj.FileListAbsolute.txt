@@ -21,9 +21,17 @@ C:\Users\anafa\OneDrive\Escritorio\Taller de programación 2\Practico 1\Taller2_
 C:\Users\anafa\OneDrive\Escritorio\Taller de programación 2\Practico 1\Taller2_G34\obj\Debug\Taller2_G34.homePageCoach.resources
 C:\Users\anafa\OneDrive\Escritorio\Taller de programación 2\Practico 1\Taller2_G34\obj\Debug\Taller2_G34.login.resources
 C:\Users\yago_\LIC\Taller 2\Proyecto 34\Taller2_G34\obj\Debug\Taller2_G34.homePageCoach.resources
-C:\Users\yago_\LIC\Taller 2\Proyecto 34\Taller2_G34\obj\Debug\Taller2_G34.Form2.resources
 C:\Users\yago_\LIC\Taller 2\Proyecto 34\Taller2_G34\obj\Debug\Taller2_G34.login.resources
 C:\Users\anafa\OneDrive\Escritorio\Taller de programación 2\Practico 1\Taller2_G34\obj\Debug\Taller2_G34.HomePageAdmin.resources
+<<<<<<< Updated upstream
 C:\Users\anafa\OneDrive\Escritorio\Taller de programación 2\Practico 1\Taller2_G34\obj\Debug\Taller2_G34.AgregarAlumno.resources
 C:\Users\anafa\OneDrive\Escritorio\Taller de programación 2\Practico 1\Taller2_G34\obj\Debug\Taller2_G34.AgregarRutina.resources
 C:\Users\anafa\OneDrive\Escritorio\Taller de programación 2\Practico 1\Taller2_G34\obj\Debug\Taller2_G34.AgregarPersonal.resources
+=======
+C:\Users\anafa\OneDrive\Escritorio\Taller de programación 2\Practico 1\Taller2_G34\obj\Debug\Taller2_G34.AgregarUsuario.resources
+C:\Users\yago_\LIC\Taller 2\Proyecto 34\Taller2_G34\obj\Debug\Taller2_G34.AgregarUsuario.resources
+C:\Users\yago_\LIC\Taller 2\Proyecto 34\Taller2_G34\obj\Debug\Taller2_G34.HomePageAdmin.resources
+>>>>>>> Stashed changes
+C:\Users\yago_\LIC\Taller 2\Proyecto 34\Taller2_G34\obj\Debug\Taller2_G34.AgregarAlumno.resources
+C:\Users\yago_\LIC\Taller 2\Proyecto 34\Taller2_G34\obj\Debug\Taller2_G34.AgregarRutina.resources
+C:\Users\yago_\LIC\Taller 2\Proyecto 34\Taller2_G34\obj\Debug\Taller2_G34.AgregarPersonal.resources

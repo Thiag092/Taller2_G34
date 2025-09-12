@@ -12,7 +12,7 @@ namespace Taller2_G34
 {
     public partial class homePageCoach : Form
     {
-        private object verFicha;
+       // private object verFicha;
 
         public homePageCoach()
         {

@@ -171,6 +171,23 @@ namespace Taller2_G34
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
+
+
+        private void homeContainer_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+
+        }
+
+        private void BVerUsuarios_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BVerAlumnos_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
         private void btnVerEntrenadores_Click(object sender, EventArgs e)
         {
             MostrarVista("entrenadores");
@@ -209,5 +226,7 @@ namespace Taller2_G34
         {
             MostrarVista("rutinas");
         }
+
+        
     }
 }
