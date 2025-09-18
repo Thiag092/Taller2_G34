@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient; // se agrego esta libreria para poder usar SQL
+
 
 namespace Taller2_G34
 {
@@ -66,6 +68,8 @@ namespace Taller2_G34
 
         }
 
+        /*************************************************************************************/
+        /* Version anterior del metodo MostrarVista para mostrar los usuarios estaticos
         private void MostrarVista(string tipo)
         {
             // Oculto el label de bienvenida
@@ -103,7 +107,83 @@ namespace Taller2_G34
 
             // Ajustes visuales opcionales
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        } */
+        /*************************************************************************************/
+
+
+        private void MostrarVista(string tipo)
+        {
+            // Oculto el label de bienvenida porque ya no corresponde mostrarlo
+            labelTextoBienvenida.Visible = false;
+
+            // Hago visible el panel donde va el DataGridView con los datos
+            contentPanel.Visible = true;
+
+            // Limpio el DataGridView antes de cargar nuevos datos (importante para que no se acumulen)
+            dataGridView.Columns.Clear();
+            dataGridView.Rows.Clear();
+
+            // Creo una columna de botones que irá en cada fila para ver más detalles del usuario
+            DataGridViewButtonColumn btnDetalles = new DataGridViewButtonColumn();
+            btnDetalles.HeaderText = "Detalles";            // Texto en el encabezado de la columna
+            btnDetalles.Text = "Ver más";                   // Texto que aparecerá en cada botón
+            btnDetalles.Name = "Detalles";                  // Nombre interno de la columna
+            btnDetalles.UseColumnTextForButtonValue = true; // Para que todos los botones tengan el mismo texto
+
+            // Creo las columnas del DataGridView
+            dataGridView.Columns.Add("DNI", "DNI");
+            dataGridView.Columns.Add("Nombre", "Nombre");
+            dataGridView.Columns.Add("Apellido", "Apellido");
+            dataGridView.Columns.Add("Email", "Email");
+            dataGridView.Columns.Add("TipoUsuario", "Tipo de usuario");
+            dataGridView.Columns.Add(btnDetalles); // Agrego la columna de botones al final
+
+            // Cadena de conexión a SQL Server
+            //   - Server: tu instancia de SQL Server (ej: localhost o .\SQLEXPRESS)
+            //   - Database: el nombre de tu base (ej: GimnasioDB)
+            //   - Trusted_Connection=True: usa autenticación de Windows
+            string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym;Trusted_Connection=True;";
+
+            // 📄 Consulta SQL para traer usuarios junto con su rol
+            string query = @"
+        SELECT u.dni, u.nombre, u.apellido, u.email, r.descripcion
+        FROM Usuario u
+        INNER JOIN Rol r ON u.id_rol = r.id_rol";
+
+            // Abro la conexión con la base de datos
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open(); // Abro la conexión
+
+                // Creo un comando SQL con la consulta
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                // Ejecuto el comando y obtengo un "lector" de filas
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                // Recorro cada fila devuelta por la consulta
+                while (reader.Read())
+                {
+                    // Voy agregando las filas al DataGridView
+                    dataGridView.Rows.Add(
+                        reader["dni"],         // Columna DNI
+                        reader["nombre"],      // Columna Nombre
+                        reader["apellido"],    // Columna Apellido
+                        reader["email"],       // Columna Email
+                        reader["descripcion"]  // Columna Tipo de usuario (rol)
+                    );
+                }
+            }
+
+            // Ajusto las columnas para que ocupen todo el ancho disponible
+            dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            // Actualizo los textos de los botones y etiquetas del formulario
+            labelTitulo.Text = "Personal";
+            btnAgregar.Text = "Agregar Usuario";
+            btnEliminar.Text = "Eliminar Usuario";
         }
+
 
     }
 }

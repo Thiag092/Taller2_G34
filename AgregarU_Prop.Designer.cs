@@ -29,12 +29,10 @@
         private void InitializeComponent()
         {
             this.panel3 = new System.Windows.Forms.Panel();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton6 = new System.Windows.Forms.RadioButton();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
+            this.RBPropietario = new System.Windows.Forms.RadioButton();
+            this.RBCoach = new System.Windows.Forms.RadioButton();
+            this.RBAdmin = new System.Windows.Forms.RadioButton();
             this.label5 = new System.Windows.Forms.Label();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.label4 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
@@ -52,6 +50,8 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.LPass = new System.Windows.Forms.Label();
+            this.textBox6 = new System.Windows.Forms.TextBox();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -63,9 +63,9 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.radioButton3);
-            this.panel3.Controls.Add(this.radioButton6);
-            this.panel3.Controls.Add(this.radioButton5);
+            this.panel3.Controls.Add(this.RBPropietario);
+            this.panel3.Controls.Add(this.RBCoach);
+            this.panel3.Controls.Add(this.RBAdmin);
             this.panel3.Controls.Add(this.label5);
             this.panel3.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel3.Location = new System.Drawing.Point(455, 206);
@@ -73,38 +73,38 @@
             this.panel3.Size = new System.Drawing.Size(235, 104);
             this.panel3.TabIndex = 50;
             // 
-            // radioButton3
+            // RBPropietario
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(93, 67);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(112, 24);
-            this.radioButton3.TabIndex = 8;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Propietario";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.RBPropietario.AutoSize = true;
+            this.RBPropietario.Location = new System.Drawing.Point(93, 67);
+            this.RBPropietario.Name = "RBPropietario";
+            this.RBPropietario.Size = new System.Drawing.Size(112, 24);
+            this.RBPropietario.TabIndex = 8;
+            this.RBPropietario.TabStop = true;
+            this.RBPropietario.Text = "Propietario";
+            this.RBPropietario.UseVisualStyleBackColor = true;
             // 
-            // radioButton6
+            // RBCoach
             // 
-            this.radioButton6.AutoSize = true;
-            this.radioButton6.Location = new System.Drawing.Point(93, 7);
-            this.radioButton6.Name = "radioButton6";
-            this.radioButton6.Size = new System.Drawing.Size(75, 24);
-            this.radioButton6.TabIndex = 5;
-            this.radioButton6.TabStop = true;
-            this.radioButton6.Text = "Coach";
-            this.radioButton6.UseVisualStyleBackColor = true;
+            this.RBCoach.AutoSize = true;
+            this.RBCoach.Location = new System.Drawing.Point(93, 7);
+            this.RBCoach.Name = "RBCoach";
+            this.RBCoach.Size = new System.Drawing.Size(75, 24);
+            this.RBCoach.TabIndex = 5;
+            this.RBCoach.TabStop = true;
+            this.RBCoach.Text = "Coach";
+            this.RBCoach.UseVisualStyleBackColor = true;
             // 
-            // radioButton5
+            // RBAdmin
             // 
-            this.radioButton5.AutoSize = true;
-            this.radioButton5.Location = new System.Drawing.Point(93, 37);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(135, 24);
-            this.radioButton5.TabIndex = 4;
-            this.radioButton5.TabStop = true;
-            this.radioButton5.Text = "Administrador";
-            this.radioButton5.UseVisualStyleBackColor = true;
+            this.RBAdmin.AutoSize = true;
+            this.RBAdmin.Location = new System.Drawing.Point(93, 37);
+            this.RBAdmin.Name = "RBAdmin";
+            this.RBAdmin.Size = new System.Drawing.Size(135, 24);
+            this.RBAdmin.TabIndex = 4;
+            this.RBAdmin.TabStop = true;
+            this.RBAdmin.Text = "Administrador";
+            this.RBAdmin.UseVisualStyleBackColor = true;
             // 
             // label5
             // 
@@ -114,30 +114,6 @@
             this.label5.Size = new System.Drawing.Size(33, 20);
             this.label5.TabIndex = 0;
             this.label5.Text = "Rol";
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton2.Location = new System.Drawing.Point(228, 206);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(79, 27);
-            this.radioButton2.TabIndex = 49;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Mujer";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton1.Location = new System.Drawing.Point(114, 206);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(98, 27);
-            this.radioButton1.TabIndex = 48;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Hombre";
-            this.radioButton1.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -162,7 +138,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(57, 131);
+            this.label3.Location = new System.Drawing.Point(382, 79);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(92, 24);
             this.label3.TabIndex = 45;
@@ -172,7 +148,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(359, 79);
+            this.label2.Location = new System.Drawing.Point(80, 79);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 24);
             this.label2.TabIndex = 44;
@@ -182,7 +158,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(59, 83);
+            this.label1.Location = new System.Drawing.Point(93, 127);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 24);
             this.label1.TabIndex = 43;
@@ -191,23 +167,23 @@
             // textBox5
             // 
             this.textBox5.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(162, 131);
+            this.textBox5.Location = new System.Drawing.Point(487, 79);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(145, 31);
+            this.textBox5.Size = new System.Drawing.Size(203, 31);
             this.textBox5.TabIndex = 42;
             // 
             // textBox4
             // 
             this.textBox4.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(487, 76);
+            this.textBox4.Location = new System.Drawing.Point(162, 76);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(203, 31);
+            this.textBox4.Size = new System.Drawing.Size(145, 31);
             this.textBox4.TabIndex = 41;
             // 
             // textBox3
             // 
             this.textBox3.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(163, 76);
+            this.textBox3.Location = new System.Drawing.Point(163, 124);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(144, 31);
             this.textBox3.TabIndex = 40;
@@ -232,7 +208,7 @@
             // 
             this.labelApellido.AutoSize = true;
             this.labelApellido.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelApellido.Location = new System.Drawing.Point(359, 24);
+            this.labelApellido.Location = new System.Drawing.Point(383, 27);
             this.labelApellido.Name = "labelApellido";
             this.labelApellido.Size = new System.Drawing.Size(91, 24);
             this.labelApellido.TabIndex = 37;
@@ -313,9 +289,9 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.LPass);
+            this.panel2.Controls.Add(this.textBox6);
             this.panel2.Controls.Add(this.panel3);
-            this.panel2.Controls.Add(this.radioButton2);
-            this.panel2.Controls.Add(this.radioButton1);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.dateTimePicker1);
             this.panel2.Controls.Add(this.label3);
@@ -335,6 +311,26 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(829, 513);
             this.panel2.TabIndex = 0;
+            // 
+            // LPass
+            // 
+            this.LPass.AutoSize = true;
+            this.LPass.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LPass.Location = new System.Drawing.Point(38, 181);
+            this.LPass.Name = "LPass";
+            this.LPass.Size = new System.Drawing.Size(107, 24);
+            this.LPass.TabIndex = 52;
+            this.LPass.Text = "Contraseña";
+            this.LPass.Click += new System.EventHandler(this.label6_Click);
+            // 
+            // textBox6
+            // 
+            this.textBox6.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox6.Location = new System.Drawing.Point(162, 181);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(144, 31);
+            this.textBox6.TabIndex = 51;
+            this.textBox6.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
             // 
             // AgregarU_Prop
             // 
@@ -360,12 +356,10 @@
         #endregion
 
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton6;
-        private System.Windows.Forms.RadioButton radioButton5;
+        private System.Windows.Forms.RadioButton RBPropietario;
+        private System.Windows.Forms.RadioButton RBCoach;
+        private System.Windows.Forms.RadioButton RBAdmin;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label3;
@@ -383,5 +377,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label LPass;
+        private System.Windows.Forms.TextBox textBox6;
     }
 }
