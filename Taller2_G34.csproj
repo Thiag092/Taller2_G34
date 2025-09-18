@@ -93,6 +93,12 @@
     <Compile Include="AgregarAlumno.Designer.cs">
       <DependentUpon>AgregarAlumno.cs</DependentUpon>
     </Compile>
+    <Compile Include="HomePagePropietario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HomePagePropietario.Designer.cs">
+      <DependentUpon>HomePagePropietario.cs</DependentUpon>
+    </Compile>
     <Compile Include="login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +121,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HomePageAdmin.resx">
       <DependentUpon>HomePageAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HomePagePropietario.resx">
+      <DependentUpon>HomePagePropietario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="login.resx">
       <DependentUpon>login.cs</DependentUpon>

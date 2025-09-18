@@ -104,9 +104,9 @@ namespace Taller2_G34
                         int idRol = Convert.ToInt32(result);
 
                         // Abre el formulario según el rol
-                        if (idRol == 1) // Propietario (falta pantalla)
+                        if (idRol == 1) // Pantalla de propietario
                         {
-                            HomePageAdmin f = new HomePageAdmin();
+                            HomePagePropietario f = new HomePagePropietario();
                             f.Show();
                             this.Hide();
                         }
