@@ -32,7 +32,6 @@ namespace Taller2_G34
 
         private void BConfirmar_Click(object sender, EventArgs e)
         {
-
             try
             {
                 // 1. Obtener la cadena de conexión desde App.config
@@ -70,9 +69,14 @@ namespace Taller2_G34
                     int filasAfectadas = command.ExecuteNonQuery();
 
                     if (filasAfectadas > 0)
+                    {
                         MessageBox.Show("Usuario agregado correctamente ✅");
+                        this.Close();
+                    }
                     else
+                    {
                         MessageBox.Show("No se pudo agregar el usuario ❌");
+                    }
                 }
             }
             catch (Exception ex)

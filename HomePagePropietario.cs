@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient; // se agrego esta libreria para poder usar SQL
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient; // se agrego esta libreria para poder usar SQL
 
 
 namespace Taller2_G34
@@ -184,6 +184,53 @@ namespace Taller2_G34
             btnEliminar.Text = "Eliminar Usuario";
         }
 
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+           
+            if (dataGridView.SelectedRows.Count > 0)
+            {
+                // Obtengo el DNI del usuario seleccionado
+                string dniUsuario = dataGridView.SelectedRows[0].Cells["DNI"].Value.ToString();
+
+                DialogResult confirmacion = MessageBox.Show(
+                    $"¿Está seguro que desea eliminar al usuario con DNI {dniUsuario}?",
+                    "Confirmación",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                );
+
+                if (confirmacion == DialogResult.Yes)
+                {
+                    string connectionString = "Data Source=YAGO_DELL\\SQLEXPRESS01;Initial Catalog=EnerGym;Integrated Security=True";
+
+                    string query = "DELETE FROM Usuario WHERE dni = @dni";
+
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@dni", dniUsuario);
+
+                        connection.Open();
+                        int filasAfectadas = command.ExecuteNonQuery();
+
+                        if (filasAfectadas > 0)
+                        {
+                            MessageBox.Show("Usuario eliminado correctamente ✅");
+                            MostrarVista("Personal"); // refresca la grilla
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se encontró el usuario ❌");
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor seleccione un usuario primero.");
+            }
+        }
 
     }
 }
+
