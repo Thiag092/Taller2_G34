@@ -1,6 +1,6 @@
 ﻿namespace Taller2_G34
 {
-    partial class AgregarPersonal
+    partial class AgregarU_Prop
     {
         /// <summary>
         /// Required designer variable.
@@ -28,9 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton6 = new System.Windows.Forms.RadioButton();
@@ -52,70 +49,17 @@
             this.labelNombre = new System.Windows.Forms.Label();
             this.BConfirmar = new System.Windows.Forms.Button();
             this.BCancelar = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.splitContainer1.Panel1.Controls.Add(this.pictureBox1);
-            this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.BackColor = System.Drawing.Color.Gold;
-            this.splitContainer1.Panel2.Controls.Add(this.panel2);
-            this.splitContainer1.Size = new System.Drawing.Size(781, 553);
-            this.splitContainer1.SplitterDistance = 100;
-            this.splitContainer1.TabIndex = 6;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Taller2_G34.Properties.Resources.ChatGPT_Image_1_sept_2025__17_46_04;
-            this.pictureBox1.Location = new System.Drawing.Point(331, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(126, 95);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.panel3);
-            this.panel2.Controls.Add(this.radioButton2);
-            this.panel2.Controls.Add(this.radioButton1);
-            this.panel2.Controls.Add(this.label4);
-            this.panel2.Controls.Add(this.dateTimePicker1);
-            this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.textBox5);
-            this.panel2.Controls.Add(this.textBox4);
-            this.panel2.Controls.Add(this.textBox3);
-            this.panel2.Controls.Add(this.textBox2);
-            this.panel2.Controls.Add(this.textBox1);
-            this.panel2.Controls.Add(this.labelApellido);
-            this.panel2.Controls.Add(this.labelNombre);
-            this.panel2.Controls.Add(this.BConfirmar);
-            this.panel2.Controls.Add(this.BCancelar);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(781, 449);
-            this.panel2.TabIndex = 0;
             // 
             // panel3
             // 
@@ -161,7 +105,6 @@
             this.radioButton5.TabStop = true;
             this.radioButton5.Text = "Administrador";
             this.radioButton5.UseVisualStyleBackColor = true;
-            this.radioButton5.CheckedChanged += new System.EventHandler(this.radioButton5_CheckedChanged);
             // 
             // label5
             // 
@@ -332,36 +275,88 @@
             this.BCancelar.TabIndex = 34;
             this.BCancelar.Text = "Cancelar";
             this.BCancelar.UseVisualStyleBackColor = false;
-            this.BCancelar.Click += new System.EventHandler(this.BCancelar_Click);
             // 
-            // AgregarPersonal
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Taller2_G34.Properties.Resources.ChatGPT_Image_1_sept_2025__17_46_04;
+            this.pictureBox1.Location = new System.Drawing.Point(331, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(126, 95);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.splitContainer1.Panel1.Controls.Add(this.pictureBox1);
+            this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.BackColor = System.Drawing.Color.Gold;
+            this.splitContainer1.Panel2.Controls.Add(this.panel2);
+            this.splitContainer1.Size = new System.Drawing.Size(829, 631);
+            this.splitContainer1.SplitterDistance = 114;
+            this.splitContainer1.TabIndex = 7;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.panel3);
+            this.panel2.Controls.Add(this.radioButton2);
+            this.panel2.Controls.Add(this.radioButton1);
+            this.panel2.Controls.Add(this.label4);
+            this.panel2.Controls.Add(this.dateTimePicker1);
+            this.panel2.Controls.Add(this.label3);
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.textBox5);
+            this.panel2.Controls.Add(this.textBox4);
+            this.panel2.Controls.Add(this.textBox3);
+            this.panel2.Controls.Add(this.textBox2);
+            this.panel2.Controls.Add(this.textBox1);
+            this.panel2.Controls.Add(this.labelApellido);
+            this.panel2.Controls.Add(this.labelNombre);
+            this.panel2.Controls.Add(this.BConfirmar);
+            this.panel2.Controls.Add(this.BCancelar);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(829, 513);
+            this.panel2.TabIndex = 0;
+            // 
+            // AgregarU_Prop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ClientSize = new System.Drawing.Size(781, 553);
+            this.ClientSize = new System.Drawing.Size(829, 631);
             this.Controls.Add(this.splitContainer1);
-            this.Name = "AgregarPersonal";
-            this.Text = "Nuevo Usuario";
+            this.Name = "AgregarU_Prop";
+            this.Text = "Form1";
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.RadioButton radioButton6;
         private System.Windows.Forms.RadioButton radioButton5;
         private System.Windows.Forms.Label label5;
@@ -381,6 +376,8 @@
         private System.Windows.Forms.Label labelNombre;
         private System.Windows.Forms.Button BConfirmar;
         private System.Windows.Forms.Button BCancelar;
-        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Panel panel2;
     }
 }

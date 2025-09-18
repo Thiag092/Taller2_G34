@@ -36,5 +36,28 @@ namespace Taller2_G34
         {
 
         }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            AgregarU_Prop formulario = new AgregarU_Prop();
+            formulario.Show();
+        }
+
+        private void BSalir_Click(object sender, EventArgs e)
+        {
+            DialogResult respuesta = MessageBox.Show(
+              "¿Está seguro que desea cerrar la sesión?",
+              "Confirmación",
+              MessageBoxButtons.YesNo,
+              MessageBoxIcon.Question
+          );
+
+            if (respuesta == DialogResult.Yes)
+            {
+                login f = new login();
+                f.Show();          // vuelve al formulario de login
+                this.Close();
+            }
+        }
     }
 }

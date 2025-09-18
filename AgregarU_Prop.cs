@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Taller2_G34
 {
-    public partial class AgregarPersonal : Form
+    public partial class AgregarU_Prop : Form
     {
-        public AgregarPersonal()
+        public AgregarU_Prop()
         {
             InitializeComponent();
         }
@@ -20,21 +20,6 @@ namespace Taller2_G34
         private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
         {
 
-        }
-
-        private void radioButton3_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void radioButton5_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void BCancelar_Click(object sender, EventArgs e)
-        {
-                this.Close();
         }
     }
 }

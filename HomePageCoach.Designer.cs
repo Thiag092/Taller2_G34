@@ -172,6 +172,7 @@
             // BBuscar
             // 
             this.BBuscar.BackColor = System.Drawing.Color.Black;
+            this.BBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BBuscar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.BBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BBuscar.ForeColor = System.Drawing.SystemColors.ButtonFace;
@@ -243,6 +244,7 @@
             // 
             this.BVerRutinas.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.BVerRutinas.BackColor = System.Drawing.Color.Black;
+            this.BVerRutinas.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BVerRutinas.FlatAppearance.BorderSize = 0;
             this.BVerRutinas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BVerRutinas.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -259,6 +261,7 @@
             // 
             this.BVerAlumnos.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.BVerAlumnos.BackColor = System.Drawing.Color.Black;
+            this.BVerAlumnos.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BVerAlumnos.FlatAppearance.BorderSize = 0;
             this.BVerAlumnos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BVerAlumnos.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

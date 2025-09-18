@@ -176,6 +176,7 @@
             // BBuscar
             // 
             this.BBuscar.BackColor = System.Drawing.Color.Black;
+            this.BBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BBuscar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.BBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BBuscar.ForeColor = System.Drawing.SystemColors.ButtonFace;
@@ -190,6 +191,7 @@
             // btnEliminar
             // 
             this.btnEliminar.BackColor = System.Drawing.Color.Maroon;
+            this.btnEliminar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEliminar.FlatAppearance.BorderSize = 0;
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminar.Location = new System.Drawing.Point(551, 451);
@@ -201,6 +203,7 @@
             // btnAgregar
             // 
             this.btnAgregar.BackColor = System.Drawing.Color.Green;
+            this.btnAgregar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAgregar.FlatAppearance.BorderSize = 0;
             this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar.Location = new System.Drawing.Point(24, 451);
@@ -260,6 +263,7 @@
             this.BVerRutinas.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.BVerRutinas.AutoSize = true;
             this.BVerRutinas.BackColor = System.Drawing.Color.Black;
+            this.BVerRutinas.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BVerRutinas.FlatAppearance.BorderSize = 0;
             this.BVerRutinas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BVerRutinas.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -277,6 +281,7 @@
             this.btnVerEntrenadores.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnVerEntrenadores.AutoSize = true;
             this.btnVerEntrenadores.BackColor = System.Drawing.Color.Black;
+            this.btnVerEntrenadores.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnVerEntrenadores.FlatAppearance.BorderSize = 0;
             this.btnVerEntrenadores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVerEntrenadores.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -294,6 +299,7 @@
             this.BVerPersonal.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.BVerPersonal.AutoSize = true;
             this.BVerPersonal.BackColor = System.Drawing.Color.Black;
+            this.BVerPersonal.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BVerPersonal.FlatAppearance.BorderSize = 0;
             this.BVerPersonal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BVerPersonal.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -311,6 +317,7 @@
             this.BVerAlumnos.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.BVerAlumnos.AutoSize = true;
             this.BVerAlumnos.BackColor = System.Drawing.Color.Black;
+            this.BVerAlumnos.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BVerAlumnos.FlatAppearance.BorderSize = 0;
             this.BVerAlumnos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BVerAlumnos.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

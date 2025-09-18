@@ -15,3 +15,4 @@ C:\Users\yago_\LIC\Taller 2\Proyecto 34\Taller2_G34\obj\Debug\Taller2_G34.csproj
 C:\Users\yago_\LIC\Taller 2\Proyecto 34\Taller2_G34\obj\Debug\Taller2_G34.csproj.CoreCompileInputs.cache
 C:\Users\yago_\LIC\Taller 2\Proyecto 34\Taller2_G34\obj\Debug\Taller2_G34.exe
 C:\Users\yago_\LIC\Taller 2\Proyecto 34\Taller2_G34\obj\Debug\Taller2_G34.pdb
+C:\Users\yago_\LIC\Taller 2\Proyecto 34\Taller2_G34\obj\Debug\Taller2_G34.AgregarU_Prop.resources
