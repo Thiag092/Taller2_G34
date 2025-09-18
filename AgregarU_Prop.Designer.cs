@@ -251,6 +251,7 @@
             // BConfirmar
             // 
             this.BConfirmar.BackColor = System.Drawing.Color.Green;
+            this.BConfirmar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BConfirmar.FlatAppearance.BorderSize = 0;
             this.BConfirmar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BConfirmar.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -261,10 +262,12 @@
             this.BConfirmar.TabIndex = 35;
             this.BConfirmar.Text = "Confirmar";
             this.BConfirmar.UseVisualStyleBackColor = false;
+            this.BConfirmar.Click += new System.EventHandler(this.BConfirmar_Click);
             // 
             // BCancelar
             // 
             this.BCancelar.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.BCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BCancelar.FlatAppearance.BorderSize = 0;
             this.BCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BCancelar.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -275,6 +278,7 @@
             this.BCancelar.TabIndex = 34;
             this.BCancelar.Text = "Cancelar";
             this.BCancelar.UseVisualStyleBackColor = false;
+            this.BCancelar.Click += new System.EventHandler(this.BCancelar_Click);
             // 
             // pictureBox1
             // 

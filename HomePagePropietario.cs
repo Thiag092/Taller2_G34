@@ -59,5 +59,51 @@ namespace Taller2_G34
                 this.Close();
             }
         }
+
+        private void BUsuarios_Click(object sender, EventArgs e)
+        {
+            MostrarVista("Personal");
+
+        }
+
+        private void MostrarVista(string tipo)
+        {
+            // Oculto el label de bienvenida
+            labelTextoBienvenida.Visible = false;
+            // Hago visible el panel de contenido
+            contentPanel.Visible = true;
+
+            // Limpio el DataGridView antes de cargar nuevos datos
+            dataGridView.Columns.Clear();
+            dataGridView.Rows.Clear();
+
+            // Columna de botón
+            DataGridViewButtonColumn btnDetalles = new DataGridViewButtonColumn();
+            btnDetalles.HeaderText = "Detalles";
+            btnDetalles.Text = "Ver más";
+            btnDetalles.Name = "Detalles";
+
+            {
+                dataGridView.Columns.Add("DNI", "DNI");
+                dataGridView.Columns.Add("Nombre", "Nombre");
+                dataGridView.Columns.Add("Apellido", "Apellido");
+                dataGridView.Columns.Add("Email", "Email");
+                dataGridView.Columns.Add("TipoUsuario", "Tipo de usuario");
+                // importante para identificar la columna
+                btnDetalles.UseColumnTextForButtonValue = true;
+                dataGridView.Columns.Add(btnDetalles);
+                dataGridView.Rows.Add(11111111, "Carlos", "Gómez", "carlosgomez@gmail.com", "coach");
+                dataGridView.Rows.Add(22222222, "María", "López", "marilo@outlook.com", "alumno");
+
+                labelTitulo.Text = "Personal";
+                btnAgregar.Text = "Agregar Usuario";
+                btnEliminar.Text = "Eliminar Usuario";
+            }
+            
+
+            // Ajustes visuales opcionales
+            dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
+
     }
 }

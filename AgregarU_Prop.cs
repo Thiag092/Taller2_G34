@@ -21,5 +21,15 @@ namespace Taller2_G34
         {
 
         }
+
+        private void BCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void BConfirmar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
