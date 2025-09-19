@@ -50,9 +50,10 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.chkVerClave = new System.Windows.Forms.CheckBox();
             this.LPass = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
-            this.chkVerClave = new System.Windows.Forms.CheckBox();
+            this.labelAdmin = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -116,7 +117,7 @@
             this.label5.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(4, 11);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(48, 30);
+            this.label5.Size = new System.Drawing.Size(38, 24);
             this.label5.TabIndex = 0;
             this.label5.Text = "Rol";
             // 
@@ -285,6 +286,7 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.splitContainer1.Panel1.Controls.Add(this.labelAdmin);
             this.splitContainer1.Panel1.Controls.Add(this.pictureBox1);
             this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
             // 
@@ -322,6 +324,17 @@
             this.panel2.Size = new System.Drawing.Size(829, 513);
             this.panel2.TabIndex = 0;
             // 
+            // chkVerClave
+            // 
+            this.chkVerClave.AutoSize = true;
+            this.chkVerClave.Location = new System.Drawing.Point(162, 227);
+            this.chkVerClave.Name = "chkVerClave";
+            this.chkVerClave.Size = new System.Drawing.Size(146, 20);
+            this.chkVerClave.TabIndex = 53;
+            this.chkVerClave.Text = "Mostrar Contraseña";
+            this.chkVerClave.UseVisualStyleBackColor = true;
+            this.chkVerClave.CheckStateChanged += new System.EventHandler(this.chkVerClave_CheckStateChanged);
+            // 
             // LPass
             // 
             this.LPass.AutoSize = true;
@@ -342,16 +355,16 @@
             this.textBox6.TabIndex = 6;
             this.textBox6.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
             // 
-            // chkVerClave
+            // labelAdmin
             // 
-            this.chkVerClave.AutoSize = true;
-            this.chkVerClave.Location = new System.Drawing.Point(162, 227);
-            this.chkVerClave.Name = "chkVerClave";
-            this.chkVerClave.Size = new System.Drawing.Size(183, 25);
-            this.chkVerClave.TabIndex = 53;
-            this.chkVerClave.Text = "Mostrar Contraseña";
-            this.chkVerClave.UseVisualStyleBackColor = true;
-            this.chkVerClave.CheckStateChanged += new System.EventHandler(this.chkVerClave_CheckStateChanged);
+            this.labelAdmin.AutoSize = true;
+            this.labelAdmin.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAdmin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(201)))), ((int)(((byte)(19)))));
+            this.labelAdmin.Location = new System.Drawing.Point(12, 42);
+            this.labelAdmin.Name = "labelAdmin";
+            this.labelAdmin.Size = new System.Drawing.Size(312, 29);
+            this.labelAdmin.TabIndex = 56;
+            this.labelAdmin.Text = "Ingreso de nuevo Usuario";
             // 
             // AgregarU_Prop
             // 
@@ -365,6 +378,7 @@
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
@@ -401,5 +415,6 @@
         private System.Windows.Forms.Label LPass;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.CheckBox chkVerClave;
+        private System.Windows.Forms.Label labelAdmin;
     }
 }

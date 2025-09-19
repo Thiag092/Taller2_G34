@@ -231,6 +231,18 @@ namespace Taller2_G34
             }
         }
 
+        private void dataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && dataGridView.Columns[e.ColumnIndex].Name == "Detalles")
+            {
+                string dni = dataGridView.Rows[e.RowIndex].Cells["DNI"].Value.ToString();
+
+                // Paso solo el DNI
+                EditUser editForm = new EditUser(dni);
+                editForm.ShowDialog();
+            }
+        }
+
     }
 }
 

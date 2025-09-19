@@ -37,6 +37,7 @@
             this.RBAdmin = new System.Windows.Forms.RadioButton();
             this.label5 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.labelAdmin = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.LRol = new System.Windows.Forms.Label();
@@ -53,7 +54,6 @@
             this.labelNombre = new System.Windows.Forms.Label();
             this.BConfirmar = new System.Windows.Forms.Button();
             this.BCancelar = new System.Windows.Forms.Button();
-            this.labelAdmin = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -82,6 +82,7 @@
             this.chkVerClave.TabIndex = 53;
             this.chkVerClave.Text = "Mostrar Contraseña";
             this.chkVerClave.UseVisualStyleBackColor = true;
+            this.chkVerClave.CheckedChanged += new System.EventHandler(this.chkVerClave_CheckedChanged);
             // 
             // LPass
             // 
@@ -163,7 +164,6 @@
             this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.splitContainer1.Panel1.Controls.Add(this.labelAdmin);
             this.splitContainer1.Panel1.Controls.Add(this.pictureBox1);
-            this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
             // 
             // splitContainer1.Panel2
             // 
@@ -172,6 +172,17 @@
             this.splitContainer1.Size = new System.Drawing.Size(792, 731);
             this.splitContainer1.SplitterDistance = 132;
             this.splitContainer1.TabIndex = 8;
+            // 
+            // labelAdmin
+            // 
+            this.labelAdmin.AutoSize = true;
+            this.labelAdmin.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAdmin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(201)))), ((int)(((byte)(19)))));
+            this.labelAdmin.Location = new System.Drawing.Point(35, 59);
+            this.labelAdmin.Name = "labelAdmin";
+            this.labelAdmin.Size = new System.Drawing.Size(218, 29);
+            this.labelAdmin.TabIndex = 55;
+            this.labelAdmin.Text = "Ficha del Usuario";
             // 
             // panel2
             // 
@@ -206,6 +217,7 @@
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(144, 31);
             this.textBox6.TabIndex = 6;
+            this.textBox6.UseSystemPasswordChar = true;
             // 
             // LRol
             // 
@@ -345,17 +357,7 @@
             this.BCancelar.TabIndex = 34;
             this.BCancelar.Text = "Cancelar";
             this.BCancelar.UseVisualStyleBackColor = false;
-            // 
-            // labelAdmin
-            // 
-            this.labelAdmin.AutoSize = true;
-            this.labelAdmin.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAdmin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(201)))), ((int)(((byte)(19)))));
-            this.labelAdmin.Location = new System.Drawing.Point(35, 59);
-            this.labelAdmin.Name = "labelAdmin";
-            this.labelAdmin.Size = new System.Drawing.Size(218, 29);
-            this.labelAdmin.TabIndex = 55;
-            this.labelAdmin.Text = "Ficha del Usuario";
+            this.BCancelar.Click += new System.EventHandler(this.BCancelar_Click);
             // 
             // EditUser
             // 
