@@ -102,19 +102,21 @@ namespace Taller2_G34
 
                 // Consulta UPDATE
                 string query = @"UPDATE Usuario 
-                         SET nombre = @nombre, 
-                             apellido = @apellido, 
-                             email = @correo, 
-                             telefono = @telefono, 
-                             fecha_nacimiento = @fecha, 
-                             contrasena = @clave, 
-                             id_rol = @rol
-                         WHERE dni = @dni";
+                 SET nombre = @nombre, 
+                     apellido = @apellido, 
+                     email = @correo, 
+                     telefono = @telefono, 
+                     fecha_nacimiento = @fecha, 
+                     contrasena = @clave, 
+                     id_rol = @rol,
+                     dni = @dniNuevo 
+                 WHERE dni = @dniOriginal"; 
 
-                using (SqlConnection conn = new SqlConnection(connectionString))
+using (SqlConnection conn = new SqlConnection(connectionString))
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@dni", dniUsuario); // clave para ubicar el registro
+                    cmd.Parameters.AddWithValue("@dniOriginal", dniUsuario);      // el que vino al abrir el form
+                    cmd.Parameters.AddWithValue("@dniNuevo", textBox3.Text.Trim()); // el que escribió el usuario
                     cmd.Parameters.AddWithValue("@nombre", textBox1.Text.Trim());
                     cmd.Parameters.AddWithValue("@apellido", textBox2.Text.Trim());
                     cmd.Parameters.AddWithValue("@correo", textBox4.Text.Trim());
@@ -129,13 +131,14 @@ namespace Taller2_G34
                     if (filas > 0)
                     {
                         MessageBox.Show("Usuario actualizado correctamente ✅");
-                        this.Close(); // cerrar formulario después de guardar
+                        this.Close();
                     }
                     else
                     {
                         MessageBox.Show("No se pudo actualizar el usuario ❌");
                     }
                 }
+
             }
             catch (Exception ex)
             {

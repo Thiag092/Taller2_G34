@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.BUsuarios = new System.Windows.Forms.Button();
             this.labelTextoBienvenida = new System.Windows.Forms.Label();
             this.textBoxBusqueda = new System.Windows.Forms.TextBox();
@@ -45,6 +45,7 @@
             this.labelAdmin = new System.Windows.Forms.Label();
             this.homeContainer = new System.Windows.Forms.SplitContainer();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.BRefresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.contentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.contentContainer)).BeginInit();
@@ -155,14 +156,14 @@
             // dataGridView
             // 
             this.dataGridView.BackgroundColor = System.Drawing.Color.Goldenrod;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Goldenrod;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Goldenrod;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.GridColor = System.Drawing.Color.DarkGoldenrod;
             this.dataGridView.Location = new System.Drawing.Point(24, 45);
@@ -179,6 +180,7 @@
             // 
             // contentPanel
             // 
+            this.contentPanel.Controls.Add(this.BRefresh);
             this.contentPanel.Controls.Add(this.textBoxBusqueda);
             this.contentPanel.Controls.Add(this.BBuscar);
             this.contentPanel.Controls.Add(this.btnEliminar);
@@ -314,6 +316,19 @@
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
+            // BRefresh
+            // 
+            this.BRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BRefresh.FlatAppearance.BorderSize = 0;
+            this.BRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BRefresh.Image = global::Taller2_G34.Properties.Resources.refresh_page_option;
+            this.BRefresh.Location = new System.Drawing.Point(338, 451);
+            this.BRefresh.Name = "BRefresh";
+            this.BRefresh.Size = new System.Drawing.Size(73, 53);
+            this.BRefresh.TabIndex = 8;
+            this.BRefresh.UseVisualStyleBackColor = true;
+            this.BRefresh.Click += new System.EventHandler(this.BRefresh_Click);
+            // 
             // HomePagePropietario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -359,5 +374,6 @@
         private System.Windows.Forms.Label labelAdmin;
         private System.Windows.Forms.SplitContainer homeContainer;
         private System.Windows.Forms.Button BPagos;
+        private System.Windows.Forms.Button BRefresh;
     }
 }

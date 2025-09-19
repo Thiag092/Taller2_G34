@@ -240,6 +240,10 @@ namespace Taller2_G34
             }
         }
 
+        private void BRefresh_Click(object sender, EventArgs e)
+        {
+            MostrarVista("Personal");
+        }
     }
 }
 

@@ -242,17 +242,17 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(382, 79);
+            this.label3.Location = new System.Drawing.Point(400, 79);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(92, 24);
+            this.label3.Size = new System.Drawing.Size(105, 30);
             this.label3.TabIndex = 45;
-            this.label3.Text = "Telefono*";
+            this.label3.Text = "Telefono";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(80, 79);
+            this.label2.Location = new System.Drawing.Point(80, 82);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 24);
             this.label2.TabIndex = 44;
@@ -262,11 +262,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(93, 127);
+            this.label1.Location = new System.Drawing.Point(101, 129);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 24);
+            this.label1.Size = new System.Drawing.Size(44, 24);
             this.label1.TabIndex = 43;
-            this.label1.Text = "DNI*";
+            this.label1.Text = "DNI";
             // 
             // textBox5
             // 
@@ -314,19 +314,19 @@
             this.labelApellido.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelApellido.Location = new System.Drawing.Point(383, 27);
             this.labelApellido.Name = "labelApellido";
-            this.labelApellido.Size = new System.Drawing.Size(91, 24);
+            this.labelApellido.Size = new System.Drawing.Size(104, 30);
             this.labelApellido.TabIndex = 37;
-            this.labelApellido.Text = "Apellido*";
+            this.labelApellido.Text = "Apellido";
             // 
             // labelNombre
             // 
             this.labelNombre.AutoSize = true;
             this.labelNombre.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNombre.Location = new System.Drawing.Point(57, 31);
+            this.labelNombre.Location = new System.Drawing.Point(63, 27);
             this.labelNombre.Name = "labelNombre";
-            this.labelNombre.Size = new System.Drawing.Size(90, 24);
+            this.labelNombre.Size = new System.Drawing.Size(82, 24);
             this.labelNombre.TabIndex = 36;
-            this.labelNombre.Text = "Nombre*";
+            this.labelNombre.Text = "Nombre";
             // 
             // BConfirmar
             // 

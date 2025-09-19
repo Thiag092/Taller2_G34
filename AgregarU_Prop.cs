@@ -79,6 +79,12 @@ namespace Taller2_G34
                     return;
                 }
 
+                if (textBox3.Text.Length < 6)
+                {
+                    MessageBox.Show("El DNI debe tener 8 caracteres.");
+                    return;
+                }
+
                 if (!long.TryParse(textBox5.Text, out _))
                 {
                     MessageBox.Show("El Teléfono debe ser numérico.");
@@ -107,9 +113,9 @@ namespace Taller2_G34
                     command.Parameters.AddWithValue("@id_rol", idRol);
                     command.Parameters.AddWithValue("@nombre", textBox1.Text.Trim());
                     command.Parameters.AddWithValue("@apellido", textBox2.Text.Trim());
-                    command.Parameters.AddWithValue("@correo", textBox3.Text.Trim());
-                    command.Parameters.AddWithValue("@telefono", textBox4.Text.Trim());
-                    command.Parameters.AddWithValue("@dni", textBox5.Text.Trim());
+                    command.Parameters.AddWithValue("@correo", textBox4.Text.Trim());
+                    command.Parameters.AddWithValue("@telefono", textBox5.Text.Trim());
+                    command.Parameters.AddWithValue("@dni", textBox3.Text.Trim());
                     command.Parameters.AddWithValue("@fecha", dateTimePicker1.Value.Date);
                     command.Parameters.AddWithValue("@clave", textBox6.Text.Trim());
 
