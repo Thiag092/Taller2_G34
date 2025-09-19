@@ -34,27 +34,69 @@ namespace Taller2_G34
         {
             try
             {
-                // 1. Obtener la cadena de conexión desde App.config
+                // Validar que se haya seleccionado un rol
+                int idRol = 0;
+                if (RBCoach.Checked) idRol = 3;
+                else if (RBAdmin.Checked) idRol = 2;
+                else if (RBPropietario.Checked) idRol = 1;
+
+                if (idRol == 0)
+                {
+                    MessageBox.Show("Debe seleccionar un rol para el usuario.");
+                    return;
+                }
+
+                // Validar campos obligatorios
+                if (string.IsNullOrWhiteSpace(textBox1.Text) ||  // Nombre
+                    string.IsNullOrWhiteSpace(textBox2.Text) ||  // Apellido
+                    string.IsNullOrWhiteSpace(textBox3.Text) ||  // Email
+                    string.IsNullOrWhiteSpace(textBox4.Text) ||  // Teléfono
+                    string.IsNullOrWhiteSpace(textBox5.Text) ||  // DNI
+                    string.IsNullOrWhiteSpace(textBox6.Text))    // Contraseña
+                {
+                    MessageBox.Show("Todos los campos son obligatorios.");
+                    return;
+                }
+
+                // Validar formato de email
+                if (!textBox3.Text.Contains("@") || !textBox3.Text.Contains("."))
+                {
+                    MessageBox.Show("El correo ingresado no es válido.");
+                    return;
+                }
+
+                // Validar que el DNI y Teléfono sean numéricos
+                if (!long.TryParse(textBox5.Text, out _))
+                {
+                    MessageBox.Show("El DNI debe ser numérico.");
+                    return;
+                }
+
+                if (!long.TryParse(textBox4.Text, out _))
+                {
+                    MessageBox.Show("El Teléfono debe ser numérico.");
+                    return;
+                }
+
+                // Validar longitud de contraseña
+                if (textBox6.Text.Length < 6)
+                {
+                    MessageBox.Show("La contraseña debe tener al menos 6 caracteres.");
+                    return;
+                }
+
+                // Si todo está ok, insertamos
                 string connectionString = ConfigurationManager
                                             .ConnectionStrings["EnerGymDB"]
                                             .ConnectionString;
 
-                // 2. Determinar el rol elegido según el RadioButton
-                int idRol = 0;
-                if (RBCoach.Checked) idRol = 3; // Coach
-                else if (RBAdmin.Checked) idRol = 2; // Administrador
-                else if (RBPropietario.Checked) idRol = 1; // Propietario
-
-                // 3. Consulta SQL con parámetros
                 string query = @"INSERT INTO Usuario 
-                                (id_rol, nombre, apellido, email, telefono, dni, fecha_nacimiento, estado, contrasena)
-                                VALUES (@id_rol, @nombre, @apellido, @correo, @telefono, @dni, @fecha, 1, @clave)";
+                        (id_rol, nombre, apellido, email, telefono, dni, fecha_nacimiento, estado, contrasena)
+                        VALUES (@id_rol, @nombre, @apellido, @correo, @telefono, @dni, @fecha, 1, @clave)";
 
-                // 4. Usar conexión y comando
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    // Agregar parámetros
                     command.Parameters.AddWithValue("@id_rol", idRol);
                     command.Parameters.AddWithValue("@nombre", textBox1.Text.Trim());
                     command.Parameters.AddWithValue("@apellido", textBox2.Text.Trim());
@@ -64,18 +106,17 @@ namespace Taller2_G34
                     command.Parameters.AddWithValue("@fecha", dateTimePicker1.Value.Date);
                     command.Parameters.AddWithValue("@clave", textBox6.Text.Trim());
 
-                    // Abrir conexión e insertar
                     connection.Open();
                     int filasAfectadas = command.ExecuteNonQuery();
 
                     if (filasAfectadas > 0)
                     {
-                        MessageBox.Show("Usuario agregado correctamente ✅");
+                        MessageBox.Show("Usuario agregado correctamente!");
                         this.Close();
                     }
                     else
                     {
-                        MessageBox.Show("No se pudo agregar el usuario ❌");
+                        MessageBox.Show("No se pudo agregar el usuario - Error");
                     }
                 }
             }
@@ -88,7 +129,8 @@ namespace Taller2_G34
 
 
 
-        
+
+
 
         private void textBox6_TextChanged(object sender, EventArgs e)
         {
@@ -98,6 +140,49 @@ namespace Taller2_G34
         private void label6_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permite solo números y tecla de retroceso
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Bloquea la tecla
+            }
+        }
+
+        private void textBox5_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo letras, espacio y retroceso
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Igual que para el nombre
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void chkVerClave_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (chkVerClave.Checked)
+                textBox6.UseSystemPasswordChar = false; // Muestra
+            else
+                textBox6.UseSystemPasswordChar = true;  // Oculta
         }
     }
 }

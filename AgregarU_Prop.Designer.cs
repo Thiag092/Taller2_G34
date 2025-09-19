@@ -33,7 +33,7 @@
             this.RBCoach = new System.Windows.Forms.RadioButton();
             this.RBAdmin = new System.Windows.Forms.RadioButton();
             this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.LRol = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -52,6 +52,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.LPass = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
+            this.chkVerClave = new System.Windows.Forms.CheckBox();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -70,16 +71,17 @@
             this.panel3.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel3.Location = new System.Drawing.Point(455, 206);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(235, 104);
+            this.panel3.Size = new System.Drawing.Size(248, 104);
             this.panel3.TabIndex = 50;
             // 
             // RBPropietario
             // 
             this.RBPropietario.AutoSize = true;
+            this.RBPropietario.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RBPropietario.Location = new System.Drawing.Point(93, 67);
             this.RBPropietario.Name = "RBPropietario";
-            this.RBPropietario.Size = new System.Drawing.Size(112, 24);
-            this.RBPropietario.TabIndex = 8;
+            this.RBPropietario.Size = new System.Drawing.Size(121, 27);
+            this.RBPropietario.TabIndex = 2;
             this.RBPropietario.TabStop = true;
             this.RBPropietario.Text = "Propietario";
             this.RBPropietario.UseVisualStyleBackColor = true;
@@ -87,10 +89,11 @@
             // RBCoach
             // 
             this.RBCoach.AutoSize = true;
+            this.RBCoach.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RBCoach.Location = new System.Drawing.Point(93, 7);
             this.RBCoach.Name = "RBCoach";
-            this.RBCoach.Size = new System.Drawing.Size(75, 24);
-            this.RBCoach.TabIndex = 5;
+            this.RBCoach.Size = new System.Drawing.Size(81, 27);
+            this.RBCoach.TabIndex = 0;
             this.RBCoach.TabStop = true;
             this.RBCoach.Text = "Coach";
             this.RBCoach.UseVisualStyleBackColor = true;
@@ -98,10 +101,11 @@
             // RBAdmin
             // 
             this.RBAdmin.AutoSize = true;
+            this.RBAdmin.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RBAdmin.Location = new System.Drawing.Point(93, 37);
             this.RBAdmin.Name = "RBAdmin";
-            this.RBAdmin.Size = new System.Drawing.Size(135, 24);
-            this.RBAdmin.TabIndex = 4;
+            this.RBAdmin.Size = new System.Drawing.Size(147, 27);
+            this.RBAdmin.TabIndex = 1;
             this.RBAdmin.TabStop = true;
             this.RBAdmin.Text = "Administrador";
             this.RBAdmin.UseVisualStyleBackColor = true;
@@ -109,21 +113,22 @@
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(4, 11);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(33, 20);
+            this.label5.Size = new System.Drawing.Size(48, 30);
             this.label5.TabIndex = 0;
             this.label5.Text = "Rol";
             // 
-            // label4
+            // LRol
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(344, 131);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(188, 24);
-            this.label4.TabIndex = 47;
-            this.label4.Text = "Fecha de nacimiento";
+            this.LRol.AutoSize = true;
+            this.LRol.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LRol.Location = new System.Drawing.Point(344, 131);
+            this.LRol.Name = "LRol";
+            this.LRol.Size = new System.Drawing.Size(188, 24);
+            this.LRol.TabIndex = 47;
+            this.LRol.Text = "Fecha de nacimiento";
             // 
             // dateTimePicker1
             // 
@@ -132,7 +137,7 @@
             this.dateTimePicker1.Location = new System.Drawing.Point(551, 129);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(139, 30);
-            this.dateTimePicker1.TabIndex = 46;
+            this.dateTimePicker1.TabIndex = 5;
             // 
             // label3
             // 
@@ -170,7 +175,8 @@
             this.textBox5.Location = new System.Drawing.Point(487, 79);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(203, 31);
-            this.textBox5.TabIndex = 42;
+            this.textBox5.TabIndex = 3;
+            this.textBox5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox5_KeyPress);
             // 
             // textBox4
             // 
@@ -178,7 +184,7 @@
             this.textBox4.Location = new System.Drawing.Point(162, 76);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(145, 31);
-            this.textBox4.TabIndex = 41;
+            this.textBox4.TabIndex = 2;
             // 
             // textBox3
             // 
@@ -186,7 +192,8 @@
             this.textBox3.Location = new System.Drawing.Point(163, 124);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(144, 31);
-            this.textBox3.TabIndex = 40;
+            this.textBox3.TabIndex = 4;
+            this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox3_KeyPress);
             // 
             // textBox2
             // 
@@ -194,7 +201,8 @@
             this.textBox2.Location = new System.Drawing.Point(487, 24);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(203, 31);
-            this.textBox2.TabIndex = 39;
+            this.textBox2.TabIndex = 1;
+            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
             // 
             // textBox1
             // 
@@ -202,7 +210,8 @@
             this.textBox1.Location = new System.Drawing.Point(162, 24);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(145, 31);
-            this.textBox1.TabIndex = 38;
+            this.textBox1.TabIndex = 0;
+            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // labelApellido
             // 
@@ -289,10 +298,11 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.chkVerClave);
             this.panel2.Controls.Add(this.LPass);
             this.panel2.Controls.Add(this.textBox6);
             this.panel2.Controls.Add(this.panel3);
-            this.panel2.Controls.Add(this.label4);
+            this.panel2.Controls.Add(this.LRol);
             this.panel2.Controls.Add(this.dateTimePicker1);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label2);
@@ -329,8 +339,19 @@
             this.textBox6.Location = new System.Drawing.Point(162, 181);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(144, 31);
-            this.textBox6.TabIndex = 51;
+            this.textBox6.TabIndex = 6;
             this.textBox6.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
+            // 
+            // chkVerClave
+            // 
+            this.chkVerClave.AutoSize = true;
+            this.chkVerClave.Location = new System.Drawing.Point(162, 227);
+            this.chkVerClave.Name = "chkVerClave";
+            this.chkVerClave.Size = new System.Drawing.Size(183, 25);
+            this.chkVerClave.TabIndex = 53;
+            this.chkVerClave.Text = "Mostrar Contraseña";
+            this.chkVerClave.UseVisualStyleBackColor = true;
+            this.chkVerClave.CheckStateChanged += new System.EventHandler(this.chkVerClave_CheckStateChanged);
             // 
             // AgregarU_Prop
             // 
@@ -339,7 +360,7 @@
             this.ClientSize = new System.Drawing.Size(829, 631);
             this.Controls.Add(this.splitContainer1);
             this.Name = "AgregarU_Prop";
-            this.Text = "Form1";
+            this.Text = "Agregar nuevo Usuario";
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -360,7 +381,7 @@
         private System.Windows.Forms.RadioButton RBCoach;
         private System.Windows.Forms.RadioButton RBAdmin;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label LRol;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
@@ -379,5 +400,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label LPass;
         private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.CheckBox chkVerClave;
     }
 }
