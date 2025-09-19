@@ -98,6 +98,15 @@ namespace Taller2_G34
                     return;
                 }
 
+
+                // Validar que las contraseñas coincidan
+                if (textBox6.Text != textBox7.Text)
+                {
+                    MessageBox.Show("Las contraseñas no coinciden.");
+                    return;
+                }
+
+
                 // Si todo está ok, insertamos
                 string connectionString = ConfigurationManager
                                             .ConnectionStrings["EnerGymDB"]
@@ -193,12 +202,28 @@ namespace Taller2_G34
         private void chkVerClave_CheckStateChanged(object sender, EventArgs e)
         {
             if (chkVerClave.Checked)
-                textBox6.UseSystemPasswordChar = false; // Muestra
+            {
+                textBox6.UseSystemPasswordChar = false; // Muestra la contraseña
+                textBox7.UseSystemPasswordChar = false; // También la confirmación
+            }
             else
-                textBox6.UseSystemPasswordChar = true;  // Oculta
+            {
+                textBox6.UseSystemPasswordChar = true;  // Oculta la contraseña
+                textBox7.UseSystemPasswordChar = true;  // También la confirmación
+            }
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox7_TextChanged(object sender, EventArgs e)
         {
 
         }

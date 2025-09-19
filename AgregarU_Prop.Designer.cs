@@ -54,6 +54,8 @@
             this.chkVerClave = new System.Windows.Forms.CheckBox();
             this.LPass = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBox7 = new System.Windows.Forms.TextBox();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -70,7 +72,7 @@
             this.panel3.Controls.Add(this.RBAdmin);
             this.panel3.Controls.Add(this.label5);
             this.panel3.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel3.Location = new System.Drawing.Point(455, 206);
+            this.panel3.Location = new System.Drawing.Point(442, 237);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(248, 104);
             this.panel3.TabIndex = 50;
@@ -312,6 +314,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.label4);
+            this.panel2.Controls.Add(this.textBox7);
             this.panel2.Controls.Add(this.chkVerClave);
             this.panel2.Controls.Add(this.LPass);
             this.panel2.Controls.Add(this.textBox6);
@@ -339,11 +343,11 @@
             // chkVerClave
             // 
             this.chkVerClave.AutoSize = true;
-            this.chkVerClave.Location = new System.Drawing.Point(162, 227);
+            this.chkVerClave.Location = new System.Drawing.Point(693, 188);
             this.chkVerClave.Name = "chkVerClave";
-            this.chkVerClave.Size = new System.Drawing.Size(146, 20);
+            this.chkVerClave.Size = new System.Drawing.Size(74, 20);
             this.chkVerClave.TabIndex = 53;
-            this.chkVerClave.Text = "Mostrar Contraseña";
+            this.chkVerClave.Text = "Mostrar";
             this.chkVerClave.UseVisualStyleBackColor = true;
             this.chkVerClave.CheckStateChanged += new System.EventHandler(this.chkVerClave_CheckStateChanged);
             // 
@@ -367,6 +371,27 @@
             this.textBox6.TabIndex = 6;
             this.textBox6.UseSystemPasswordChar = true;
             this.textBox6.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(327, 185);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(172, 24);
+            this.label4.TabIndex = 55;
+            this.label4.Text = "Repetir contraseña";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // textBox7
+            // 
+            this.textBox7.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox7.Location = new System.Drawing.Point(505, 185);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(182, 31);
+            this.textBox7.TabIndex = 54;
+            this.textBox7.UseSystemPasswordChar = true;
+            this.textBox7.TextChanged += new System.EventHandler(this.textBox7_TextChanged);
             // 
             // AgregarU_Prop
             // 
@@ -418,5 +443,7 @@
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.CheckBox chkVerClave;
         private System.Windows.Forms.Label labelAdmin;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textBox7;
     }
 }
