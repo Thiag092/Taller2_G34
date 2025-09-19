@@ -144,11 +144,12 @@ namespace Taller2_G34
             //   - Trusted_Connection=True: usa autenticación de Windows
             string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym;Trusted_Connection=True;";
 
-            // 📄 Consulta SQL para traer usuarios junto con su rol
+            // 📄 Consulta SQL para traer usuarios junto con su rol y que estos esten activos
             string query = @"
-        SELECT u.dni, u.nombre, u.apellido, u.email, r.descripcion
-        FROM Usuario u
-        INNER JOIN Rol r ON u.id_rol = r.id_rol";
+    SELECT u.dni, u.nombre, u.apellido, u.email, r.descripcion
+    FROM Usuario u
+    INNER JOIN Rol r ON u.id_rol = r.id_rol
+    WHERE u.estado = 1"; // Solo usuarios activos
 
             // Abro la conexión con la base de datos
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -186,14 +187,12 @@ namespace Taller2_G34
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-           
             if (dataGridView.SelectedRows.Count > 0)
             {
-                // Obtengo el DNI del usuario seleccionado
                 string dniUsuario = dataGridView.SelectedRows[0].Cells["DNI"].Value.ToString();
 
                 DialogResult confirmacion = MessageBox.Show(
-                    $"¿Está seguro que desea eliminar al usuario con DNI {dniUsuario}?",
+                    $"¿Está seguro que desea dar de baja al usuario con DNI {dniUsuario}?",
                     "Confirmación",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Warning
@@ -202,8 +201,7 @@ namespace Taller2_G34
                 if (confirmacion == DialogResult.Yes)
                 {
                     string connectionString = "Data Source=YAGO_DELL\\SQLEXPRESS01;Initial Catalog=EnerGym;Integrated Security=True";
-
-                    string query = "DELETE FROM Usuario WHERE dni = @dni";
+                    string query = "UPDATE Usuario SET estado = 0 WHERE dni = @dni"; // Baja lógica
 
                     using (SqlConnection connection = new SqlConnection(connectionString))
                     using (SqlCommand command = new SqlCommand(query, connection))
@@ -215,7 +213,7 @@ namespace Taller2_G34
 
                         if (filasAfectadas > 0)
                         {
-                            MessageBox.Show("Usuario eliminado correctamente ✅");
+                            MessageBox.Show("Usuario dado de baja correctamente ✅");
                             MostrarVista("Personal"); // refresca la grilla
                         }
                         else
@@ -233,11 +231,10 @@ namespace Taller2_G34
 
         private void dataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && dataGridView.Columns[e.ColumnIndex].Name == "Detalles")
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && e.ColumnIndex < dataGridView.Columns.Count &&
+                dataGridView.Columns[e.ColumnIndex].Name == "Detalles")
             {
                 string dni = dataGridView.Rows[e.RowIndex].Cells["DNI"].Value.ToString();
-
-                // Paso solo el DNI
                 EditUser editForm = new EditUser(dni);
                 editForm.ShowDialog();
             }

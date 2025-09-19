@@ -342,6 +342,7 @@
             this.BConfirmar.TabIndex = 35;
             this.BConfirmar.Text = "Confirmar";
             this.BConfirmar.UseVisualStyleBackColor = false;
+            this.BConfirmar.Click += new System.EventHandler(this.BConfirmar_Click);
             // 
             // BCancelar
             // 

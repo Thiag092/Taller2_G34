@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
+
 namespace Taller2_G34
 {
     public partial class AgregarU_Prop : Form
@@ -47,32 +48,38 @@ namespace Taller2_G34
                 }
 
                 // Validar campos obligatorios
+                // Validar campos obligatorios
                 if (string.IsNullOrWhiteSpace(textBox1.Text) ||  // Nombre
                     string.IsNullOrWhiteSpace(textBox2.Text) ||  // Apellido
-                    string.IsNullOrWhiteSpace(textBox3.Text) ||  // Email
-                    string.IsNullOrWhiteSpace(textBox4.Text) ||  // Teléfono
-                    string.IsNullOrWhiteSpace(textBox5.Text) ||  // DNI
+                    string.IsNullOrWhiteSpace(textBox4.Text) ||  // Email
+                    string.IsNullOrWhiteSpace(textBox5.Text) ||  // Teléfono
+                    string.IsNullOrWhiteSpace(textBox3.Text) ||  // DNI
                     string.IsNullOrWhiteSpace(textBox6.Text))    // Contraseña
                 {
                     MessageBox.Show("Todos los campos son obligatorios.");
                     return;
                 }
 
+
                 // Validar formato de email
-                if (!textBox3.Text.Contains("@") || !textBox3.Text.Contains("."))
+    
+
+                if (!textBox4.Text.Contains("@"))
                 {
                     MessageBox.Show("El correo ingresado no es válido.");
                     return;
                 }
 
+
+
                 // Validar que el DNI y Teléfono sean numéricos
-                if (!long.TryParse(textBox5.Text, out _))
+                if (!long.TryParse(textBox3.Text, out _))
                 {
                     MessageBox.Show("El DNI debe ser numérico.");
                     return;
                 }
 
-                if (!long.TryParse(textBox4.Text, out _))
+                if (!long.TryParse(textBox5.Text, out _))
                 {
                     MessageBox.Show("El Teléfono debe ser numérico.");
                     return;
@@ -183,6 +190,11 @@ namespace Taller2_G34
                 textBox6.UseSystemPasswordChar = false; // Muestra
             else
                 textBox6.UseSystemPasswordChar = true;  // Oculta
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
