@@ -365,6 +365,7 @@
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(144, 31);
             this.textBox6.TabIndex = 6;
+            this.textBox6.UseSystemPasswordChar = true;
             this.textBox6.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
             // 
             // AgregarU_Prop
