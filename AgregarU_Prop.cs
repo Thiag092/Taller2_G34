@@ -78,7 +78,7 @@ namespace Taller2_G34
                     MessageBox.Show("El DNI debe ser numérico.");
                     return;
                 }
-
+                //se valida la longitud de la contraseña
                 if (textBox3.Text.Length < 6)
                 {
                     MessageBox.Show("El DNI debe tener 8 caracteres.");

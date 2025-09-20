@@ -33,7 +33,6 @@
             this.chkVerClave = new System.Windows.Forms.CheckBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.RBPropietario = new System.Windows.Forms.RadioButton();
             this.RBCoach = new System.Windows.Forms.RadioButton();
             this.RBAdmin = new System.Windows.Forms.RadioButton();
             this.label5 = new System.Windows.Forms.Label();
@@ -69,7 +68,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(356, 177);
+            this.label4.Location = new System.Drawing.Point(343, 177);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(172, 24);
             this.label4.TabIndex = 55;
@@ -78,9 +77,9 @@
             // textBox7
             // 
             this.textBox7.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox7.Location = new System.Drawing.Point(552, 170);
+            this.textBox7.Location = new System.Drawing.Point(531, 170);
             this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(182, 31);
+            this.textBox7.Size = new System.Drawing.Size(203, 31);
             this.textBox7.TabIndex = 54;
             this.textBox7.UseSystemPasswordChar = true;
             // 
@@ -105,27 +104,14 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.RBPropietario);
             this.panel3.Controls.Add(this.RBCoach);
             this.panel3.Controls.Add(this.RBAdmin);
             this.panel3.Controls.Add(this.label5);
             this.panel3.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel3.Location = new System.Drawing.Point(486, 238);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(248, 104);
+            this.panel3.Size = new System.Drawing.Size(248, 77);
             this.panel3.TabIndex = 50;
-            // 
-            // RBPropietario
-            // 
-            this.RBPropietario.AutoSize = true;
-            this.RBPropietario.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RBPropietario.Location = new System.Drawing.Point(93, 67);
-            this.RBPropietario.Name = "RBPropietario";
-            this.RBPropietario.Size = new System.Drawing.Size(121, 27);
-            this.RBPropietario.TabIndex = 2;
-            this.RBPropietario.TabStop = true;
-            this.RBPropietario.Text = "Propietario";
-            this.RBPropietario.UseVisualStyleBackColor = true;
             // 
             // RBCoach
             // 
@@ -168,9 +154,9 @@
             this.labelAdmin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(201)))), ((int)(((byte)(19)))));
             this.labelAdmin.Location = new System.Drawing.Point(12, 42);
             this.labelAdmin.Name = "labelAdmin";
-            this.labelAdmin.Size = new System.Drawing.Size(312, 29);
+            this.labelAdmin.Size = new System.Drawing.Size(289, 29);
             this.labelAdmin.TabIndex = 56;
-            this.labelAdmin.Text = "Ingreso de nuevo Usuario";
+            this.labelAdmin.Text = "Ingreso Personal nuevo";
             // 
             // LPass
             // 
@@ -196,9 +182,9 @@
             // 
             this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(544, 122);
+            this.dateTimePicker1.Location = new System.Drawing.Point(531, 122);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(190, 30);
+            this.dateTimePicker1.Size = new System.Drawing.Size(203, 30);
             this.dateTimePicker1.TabIndex = 5;
             // 
             // label3
@@ -365,6 +351,7 @@
             this.BConfirmar.TabIndex = 35;
             this.BConfirmar.Text = "Confirmar";
             this.BConfirmar.UseVisualStyleBackColor = false;
+            this.BConfirmar.Click += new System.EventHandler(this.BConfirmar_Click);
             // 
             // BCancelar
             // 
@@ -380,6 +367,7 @@
             this.BCancelar.TabIndex = 34;
             this.BCancelar.Text = "Cancelar";
             this.BCancelar.UseVisualStyleBackColor = false;
+            this.BCancelar.Click += new System.EventHandler(this.BCancelar_Click_1);
             // 
             // AgregarPersonal
             // 
@@ -411,7 +399,6 @@
         private System.Windows.Forms.CheckBox chkVerClave;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.RadioButton RBPropietario;
         private System.Windows.Forms.RadioButton RBCoach;
         private System.Windows.Forms.RadioButton RBAdmin;
         private System.Windows.Forms.Label label5;
