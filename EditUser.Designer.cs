@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.chkVerClave = new System.Windows.Forms.CheckBox();
-            this.LPass = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.RBPropietario = new System.Windows.Forms.RadioButton();
             this.RBCoach = new System.Windows.Forms.RadioButton();
@@ -39,7 +37,6 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.labelAdmin = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.textBox6 = new System.Windows.Forms.TextBox();
             this.LRol = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
@@ -72,27 +69,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
-            // 
-            // chkVerClave
-            // 
-            this.chkVerClave.AutoSize = true;
-            this.chkVerClave.Location = new System.Drawing.Point(162, 227);
-            this.chkVerClave.Name = "chkVerClave";
-            this.chkVerClave.Size = new System.Drawing.Size(146, 20);
-            this.chkVerClave.TabIndex = 53;
-            this.chkVerClave.Text = "Mostrar Contraseña";
-            this.chkVerClave.UseVisualStyleBackColor = true;
-            this.chkVerClave.CheckedChanged += new System.EventHandler(this.chkVerClave_CheckedChanged);
-            // 
-            // LPass
-            // 
-            this.LPass.AutoSize = true;
-            this.LPass.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LPass.Location = new System.Drawing.Point(38, 181);
-            this.LPass.Name = "LPass";
-            this.LPass.Size = new System.Drawing.Size(107, 24);
-            this.LPass.TabIndex = 52;
-            this.LPass.Text = "Contraseña";
             // 
             // panel3
             // 
@@ -186,9 +162,6 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.chkVerClave);
-            this.panel2.Controls.Add(this.LPass);
-            this.panel2.Controls.Add(this.textBox6);
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Controls.Add(this.LRol);
             this.panel2.Controls.Add(this.dateTimePicker1);
@@ -209,15 +182,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(935, 551);
             this.panel2.TabIndex = 0;
-            // 
-            // textBox6
-            // 
-            this.textBox6.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox6.Location = new System.Drawing.Point(162, 181);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(144, 31);
-            this.textBox6.TabIndex = 6;
-            this.textBox6.UseSystemPasswordChar = true;
             // 
             // LRol
             // 
@@ -385,8 +349,6 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.CheckBox chkVerClave;
-        private System.Windows.Forms.Label LPass;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.RadioButton RBPropietario;
         private System.Windows.Forms.RadioButton RBCoach;
@@ -394,7 +356,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.Label LRol;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label3;

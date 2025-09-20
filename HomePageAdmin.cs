@@ -344,5 +344,62 @@ namespace Taller2_G34
             MostrarVista("Personal"); //recarga la lista del personal
 
         }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (dataGridView.SelectedRows.Count > 0)
+            {
+                // Tomo el DNI del usuario seleccionado en el DataGridView
+                string dniUsuario = dataGridView.SelectedRows[0].Cells["DNI"].Value.ToString();
+
+                // Pregunto confirmación
+                DialogResult confirmacion = MessageBox.Show(
+                    $"¿Está seguro que desea dar de baja al usuario con DNI {dniUsuario}?",
+                    "Confirmación",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                );
+
+                if (confirmacion == DialogResult.Yes)
+                {
+                    // Leo cadena de conexión desde App.config
+                    string connectionString = ConfigurationManager.ConnectionStrings["EnerGymDB"].ConnectionString;
+
+                    // Query para baja lógica (estado = 0)
+                    string query = "UPDATE Usuario SET estado = 0 WHERE dni = @dni";
+
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@dni", dniUsuario);
+
+                        try
+                        {
+                            connection.Open();
+                            int filasAfectadas = command.ExecuteNonQuery();
+
+                            if (filasAfectadas > 0)
+                            {
+                                MessageBox.Show("Usuario dado de baja correctamente ✅");
+                                MostrarVista("Personal"); // refresca la grilla
+                            }
+                            else
+                            {
+                                MessageBox.Show("No se encontró el usuario ❌");
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error al dar de baja: " + ex.Message);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor seleccione un usuario primero.");
+            }
+        }
+
     }
 }

@@ -57,9 +57,7 @@ namespace Taller2_G34
                         textBox4.Text = reader["email"].ToString();
                         dateTimePicker1.Value = Convert.ToDateTime(reader["fecha_nacimiento"]);
 
-                        // ⚠️ Cambiá este nombre por el real que tengas en tu formulario
-                        textBox6.Text = reader["contrasena"].ToString();
-
+                       
                         // Marcar el rol correcto en los RadioButtons
                         int idRol = Convert.ToInt32(reader["id_rol"]);
                         if (idRol == 1) RBPropietario.Checked = true;
@@ -76,10 +74,7 @@ namespace Taller2_G34
 
         private void chkVerClave_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkVerClave.Checked)
-                textBox6.UseSystemPasswordChar = false; // mostrar texto
-            else
-                textBox6.UseSystemPasswordChar = true;  // ocultar texto
+           
         }
 
         private void BCancelar_Click(object sender, EventArgs e)
@@ -91,39 +86,41 @@ namespace Taller2_G34
         {
             try
             {
-                // Determinar el rol seleccionado
                 int idRol = 0;
                 if (RBPropietario.Checked) idRol = 1;
                 else if (RBAdmin.Checked) idRol = 2;
                 else if (RBCoach.Checked) idRol = 3;
 
-                // Cadena de conexión
                 string connectionString = ConfigurationManager.ConnectionStrings["EnerGymDB"].ConnectionString;
 
-                // Consulta UPDATE
+                // Si hay una nueva contraseña
                 string query = @"UPDATE Usuario 
                  SET nombre = @nombre, 
                      apellido = @apellido, 
                      email = @correo, 
                      telefono = @telefono, 
                      fecha_nacimiento = @fecha, 
-                     contrasena = @clave, 
                      id_rol = @rol,
                      dni = @dniNuevo 
-                 WHERE dni = @dniOriginal"; 
+                 WHERE dni = @dniOriginal";
 
-using (SqlConnection conn = new SqlConnection(connectionString))
+
+               
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@dniOriginal", dniUsuario);      // el que vino al abrir el form
-                    cmd.Parameters.AddWithValue("@dniNuevo", textBox3.Text.Trim()); // el que escribió el usuario
+                    cmd.Parameters.AddWithValue("@dniOriginal", dniUsuario);
+                    cmd.Parameters.AddWithValue("@dniNuevo", textBox3.Text.Trim());
                     cmd.Parameters.AddWithValue("@nombre", textBox1.Text.Trim());
                     cmd.Parameters.AddWithValue("@apellido", textBox2.Text.Trim());
                     cmd.Parameters.AddWithValue("@correo", textBox4.Text.Trim());
                     cmd.Parameters.AddWithValue("@telefono", textBox5.Text.Trim());
                     cmd.Parameters.AddWithValue("@fecha", dateTimePicker1.Value.Date);
-                    cmd.Parameters.AddWithValue("@clave", textBox6.Text.Trim());
                     cmd.Parameters.AddWithValue("@rol", idRol);
+
+
+                    
 
                     conn.Open();
                     int filas = cmd.ExecuteNonQuery();
@@ -138,13 +135,13 @@ using (SqlConnection conn = new SqlConnection(connectionString))
                         MessageBox.Show("No se pudo actualizar el usuario ❌");
                     }
                 }
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al actualizar usuario: " + ex.Message);
             }
         }
+
     }
 
 }

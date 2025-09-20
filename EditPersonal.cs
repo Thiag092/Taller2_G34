@@ -29,9 +29,10 @@ namespace Taller2_G34
             {
                 string connectionString = ConfigurationManager.ConnectionStrings["EnerGymDB"].ConnectionString;
 
-                string query = @"SELECT nombre, apellido, email, telefono, dni, fecha_nacimiento, contrasena, id_rol 
-                             FROM Usuario
-                             WHERE dni = @dni";
+                string query = @"SELECT nombre, apellido, email, telefono, dni, fecha_nacimiento, id_rol 
+                 FROM Usuario
+                 WHERE dni = @dni";
+
 
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -67,6 +68,64 @@ namespace Taller2_G34
         {
             this.Close();
         }
+
+        private void BConfirmar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Determinar el rol seleccionado
+                int idRol = 0;
+                if (RBAdmin.Checked) idRol = 2;
+                else if (RBCoach.Checked) idRol = 3;
+
+                // Cadena de conexión
+                string connectionString = ConfigurationManager.ConnectionStrings["EnerGymDB"].ConnectionString;
+
+                // Consulta UPDATE (sin incluir contraseña)
+                string query = @"UPDATE Usuario 
+                         SET nombre = @nombre, 
+                             apellido = @apellido, 
+                             email = @correo, 
+                             telefono = @telefono, 
+                             fecha_nacimiento = @fecha, 
+                             id_rol = @rol,
+                             dni = @dniNuevo 
+                         WHERE dni = @dniOriginal";
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    // Parámetros
+                    cmd.Parameters.AddWithValue("@dniOriginal", dniUsuario);         // El que vino al abrir el form
+                    cmd.Parameters.AddWithValue("@dniNuevo", textBox3.Text.Trim()); // El que escribió el admin
+                    cmd.Parameters.AddWithValue("@nombre", textBox1.Text.Trim());
+                    cmd.Parameters.AddWithValue("@apellido", textBox2.Text.Trim());
+                    cmd.Parameters.AddWithValue("@correo", textBox4.Text.Trim());
+                    cmd.Parameters.AddWithValue("@telefono", textBox5.Text.Trim());
+                    cmd.Parameters.AddWithValue("@fecha", dateTimePicker1.Value.Date);
+                    cmd.Parameters.AddWithValue("@rol", idRol);
+
+                    // Ejecutar
+                    conn.Open();
+                    int filas = cmd.ExecuteNonQuery();
+
+                    if (filas > 0)
+                    {
+                        MessageBox.Show("Usuario actualizado correctamente ✅");
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo actualizar el usuario ❌");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al actualizar usuario: " + ex.Message);
+            }
+        }
+
     }
 
 }

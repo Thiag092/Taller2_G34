@@ -3,28 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|c:\\users\\yago_\\lic\\taller 2\\proyecto 34\\taller2_g34\\editpersonal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:editpersonal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|c:\\users\\yago_\\lic\\taller 2\\proyecto 34\\taller2_g34\\editpersonal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:editpersonal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|c:\\users\\yago_\\lic\\taller 2\\proyecto 34\\taller2_g34\\editpersonal.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:editpersonal.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\homepageadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:homepageadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|c:\\users\\yago_\\lic\\taller 2\\proyecto 34\\taller2_g34\\agregarpersonal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:agregarpersonal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\homepageadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:homepageadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\homepagepropietario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -33,6 +13,38 @@
     {
       "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\homepagepropietario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:homepagepropietario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\homepageadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:homepageadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\editpersonal.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:editpersonal.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\agregaru_prop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:agregaru_prop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\editpersonal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:editpersonal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\editpersonal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:editpersonal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|c:\\users\\yago_\\lic\\taller 2\\proyecto 34\\taller2_g34\\edituser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:edituser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\edituser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:edituser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\agregarpersonal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:agregarpersonal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\agregaru_prop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -46,17 +58,29 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
+              "Title": "AgregarU_Prop.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\AgregarU_Prop.cs",
+              "RelativeDocumentMoniker": "AgregarU_Prop.cs",
+              "ToolTip": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\AgregarU_Prop.cs [Dise\u00F1o]",
+              "RelativeToolTip": "AgregarU_Prop.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-20T16:18:43.764Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "EditPersonal.Designer.cs",
               "DocumentMoniker": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\EditPersonal.Designer.cs",
               "RelativeDocumentMoniker": "EditPersonal.Designer.cs",
               "ToolTip": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\EditPersonal.Designer.cs",
               "RelativeToolTip": "EditPersonal.Designer.cs",
-              "ViewState": "AgIAAOsAAAAAAAAAAAAmwAIBAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAOwAAAAAAAAAAAAmwAMBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-20T16:10:00.014Z",
               "EditorCaption": ""
@@ -64,44 +88,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "EditPersonal.cs",
-              "DocumentMoniker": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\EditPersonal.cs",
-              "RelativeDocumentMoniker": "EditPersonal.cs",
-              "ToolTip": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\EditPersonal.cs*",
-              "RelativeToolTip": "EditPersonal.cs*",
-              "ViewState": "AgIAABwAAAAAAAAAAAAmwDMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-20T15:59:23.707Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "EditPersonal.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\EditPersonal.cs",
-              "RelativeDocumentMoniker": "EditPersonal.cs",
-              "ToolTip": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\EditPersonal.cs [Dise\u00F1o]*",
-              "RelativeToolTip": "EditPersonal.cs [Dise\u00F1o]*",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-20T15:55:50.493Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "HomePageAdmin.cs",
               "DocumentMoniker": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\HomePageAdmin.cs",
               "RelativeDocumentMoniker": "HomePageAdmin.cs",
               "ToolTip": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\HomePageAdmin.cs",
               "RelativeToolTip": "HomePageAdmin.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAGYBAAAAAAAAAAAUwJIBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-20T15:02:12.347Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
               "Title": "HomePageAdmin.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\HomePageAdmin.cs",
               "RelativeDocumentMoniker": "HomePageAdmin.cs",
@@ -113,33 +112,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AgregarPersonal.cs",
-              "DocumentMoniker": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\AgregarPersonal.cs",
-              "RelativeDocumentMoniker": "AgregarPersonal.cs",
-              "ToolTip": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\AgregarPersonal.cs",
-              "RelativeToolTip": "AgregarPersonal.cs",
-              "ViewState": "AgIAAJoAAAAAAAAAAAArwLIAAAA2AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-20T15:37:08.641Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "HomePagePropietario.cs",
-              "DocumentMoniker": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\HomePagePropietario.cs",
-              "RelativeDocumentMoniker": "HomePagePropietario.cs",
-              "ToolTip": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\HomePagePropietario.cs",
-              "RelativeToolTip": "HomePagePropietario.cs",
-              "ViewState": "AgIAAN8AAAAAAAAAAAAvwPQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-18T22:25:16.344Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 2,
               "Title": "HomePagePropietario.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\HomePagePropietario.cs",
               "RelativeDocumentMoniker": "HomePagePropietario.cs",
@@ -151,7 +124,81 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "HomePagePropietario.cs",
+              "DocumentMoniker": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\HomePagePropietario.cs",
+              "RelativeDocumentMoniker": "HomePagePropietario.cs",
+              "ToolTip": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\HomePagePropietario.cs",
+              "RelativeToolTip": "HomePagePropietario.cs",
+              "ViewState": "AgIAANEAAAAAAAAAAAAAAPkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-18T22:25:16.344Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "EditPersonal.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\EditPersonal.cs",
+              "RelativeDocumentMoniker": "EditPersonal.cs",
+              "ToolTip": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\EditPersonal.cs [Dise\u00F1o]",
+              "RelativeToolTip": "EditPersonal.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-20T15:55:50.493Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "EditPersonal.cs",
+              "DocumentMoniker": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\EditPersonal.cs",
+              "RelativeDocumentMoniker": "EditPersonal.cs",
+              "ToolTip": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\EditPersonal.cs",
+              "RelativeToolTip": "EditPersonal.cs",
+              "ViewState": "AgIAAFAAAAAAAAAAAAAUwH8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-20T15:59:23.707Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 8,
+              "Title": "EditUser.cs",
+              "DocumentMoniker": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\EditUser.cs",
+              "RelativeDocumentMoniker": "EditUser.cs",
+              "ToolTip": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\EditUser.cs",
+              "RelativeToolTip": "EditUser.cs",
+              "ViewState": "AgIAAHAAAAAAAAAAAAAgwJMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-20T16:19:14.254Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "EditUser.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\EditUser.cs",
+              "RelativeDocumentMoniker": "EditUser.cs",
+              "ToolTip": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\EditUser.cs [Dise\u00F1o]",
+              "RelativeToolTip": "EditUser.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-20T16:18:47.005Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "AgregarPersonal.cs",
+              "DocumentMoniker": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\AgregarPersonal.cs",
+              "RelativeDocumentMoniker": "AgregarPersonal.cs",
+              "ToolTip": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\AgregarPersonal.cs",
+              "RelativeToolTip": "AgregarPersonal.cs",
+              "ViewState": "AgIAAJoAAAAAAAAAAAArwLIAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-20T15:37:08.641Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "AgregarU_Prop.cs",
               "DocumentMoniker": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\AgregarU_Prop.cs",
               "RelativeDocumentMoniker": "AgregarU_Prop.cs",

@@ -35,6 +35,7 @@
             this.labelAdmin = new System.Windows.Forms.Label();
             this.contentContainer = new System.Windows.Forms.SplitContainer();
             this.contentPanel = new System.Windows.Forms.Panel();
+            this.BRefresh = new System.Windows.Forms.Button();
             this.textBoxBusqueda = new System.Windows.Forms.TextBox();
             this.BBuscar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
@@ -46,7 +47,6 @@
             this.btnVerEntrenadores = new System.Windows.Forms.Button();
             this.BVerPersonal = new System.Windows.Forms.Button();
             this.BVerAlumnos = new System.Windows.Forms.Button();
-            this.BRefresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.homeContainer)).BeginInit();
             this.homeContainer.Panel1.SuspendLayout();
             this.homeContainer.Panel2.SuspendLayout();
@@ -165,6 +165,19 @@
             this.contentPanel.Visible = false;
             this.contentPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.contentPanel_Paint);
             // 
+            // BRefresh
+            // 
+            this.BRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BRefresh.FlatAppearance.BorderSize = 0;
+            this.BRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BRefresh.Image = global::Taller2_G34.Properties.Resources.refresh_page_option;
+            this.BRefresh.Location = new System.Drawing.Point(331, 448);
+            this.BRefresh.Name = "BRefresh";
+            this.BRefresh.Size = new System.Drawing.Size(73, 53);
+            this.BRefresh.TabIndex = 9;
+            this.BRefresh.UseVisualStyleBackColor = true;
+            this.BRefresh.Click += new System.EventHandler(this.BRefresh_Click);
+            // 
             // textBoxBusqueda
             // 
             this.textBoxBusqueda.BackColor = System.Drawing.Color.Cornsilk;
@@ -204,6 +217,7 @@
             this.btnEliminar.Size = new System.Drawing.Size(177, 45);
             this.btnEliminar.TabIndex = 3;
             this.btnEliminar.UseVisualStyleBackColor = false;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnAgregar
             // 
@@ -336,19 +350,6 @@
             this.BVerAlumnos.Text = "Ver alumnos";
             this.BVerAlumnos.UseVisualStyleBackColor = false;
             this.BVerAlumnos.Click += new System.EventHandler(this.BVerAlumnos_Click);
-            // 
-            // BRefresh
-            // 
-            this.BRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BRefresh.FlatAppearance.BorderSize = 0;
-            this.BRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BRefresh.Image = global::Taller2_G34.Properties.Resources.refresh_page_option;
-            this.BRefresh.Location = new System.Drawing.Point(331, 448);
-            this.BRefresh.Name = "BRefresh";
-            this.BRefresh.Size = new System.Drawing.Size(73, 53);
-            this.BRefresh.TabIndex = 9;
-            this.BRefresh.UseVisualStyleBackColor = true;
-            this.BRefresh.Click += new System.EventHandler(this.BRefresh_Click);
             // 
             // HomePageAdmin
             // 
