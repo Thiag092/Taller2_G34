@@ -1,6 +1,6 @@
 ﻿namespace Taller2_G34
 {
-    partial class AgregarPersonal
+    partial class EditPersonal
     {
         /// <summary>
         /// Required designer variable.
@@ -28,16 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.chkVerClave = new System.Windows.Forms.CheckBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.RBCoach = new System.Windows.Forms.RadioButton();
             this.RBAdmin = new System.Windows.Forms.RadioButton();
             this.label5 = new System.Windows.Forms.Label();
-            this.labelAdmin = new System.Windows.Forms.Label();
-            this.LPass = new System.Windows.Forms.Label();
             this.LRol = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
@@ -45,8 +39,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -54,55 +46,18 @@
             this.labelNombre = new System.Windows.Forms.Label();
             this.BConfirmar = new System.Windows.Forms.Button();
             this.BCancelar = new System.Windows.Forms.Button();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.labelAdmin = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(343, 177);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(172, 24);
-            this.label4.TabIndex = 55;
-            this.label4.Text = "Repetir contraseña";
-            // 
-            // textBox7
-            // 
-            this.textBox7.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox7.Location = new System.Drawing.Point(531, 170);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(203, 31);
-            this.textBox7.TabIndex = 54;
-            this.textBox7.UseSystemPasswordChar = true;
-            // 
-            // chkVerClave
-            // 
-            this.chkVerClave.AutoSize = true;
-            this.chkVerClave.Location = new System.Drawing.Point(754, 178);
-            this.chkVerClave.Name = "chkVerClave";
-            this.chkVerClave.Size = new System.Drawing.Size(74, 20);
-            this.chkVerClave.TabIndex = 53;
-            this.chkVerClave.Text = "Mostrar";
-            this.chkVerClave.UseVisualStyleBackColor = true;
-            this.chkVerClave.CheckStateChanged += new System.EventHandler(this.chkVerClave_CheckStateChanged_1);
-            // 
-            // textBox6
-            // 
-            this.textBox6.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox6.Location = new System.Drawing.Point(162, 174);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(144, 31);
-            this.textBox6.TabIndex = 6;
-            this.textBox6.UseSystemPasswordChar = true;
-            this.textBox6.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
             // 
             // panel3
             // 
@@ -110,7 +65,7 @@
             this.panel3.Controls.Add(this.RBAdmin);
             this.panel3.Controls.Add(this.label5);
             this.panel3.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel3.Location = new System.Drawing.Point(486, 238);
+            this.panel3.Location = new System.Drawing.Point(486, 190);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(248, 77);
             this.panel3.TabIndex = 50;
@@ -149,27 +104,6 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "Rol";
             // 
-            // labelAdmin
-            // 
-            this.labelAdmin.AutoSize = true;
-            this.labelAdmin.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAdmin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(201)))), ((int)(((byte)(19)))));
-            this.labelAdmin.Location = new System.Drawing.Point(12, 42);
-            this.labelAdmin.Name = "labelAdmin";
-            this.labelAdmin.Size = new System.Drawing.Size(289, 29);
-            this.labelAdmin.TabIndex = 56;
-            this.labelAdmin.Text = "Ingreso Personal nuevo";
-            // 
-            // LPass
-            // 
-            this.LPass.AutoSize = true;
-            this.LPass.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LPass.Location = new System.Drawing.Point(38, 181);
-            this.LPass.Name = "LPass";
-            this.LPass.Size = new System.Drawing.Size(107, 24);
-            this.LPass.TabIndex = 52;
-            this.LPass.Text = "Contraseña";
-            // 
             // LRol
             // 
             this.LRol.AutoSize = true;
@@ -184,7 +118,7 @@
             // 
             this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(531, 122);
+            this.dateTimePicker1.Location = new System.Drawing.Point(545, 122);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(203, 30);
             this.dateTimePicker1.TabIndex = 5;
@@ -195,9 +129,9 @@
             this.label3.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(409, 80);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(92, 24);
+            this.label3.Size = new System.Drawing.Size(84, 24);
             this.label3.TabIndex = 45;
-            this.label3.Text = "Telefono*";
+            this.label3.Text = "Telefono";
             // 
             // label2
             // 
@@ -215,14 +149,14 @@
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(93, 127);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 24);
+            this.label1.Size = new System.Drawing.Size(44, 24);
             this.label1.TabIndex = 43;
-            this.label1.Text = "DNI*";
+            this.label1.Text = "DNI";
             // 
             // textBox5
             // 
             this.textBox5.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(531, 73);
+            this.textBox5.Location = new System.Drawing.Point(545, 73);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(203, 31);
             this.textBox5.TabIndex = 3;
@@ -235,56 +169,6 @@
             this.textBox4.Size = new System.Drawing.Size(145, 31);
             this.textBox4.TabIndex = 2;
             // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.splitContainer1.Panel1.Controls.Add(this.labelAdmin);
-            this.splitContainer1.Panel1.Controls.Add(this.pictureBox1);
-            this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.BackColor = System.Drawing.Color.Gold;
-            this.splitContainer1.Panel2.Controls.Add(this.panel2);
-            this.splitContainer1.Size = new System.Drawing.Size(910, 594);
-            this.splitContainer1.SplitterDistance = 107;
-            this.splitContainer1.TabIndex = 8;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.label4);
-            this.panel2.Controls.Add(this.textBox7);
-            this.panel2.Controls.Add(this.chkVerClave);
-            this.panel2.Controls.Add(this.LPass);
-            this.panel2.Controls.Add(this.textBox6);
-            this.panel2.Controls.Add(this.panel3);
-            this.panel2.Controls.Add(this.LRol);
-            this.panel2.Controls.Add(this.dateTimePicker1);
-            this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.textBox5);
-            this.panel2.Controls.Add(this.textBox4);
-            this.panel2.Controls.Add(this.textBox3);
-            this.panel2.Controls.Add(this.textBox2);
-            this.panel2.Controls.Add(this.textBox1);
-            this.panel2.Controls.Add(this.labelApellido);
-            this.panel2.Controls.Add(this.labelNombre);
-            this.panel2.Controls.Add(this.BConfirmar);
-            this.panel2.Controls.Add(this.BCancelar);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(910, 483);
-            this.panel2.TabIndex = 0;
-            // 
             // textBox3
             // 
             this.textBox3.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -296,7 +180,7 @@
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(531, 21);
+            this.textBox2.Location = new System.Drawing.Point(545, 21);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(203, 31);
             this.textBox2.TabIndex = 1;
@@ -315,9 +199,9 @@
             this.labelApellido.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelApellido.Location = new System.Drawing.Point(410, 28);
             this.labelApellido.Name = "labelApellido";
-            this.labelApellido.Size = new System.Drawing.Size(91, 24);
+            this.labelApellido.Size = new System.Drawing.Size(83, 24);
             this.labelApellido.TabIndex = 37;
-            this.labelApellido.Text = "Apellido*";
+            this.labelApellido.Text = "Apellido";
             // 
             // labelNombre
             // 
@@ -325,9 +209,9 @@
             this.labelNombre.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelNombre.Location = new System.Drawing.Point(57, 31);
             this.labelNombre.Name = "labelNombre";
-            this.labelNombre.Size = new System.Drawing.Size(90, 24);
+            this.labelNombre.Size = new System.Drawing.Size(82, 24);
             this.labelNombre.TabIndex = 36;
-            this.labelNombre.Text = "Nombre*";
+            this.labelNombre.Text = "Nombre";
             // 
             // BConfirmar
             // 
@@ -343,7 +227,6 @@
             this.BConfirmar.TabIndex = 35;
             this.BConfirmar.Text = "Confirmar";
             this.BConfirmar.UseVisualStyleBackColor = false;
-            this.BConfirmar.Click += new System.EventHandler(this.BConfirmar_Click);
             // 
             // BCancelar
             // 
@@ -359,27 +242,81 @@
             this.BCancelar.TabIndex = 34;
             this.BCancelar.Text = "Cancelar";
             this.BCancelar.UseVisualStyleBackColor = false;
-            this.BCancelar.Click += new System.EventHandler(this.BCancelar_Click_1);
+            this.BCancelar.Click += new System.EventHandler(this.BCancelar_Click);
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.splitContainer1.Panel1.Controls.Add(this.labelAdmin);
+            this.splitContainer1.Panel1.Controls.Add(this.pictureBox1);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.BackColor = System.Drawing.Color.Gold;
+            this.splitContainer1.Panel2.Controls.Add(this.panel2);
+            this.splitContainer1.Size = new System.Drawing.Size(957, 714);
+            this.splitContainer1.SplitterDistance = 128;
+            this.splitContainer1.TabIndex = 9;
+            // 
+            // labelAdmin
+            // 
+            this.labelAdmin.AutoSize = true;
+            this.labelAdmin.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAdmin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(201)))), ((int)(((byte)(19)))));
+            this.labelAdmin.Location = new System.Drawing.Point(12, 50);
+            this.labelAdmin.Name = "labelAdmin";
+            this.labelAdmin.Size = new System.Drawing.Size(321, 29);
+            this.labelAdmin.TabIndex = 56;
+            this.labelAdmin.Text = "Ficha/Edicion de Personal";
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Taller2_G34.Properties.Resources.ChatGPT_Image_1_sept_2025__17_46_04;
-            this.pictureBox1.Location = new System.Drawing.Point(331, 0);
+            this.pictureBox1.Location = new System.Drawing.Point(389, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(126, 95);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
             // 
-            // AgregarPersonal
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.panel3);
+            this.panel2.Controls.Add(this.LRol);
+            this.panel2.Controls.Add(this.dateTimePicker1);
+            this.panel2.Controls.Add(this.label3);
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.textBox5);
+            this.panel2.Controls.Add(this.textBox4);
+            this.panel2.Controls.Add(this.textBox3);
+            this.panel2.Controls.Add(this.textBox2);
+            this.panel2.Controls.Add(this.textBox1);
+            this.panel2.Controls.Add(this.labelApellido);
+            this.panel2.Controls.Add(this.labelNombre);
+            this.panel2.Controls.Add(this.BConfirmar);
+            this.panel2.Controls.Add(this.BCancelar);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(957, 582);
+            this.panel2.TabIndex = 0;
+            // 
+            // EditPersonal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ClientSize = new System.Drawing.Size(910, 594);
+            this.ClientSize = new System.Drawing.Size(957, 714);
             this.Controls.Add(this.splitContainer1);
-            this.Name = "AgregarPersonal";
-            this.Text = "Nuevo Usuario";
+            this.Name = "EditPersonal";
+            this.Text = "Ficha del Personal";
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -387,25 +324,18 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.CheckBox chkVerClave;
-        private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.RadioButton RBCoach;
         private System.Windows.Forms.RadioButton RBAdmin;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label labelAdmin;
-        private System.Windows.Forms.Label LPass;
         private System.Windows.Forms.Label LRol;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label3;
@@ -413,9 +343,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
@@ -423,5 +350,9 @@
         private System.Windows.Forms.Label labelNombre;
         private System.Windows.Forms.Button BConfirmar;
         private System.Windows.Forms.Button BCancelar;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Label labelAdmin;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel panel2;
     }
 }

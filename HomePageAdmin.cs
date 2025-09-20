@@ -18,6 +18,8 @@ namespace Taller2_G34
         public HomePageAdmin()
         {
             InitializeComponent();
+            // Suscribo el evento para detectar clicks en las celdas del DataGridView
+            dataGridView.CellContentClick += dataGridView_CellContentClick;
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -62,9 +64,18 @@ namespace Taller2_G34
 
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            // Verifico que la columna clickeada sea la de "Detalles"
+            if (e.ColumnIndex >= 0 && dataGridView.Columns[e.ColumnIndex].Name == "Detalles" && e.RowIndex >= 0)
+            {
+                // Obtengo el DNI de la fila seleccionada
+                string dniSeleccionado = dataGridView.Rows[e.RowIndex].Cells["DNI"].Value.ToString();
 
+                // Abro el formulario de edición pasando el DNI
+                EditPersonal formEditar = new EditPersonal(dniSeleccionado);
+                formEditar.ShowDialog(); // ShowDialog para que sea modal
+            }
         }
 
         private void contentContainer_Panel1_Paint(object sender, PaintEventArgs e)
@@ -328,6 +339,10 @@ namespace Taller2_G34
             MostrarVista("rutinas");
         }
 
-        
+        private void BRefresh_Click(object sender, EventArgs e)
+        {
+            MostrarVista("Personal"); //recarga la lista del personal
+
+        }
     }
 }

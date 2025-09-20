@@ -164,6 +164,20 @@ namespace Taller2_G34
         {
             this.Close();
         }
+
+        private void textBox6_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chkVerClave_CheckStateChanged_1(object sender, EventArgs e)
+        {
+            bool mostrar = chkVerClave.Checked;
+
+            // Si mostrar = true, desactiva el ocultamiento
+            textBox6.UseSystemPasswordChar = !mostrar;
+            textBox7.UseSystemPasswordChar = !mostrar;
+        }
     }
 
 

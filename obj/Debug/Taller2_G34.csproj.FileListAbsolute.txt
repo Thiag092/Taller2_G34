@@ -17,3 +17,4 @@ C:\Users\yago_\LIC\Taller 2\Proyecto 34\Taller2_G34\obj\Debug\Taller2_G34.exe
 C:\Users\yago_\LIC\Taller 2\Proyecto 34\Taller2_G34\obj\Debug\Taller2_G34.pdb
 C:\Users\yago_\LIC\Taller 2\Proyecto 34\Taller2_G34\obj\Debug\Taller2_G34.AgregarU_Prop.resources
 C:\Users\yago_\LIC\Taller 2\Proyecto 34\Taller2_G34\obj\Debug\Taller2_G34.EditUser.resources
+C:\Users\yago_\LIC\Taller 2\Proyecto 34\Taller2_G34\obj\Debug\Taller2_G34.EditPersonal.resources
