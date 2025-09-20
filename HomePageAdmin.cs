@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration; // para leer la cadena de conexión del App.config
+using System.Data.SqlClient; // para usar SqlConnection, SqlCommand, SqlDataReader
+
 
 namespace Taller2_G34
 {
@@ -120,38 +123,136 @@ namespace Taller2_G34
             }
             if (tipo == "Personal")
             {
+                // Defino las columnas que quiero ver en la grilla
                 dataGridView.Columns.Add("DNI", "DNI");
                 dataGridView.Columns.Add("Nombre", "Nombre");
                 dataGridView.Columns.Add("Apellido", "Apellido");
                 dataGridView.Columns.Add("Email", "Email");
                 dataGridView.Columns.Add("TipoUsuario", "Tipo de usuario");
-                // importante para identificar la columna
+
+                // Botón de detalles
                 btnDetalles.UseColumnTextForButtonValue = true;
                 dataGridView.Columns.Add(btnDetalles);
-                dataGridView.Rows.Add(11111111, "Carlos", "Gómez", "carlosgomez@gmail.com", "coach");
-                dataGridView.Rows.Add(22222222, "María", "López", "marilo@outlook.com", "alumno");
 
+                // Leo la cadena de conexión "EnerGymDB" desde App.config
+                string connectionString = ConfigurationManager.ConnectionStrings["EnerGymDB"].ConnectionString;
+
+
+                //Consulta que trae SOLO Administradores (2) y Coaches (3)
+                //    Además hago JOIN con Rol para mostrar la descripción del rol.
+                string query = @"SELECT U.dni, U.nombre, U.apellido, U.email, R.descripcion 
+                 FROM Usuario U
+                 INNER JOIN Rol R ON U.id_rol = R.id_rol
+                 WHERE U.id_rol IN (2, 3) 
+                   AND U.estado = 1";  // Solo admins y coaches ACTIVOS
+
+
+
+                //  Abro la conexión y recorro cada fila con un DataReader
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    try
+                    {
+                        conn.Open();
+                        SqlDataReader reader = cmd.ExecuteReader();
+
+
+                        // Por cada registro devuelto, agrego una fila al DataGridView
+                        while (reader.Read())
+                        {
+                            dataGridView.Rows.Add(
+                                reader["dni"].ToString(),
+                                reader["nombre"].ToString(),
+                                reader["apellido"].ToString(),
+                                reader["email"].ToString(),
+                                reader["descripcion"].ToString()
+                            );
+                        }
+                    }
+
+                    // Si algo falla (DB caída, cadena mal, etc.), muestro el error
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al cargar personal: " + ex.Message);
+                    }
+                }
+
+                // Ajusto títulos y botones específicos de esta vista
                 labelTitulo.Text = "Personal";
                 btnAgregar.Text = "Agregar Usuario";
                 btnEliminar.Text = "Eliminar Usuario";
             }
+
+
+            // ---------- ENTRENADORES / RUTINAS (tus otras vistas) ----------
             if (tipo == "entrenadores")
             {
+                // Limpio columnas y filas del DataGridView
+                dataGridView.Columns.Clear();
+                dataGridView.Rows.Clear();
+
+                // Defino las columnas a mostrar
                 dataGridView.Columns.Add("DNI", "DNI");
                 dataGridView.Columns.Add("Nombre", "Nombre");
                 dataGridView.Columns.Add("Apellido", "Apellido");
                 dataGridView.Columns.Add("Email", "Email");
                 dataGridView.Columns.Add("Telefono", "Teléfono");
-                // importante para identificar la columna
+
+                // Agrego columna de botones "Ver más"
+                btnDetalles = new DataGridViewButtonColumn();
+                btnDetalles.HeaderText = "Detalles";
+                btnDetalles.Text = "Ver más";
+                btnDetalles.Name = "Detalles";
                 btnDetalles.UseColumnTextForButtonValue = true;
                 dataGridView.Columns.Add(btnDetalles);
 
-                dataGridView.Rows.Add(34567890, "Luis", "Martínez", "emimar@outlook.com", "+543794567890");
 
+                // Conexión a la BD (cadena del App.config)
+                string connectionString = ConfigurationManager.ConnectionStrings["EnerGymDB"].ConnectionString;
+
+                // Consulta SQL → solo usuarios con rol 3 (Coachs) y que estén activos
+                string query = @"SELECT U.dni, U.nombre, U.apellido, U.email, U.telefono
+                     FROM Usuario U
+                     INNER JOIN Rol R ON U.id_rol = R.id_rol
+                     WHERE U.id_rol = 3 AND U.estado = 1";
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    try
+                    {
+                        conn.Open();
+                        SqlDataReader reader = cmd.ExecuteReader();
+
+                        // Cargo los datos en la grilla
+                        while (reader.Read())
+                        {
+                            dataGridView.Rows.Add(
+                                reader["dni"].ToString(),
+                                reader["nombre"].ToString(),
+                                reader["apellido"].ToString(),
+                                reader["email"].ToString(),
+                                reader["telefono"].ToString()
+                            );
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al cargar entrenadores: " + ex.Message);
+                    }
+                }
+
+                // Ajusto título y botones específicos de esta vista
                 labelTitulo.Text = "Entrenadores";
                 btnAgregar.Text = "Agregar Entrenador";
                 btnEliminar.Text = "Eliminar Entrenador";
+
+                // Ajusto visual → que las columnas ocupen todo el ancho
+                dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
+
+
             if (tipo == "rutinas")
             {
                 dataGridView.Columns.Add("ID", "ID");
@@ -167,7 +268,7 @@ namespace Taller2_G34
                 btnEliminar.Text = "Eliminar Rutina";
             }
 
-            // Ajustes visuales opcionales
+            // Que las columnas ajusten el ancho automáticamente
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 

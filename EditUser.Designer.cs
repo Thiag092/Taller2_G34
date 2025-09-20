@@ -66,7 +66,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Taller2_G34.Properties.Resources.ChatGPT_Image_1_sept_2025__17_46_04;
-            this.pictureBox1.Location = new System.Drawing.Point(331, 0);
+            this.pictureBox1.Location = new System.Drawing.Point(385, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(126, 95);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -101,7 +101,7 @@
             this.panel3.Controls.Add(this.RBAdmin);
             this.panel3.Controls.Add(this.label5);
             this.panel3.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel3.Location = new System.Drawing.Point(455, 206);
+            this.panel3.Location = new System.Drawing.Point(487, 181);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(248, 104);
             this.panel3.TabIndex = 50;
@@ -169,8 +169,8 @@
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.Gold;
             this.splitContainer1.Panel2.Controls.Add(this.panel2);
-            this.splitContainer1.Size = new System.Drawing.Size(792, 731);
-            this.splitContainer1.SplitterDistance = 132;
+            this.splitContainer1.Size = new System.Drawing.Size(935, 677);
+            this.splitContainer1.SplitterDistance = 122;
             this.splitContainer1.TabIndex = 8;
             // 
             // labelAdmin
@@ -207,7 +207,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(792, 595);
+            this.panel2.Size = new System.Drawing.Size(935, 551);
             this.panel2.TabIndex = 0;
             // 
             // textBox6
@@ -223,7 +223,7 @@
             // 
             this.LRol.AutoSize = true;
             this.LRol.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LRol.Location = new System.Drawing.Point(344, 131);
+            this.LRol.Location = new System.Drawing.Point(327, 131);
             this.LRol.Name = "LRol";
             this.LRol.Size = new System.Drawing.Size(188, 24);
             this.LRol.TabIndex = 47;
@@ -233,7 +233,7 @@
             // 
             this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(551, 129);
+            this.dateTimePicker1.Location = new System.Drawing.Point(596, 129);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(139, 30);
             this.dateTimePicker1.TabIndex = 5;
@@ -242,9 +242,9 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(400, 79);
+            this.label3.Location = new System.Drawing.Point(427, 79);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(105, 30);
+            this.label3.Size = new System.Drawing.Size(84, 24);
             this.label3.TabIndex = 45;
             this.label3.Text = "Telefono";
             // 
@@ -271,7 +271,7 @@
             // textBox5
             // 
             this.textBox5.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(487, 79);
+            this.textBox5.Location = new System.Drawing.Point(532, 79);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(203, 31);
             this.textBox5.TabIndex = 3;
@@ -295,7 +295,7 @@
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(487, 24);
+            this.textBox2.Location = new System.Drawing.Point(532, 24);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(203, 31);
             this.textBox2.TabIndex = 1;
@@ -312,9 +312,9 @@
             // 
             this.labelApellido.AutoSize = true;
             this.labelApellido.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelApellido.Location = new System.Drawing.Point(383, 27);
+            this.labelApellido.Location = new System.Drawing.Point(428, 27);
             this.labelApellido.Name = "labelApellido";
-            this.labelApellido.Size = new System.Drawing.Size(104, 30);
+            this.labelApellido.Size = new System.Drawing.Size(83, 24);
             this.labelApellido.TabIndex = 37;
             this.labelApellido.Text = "Apellido";
             // 
@@ -336,7 +336,7 @@
             this.BConfirmar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BConfirmar.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BConfirmar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BConfirmar.Location = new System.Drawing.Point(558, 363);
+            this.BConfirmar.Location = new System.Drawing.Point(603, 363);
             this.BConfirmar.Name = "BConfirmar";
             this.BConfirmar.Size = new System.Drawing.Size(132, 40);
             this.BConfirmar.TabIndex = 35;
@@ -352,7 +352,7 @@
             this.BCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BCancelar.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BCancelar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BCancelar.Location = new System.Drawing.Point(61, 363);
+            this.BCancelar.Location = new System.Drawing.Point(159, 363);
             this.BCancelar.Name = "BCancelar";
             this.BCancelar.Size = new System.Drawing.Size(147, 40);
             this.BCancelar.TabIndex = 34;
@@ -364,7 +364,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(792, 731);
+            this.ClientSize = new System.Drawing.Size(935, 677);
             this.Controls.Add(this.splitContainer1);
             this.Name = "EditUser";
             this.Text = "Ficha de Usuario";

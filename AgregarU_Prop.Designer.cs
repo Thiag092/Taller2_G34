@@ -51,11 +51,11 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.labelAdmin = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBox7 = new System.Windows.Forms.TextBox();
             this.chkVerClave = new System.Windows.Forms.CheckBox();
             this.LPass = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -72,7 +72,7 @@
             this.panel3.Controls.Add(this.RBAdmin);
             this.panel3.Controls.Add(this.label5);
             this.panel3.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel3.Location = new System.Drawing.Point(442, 237);
+            this.panel3.Location = new System.Drawing.Point(486, 238);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(248, 104);
             this.panel3.TabIndex = 50;
@@ -127,7 +127,7 @@
             // 
             this.LRol.AutoSize = true;
             this.LRol.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LRol.Location = new System.Drawing.Point(344, 131);
+            this.LRol.Location = new System.Drawing.Point(327, 123);
             this.LRol.Name = "LRol";
             this.LRol.Size = new System.Drawing.Size(188, 24);
             this.LRol.TabIndex = 47;
@@ -137,16 +137,16 @@
             // 
             this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(551, 129);
+            this.dateTimePicker1.Location = new System.Drawing.Point(556, 122);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(139, 30);
+            this.dateTimePicker1.Size = new System.Drawing.Size(155, 30);
             this.dateTimePicker1.TabIndex = 5;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(382, 79);
+            this.label3.Location = new System.Drawing.Point(409, 80);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(92, 24);
             this.label3.TabIndex = 45;
@@ -175,7 +175,7 @@
             // textBox5
             // 
             this.textBox5.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(487, 79);
+            this.textBox5.Location = new System.Drawing.Point(531, 73);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(203, 31);
             this.textBox5.TabIndex = 3;
@@ -193,7 +193,7 @@
             // textBox3
             // 
             this.textBox3.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(163, 124);
+            this.textBox3.Location = new System.Drawing.Point(163, 120);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(144, 31);
             this.textBox3.TabIndex = 4;
@@ -202,7 +202,7 @@
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(487, 24);
+            this.textBox2.Location = new System.Drawing.Point(531, 21);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(203, 31);
             this.textBox2.TabIndex = 1;
@@ -211,7 +211,7 @@
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(162, 24);
+            this.textBox1.Location = new System.Drawing.Point(161, 28);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(145, 31);
             this.textBox1.TabIndex = 0;
@@ -221,7 +221,7 @@
             // 
             this.labelApellido.AutoSize = true;
             this.labelApellido.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelApellido.Location = new System.Drawing.Point(383, 27);
+            this.labelApellido.Location = new System.Drawing.Point(410, 28);
             this.labelApellido.Name = "labelApellido";
             this.labelApellido.Size = new System.Drawing.Size(91, 24);
             this.labelApellido.TabIndex = 37;
@@ -245,7 +245,7 @@
             this.BConfirmar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BConfirmar.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BConfirmar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BConfirmar.Location = new System.Drawing.Point(558, 363);
+            this.BConfirmar.Location = new System.Drawing.Point(602, 365);
             this.BConfirmar.Name = "BConfirmar";
             this.BConfirmar.Size = new System.Drawing.Size(132, 40);
             this.BConfirmar.TabIndex = 35;
@@ -261,7 +261,7 @@
             this.BCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BCancelar.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BCancelar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BCancelar.Location = new System.Drawing.Point(61, 363);
+            this.BCancelar.Location = new System.Drawing.Point(159, 365);
             this.BCancelar.Name = "BCancelar";
             this.BCancelar.Size = new System.Drawing.Size(147, 40);
             this.BCancelar.TabIndex = 34;
@@ -297,8 +297,8 @@
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.Gold;
             this.splitContainer1.Panel2.Controls.Add(this.panel2);
-            this.splitContainer1.Size = new System.Drawing.Size(829, 631);
-            this.splitContainer1.SplitterDistance = 114;
+            this.splitContainer1.Size = new System.Drawing.Size(909, 649);
+            this.splitContainer1.SplitterDistance = 117;
             this.splitContainer1.TabIndex = 7;
             // 
             // labelAdmin
@@ -337,13 +337,34 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(829, 513);
+            this.panel2.Size = new System.Drawing.Size(909, 528);
             this.panel2.TabIndex = 0;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(356, 177);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(172, 24);
+            this.label4.TabIndex = 55;
+            this.label4.Text = "Repetir contraseña";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // textBox7
+            // 
+            this.textBox7.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox7.Location = new System.Drawing.Point(552, 170);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(182, 31);
+            this.textBox7.TabIndex = 54;
+            this.textBox7.UseSystemPasswordChar = true;
+            this.textBox7.TextChanged += new System.EventHandler(this.textBox7_TextChanged);
             // 
             // chkVerClave
             // 
             this.chkVerClave.AutoSize = true;
-            this.chkVerClave.Location = new System.Drawing.Point(693, 188);
+            this.chkVerClave.Location = new System.Drawing.Point(754, 178);
             this.chkVerClave.Name = "chkVerClave";
             this.chkVerClave.Size = new System.Drawing.Size(74, 20);
             this.chkVerClave.TabIndex = 53;
@@ -365,39 +386,18 @@
             // textBox6
             // 
             this.textBox6.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox6.Location = new System.Drawing.Point(162, 181);
+            this.textBox6.Location = new System.Drawing.Point(162, 174);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(144, 31);
             this.textBox6.TabIndex = 6;
             this.textBox6.UseSystemPasswordChar = true;
             this.textBox6.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(327, 185);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(172, 24);
-            this.label4.TabIndex = 55;
-            this.label4.Text = "Repetir contraseña";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
-            // 
-            // textBox7
-            // 
-            this.textBox7.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox7.Location = new System.Drawing.Point(505, 185);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(182, 31);
-            this.textBox7.TabIndex = 54;
-            this.textBox7.UseSystemPasswordChar = true;
-            this.textBox7.TextChanged += new System.EventHandler(this.textBox7_TextChanged);
-            // 
             // AgregarU_Prop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(829, 631);
+            this.ClientSize = new System.Drawing.Size(909, 649);
             this.Controls.Add(this.splitContainer1);
             this.Name = "AgregarU_Prop";
             this.Text = "Agregar nuevo Usuario";
