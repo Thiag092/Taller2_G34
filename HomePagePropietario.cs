@@ -113,76 +113,100 @@ namespace Taller2_G34
 
         private void MostrarVista(string tipo)
         {
-            // Oculto el label de bienvenida porque ya no corresponde mostrarlo
-            labelTextoBienvenida.Visible = false;
-
-            // Hago visible el panel donde va el DataGridView con los datos
-            contentPanel.Visible = true;
-
-            // Limpio el DataGridView antes de cargar nuevos datos (importante para que no se acumulen)
-            dataGridView.Columns.Clear();
-            dataGridView.Rows.Clear();
-
-            // Creo una columna de botones que irá en cada fila para ver más detalles del usuario
-            DataGridViewButtonColumn btnDetalles = new DataGridViewButtonColumn();
-            btnDetalles.HeaderText = "Detalles";            // Texto en el encabezado de la columna
-            btnDetalles.Text = "Ver más";                   // Texto que aparecerá en cada botón
-            btnDetalles.Name = "Detalles";                  // Nombre interno de la columna
-            btnDetalles.UseColumnTextForButtonValue = true; // Para que todos los botones tengan el mismo texto
-
-            // Creo las columnas del DataGridView
-            dataGridView.Columns.Add("DNI", "DNI");
-            dataGridView.Columns.Add("Nombre", "Nombre");
-            dataGridView.Columns.Add("Apellido", "Apellido");
-            dataGridView.Columns.Add("Email", "Email");
-            dataGridView.Columns.Add("TipoUsuario", "Tipo de usuario");
-            dataGridView.Columns.Add(btnDetalles); // Agrego la columna de botones al final
-
-            // Cadena de conexión a SQL Server
-            //   - Server: tu instancia de SQL Server (ej: localhost o .\SQLEXPRESS)
-            //   - Database: el nombre de tu base (ej: GimnasioDB)
-            //   - Trusted_Connection=True: usa autenticación de Windows
-            string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym;Trusted_Connection=True;";
-
-            // 📄 Consulta SQL para traer usuarios junto con su rol y que estos esten activos
-            string query = @"
-    SELECT u.dni, u.nombre, u.apellido, u.email, r.descripcion
-    FROM Usuario u
-    INNER JOIN Rol r ON u.id_rol = r.id_rol
-    WHERE u.estado = 1"; // Solo usuarios activos
-
-            // Abro la conexión con la base de datos
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            // Oculto todo por defecto
+            picBoxEstadisticas.Visible = false;
+            BGraficoInscriptos.Visible = false;
+            BGraficoPagos.Visible = false;
+            dataGridView.Visible = false;
+            btnAgregar.Visible = false;
+            btnEliminar.Visible = false;
+            BRefresh.Visible = false;
+            if (tipo == "Estadisticas")
             {
-                conn.Open(); // Abro la conexión
+                labelTitulo.Text = "Estadísticas del gimnasio";
+                picBoxEstadisticas.Visible = true;
+                BGraficoInscriptos.Visible = true;
+                BGraficoPagos.Visible = true;
+            }
+            else
+            {
+                // Oculto bienvenida
+                labelTextoBienvenida.Visible = false;
+                contentPanel.Visible = true;
 
-                // Creo un comando SQL con la consulta
-                SqlCommand cmd = new SqlCommand(query, conn);
+                // Limpio la grilla
+                dataGridView.Columns.Clear();
+                dataGridView.Rows.Clear();
 
-                // Ejecuto el comando y obtengo un "lector" de filas
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                // Recorro cada fila devuelta por la consulta
-                while (reader.Read())
+                // Botón de detalles
+                DataGridViewButtonColumn btnDetalles = new DataGridViewButtonColumn
                 {
-                    // Voy agregando las filas al DataGridView
-                    dataGridView.Rows.Add(
-                        reader["dni"],         // Columna DNI
-                        reader["nombre"],      // Columna Nombre
-                        reader["apellido"],    // Columna Apellido
-                        reader["email"],       // Columna Email
-                        reader["descripcion"]  // Columna Tipo de usuario (rol)
-                    );
+                    HeaderText = "Detalles",
+                    Text = "Ver más",
+                    Name = "Detalles",
+                    UseColumnTextForButtonValue = true
+                };
+
+                // Columnas
+                dataGridView.Columns.Add("DNI", "DNI");
+                dataGridView.Columns.Add("Nombre", "Nombre");
+                dataGridView.Columns.Add("Apellido", "Apellido");
+                dataGridView.Columns.Add("Email", "Email");
+                dataGridView.Columns.Add("TipoUsuario", "Tipo de usuario");
+                dataGridView.Columns.Add(btnDetalles);
+
+                // Conexión y carga de datos
+                string connectionString = "Server=ALCACHOFIO\\SQLEXPRESS;Database=EnerGym;Trusted_Connection=True;";
+                string query = @"
+                SELECT u.dni, u.nombre, u.apellido, u.email, r.descripcion
+                FROM Usuario u
+                INNER JOIN Rol r ON u.id_rol = r.id_rol
+                WHERE u.estado = 1";
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        dataGridView.Rows.Add(
+                            reader["dni"],
+                            reader["nombre"],
+                            reader["apellido"],
+                            reader["email"],
+                            reader["descripcion"]
+                        );
+                    }
+                }
+
+                dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dataGridView.Visible = true;
+
+                //  Configuro según tipo
+                if (tipo == "entrenadores")
+                {
+                    labelTitulo.Text = "Entrenadores";
+                    // botones ocultos
+                    btnAgregar.Visible = false;
+                    btnEliminar.Visible = false;
+                }
+                else if (tipo == "Personal")
+                {
+                    labelTitulo.Text = "Personal";
+                    btnAgregar.Text = "Agregar Usuario";
+                    btnEliminar.Text = "Eliminar Usuario";
+                    btnAgregar.Visible = true;
+                    btnEliminar.Visible = true;
+                }
+                else if (tipo == "alumnos")
+                {
+                    labelTitulo.Text = "Alumnos";
+                    btnAgregar.Visible = false;
+                    btnEliminar.Visible =false;
                 }
             }
-
-            // Ajusto las columnas para que ocupen todo el ancho disponible
-            dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
-            // Actualizo los textos de los botones y etiquetas del formulario
-            labelTitulo.Text = "Personal";
-            btnAgregar.Text = "Agregar Usuario";
-            btnEliminar.Text = "Eliminar Usuario";
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -200,7 +224,7 @@ namespace Taller2_G34
 
                 if (confirmacion == DialogResult.Yes)
                 {
-                    string connectionString = "Data Source=YAGO_DELL\\SQLEXPRESS01;Initial Catalog=EnerGym;Integrated Security=True";
+                    string connectionString = "Data Source=ALCACHOFIO\\SQLEXPRESS;Initial Catalog=EnerGym;Integrated Security=True";
                     string query = "UPDATE Usuario SET estado = 0 WHERE dni = @dni"; // Baja lógica
 
                     using (SqlConnection connection = new SqlConnection(connectionString))
@@ -213,12 +237,12 @@ namespace Taller2_G34
 
                         if (filasAfectadas > 0)
                         {
-                            MessageBox.Show("Usuario dado de baja correctamente ✅");
+                            MessageBox.Show("Usuario dado de baja correctamente ");
                             MostrarVista("Personal"); // refresca la grilla
                         }
                         else
                         {
-                            MessageBox.Show("No se encontró el usuario ❌");
+                            MessageBox.Show("No se encontró el usuario ");
                         }
                     }
                 }
@@ -243,6 +267,29 @@ namespace Taller2_G34
         private void BRefresh_Click(object sender, EventArgs e)
         {
             MostrarVista("Personal");
+        }
+
+        private void BPagos_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BEstadisticas_Click(object sender, EventArgs e)
+        {
+            MostrarVista("Estadisticas");
+        }
+
+
+        private void BGraficoInscriptos_Click(object sender, EventArgs e)
+        {
+            picBoxEstadisticas.Visible = true;
+            picBoxEstadisticas.Image = Properties.Resources.inscriptos_mockup;
+        }
+
+        private void BGraficoPagos_Click(object sender, EventArgs e)
+        {
+            picBoxEstadisticas.Visible = true;
+            picBoxEstadisticas.Image = Properties.Resources.metodos_pago;
         }
     }
 }
