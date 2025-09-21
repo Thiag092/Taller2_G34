@@ -30,21 +30,21 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBoxAgregar = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.BNuevoEjercicio = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Repeticiones = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Series = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PesoEnKG = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label3 = new System.Windows.Forms.Label();
-            this.BNuevoEjercicio = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBoxAgregar.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -77,9 +77,133 @@
             this.groupBoxAgregar.TabIndex = 1;
             this.groupBoxAgregar.TabStop = false;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.BNuevoEjercicio);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.dataGridView1);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Location = new System.Drawing.Point(54, 21);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(738, 414);
+            this.groupBox1.TabIndex = 5;
+            this.groupBox1.TabStop = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(520, 30);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(56, 16);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Nombre";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // BNuevoEjercicio
+            // 
+            this.BNuevoEjercicio.BackColor = System.Drawing.Color.Black;
+            this.BNuevoEjercicio.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BNuevoEjercicio.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.BNuevoEjercicio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BNuevoEjercicio.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.BNuevoEjercicio.Location = new System.Drawing.Point(499, 366);
+            this.BNuevoEjercicio.Name = "BNuevoEjercicio";
+            this.BNuevoEjercicio.Size = new System.Drawing.Size(137, 35);
+            this.BNuevoEjercicio.TabIndex = 7;
+            this.BNuevoEjercicio.Text = "Agregar ejercicio";
+            this.BNuevoEjercicio.UseVisualStyleBackColor = false;
+            this.BNuevoEjercicio.Click += new System.EventHandler(this.BNuevoEjercicio_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(380, 30);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(115, 16);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Coach encargado";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Nombre,
+            this.Repeticiones,
+            this.Series,
+            this.PesoEnKG});
+            this.dataGridView1.Location = new System.Drawing.Point(22, 91);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(690, 269);
+            this.dataGridView1.TabIndex = 5;
+            // 
+            // Nombre
+            // 
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.MinimumWidth = 6;
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            this.Nombre.Width = 125;
+            // 
+            // Repeticiones
+            // 
+            this.Repeticiones.HeaderText = "Repeticiones";
+            this.Repeticiones.MinimumWidth = 6;
+            this.Repeticiones.Name = "Repeticiones";
+            this.Repeticiones.ReadOnly = true;
+            this.Repeticiones.Width = 125;
+            // 
+            // Series
+            // 
+            this.Series.HeaderText = "Series";
+            this.Series.MinimumWidth = 6;
+            this.Series.Name = "Series";
+            this.Series.ReadOnly = true;
+            this.Series.Width = 125;
+            // 
+            // PesoEnKG
+            // 
+            this.PesoEnKG.HeaderText = "Peso en KG";
+            this.PesoEnKG.MinimumWidth = 6;
+            this.PesoEnKG.Name = "PesoEnKG";
+            this.PesoEnKG.ReadOnly = true;
+            this.PesoEnKG.Width = 125;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(19, 72);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(66, 16);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Ejercicios";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(151, 24);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(194, 22);
+            this.textBox1.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(19, 27);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(107, 16);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Nombre del plan";
+            // 
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.Green;
+            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -95,6 +219,7 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -107,114 +232,6 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(19, 27);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 16);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Nombre del plan";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(151, 24);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(194, 22);
-            this.textBox1.TabIndex = 3;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(19, 72);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 16);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Ejercicios";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.BNuevoEjercicio);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.dataGridView1);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(124, 21);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(668, 414);
-            this.groupBox1.TabIndex = 5;
-            this.groupBox1.TabStop = false;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Nombre,
-            this.Repeticiones,
-            this.Series,
-            this.PesoEnKG});
-            this.dataGridView1.Location = new System.Drawing.Point(22, 91);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(554, 269);
-            this.dataGridView1.TabIndex = 5;
-            // 
-            // Nombre
-            // 
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.MinimumWidth = 6;
-            this.Nombre.Name = "Nombre";
-            this.Nombre.Width = 125;
-            // 
-            // Repeticiones
-            // 
-            this.Repeticiones.HeaderText = "Repeticiones";
-            this.Repeticiones.MinimumWidth = 6;
-            this.Repeticiones.Name = "Repeticiones";
-            this.Repeticiones.Width = 125;
-            // 
-            // Series
-            // 
-            this.Series.HeaderText = "Series";
-            this.Series.MinimumWidth = 6;
-            this.Series.Name = "Series";
-            this.Series.Width = 125;
-            // 
-            // PesoEnKG
-            // 
-            this.PesoEnKG.HeaderText = "Peso en KG";
-            this.PesoEnKG.MinimumWidth = 6;
-            this.PesoEnKG.Name = "PesoEnKG";
-            this.PesoEnKG.Width = 125;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(380, 30);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(115, 16);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Coach encargado";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
-            // 
-            // BNuevoEjercicio
-            // 
-            this.BNuevoEjercicio.BackColor = System.Drawing.Color.Black;
-            this.BNuevoEjercicio.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.BNuevoEjercicio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BNuevoEjercicio.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.BNuevoEjercicio.Location = new System.Drawing.Point(439, 366);
-            this.BNuevoEjercicio.Name = "BNuevoEjercicio";
-            this.BNuevoEjercicio.Size = new System.Drawing.Size(137, 35);
-            this.BNuevoEjercicio.TabIndex = 7;
-            this.BNuevoEjercicio.Text = "Agregar ejercicio";
-            this.BNuevoEjercicio.UseVisualStyleBackColor = false;
-            this.BNuevoEjercicio.Click += new System.EventHandler(this.BNuevoEjercicio_Click);
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Taller2_G34.Properties.Resources.ChatGPT_Image_1_sept_2025__17_46_04;
@@ -224,16 +241,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(520, 30);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(56, 16);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Nombre";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // AgregarRutina
             // 
