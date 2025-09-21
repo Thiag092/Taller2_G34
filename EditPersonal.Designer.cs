@@ -127,7 +127,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(409, 80);
+            this.label3.Location = new System.Drawing.Point(385, 80);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(84, 24);
             this.label3.TabIndex = 45;
@@ -197,7 +197,7 @@
             // 
             this.labelApellido.AutoSize = true;
             this.labelApellido.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelApellido.Location = new System.Drawing.Point(410, 28);
+            this.labelApellido.Location = new System.Drawing.Point(386, 28);
             this.labelApellido.Name = "labelApellido";
             this.labelApellido.Size = new System.Drawing.Size(83, 24);
             this.labelApellido.TabIndex = 37;

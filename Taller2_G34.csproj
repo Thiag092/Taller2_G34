@@ -81,6 +81,12 @@
     <Compile Include="AgregarU_Prop.Designer.cs">
       <DependentUpon>AgregarU_Prop.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditAlumno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditAlumno.Designer.cs">
+      <DependentUpon>EditAlumno.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditPersonal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,6 +142,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AgregarU_Prop.resx">
       <DependentUpon>AgregarU_Prop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditAlumno.resx">
+      <DependentUpon>EditAlumno.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditPersonal.resx">
       <DependentUpon>EditPersonal.cs</DependentUpon>
@@ -210,6 +219,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\inscriptos_mockup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\facturacion_gimnasio.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

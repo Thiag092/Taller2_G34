@@ -121,6 +121,25 @@ namespace Taller2_G34
             btnAgregar.Visible = false;
             btnEliminar.Visible = false;
             BRefresh.Visible = false;
+            PBPagos.Visible = false;
+
+
+
+            if (tipo == "Pagos")
+            {
+                labelTitulo.Text = "Estadísticas de facturación";
+                contentPanel.Visible = true;
+
+                // Oculto la grilla
+                dataGridView.Visible = false;
+
+                // Muestro el PictureBox con la imagen
+                PBPagos.Visible = true;
+                PBPagos.Image = Properties.Resources.facturacion_gimnasio;
+                // 👆 reemplazá "facturacion_mockup" por el nombre real del recurso
+            }
+
+
             if (tipo == "Estadisticas")
             {
                 labelTitulo.Text = "Estadísticas del gimnasio";
@@ -156,7 +175,7 @@ namespace Taller2_G34
                 dataGridView.Columns.Add(btnDetalles);
 
                 // Conexión y carga de datos
-                string connectionString = "Server=ALCACHOFIO\\SQLEXPRESS;Database=EnerGym;Trusted_Connection=True;";
+                string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym;Trusted_Connection=True;";
                 string query = @"
                 SELECT u.dni, u.nombre, u.apellido, u.email, r.descripcion
                 FROM Usuario u
@@ -224,7 +243,7 @@ namespace Taller2_G34
 
                 if (confirmacion == DialogResult.Yes)
                 {
-                    string connectionString = "Data Source=ALCACHOFIO\\SQLEXPRESS;Initial Catalog=EnerGym;Integrated Security=True";
+                    string connectionString = "Data Source=YAGO_DELL\\SQLEXPRESS01;Initial Catalog=EnerGym;Integrated Security=True";
                     string query = "UPDATE Usuario SET estado = 0 WHERE dni = @dni"; // Baja lógica
 
                     using (SqlConnection connection = new SqlConnection(connectionString))
@@ -271,8 +290,9 @@ namespace Taller2_G34
 
         private void BPagos_Click(object sender, EventArgs e)
         {
-
+            MostrarVista("Pagos");
         }
+
 
         private void BEstadisticas_Click(object sender, EventArgs e)
         {
@@ -290,6 +310,11 @@ namespace Taller2_G34
         {
             picBoxEstadisticas.Visible = true;
             picBoxEstadisticas.Image = Properties.Resources.metodos_pago;
+        }
+
+        private void PBPagos_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

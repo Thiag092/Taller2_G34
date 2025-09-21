@@ -129,6 +129,8 @@ namespace Taller2_G34
             btnDetalles.Name = "Detalles";
             btnAgregar.Visible = true;
             btnEliminar.Visible = true;
+
+
             if (tipo == "alumnos")
             {
                 // Creo columnas
@@ -415,12 +417,12 @@ namespace Taller2_G34
 
                             if (filasAfectadas > 0)
                             {
-                                MessageBox.Show("Usuario dado de baja correctamente ✅");
+                                MessageBox.Show("Usuario dado de baja correctamente ");
                                 MostrarVista("Personal"); // refresca la grilla
                             }
                             else
                             {
-                                MessageBox.Show("No se encontró el usuario ❌");
+                                MessageBox.Show("No se encontró el usuario ");
                             }
                         }
                         catch (Exception ex)
