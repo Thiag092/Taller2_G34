@@ -66,16 +66,35 @@ namespace Taller2_G34
 
         private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Verifico que la columna clickeada sea la de "Detalles"
+            /* Verifico que la columna clickeada sea la de "Detalles"
             if (e.ColumnIndex >= 0 && dataGridView.Columns[e.ColumnIndex].Name == "Detalles" && e.RowIndex >= 0)
             {
+                
                 // Obtengo el DNI de la fila seleccionada
                 string dniSeleccionado = dataGridView.Rows[e.RowIndex].Cells["DNI"].Value.ToString();
 
                 // Abro el formulario de edición pasando el DNI
                 EditPersonal formEditar = new EditPersonal(dniSeleccionado);
                 formEditar.ShowDialog(); // ShowDialog para que sea modal
+            }*/
+            if (e.ColumnIndex >= 0 && dataGridView.Columns[e.ColumnIndex].Name == "Detalles" && e.RowIndex >= 0)
+            {
+                string valorClave = null;
+
+                // Si existe la columna DNI la uso
+                if (dataGridView.Columns.Contains("DNI"))
+                {
+                    valorClave = dataGridView.Rows[e.RowIndex].Cells["DNI"].Value.ToString();
+                    EditPersonal formEditar = new EditPersonal(valorClave);
+                    formEditar.ShowDialog();
+                }
+                // Si no, intento con ID
+                else if (dataGridView.Columns.Contains("ID")) {
+                    valorClave = dataGridView.Rows[e.RowIndex].Cells["ID"].Value.ToString();
+                }
             }
+
+
         }
 
         private void contentContainer_Panel1_Paint(object sender, PaintEventArgs e)
@@ -108,7 +127,8 @@ namespace Taller2_G34
             btnDetalles.HeaderText = "Detalles";
             btnDetalles.Text = "Ver más";
             btnDetalles.Name = "Detalles";
-
+            btnAgregar.Visible = true;
+            btnEliminar.Visible = true;
             if (tipo == "alumnos")
             {
                 // Creo columnas
@@ -196,7 +216,7 @@ namespace Taller2_G34
             }
 
 
-            // ---------- ENTRENADORES / RUTINAS (tus otras vistas) ----------
+            // ---------- ENTRENADORES ----------
             if (tipo == "entrenadores")
             {
                 // Limpio columnas y filas del DataGridView
@@ -256,9 +276,8 @@ namespace Taller2_G34
 
                 // Ajusto título y botones específicos de esta vista
                 labelTitulo.Text = "Entrenadores";
-                btnAgregar.Text = "Agregar Entrenador";
-                btnEliminar.Text = "Eliminar Entrenador";
-
+                btnAgregar.Visible = false;
+                btnEliminar.Visible = false;
                 // Ajusto visual → que las columnas ocupen todo el ancho
                 dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
@@ -275,6 +294,7 @@ namespace Taller2_G34
                 dataGridView.Rows.Add(2, "Rutina de resistencia", "Inactiva");
 
                 labelTitulo.Text = "Rutinas";
+                
                 btnAgregar.Text = "Nueva Rutina";
                 btnEliminar.Text = "Eliminar Rutina";
             }
@@ -332,6 +352,7 @@ namespace Taller2_G34
                 AgregarRutina formulario = new AgregarRutina();
                 formulario.Show();
             }
+
         }
 
         private void BVerRutinas_Click(object sender, EventArgs e)
@@ -341,8 +362,22 @@ namespace Taller2_G34
 
         private void BRefresh_Click(object sender, EventArgs e)
         {
-            MostrarVista("Personal"); //recarga la lista del personal
-
+            if (labelTitulo.Text == "Personal")
+            {
+                MostrarVista("Personal"); //recarga la lista del personal
+            }
+            if (labelTitulo.Text == "Alumnos")
+            {
+                MostrarVista("alumnos"); //recarga la lista de los alumnos
+            }
+            if (labelTitulo.Text == "Entrenadores")
+            {
+                MostrarVista("entrenadores"); //recarga la lista de los entrenadores
+            }
+            if (labelTitulo.Text == "Rutinas")
+            {
+                MostrarVista("rutinas"); //recarga la lista del personal
+            }
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -401,5 +436,9 @@ namespace Taller2_G34
             }
         }
 
+        private void dataGridView_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
