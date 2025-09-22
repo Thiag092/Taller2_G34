@@ -98,5 +98,10 @@ namespace Taller2_G34
         {
 
         }
+
+        private void BConfirmar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

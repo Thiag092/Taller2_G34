@@ -136,7 +136,7 @@ namespace Taller2_G34
                 // Muestro el PictureBox con la imagen
                 PBPagos.Visible = true;
                 PBPagos.Image = Properties.Resources.facturacion_gimnasio;
-                // 👆 reemplazá "facturacion_mockup" por el nombre real del recurso
+                
             }
 
 

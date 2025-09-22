@@ -111,12 +111,12 @@ namespace Taller2_G34
 
                     if (filas > 0)
                     {
-                        MessageBox.Show("Usuario actualizado correctamente ✅");
+                        MessageBox.Show("Usuario actualizado correctamente");
                         this.Close();
                     }
                     else
                     {
-                        MessageBox.Show("No se pudo actualizar el usuario ❌");
+                        MessageBox.Show("No se pudo actualizar el usuario");
                     }
                 }
             }
