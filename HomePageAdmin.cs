@@ -297,7 +297,7 @@ namespace Taller2_G34
                 dataGridView.Rows.Add(2, "Rutina de resistencia", "Inactiva");
 
                 labelTitulo.Text = "Rutinas";
-                
+                btnDetalles.Name = "btnDetallesRutina"; // para identificar la columna en el evento
                 btnAgregar.Text = "Nueva Rutina";
                 btnEliminar.Text = "Eliminar Rutina";
             }
@@ -458,6 +458,11 @@ namespace Taller2_G34
                 // Abrimos un nuevo formulario y le pasamos el ID
                 EditAlumno frm = new EditAlumno(dniAlumno);
                 frm.ShowDialog(); // abre como ventana modal
+            }
+            if(e.RowIndex >= 0 && dataGridView.Columns[e.ColumnIndex].Name == "btnDetallesRutina")
+            {
+                EditRutina frm = new EditRutina();
+                frm.ShowDialog();
             }
         }
     }

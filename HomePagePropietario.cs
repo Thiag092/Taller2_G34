@@ -316,6 +316,11 @@ namespace Taller2_G34
         {
 
         }
+
+        private void contentPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
 
