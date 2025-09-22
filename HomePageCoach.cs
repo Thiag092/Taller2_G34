@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -20,16 +22,6 @@ namespace Taller2_G34
         }
 
         private void homePageCoach_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
         {
 
         }
@@ -67,37 +59,7 @@ namespace Taller2_G34
         
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void toolStripLabel1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void GridAlumnos_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void splitContainer1_Panel2_Paint_1(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
         {
 
         }
@@ -117,7 +79,10 @@ namespace Taller2_G34
             labelTextoBienvenida.Visible = false;
             // Hago visible el panel de contenido
             contentPanel.Visible = true;
-
+            //hago invisible los botones 
+            btnAgregar.Visible = false;
+            btnEliminar.Visible = false;
+            BRefresh.Visible = false;
             // Limpio el DataGridView antes de cargar nuevos datos
             dataGridView.Columns.Clear();
             dataGridView.Rows.Clear();
@@ -158,6 +123,12 @@ namespace Taller2_G34
                 dataGridView.Columns.Add(btnDetalles);
                 dataGridView.Rows.Add(1, "Rutina de fuerza", "Activa");
                 dataGridView.Rows.Add(2, "Rutina de resistencia", "Inactiva");
+
+                // Configuro título y botones
+                labelTitulo.Text = "Rutinas";
+                btnAgregar.Visible = true;
+                btnEliminar.Visible = true;
+                BRefresh.Visible = true;
             }
             // Ajustes visuales opcionales
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -188,6 +159,22 @@ namespace Taller2_G34
         }
 
         private void dataGridView_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            AgregarRutina formulario = new AgregarRutina();
+            formulario.Show();
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void BRefresh_Click(object sender, EventArgs e)
         {
 
         }

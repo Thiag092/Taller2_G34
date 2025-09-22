@@ -126,6 +126,10 @@ namespace Taller2_G34
             }
         }
 
+        private void labelAdmin_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }

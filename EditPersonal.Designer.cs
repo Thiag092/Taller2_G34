@@ -276,6 +276,7 @@
             this.labelAdmin.Size = new System.Drawing.Size(321, 29);
             this.labelAdmin.TabIndex = 56;
             this.labelAdmin.Text = "Ficha/Edicion de Personal";
+            this.labelAdmin.Click += new System.EventHandler(this.labelAdmin_Click);
             // 
             // pictureBox1
             // 

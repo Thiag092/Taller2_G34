@@ -150,6 +150,7 @@ namespace Taller2_G34
                 dataGridView.Rows.Add(23456789, "Ana", "Fernández", "03/07/1992", "anafnandez@gmail.com", "+543704456200", "F", "Activo");
 
                 // Configuro título y botones
+                btnDetalles.Name = "btnDetallesAlumnos"; // para identificar la columna en el evento
                 labelTitulo.Text = "Alumnos";
                 btnAgregar.Text = "Agregar Alumno";
                 btnEliminar.Text = "Eliminar Alumno";
@@ -340,7 +341,7 @@ namespace Taller2_G34
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            if (btnAgregar.Text == "Agregar Usuario" || btnAgregar.Text == "Agregar Entrenador")
+            if (btnAgregar.Text == "Agregar Usuario")
             {
                 AgregarPersonal formulario = new AgregarPersonal();
                 formulario.Show();
@@ -440,7 +441,24 @@ namespace Taller2_G34
 
         private void dataGridView_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
+            // Verificamos que sea la columna del botón y no el header
+            if (e.RowIndex >= 0 && dataGridView.Columns[e.ColumnIndex].Name == "btnDetallesUsuario")
+            {
+                // Obtenemos el valor de una celda (ej. ID del cliente)
+                string dniUsuario = dataGridView.Rows[e.RowIndex].Cells["dni"].Value.ToString();
+                EditUser frm = new EditUser(dniUsuario);
+                frm.ShowDialog(); // abre como ventana modal
+            }
+            //verifico que sea un datagridview de alumno
+            if (e.RowIndex >= 0 && dataGridView.Columns[e.ColumnIndex].Name == "btnDetallesAlumnos")
+            {
+                // Obtenemos el valor de una celda (ej. ID del cliente)
+                string dniAlumno= dataGridView.Rows[e.RowIndex].Cells["dni"].Value.ToString();
 
+                // Abrimos un nuevo formulario y le pasamos el ID
+                EditAlumno frm = new EditAlumno(dniAlumno);
+                frm.ShowDialog(); // abre como ventana modal
+            }
         }
     }
 }
