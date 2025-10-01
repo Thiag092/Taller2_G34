@@ -103,5 +103,54 @@ namespace Taller2_G34
         {
 
         }
+
+        private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+
+            // Limita a 11 caracteres
+            TextBox txt = sender as TextBox;
+            if (!char.IsControl(e.KeyChar) && txt.Text.Length >= 11)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtApellido_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir solo letras, espacio y la tecla de retroceso
+            if (!char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true; // Bloquea el carácter
+            }
+        }
+
+        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir solo letras, espacio y la tecla de retroceso
+            if (!char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true; // Bloquea el carácter
+            }
+        }
+
+        private void txtDniAlumno_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permite solo dígitos y teclas de control (como Backspace)
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+
+            // Limita a 8 caracteres
+            TextBox txt = sender as TextBox;
+            if (!char.IsControl(e.KeyChar) && txt.Text.Length >= 8)
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

@@ -228,6 +228,7 @@
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(203, 31);
             this.txtTelefono.TabIndex = 3;
+            this.txtTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTelefono_KeyPress);
             // 
             // txtEmail
             // 
@@ -246,6 +247,7 @@
             this.txtDniAlumno.Size = new System.Drawing.Size(144, 31);
             this.txtDniAlumno.TabIndex = 4;
             this.txtDniAlumno.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            this.txtDniAlumno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDniAlumno_KeyPress);
             // 
             // txtApellido
             // 
@@ -255,6 +257,7 @@
             this.txtApellido.Size = new System.Drawing.Size(203, 31);
             this.txtApellido.TabIndex = 1;
             this.txtApellido.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.txtApellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtApellido_KeyPress);
             // 
             // txtNombre
             // 
@@ -264,6 +267,7 @@
             this.txtNombre.Size = new System.Drawing.Size(145, 31);
             this.txtNombre.TabIndex = 0;
             this.txtNombre.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
             // 
             // EditAlumno
             // 

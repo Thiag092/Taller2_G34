@@ -3,27 +3,43 @@
   "WorkspaceRootPath": "C:\\Users\\anafa\\OneDrive\\Escritorio\\Taller de programaci\u00F3n 2\\Practico 1\\Taller2_G34\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|c:\\users\\anafa\\onedrive\\escritorio\\taller de programaci\u00F3n 2\\practico 1\\taller2_g34\\editalumno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:editalumno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|c:\\users\\anafa\\onedrive\\escritorio\\taller de programaci\u00F3n 2\\practico 1\\taller2_g34\\editalumno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:editalumno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|c:\\users\\anafa\\onedrive\\escritorio\\taller de programaci\u00F3n 2\\practico 1\\taller2_g34\\editpersonal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:editpersonal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|C:\\Users\\anafa\\OneDrive\\Escritorio\\Taller de programaci\u00F3n 2\\Practico 1\\Taller2_G34\\agregarpersonal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:agregarpersonal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|C:\\Users\\anafa\\OneDrive\\Escritorio\\Taller de programaci\u00F3n 2\\Practico 1\\Taller2_G34\\agregarpersonal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:agregarpersonal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|c:\\users\\anafa\\onedrive\\escritorio\\taller de programaci\u00F3n 2\\practico 1\\taller2_g34\\editpersonal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:editpersonal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|c:\\users\\anafa\\onedrive\\escritorio\\taller de programaci\u00F3n 2\\practico 1\\taller2_g34\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|c:\\users\\anafa\\onedrive\\escritorio\\taller de programaci\u00F3n 2\\practico 1\\taller2_g34\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|C:\\Users\\anafa\\OneDrive\\Escritorio\\Taller de programaci\u00F3n 2\\Practico 1\\Taller2_G34\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|c:\\users\\anafa\\onedrive\\escritorio\\taller de programaci\u00F3n 2\\practico 1\\taller2_g34\\agregarpersonal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:agregarpersonal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|c:\\users\\anafa\\onedrive\\escritorio\\taller de programaci\u00F3n 2\\practico 1\\taller2_g34\\agregarpersonal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:agregarpersonal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|c:\\users\\anafa\\onedrive\\escritorio\\taller de programaci\u00F3n 2\\practico 1\\taller2_g34\\agregaralumno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|C:\\Users\\anafa\\OneDrive\\Escritorio\\Taller de programaci\u00F3n 2\\Practico 1\\Taller2_G34\\agregaralumno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:agregaralumno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|c:\\users\\anafa\\onedrive\\escritorio\\taller de programaci\u00F3n 2\\practico 1\\taller2_g34\\agregaralumno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|C:\\Users\\anafa\\OneDrive\\Escritorio\\Taller de programaci\u00F3n 2\\Practico 1\\Taller2_G34\\agregaralumno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:agregaralumno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -55,6 +71,56 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "EditAlumno.cs",
+              "DocumentMoniker": "C:\\Users\\anafa\\OneDrive\\Escritorio\\Taller de programaci\u00F3n 2\\Practico 1\\Taller2_G34\\EditAlumno.cs",
+              "RelativeDocumentMoniker": "EditAlumno.cs",
+              "ToolTip": "C:\\Users\\anafa\\OneDrive\\Escritorio\\Taller de programaci\u00F3n 2\\Practico 1\\Taller2_G34\\EditAlumno.cs",
+              "RelativeToolTip": "EditAlumno.cs",
+              "ViewState": "AgIAAGoAAAAAAAAAAAAzwIYAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T15:41:23.904Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EditAlumno.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\anafa\\OneDrive\\Escritorio\\Taller de programaci\u00F3n 2\\Practico 1\\Taller2_G34\\EditAlumno.cs",
+              "RelativeDocumentMoniker": "EditAlumno.cs",
+              "ToolTip": "C:\\Users\\anafa\\OneDrive\\Escritorio\\Taller de programaci\u00F3n 2\\Practico 1\\Taller2_G34\\EditAlumno.cs [Design]",
+              "RelativeToolTip": "EditAlumno.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T15:41:04.589Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "EditPersonal.cs",
+              "DocumentMoniker": "C:\\Users\\anafa\\OneDrive\\Escritorio\\Taller de programaci\u00F3n 2\\Practico 1\\Taller2_G34\\EditPersonal.cs",
+              "RelativeDocumentMoniker": "EditPersonal.cs",
+              "ToolTip": "C:\\Users\\anafa\\OneDrive\\Escritorio\\Taller de programaci\u00F3n 2\\Practico 1\\Taller2_G34\\EditPersonal.cs",
+              "RelativeToolTip": "EditPersonal.cs",
+              "ViewState": "AgIAAKQAAAAAAAAAAAAYwL4AAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T15:33:15.175Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "EditPersonal.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\anafa\\OneDrive\\Escritorio\\Taller de programaci\u00F3n 2\\Practico 1\\Taller2_G34\\EditPersonal.cs",
+              "RelativeDocumentMoniker": "EditPersonal.cs",
+              "ToolTip": "C:\\Users\\anafa\\OneDrive\\Escritorio\\Taller de programaci\u00F3n 2\\Practico 1\\Taller2_G34\\EditPersonal.cs [Design]",
+              "RelativeToolTip": "EditPersonal.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T15:32:00.912Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "login.cs",
               "DocumentMoniker": "C:\\Users\\anafa\\OneDrive\\Escritorio\\Taller de programaci\u00F3n 2\\Practico 1\\Taller2_G34\\login.cs",
               "RelativeDocumentMoniker": "login.cs",
@@ -67,15 +133,14 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 7,
               "Title": "login.cs [Design]",
               "DocumentMoniker": "C:\\Users\\anafa\\OneDrive\\Escritorio\\Taller de programaci\u00F3n 2\\Practico 1\\Taller2_G34\\login.cs",
               "RelativeDocumentMoniker": "login.cs",
               "ToolTip": "C:\\Users\\anafa\\OneDrive\\Escritorio\\Taller de programaci\u00F3n 2\\Practico 1\\Taller2_G34\\login.cs [Design]",
               "RelativeToolTip": "login.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-01T03:42:00.187Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-10-01T03:42:00.187Z"
             },
             {
               "$type": "Document",
@@ -85,14 +150,14 @@
               "RelativeDocumentMoniker": "AgregarPersonal.cs",
               "ToolTip": "C:\\Users\\anafa\\OneDrive\\Escritorio\\Taller de programaci\u00F3n 2\\Practico 1\\Taller2_G34\\AgregarPersonal.cs",
               "RelativeToolTip": "AgregarPersonal.cs",
-              "ViewState": "AgIAAHMAAAAAAAAAAAAswNEAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAALoAAAAAAAAAAAAcwNEAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-01T03:00:10.373Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "AgregarPersonal.cs [Design]",
               "DocumentMoniker": "C:\\Users\\anafa\\OneDrive\\Escritorio\\Taller de programaci\u00F3n 2\\Practico 1\\Taller2_G34\\AgregarPersonal.cs",
               "RelativeDocumentMoniker": "AgregarPersonal.cs",
@@ -104,19 +169,18 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 8,
               "Title": "AgregarAlumno.cs [Design]",
               "DocumentMoniker": "C:\\Users\\anafa\\OneDrive\\Escritorio\\Taller de programaci\u00F3n 2\\Practico 1\\Taller2_G34\\AgregarAlumno.cs",
               "RelativeDocumentMoniker": "AgregarAlumno.cs",
               "ToolTip": "C:\\Users\\anafa\\OneDrive\\Escritorio\\Taller de programaci\u00F3n 2\\Practico 1\\Taller2_G34\\AgregarAlumno.cs [Design]",
               "RelativeToolTip": "AgregarAlumno.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-01T02:19:27.886Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-10-01T02:19:27.886Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 9,
               "Title": "AgregarAlumno.cs",
               "DocumentMoniker": "C:\\Users\\anafa\\OneDrive\\Escritorio\\Taller de programaci\u00F3n 2\\Practico 1\\Taller2_G34\\AgregarAlumno.cs",
               "RelativeDocumentMoniker": "AgregarAlumno.cs",
@@ -124,8 +188,7 @@
               "RelativeToolTip": "AgregarAlumno.cs",
               "ViewState": "AgIAADkAAAAAAAAAAAAiwHIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-01T02:17:40.258Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-01T02:17:40.258Z"
             }
           ]
         }

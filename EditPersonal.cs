@@ -44,11 +44,11 @@ namespace Taller2_G34
                     if (reader.Read())
                     {
                         // Cargo los datos en los textBox
-                        textBox1.Text = reader["nombre"].ToString();
-                        textBox2.Text = reader["apellido"].ToString();
+                        txtNombre.Text = reader["nombre"].ToString();
+                        txtApellido.Text = reader["apellido"].ToString();
                         textBox4.Text = reader["email"].ToString();
-                        textBox5.Text = reader["telefono"].ToString();
-                        textBox3.Text = reader["dni"].ToString();
+                        txtTelefono.Text = reader["telefono"].ToString();
+                        txtDNI.Text = reader["dni"].ToString();
                         dateTimePicker1.Value = Convert.ToDateTime(reader["fecha_nacimiento"]);
 
                         // Selecciono el rol en el RadioButton
@@ -97,11 +97,11 @@ namespace Taller2_G34
                 {
                     // Parámetros
                     cmd.Parameters.AddWithValue("@dniOriginal", dniUsuario);         // El que vino al abrir el form
-                    cmd.Parameters.AddWithValue("@dniNuevo", textBox3.Text.Trim()); // El que escribió el admin
-                    cmd.Parameters.AddWithValue("@nombre", textBox1.Text.Trim());
-                    cmd.Parameters.AddWithValue("@apellido", textBox2.Text.Trim());
+                    cmd.Parameters.AddWithValue("@dniNuevo", txtDNI.Text.Trim()); // El que escribió el admin
+                    cmd.Parameters.AddWithValue("@nombre", txtNombre.Text.Trim());
+                    cmd.Parameters.AddWithValue("@apellido", txtApellido.Text.Trim());
                     cmd.Parameters.AddWithValue("@correo", textBox4.Text.Trim());
-                    cmd.Parameters.AddWithValue("@telefono", textBox5.Text.Trim());
+                    cmd.Parameters.AddWithValue("@telefono", txtTelefono.Text.Trim());
                     cmd.Parameters.AddWithValue("@fecha", dateTimePicker1.Value.Date);
                     cmd.Parameters.AddWithValue("@rol", idRol);
 
@@ -129,6 +129,66 @@ namespace Taller2_G34
         private void labelAdmin_Click(object sender, EventArgs e)
         {
 
+        }
+
+
+        private void txtTelefono_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+
+            // Limita a 11 caracteres
+            TextBox txt = sender as TextBox;
+            if (!char.IsControl(e.KeyChar) && txt.Text.Length >= 11)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtApellido_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir solo letras, espacio y la tecla de retroceso
+            if (!char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true; // Bloquea el carácter
+            }
+        }
+
+        private void txtNombre_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir solo letras, espacio y la tecla de retroceso
+            if (!char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true; // Bloquea el carácter
+            }
+        }
+
+        private void txtDNI_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permite solo dígitos y teclas de control (como Backspace)
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+
+            // Limita a 8 caracteres
+            TextBox txt = sender as TextBox;
+            if (!char.IsControl(e.KeyChar) && txt.Text.Length >= 8)
+            {
+                e.Handled = true;
+            }
         }
     }
 
