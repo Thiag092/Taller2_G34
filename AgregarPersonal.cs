@@ -24,16 +24,6 @@ namespace Taller2_G34
 
         }
 
-        private void radioButton3_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void radioButton5_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void BCancelar_Click(object sender, EventArgs e)
         {
                 this.Close();
@@ -57,20 +47,20 @@ namespace Taller2_G34
                 }
 
                 // Validar campos obligatorios
-                if (string.IsNullOrWhiteSpace(textBox1.Text) ||  // Nombre
-                    string.IsNullOrWhiteSpace(textBox2.Text) ||  // Apellido
-                    string.IsNullOrWhiteSpace(textBox4.Text) ||  // Email
-                    string.IsNullOrWhiteSpace(textBox5.Text) ||  // Teléfono
-                    string.IsNullOrWhiteSpace(textBox3.Text) ||  // DNI
-                    string.IsNullOrWhiteSpace(textBox6.Text) ||  // Contraseña
-                    string.IsNullOrWhiteSpace(textBox7.Text))    // Repetir contraseña
+                if (string.IsNullOrWhiteSpace(txtNombre.Text) ||  // Nombre
+                    string.IsNullOrWhiteSpace(txtApellido.Text) ||  // Apellido
+                    string.IsNullOrWhiteSpace(txtEmail.Text) ||  // Email
+                    string.IsNullOrWhiteSpace(txtTelefono.Text) ||  // Teléfono
+                    string.IsNullOrWhiteSpace(txtDNI.Text) ||  // DNI
+                    string.IsNullOrWhiteSpace(txtPassword.Text) ||  // Contraseña
+                    string.IsNullOrWhiteSpace(txtPasswordCheck.Text))    // Repetir contraseña
                 {
                     MessageBox.Show("Todos los campos son obligatorios.");
                     return;
                 }
 
                 // Validar formato de email
-                if (!textBox4.Text.Contains("@"))
+                if (!txtEmail.Text.Contains("@"))
                 {
                     MessageBox.Show("El correo ingresado no es válido.");
                     return;
@@ -78,26 +68,26 @@ namespace Taller2_G34
 
 
                 // Validar que el DNI y Teléfono sean numéricos
-                if (!long.TryParse(textBox3.Text, out _))
+                if (!long.TryParse(txtDNI.Text, out _))
                 {
                     MessageBox.Show("El DNI debe ser numérico.");
                     return;
                 }
                 //se valida la longitud de la contraseña
-                if (textBox3.Text.Length < 6)
+                if (txtDNI.Text.Length < 6)
                 {
                     MessageBox.Show("El DNI debe tener 8 caracteres.");
                     return;
                 }
 
-                if (!long.TryParse(textBox5.Text, out _))
+                if (!long.TryParse(txtTelefono.Text, out _))
                 {
                     MessageBox.Show("El Teléfono debe ser numérico.");
                     return;
                 }
 
                 // Validar longitud de contraseña
-                if (textBox6.Text.Length < 6)
+                if (txtPassword.Text.Length < 6)
                 {
                     MessageBox.Show("La contraseña debe tener al menos 6 caracteres.");
                     return;
@@ -105,7 +95,7 @@ namespace Taller2_G34
 
 
                 // Validar que las contraseñas coincidan
-                if (textBox6.Text != textBox7.Text)
+                if (txtPassword.Text != txtPasswordCheck.Text)
                 {
                     MessageBox.Show("Las contraseñas no coinciden.");
                     return;
@@ -124,13 +114,13 @@ namespace Taller2_G34
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@id_rol", idRol);
-                    command.Parameters.AddWithValue("@nombre", textBox1.Text.Trim());
-                    command.Parameters.AddWithValue("@apellido", textBox2.Text.Trim());
-                    command.Parameters.AddWithValue("@correo", textBox4.Text.Trim());
-                    command.Parameters.AddWithValue("@telefono", textBox5.Text.Trim());
-                    command.Parameters.AddWithValue("@dni", textBox3.Text.Trim());
+                    command.Parameters.AddWithValue("@nombre", txtNombre.Text.Trim());
+                    command.Parameters.AddWithValue("@apellido", txtApellido.Text.Trim());
+                    command.Parameters.AddWithValue("@correo", txtEmail.Text.Trim());
+                    command.Parameters.AddWithValue("@telefono", txtTelefono.Text.Trim());
+                    command.Parameters.AddWithValue("@dni", txtDNI.Text.Trim());
                     command.Parameters.AddWithValue("@fecha", dateTimePicker1.Value.Date);
-                    command.Parameters.AddWithValue("@clave", textBox6.Text.Trim());
+                    command.Parameters.AddWithValue("@clave", txtPassword.Text.Trim());
 
                     connection.Open();
                     int filasAfectadas = command.ExecuteNonQuery();
@@ -152,14 +142,6 @@ namespace Taller2_G34
             }
         }
 
-        private void chkVerClave_CheckStateChanged(object sender, EventArgs e)
-        {
-            // Mostrar u ocultar las contraseñas
-            bool mostrar = chkVerClave.Checked;
-            textBox6.UseSystemPasswordChar = !mostrar;
-            textBox7.UseSystemPasswordChar = !mostrar;
-        }
-
         private void BCancelar_Click_1(object sender, EventArgs e)
         {
             this.Close();
@@ -175,8 +157,57 @@ namespace Taller2_G34
             bool mostrar = chkVerClave.Checked;
 
             // Si mostrar = true, desactiva el ocultamiento
-            textBox6.UseSystemPasswordChar = !mostrar;
-            textBox7.UseSystemPasswordChar = !mostrar;
+            txtPassword.UseSystemPasswordChar = !mostrar;
+            txtPasswordCheck.UseSystemPasswordChar = !mostrar;
+        }
+
+        private void txtApellido_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir solo letras, espacio y la tecla de retroceso
+            if (!char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true; // Bloquea el carácter
+            }
+        }
+
+        private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+
+            // Limita a 11 caracteres
+            TextBox txt = sender as TextBox;
+            if (!char.IsControl(e.KeyChar) && txt.Text.Length >= 11)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir solo letras, espacio y la tecla de retroceso
+            if (!char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true; // Bloquea el carácter
+            }
+        }
+
+        private void txtDNI_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permite solo dígitos y teclas de control (como Backspace)
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+
+            // Limita a 8 caracteres
+            TextBox txt = sender as TextBox;
+            if (!char.IsControl(e.KeyChar) && txt.Text.Length >= 8)
+            {
+                e.Handled = true;
+            }
         }
     }
 

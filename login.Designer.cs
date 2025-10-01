@@ -112,6 +112,7 @@
             this.TxUsuario.Name = "TxUsuario";
             this.TxUsuario.Size = new System.Drawing.Size(258, 27);
             this.TxUsuario.TabIndex = 4;
+            this.TxUsuario.TextChanged += new System.EventHandler(this.TxUsuario_TextChanged);
             // 
             // TxContraseña
             // 
@@ -121,6 +122,7 @@
             this.TxContraseña.Size = new System.Drawing.Size(268, 27);
             this.TxContraseña.TabIndex = 5;
             this.TxContraseña.UseSystemPasswordChar = true;
+            this.TxContraseña.TextChanged += new System.EventHandler(this.TxContraseña_TextChanged);
             // 
             // BIngresar
             // 

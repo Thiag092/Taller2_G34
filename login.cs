@@ -199,5 +199,15 @@ namespace Taller2_G34
                 e.SuppressKeyPress = true;
             }
         }
+
+        private void TxUsuario_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TxContraseña_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

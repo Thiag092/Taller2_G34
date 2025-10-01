@@ -175,7 +175,7 @@ namespace Taller2_G34
                 dataGridView.Columns.Add(btnDetalles);
 
                 // Conexión y carga de datos
-                string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym;Trusted_Connection=True;";
+                string connectionString = "Server=ALCACHOFIO\\SQLEXPRESS;Database=EnerGym;Trusted_Connection=True;";
                 string query = @"
                 SELECT u.dni, u.nombre, u.apellido, u.email, r.descripcion
                 FROM Usuario u
@@ -243,7 +243,7 @@ namespace Taller2_G34
 
                 if (confirmacion == DialogResult.Yes)
                 {
-                    string connectionString = "Data Source=YAGO_DELL\\SQLEXPRESS01;Initial Catalog=EnerGym;Integrated Security=True";
+                    string connectionString = "Data Source=ALCACHOFIO\\SQLEXPRESS;Initial Catalog=EnerGym;Integrated Security=True";
                     string query = "UPDATE Usuario SET estado = 0 WHERE dni = @dni"; // Baja lógica
 
                     using (SqlConnection connection = new SqlConnection(connectionString))
