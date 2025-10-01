@@ -32,20 +32,13 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.labelCoach = new System.Windows.Forms.Label();
-            this.BNuevoEjercicio = new System.Windows.Forms.Button();
+            this.txtCoach = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Repeticiones = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Series = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PesoEnKG = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.BCancelar = new System.Windows.Forms.Button();
+            this.txtNombrePlan = new System.Windows.Forms.TextBox();
+            this.BCrear = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -53,8 +46,6 @@
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -63,7 +54,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(949, 677);
+            this.panel1.Size = new System.Drawing.Size(757, 548);
             this.panel1.TabIndex = 6;
             // 
             // splitContainer1
@@ -80,8 +71,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panel2);
-            this.splitContainer1.Size = new System.Drawing.Size(949, 677);
-            this.splitContainer1.SplitterDistance = 108;
+            this.splitContainer1.Size = new System.Drawing.Size(757, 548);
+            this.splitContainer1.SplitterDistance = 156;
             this.splitContainer1.TabIndex = 5;
             // 
             // pictureBox1
@@ -90,7 +81,7 @@
             this.pictureBox1.Image = global::Taller2_G34.Properties.Resources.ChatGPT_Image_1_sept_2025__17_46_04;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(949, 108);
+            this.pictureBox1.Size = new System.Drawing.Size(757, 156);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
@@ -98,174 +89,96 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(188)))), ((int)(((byte)(41)))));
-            this.panel2.Controls.Add(this.groupBox1);
-            this.panel2.Controls.Add(this.button1);
-            this.panel2.Controls.Add(this.button2);
+            this.panel2.Controls.Add(this.txtDescripcion);
+            this.panel2.Controls.Add(this.txtCoach);
+            this.panel2.Controls.Add(this.label3);
+            this.panel2.Controls.Add(this.BCancelar);
+            this.panel2.Controls.Add(this.txtNombrePlan);
+            this.panel2.Controls.Add(this.BCrear);
+            this.panel2.Controls.Add(this.label1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(949, 565);
+            this.panel2.Size = new System.Drawing.Size(757, 388);
             this.panel2.TabIndex = 2;
             // 
-            // groupBox1
+            // txtCoach
             // 
-            this.groupBox1.Controls.Add(this.labelCoach);
-            this.groupBox1.Controls.Add(this.BNuevoEjercicio);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.dataGridView1);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(80, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(755, 428);
-            this.groupBox1.TabIndex = 6;
-            this.groupBox1.TabStop = false;
-            // 
-            // labelCoach
-            // 
-            this.labelCoach.AutoSize = true;
-            this.labelCoach.Location = new System.Drawing.Point(546, 30);
-            this.labelCoach.Name = "labelCoach";
-            this.labelCoach.Size = new System.Drawing.Size(85, 20);
-            this.labelCoach.TabIndex = 8;
-            this.labelCoach.Text = "Juan Perez";
-            // 
-            // BNuevoEjercicio
-            // 
-            this.BNuevoEjercicio.BackColor = System.Drawing.Color.Black;
-            this.BNuevoEjercicio.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BNuevoEjercicio.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.BNuevoEjercicio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BNuevoEjercicio.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.BNuevoEjercicio.Location = new System.Drawing.Point(524, 376);
-            this.BNuevoEjercicio.Name = "BNuevoEjercicio";
-            this.BNuevoEjercicio.Size = new System.Drawing.Size(188, 35);
-            this.BNuevoEjercicio.TabIndex = 7;
-            this.BNuevoEjercicio.Text = "Agregar ejercicio";
-            this.BNuevoEjercicio.UseVisualStyleBackColor = false;
+            this.txtCoach.Location = new System.Drawing.Point(367, 106);
+            this.txtCoach.Name = "txtCoach";
+            this.txtCoach.Size = new System.Drawing.Size(194, 22);
+            this.txtCoach.TabIndex = 8;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(380, 30);
+            this.label3.Location = new System.Drawing.Point(172, 109);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(136, 20);
+            this.label3.Size = new System.Drawing.Size(115, 16);
             this.label3.TabIndex = 6;
             this.label3.Text = "Coach encargado";
             // 
-            // dataGridView1
+            // BCancelar
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Nombre,
-            this.Repeticiones,
-            this.Series,
-            this.PesoEnKG});
-            this.dataGridView1.Location = new System.Drawing.Point(96, 91);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(554, 269);
-            this.dataGridView1.TabIndex = 5;
+            this.BCancelar.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.BCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BCancelar.FlatAppearance.BorderSize = 0;
+            this.BCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BCancelar.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BCancelar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BCancelar.Location = new System.Drawing.Point(140, 304);
+            this.BCancelar.Name = "BCancelar";
+            this.BCancelar.Size = new System.Drawing.Size(147, 40);
+            this.BCancelar.TabIndex = 0;
+            this.BCancelar.Text = "Cancelar";
+            this.BCancelar.UseVisualStyleBackColor = false;
             // 
-            // Nombre
+            // txtNombrePlan
             // 
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.MinimumWidth = 6;
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            this.Nombre.Width = 125;
+            this.txtNombrePlan.Location = new System.Drawing.Point(367, 58);
+            this.txtNombrePlan.Name = "txtNombrePlan";
+            this.txtNombrePlan.Size = new System.Drawing.Size(194, 22);
+            this.txtNombrePlan.TabIndex = 3;
             // 
-            // Repeticiones
+            // BCrear
             // 
-            this.Repeticiones.HeaderText = "Repeticiones";
-            this.Repeticiones.MinimumWidth = 6;
-            this.Repeticiones.Name = "Repeticiones";
-            this.Repeticiones.ReadOnly = true;
-            this.Repeticiones.Width = 125;
-            // 
-            // Series
-            // 
-            this.Series.HeaderText = "Series";
-            this.Series.MinimumWidth = 6;
-            this.Series.Name = "Series";
-            this.Series.ReadOnly = true;
-            this.Series.Width = 125;
-            // 
-            // PesoEnKG
-            // 
-            this.PesoEnKG.HeaderText = "Peso en KG";
-            this.PesoEnKG.MinimumWidth = 6;
-            this.PesoEnKG.Name = "PesoEnKG";
-            this.PesoEnKG.ReadOnly = true;
-            this.PesoEnKG.Width = 125;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(19, 68);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(77, 20);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Ejercicios";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(151, 24);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(194, 27);
-            this.textBox1.TabIndex = 3;
+            this.BCrear.BackColor = System.Drawing.Color.Green;
+            this.BCrear.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BCrear.FlatAppearance.BorderSize = 0;
+            this.BCrear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BCrear.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BCrear.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BCrear.Location = new System.Drawing.Point(429, 304);
+            this.BCrear.Name = "BCrear";
+            this.BCrear.Size = new System.Drawing.Size(132, 40);
+            this.BCrear.TabIndex = 1;
+            this.BCrear.Text = "Crear";
+            this.BCrear.UseVisualStyleBackColor = false;
+            this.BCrear.Click += new System.EventHandler(this.BCrear_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(19, 27);
+            this.label1.Location = new System.Drawing.Point(172, 61);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(132, 20);
+            this.label1.Size = new System.Drawing.Size(107, 16);
             this.label1.TabIndex = 2;
             this.label1.Text = "Nombre del plan";
             // 
-            // button1
+            // txtDescripcion
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(523, 464);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(147, 40);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Cancelar";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.Green;
-            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(703, 464);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(132, 40);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Confirmar";
-            this.button2.UseVisualStyleBackColor = false;
+            this.txtDescripcion.Location = new System.Drawing.Point(140, 179);
+            this.txtDescripcion.Multiline = true;
+            this.txtDescripcion.Name = "txtDescripcion";
+            this.txtDescripcion.Size = new System.Drawing.Size(421, 104);
+            this.txtDescripcion.TabIndex = 9;
             // 
             // AgregarRutina
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ClientSize = new System.Drawing.Size(949, 677);
+            this.ClientSize = new System.Drawing.Size(757, 548);
             this.Controls.Add(this.panel1);
             this.Name = "AgregarRutina";
             this.Text = "Nueva rutina";
@@ -276,9 +189,7 @@
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -289,19 +200,12 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label labelCoach;
-        private System.Windows.Forms.Button BNuevoEjercicio;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Repeticiones;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Series;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PesoEnKG;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtNombrePlan;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button BCancelar;
+        private System.Windows.Forms.Button BCrear;
+        private System.Windows.Forms.TextBox txtCoach;
+        private System.Windows.Forms.TextBox txtDescripcion;
     }
 }

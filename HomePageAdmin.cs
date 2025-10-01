@@ -291,19 +291,46 @@ namespace Taller2_G34
                 dataGridView.Columns.Add("ID", "ID");
                 dataGridView.Columns.Add("Nombre", "Nombre");
                 dataGridView.Columns.Add("Estado", "Estado");
+
                 btnDetalles.UseColumnTextForButtonValue = true;
                 dataGridView.Columns.Add(btnDetalles);
-                dataGridView.Rows.Add(1, "Rutina de fuerza", "Activa");
-                dataGridView.Rows.Add(2, "Rutina de resistencia", "Inactiva");
+
+                string connectionString = ConfigurationManager.ConnectionStrings["EnerGymDB"].ConnectionString;
+
+                string query = @"SELECT id_plan, nombre, 
+                            CASE WHEN estado = 1 THEN 'Activa' ELSE 'Inactiva' END AS estado
+                     FROM PlanEntrenamiento";
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    try
+                    {
+                        conn.Open();
+                        SqlDataReader reader = cmd.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            dataGridView.Rows.Add(
+                                reader["id_plan"],
+                                reader["nombre"],
+                                reader["estado"]
+                            );
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al cargar rutinas: " + ex.Message);
+                    }
+                }
 
                 labelTitulo.Text = "Rutinas";
-                btnDetalles.Name = "btnDetallesRutina"; // para identificar la columna en el evento
+                btnDetalles.Name = "btnDetallesRutina";
                 btnAgregar.Text = "Nueva Rutina";
                 btnEliminar.Text = "Eliminar Rutina";
-            }
 
-            // Que las columnas ajusten el ancho automáticamente
-            dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            }
         }
 
 

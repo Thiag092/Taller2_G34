@@ -76,6 +76,8 @@ GO
 CREATE TABLE Plan_Ejercicio (
     id_plan INT NOT NULL,
     id_ejercicio INT NOT NULL,
+    repeticiones INT NOT NULL,
+    series INT NOT NULL,
     PRIMARY KEY (id_plan, id_ejercicio),
 
     CONSTRAINT FK_PlanEjercicio_Plan FOREIGN KEY (id_plan) REFERENCES PlanEntrenamiento(id_plan),

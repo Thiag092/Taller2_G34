@@ -105,6 +105,12 @@
     <Compile Include="EditRutina.Designer.cs">
       <DependentUpon>EditRutina.cs</DependentUpon>
     </Compile>
+    <Compile Include="NuevoEjercicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NuevoEjercicio.Designer.cs">
+      <DependentUpon>NuevoEjercicio.cs</DependentUpon>
+    </Compile>
     <Compile Include="HomePageCoach.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -160,6 +166,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EditRutina.resx">
       <DependentUpon>EditRutina.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NuevoEjercicio.resx">
+      <DependentUpon>NuevoEjercicio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HomePageCoach.resx">
       <DependentUpon>HomePageCoach.cs</DependentUpon>

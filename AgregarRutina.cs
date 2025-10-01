@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,39 +19,46 @@ namespace Taller2_G34
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void btnCancelar_Click(object sender, EventArgs e)
         {
-
+            this.Close(); // cierra el form
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void BCrear_Click(object sender, EventArgs e)
         {
-            this.Close();  
+            // Guardar el plan en la base
+            int idPlanCreado = GuardarPlan(txtNombrePlan.Text, txtDescripcion.Text);
+
+            if (idPlanCreado > 0)
+            {
+                NuevoEjercicio formEjercicio = new NuevoEjercicio(idPlanCreado);
+                if (formEjercicio.ShowDialog() == DialogResult.OK)
+                {
+                    MessageBox.Show("Ejercicio agregado al plan.");
+                }
+            }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private int GuardarPlan(string nombre, string descripcion)
         {
-            this.Close();
-        }
+            string connectionString = ConfigurationManager
+                                        .ConnectionStrings["EnerGymDB"]
+                                        .ConnectionString;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"INSERT INTO PlanEntrenamiento (nombre, descripcion, estado)
+                         VALUES (@nombre, @descripcion, 1);
+                         SELECT SCOPE_IDENTITY();";
 
-        private void label3_Click(object sender, EventArgs e)
-        {
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@nombre", nombre);
+                    cmd.Parameters.AddWithValue("@descripcion", descripcion);
 
-        }
-
-        private void BNuevoEjercicio_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            this.Close();
+                    connection.Open();
+                    return Convert.ToInt32(cmd.ExecuteScalar()); // devuelve id_plan creado
+                }
+            }
         }
     }
 }
