@@ -34,7 +34,7 @@ CREATE TABLE Usuario (
     dni NVARCHAR(20) UNIQUE,
     fecha_nacimiento DATE,
     estado BIT NOT NULL,
-    contraseña NVARCHAR(255)
+    contrasena NVARCHAR(255)
 );
 GO
 
@@ -174,6 +174,35 @@ CREATE TABLE Permiso(
 );
 GO
 
+------------------------------------------------------------------------------
+
+-- INSERCIONES--
+
+
+/*Insetamos los roles*/
+INSERT INTO Rol (descripcion)
+VALUES ('Propietario'), ('Administrador'), ('Coach');
+
+/*Controlamos que se agregaron*/
+SELECT * FROM rol
+
+/*Ahora insertamos un usuario de cada tipo*/
+
+INSERT INTO Usuario (id_rol, nombre, apellido, email, telefono, dni, fecha_nacimiento, estado, contrasena)
+VALUES
+  (3,'Martin', 'Lopez', 'coach1@gmail.com', '341-555-0101', '33333333', '1990-05-12', 1, 'coach');
+  GO
+  INSERT INTO Usuario (id_rol, nombre, apellido, email, telefono, dni, fecha_nacimiento, estado, contrasena)
+VALUES
+  (1,'Ana', 'Gomez', 'propietario@gmail.com', '341-555-0202', '11111111', '1985-11-20', 1, 'propietario');
+  GO
+  INSERT INTO Usuario (id_rol, nombre, apellido, email, telefono, dni, fecha_nacimiento, estado, contrasena)
+VALUES
+  (2,'Sofia', 'Perez', 'admin@gmail.com', '341-555-0303', '22222222', '1992-02-02', 1, 'admin');
+GO
+
+/*Controlamos que se hayan insertado los nuevos usuarios*/
+select*from Usuario;
 -- ==========================================================
 -- NOTAS DE CAMBIO IMPORTANTES:
 -- 1) Base de datos ahora se llama EnerGym_BD_V2.
