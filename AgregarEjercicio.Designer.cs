@@ -40,13 +40,13 @@
             this.LEjercicio = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.labelEjercicios = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.BBuscar = new System.Windows.Forms.Button();
             this.dataGridEjercicios = new System.Windows.Forms.DataGridView();
             this.ColNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColRep = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColTiempo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BBuscar = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.labelEjercicios = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -106,7 +106,7 @@
             this.labelNombreEjercicio.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelNombreEjercicio.Location = new System.Drawing.Point(57, 31);
             this.labelNombreEjercicio.Name = "labelNombreEjercicio";
-            this.labelNombreEjercicio.Size = new System.Drawing.Size(246, 31);
+            this.labelNombreEjercicio.Size = new System.Drawing.Size(197, 25);
             this.labelNombreEjercicio.TabIndex = 36;
             this.labelNombreEjercicio.Text = "Nombre del ejercicio";
             // 
@@ -124,6 +124,7 @@
             this.BConfirmar.TabIndex = 35;
             this.BConfirmar.Text = "Confirmar";
             this.BConfirmar.UseVisualStyleBackColor = false;
+            this.BConfirmar.Click += new System.EventHandler(this.BConfirmar_Click);
             // 
             // BCancelar
             // 
@@ -169,7 +170,7 @@
             this.LEjercicio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(201)))), ((int)(((byte)(19)))));
             this.LEjercicio.Location = new System.Drawing.Point(12, 42);
             this.LEjercicio.Name = "LEjercicio";
-            this.LEjercicio.Size = new System.Drawing.Size(248, 36);
+            this.LEjercicio.Size = new System.Drawing.Size(198, 29);
             this.LEjercicio.TabIndex = 56;
             this.LEjercicio.Text = "Nuevo Ejercicio";
             // 
@@ -202,6 +203,38 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1167, 485);
             this.panel2.TabIndex = 0;
+            // 
+            // labelEjercicios
+            // 
+            this.labelEjercicios.AutoSize = true;
+            this.labelEjercicios.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelEjercicios.Location = new System.Drawing.Point(345, 37);
+            this.labelEjercicios.Name = "labelEjercicios";
+            this.labelEjercicios.Size = new System.Drawing.Size(164, 20);
+            this.labelEjercicios.TabIndex = 48;
+            this.labelEjercicios.Text = "Listado de ejercicios";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(805, 23);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(205, 22);
+            this.textBox1.TabIndex = 47;
+            // 
+            // BBuscar
+            // 
+            this.BBuscar.BackColor = System.Drawing.Color.Black;
+            this.BBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BBuscar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.BBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BBuscar.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.BBuscar.Location = new System.Drawing.Point(1016, 21);
+            this.BBuscar.Name = "BBuscar";
+            this.BBuscar.Size = new System.Drawing.Size(87, 27);
+            this.BBuscar.TabIndex = 46;
+            this.BBuscar.Text = "Buscar";
+            this.BBuscar.UseVisualStyleBackColor = false;
             // 
             // dataGridEjercicios
             // 
@@ -246,38 +279,6 @@
             this.ColTiempo.MinimumWidth = 6;
             this.ColTiempo.Name = "ColTiempo";
             this.ColTiempo.ReadOnly = true;
-            // 
-            // BBuscar
-            // 
-            this.BBuscar.BackColor = System.Drawing.Color.Black;
-            this.BBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BBuscar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.BBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BBuscar.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.BBuscar.Location = new System.Drawing.Point(1016, 21);
-            this.BBuscar.Name = "BBuscar";
-            this.BBuscar.Size = new System.Drawing.Size(87, 27);
-            this.BBuscar.TabIndex = 46;
-            this.BBuscar.Text = "Buscar";
-            this.BBuscar.UseVisualStyleBackColor = false;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(805, 23);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(205, 22);
-            this.textBox1.TabIndex = 47;
-            // 
-            // labelEjercicios
-            // 
-            this.labelEjercicios.AutoSize = true;
-            this.labelEjercicios.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelEjercicios.Location = new System.Drawing.Point(345, 37);
-            this.labelEjercicios.Name = "labelEjercicios";
-            this.labelEjercicios.Size = new System.Drawing.Size(205, 25);
-            this.labelEjercicios.TabIndex = 48;
-            this.labelEjercicios.Text = "Listado de ejercicios";
             // 
             // AgregarEjercicio
             // 

@@ -135,7 +135,69 @@ namespace Taller2_G34
             }
         }
 
-        
+        private void BConfirmar_Click(object sender, EventArgs e)
+        {
+            // Validar que los campos no estén vacíos
+            if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
+                string.IsNullOrWhiteSpace(txtApellido.Text) ||
+                string.IsNullOrWhiteSpace(txtEmail.Text))
+            {
+                MessageBox.Show("Por favor, complete todos los campos antes de guardar.");
+                return;
+            }
+
+            // Obtener los valores
+            string nombre = txtNombre.Text.Trim();
+            int repeticiones;
+            int tiempo;
+
+            if (!int.TryParse(txtApellido.Text.Trim(), out repeticiones))
+            {
+                MessageBox.Show("Las repeticiones deben ser un número entero.");
+                return;
+            }
+
+            if (!int.TryParse(txtEmail.Text.Trim(), out tiempo))
+            {
+                MessageBox.Show("El tiempo debe ser un número entero (en segundos).");
+                return;
+            }
+
+            // Insertar en la base de datos
+            string connectionString = ConfigurationManager.ConnectionStrings["EnerGymDB"].ConnectionString;
+            string query = "INSERT INTO Ejercicio (nombre, repeticiones, tiempo) VALUES (@nombre, @repeticiones, @tiempo)";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@nombre", nombre);
+                    cmd.Parameters.AddWithValue("@repeticiones", repeticiones);
+                    cmd.Parameters.AddWithValue("@tiempo", tiempo);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+
+                MessageBox.Show("Ejercicio agregado correctamente.");
+                CargarEjercicios(); // Refresca el DataGridView
+                LimpiarCampos();    // Limpia los TextBox
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al agregar el ejercicio: " + ex.Message);
+            }
+        }
+
+        private void LimpiarCampos()
+        {
+            txtNombre.Clear();
+            txtApellido.Clear();
+            txtEmail.Clear();
+        }
+
+
     }
 
 }
