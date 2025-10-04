@@ -97,9 +97,16 @@ namespace Taller2_G34
 
             if (dataGridEjercicios.Columns[e.ColumnIndex].Name == "btnEditar")
             {
-                MessageBox.Show($"Editar ejercicio: {nombre}");
-                // Aquí podrías abrir un formulario de edición con los valores precargados
+                int repeticiones = Convert.ToInt32(dataGridEjercicios.Rows[e.RowIndex].Cells["repeticiones"].Value);
+                int tiempo = Convert.ToInt32(dataGridEjercicios.Rows[e.RowIndex].Cells["tiempo"].Value);
+
+                EditEjercicio formEdit = new EditEjercicio(id, nombre, repeticiones, tiempo);
+                if (formEdit.ShowDialog() == DialogResult.OK)
+                {
+                    CargarEjercicios(); // refrescar grilla después de editar
+                }
             }
+
             else if (dataGridEjercicios.Columns[e.ColumnIndex].Name == "btnEliminar")
             {
                 DialogResult confirm = MessageBox.Show($"¿Desea eliminar '{nombre}'?", "Confirmar", MessageBoxButtons.YesNo);
@@ -139,8 +146,8 @@ namespace Taller2_G34
         {
             // Validar que los campos no estén vacíos
             if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
-                string.IsNullOrWhiteSpace(txtApellido.Text) ||
-                string.IsNullOrWhiteSpace(txtEmail.Text))
+                string.IsNullOrWhiteSpace(txtRepeticiones.Text) ||
+                string.IsNullOrWhiteSpace(txtTiempo.Text))
             {
                 MessageBox.Show("Por favor, complete todos los campos antes de guardar.");
                 return;
@@ -151,13 +158,13 @@ namespace Taller2_G34
             int repeticiones;
             int tiempo;
 
-            if (!int.TryParse(txtApellido.Text.Trim(), out repeticiones))
+            if (!int.TryParse(txtRepeticiones.Text.Trim(), out repeticiones))
             {
                 MessageBox.Show("Las repeticiones deben ser un número entero.");
                 return;
             }
 
-            if (!int.TryParse(txtEmail.Text.Trim(), out tiempo))
+            if (!int.TryParse(txtTiempo.Text.Trim(), out tiempo))
             {
                 MessageBox.Show("El tiempo debe ser un número entero (en segundos).");
                 return;
@@ -193,8 +200,8 @@ namespace Taller2_G34
         private void LimpiarCampos()
         {
             txtNombre.Clear();
-            txtApellido.Clear();
-            txtEmail.Clear();
+            txtRepeticiones.Clear();
+            txtTiempo.Clear();
         }
 
 

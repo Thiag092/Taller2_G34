@@ -201,8 +201,24 @@ VALUES
   (2,'Sofia', 'Perez', 'admin@gmail.com', '341-555-0303', '22222222', '1992-02-02', 1, 'admin');
 GO
 
+
 /*Controlamos que se hayan insertado los nuevos usuarios*/
 select*from Usuario;
+
+
+
+----------INSERTS DE EJERCICIOS-----
+select*from Ejercicio;
+
+INSERT INTO Ejercicio (nombre, repeticiones, tiempo)
+VALUES 
+('Sentadillas con peso corporal', 15, 90),
+('Plancha abdominal', 1, 60),
+('Press de banca', 12, 80);
+
+
+
+
 -- ==========================================================
 -- NOTAS DE CAMBIO IMPORTANTES:
 -- 1) Base de datos ahora se llama EnerGym_BD_V2.

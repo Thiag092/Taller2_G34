@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.labelTiempo = new System.Windows.Forms.Label();
-            this.txtEmail = new System.Windows.Forms.TextBox();
-            this.txtApellido = new System.Windows.Forms.TextBox();
+            this.txtTiempo = new System.Windows.Forms.TextBox();
+            this.txtRepeticiones = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.labelRepeticiones = new System.Windows.Forms.Label();
             this.labelNombreEjercicio = new System.Windows.Forms.Label();
@@ -38,7 +38,6 @@
             this.BCancelar = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.LEjercicio = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.labelEjercicios = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -47,54 +46,55 @@
             this.ColNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColRep = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColTiempo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridEjercicios)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // labelTiempo
             // 
             this.labelTiempo.AutoSize = true;
             this.labelTiempo.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTiempo.Location = new System.Drawing.Point(57, 196);
+            this.labelTiempo.Location = new System.Drawing.Point(72, 196);
             this.labelTiempo.Name = "labelTiempo";
             this.labelTiempo.Size = new System.Drawing.Size(187, 25);
             this.labelTiempo.TabIndex = 44;
             this.labelTiempo.Text = "Tiempo (segundos)";
             // 
-            // txtEmail
+            // txtTiempo
             // 
-            this.txtEmail.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmail.Location = new System.Drawing.Point(61, 223);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(196, 31);
-            this.txtEmail.TabIndex = 2;
+            this.txtTiempo.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTiempo.Location = new System.Drawing.Point(76, 223);
+            this.txtTiempo.Name = "txtTiempo";
+            this.txtTiempo.Size = new System.Drawing.Size(229, 31);
+            this.txtTiempo.TabIndex = 2;
             // 
-            // txtApellido
+            // txtRepeticiones
             // 
-            this.txtApellido.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtApellido.Location = new System.Drawing.Point(61, 142);
-            this.txtApellido.Name = "txtApellido";
-            this.txtApellido.Size = new System.Drawing.Size(199, 31);
-            this.txtApellido.TabIndex = 1;
+            this.txtRepeticiones.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRepeticiones.Location = new System.Drawing.Point(76, 142);
+            this.txtRepeticiones.Name = "txtRepeticiones";
+            this.txtRepeticiones.Size = new System.Drawing.Size(229, 31);
+            this.txtRepeticiones.TabIndex = 1;
             // 
             // txtNombre
             // 
             this.txtNombre.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombre.Location = new System.Drawing.Point(61, 64);
+            this.txtNombre.Location = new System.Drawing.Point(76, 64);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(196, 31);
+            this.txtNombre.Size = new System.Drawing.Size(229, 31);
             this.txtNombre.TabIndex = 0;
             // 
             // labelRepeticiones
             // 
             this.labelRepeticiones.AutoSize = true;
             this.labelRepeticiones.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelRepeticiones.Location = new System.Drawing.Point(57, 115);
+            this.labelRepeticiones.Location = new System.Drawing.Point(72, 115);
             this.labelRepeticiones.Name = "labelRepeticiones";
             this.labelRepeticiones.Size = new System.Drawing.Size(126, 25);
             this.labelRepeticiones.TabIndex = 37;
@@ -104,7 +104,7 @@
             // 
             this.labelNombreEjercicio.AutoSize = true;
             this.labelNombreEjercicio.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNombreEjercicio.Location = new System.Drawing.Point(57, 31);
+            this.labelNombreEjercicio.Location = new System.Drawing.Point(72, 31);
             this.labelNombreEjercicio.Name = "labelNombreEjercicio";
             this.labelNombreEjercicio.Size = new System.Drawing.Size(197, 25);
             this.labelNombreEjercicio.TabIndex = 36;
@@ -118,11 +118,11 @@
             this.BConfirmar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BConfirmar.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BConfirmar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BConfirmar.Location = new System.Drawing.Point(602, 365);
+            this.BConfirmar.Location = new System.Drawing.Point(28, 270);
             this.BConfirmar.Name = "BConfirmar";
-            this.BConfirmar.Size = new System.Drawing.Size(132, 40);
+            this.BConfirmar.Size = new System.Drawing.Size(173, 40);
             this.BConfirmar.TabIndex = 35;
-            this.BConfirmar.Text = "Confirmar";
+            this.BConfirmar.Text = "Agregar ejercicio";
             this.BConfirmar.UseVisualStyleBackColor = false;
             this.BConfirmar.Click += new System.EventHandler(this.BConfirmar_Click);
             // 
@@ -134,7 +134,7 @@
             this.BCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BCancelar.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BCancelar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BCancelar.Location = new System.Drawing.Point(159, 365);
+            this.BCancelar.Location = new System.Drawing.Point(222, 270);
             this.BCancelar.Name = "BCancelar";
             this.BCancelar.Size = new System.Drawing.Size(147, 40);
             this.BCancelar.TabIndex = 34;
@@ -159,8 +159,8 @@
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.Gold;
             this.splitContainer1.Panel2.Controls.Add(this.panel2);
-            this.splitContainer1.Size = new System.Drawing.Size(1167, 596);
-            this.splitContainer1.SplitterDistance = 107;
+            this.splitContainer1.Size = new System.Drawing.Size(1167, 492);
+            this.splitContainer1.SplitterDistance = 88;
             this.splitContainer1.TabIndex = 9;
             // 
             // LEjercicio
@@ -174,16 +174,6 @@
             this.LEjercicio.TabIndex = 56;
             this.LEjercicio.Text = "Nuevo Ejercicio";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Taller2_G34.Properties.Resources.ChatGPT_Image_1_sept_2025__17_46_04;
-            this.pictureBox1.Location = new System.Drawing.Point(375, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(126, 95);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
-            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.labelEjercicios);
@@ -191,8 +181,8 @@
             this.panel2.Controls.Add(this.BBuscar);
             this.panel2.Controls.Add(this.dataGridEjercicios);
             this.panel2.Controls.Add(this.labelTiempo);
-            this.panel2.Controls.Add(this.txtEmail);
-            this.panel2.Controls.Add(this.txtApellido);
+            this.panel2.Controls.Add(this.txtTiempo);
+            this.panel2.Controls.Add(this.txtRepeticiones);
             this.panel2.Controls.Add(this.txtNombre);
             this.panel2.Controls.Add(this.labelRepeticiones);
             this.panel2.Controls.Add(this.labelNombreEjercicio);
@@ -201,14 +191,14 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1167, 485);
+            this.panel2.Size = new System.Drawing.Size(1167, 400);
             this.panel2.TabIndex = 0;
             // 
             // labelEjercicios
             // 
             this.labelEjercicios.AutoSize = true;
             this.labelEjercicios.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelEjercicios.Location = new System.Drawing.Point(345, 37);
+            this.labelEjercicios.Location = new System.Drawing.Point(397, 38);
             this.labelEjercicios.Name = "labelEjercicios";
             this.labelEjercicios.Size = new System.Drawing.Size(164, 20);
             this.labelEjercicios.TabIndex = 48;
@@ -246,7 +236,7 @@
             this.ColNombre,
             this.ColRep,
             this.ColTiempo});
-            this.dataGridEjercicios.Location = new System.Drawing.Point(348, 63);
+            this.dataGridEjercicios.Location = new System.Drawing.Point(400, 64);
             this.dataGridEjercicios.Name = "dataGridEjercicios";
             this.dataGridEjercicios.ReadOnly = true;
             this.dataGridEjercicios.RowHeadersWidth = 51;
@@ -280,11 +270,21 @@
             this.ColTiempo.Name = "ColTiempo";
             this.ColTiempo.ReadOnly = true;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Taller2_G34.Properties.Resources.ChatGPT_Image_1_sept_2025__17_46_04;
+            this.pictureBox1.Location = new System.Drawing.Point(495, -9);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(126, 95);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
+            // 
             // AgregarEjercicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1167, 596);
+            this.ClientSize = new System.Drawing.Size(1167, 492);
             this.Controls.Add(this.splitContainer1);
             this.Name = "AgregarEjercicio";
             this.Text = "Nuevo Ejercicio";
@@ -294,18 +294,18 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridEjercicios)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private System.Windows.Forms.Label labelTiempo;
-        private System.Windows.Forms.TextBox txtEmail;
-        private System.Windows.Forms.TextBox txtApellido;
+        private System.Windows.Forms.TextBox txtTiempo;
+        private System.Windows.Forms.TextBox txtRepeticiones;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label labelRepeticiones;
         private System.Windows.Forms.Label labelNombreEjercicio;
