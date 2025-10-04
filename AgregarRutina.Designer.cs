@@ -36,7 +36,16 @@
             this.LCoachs = new System.Windows.Forms.Label();
             this.LEjercicios = new System.Windows.Forms.Label();
             this.dataGridEjercicios = new System.Windows.Forms.DataGridView();
+            this.ColNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColRep = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColTiempo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridCoaches = new System.Windows.Forms.DataGridView();
+            this.ColNombreCoach = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColApellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColDNI = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColMail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColFechaNac = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColTel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DateTimeInicio = new System.Windows.Forms.DateTimePicker();
             this.DateTimeFin = new System.Windows.Forms.DateTimePicker();
             this.TBCantidadSeries = new System.Windows.Forms.TextBox();
@@ -47,15 +56,6 @@
             this.TBNombrePlan = new System.Windows.Forms.TextBox();
             this.BGuardarPlan = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.ColNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColRep = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColTiempo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColNombreCoach = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColApellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColDNI = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColMail = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColFechaNac = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColTel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -138,12 +138,13 @@
             this.BAgregarEjercicio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BAgregarEjercicio.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BAgregarEjercicio.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BAgregarEjercicio.Location = new System.Drawing.Point(842, 264);
+            this.BAgregarEjercicio.Location = new System.Drawing.Point(781, 264);
             this.BAgregarEjercicio.Name = "BAgregarEjercicio";
-            this.BAgregarEjercicio.Size = new System.Drawing.Size(167, 40);
+            this.BAgregarEjercicio.Size = new System.Drawing.Size(228, 40);
             this.BAgregarEjercicio.TabIndex = 26;
             this.BAgregarEjercicio.Text = "Agregar Ejercicio";
             this.BAgregarEjercicio.UseVisualStyleBackColor = false;
+            this.BAgregarEjercicio.Click += new System.EventHandler(this.BAgregarEjercicio_Click);
             // 
             // LCoachs
             // 
@@ -186,6 +187,30 @@
             this.dataGridEjercicios.TabIndex = 20;
             this.dataGridEjercicios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DatgridEjercicios_CellContentClick);
             // 
+            // ColNombre
+            // 
+            this.ColNombre.DataPropertyName = "nombre";
+            this.ColNombre.HeaderText = "Nombre";
+            this.ColNombre.MinimumWidth = 6;
+            this.ColNombre.Name = "ColNombre";
+            this.ColNombre.ReadOnly = true;
+            // 
+            // ColRep
+            // 
+            this.ColRep.DataPropertyName = "repeticiones";
+            this.ColRep.HeaderText = "Repeticiones";
+            this.ColRep.MinimumWidth = 6;
+            this.ColRep.Name = "ColRep";
+            this.ColRep.ReadOnly = true;
+            // 
+            // ColTiempo
+            // 
+            this.ColTiempo.DataPropertyName = "tiempo";
+            this.ColTiempo.HeaderText = "Tiempo en segundos";
+            this.ColTiempo.MinimumWidth = 6;
+            this.ColTiempo.Name = "ColTiempo";
+            this.ColTiempo.ReadOnly = true;
+            // 
             // dataGridCoaches
             // 
             this.dataGridCoaches.AllowUserToAddRows = false;
@@ -207,6 +232,54 @@
             this.dataGridCoaches.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridCoaches.Size = new System.Drawing.Size(944, 158);
             this.dataGridCoaches.TabIndex = 19;
+            // 
+            // ColNombreCoach
+            // 
+            this.ColNombreCoach.DataPropertyName = "nombre";
+            this.ColNombreCoach.HeaderText = "Nombre";
+            this.ColNombreCoach.MinimumWidth = 6;
+            this.ColNombreCoach.Name = "ColNombreCoach";
+            this.ColNombreCoach.ReadOnly = true;
+            // 
+            // ColApellido
+            // 
+            this.ColApellido.DataPropertyName = "apellido";
+            this.ColApellido.HeaderText = "Apellido";
+            this.ColApellido.MinimumWidth = 6;
+            this.ColApellido.Name = "ColApellido";
+            this.ColApellido.ReadOnly = true;
+            // 
+            // ColDNI
+            // 
+            this.ColDNI.DataPropertyName = "dni";
+            this.ColDNI.HeaderText = "DNI";
+            this.ColDNI.MinimumWidth = 6;
+            this.ColDNI.Name = "ColDNI";
+            this.ColDNI.ReadOnly = true;
+            // 
+            // ColMail
+            // 
+            this.ColMail.DataPropertyName = "email";
+            this.ColMail.HeaderText = "E-mail";
+            this.ColMail.MinimumWidth = 6;
+            this.ColMail.Name = "ColMail";
+            this.ColMail.ReadOnly = true;
+            // 
+            // ColFechaNac
+            // 
+            this.ColFechaNac.DataPropertyName = "fecha_nacimiento";
+            this.ColFechaNac.HeaderText = "Fecha nacimiento";
+            this.ColFechaNac.MinimumWidth = 6;
+            this.ColFechaNac.Name = "ColFechaNac";
+            this.ColFechaNac.ReadOnly = true;
+            // 
+            // ColTel
+            // 
+            this.ColTel.DataPropertyName = "telefono";
+            this.ColTel.HeaderText = "Telefono";
+            this.ColTel.MinimumWidth = 6;
+            this.ColTel.Name = "ColTel";
+            this.ColTel.ReadOnly = true;
             // 
             // DateTimeInicio
             // 
@@ -308,78 +381,6 @@
             this.label1.Size = new System.Drawing.Size(122, 16);
             this.label1.TabIndex = 2;
             this.label1.Text = "Nombre del plan";
-            // 
-            // ColNombre
-            // 
-            this.ColNombre.DataPropertyName = "nombre";
-            this.ColNombre.HeaderText = "Nombre";
-            this.ColNombre.MinimumWidth = 6;
-            this.ColNombre.Name = "ColNombre";
-            this.ColNombre.ReadOnly = true;
-            // 
-            // ColRep
-            // 
-            this.ColRep.DataPropertyName = "repeticiones";
-            this.ColRep.HeaderText = "Repeticiones";
-            this.ColRep.MinimumWidth = 6;
-            this.ColRep.Name = "ColRep";
-            this.ColRep.ReadOnly = true;
-            // 
-            // ColTiempo
-            // 
-            this.ColTiempo.DataPropertyName = "tiempo";
-            this.ColTiempo.HeaderText = "Tiempo en segundos";
-            this.ColTiempo.MinimumWidth = 6;
-            this.ColTiempo.Name = "ColTiempo";
-            this.ColTiempo.ReadOnly = true;
-            // 
-            // ColNombreCoach
-            // 
-            this.ColNombreCoach.DataPropertyName = "nombre";
-            this.ColNombreCoach.HeaderText = "Nombre";
-            this.ColNombreCoach.MinimumWidth = 6;
-            this.ColNombreCoach.Name = "ColNombreCoach";
-            this.ColNombreCoach.ReadOnly = true;
-            // 
-            // ColApellido
-            // 
-            this.ColApellido.DataPropertyName = "apellido";
-            this.ColApellido.HeaderText = "Apellido";
-            this.ColApellido.MinimumWidth = 6;
-            this.ColApellido.Name = "ColApellido";
-            this.ColApellido.ReadOnly = true;
-            // 
-            // ColDNI
-            // 
-            this.ColDNI.DataPropertyName = "dni";
-            this.ColDNI.HeaderText = "DNI";
-            this.ColDNI.MinimumWidth = 6;
-            this.ColDNI.Name = "ColDNI";
-            this.ColDNI.ReadOnly = true;
-            // 
-            // ColMail
-            // 
-            this.ColMail.DataPropertyName = "email";
-            this.ColMail.HeaderText = "E-mail";
-            this.ColMail.MinimumWidth = 6;
-            this.ColMail.Name = "ColMail";
-            this.ColMail.ReadOnly = true;
-            // 
-            // ColFechaNac
-            // 
-            this.ColFechaNac.DataPropertyName = "fecha_nacimiento";
-            this.ColFechaNac.HeaderText = "Fecha nacimiento";
-            this.ColFechaNac.MinimumWidth = 6;
-            this.ColFechaNac.Name = "ColFechaNac";
-            this.ColFechaNac.ReadOnly = true;
-            // 
-            // ColTel
-            // 
-            this.ColTel.DataPropertyName = "telefono";
-            this.ColTel.HeaderText = "Telefono";
-            this.ColTel.MinimumWidth = 6;
-            this.ColTel.Name = "ColTel";
-            this.ColTel.ReadOnly = true;
             // 
             // AgregarRutina
             // 

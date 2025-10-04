@@ -187,5 +187,18 @@ WHERE r.descripcion = 'Coach' AND u.estado = 1";
         {
 
         }
+
+        private void BAgregarEjercicio_Click(object sender, EventArgs e)
+        {
+            // Crear instancia del formulario de ejercicios
+            AgregarEjercicio formEjercicio = new AgregarEjercicio();
+
+            // Mostrarlo como diálogo modal
+            formEjercicio.ShowDialog();
+
+            // Después de cerrarse, recargar el DataGrid de ejercicios
+            CargarEjercicios();
+        }
+
     }
 }
