@@ -187,6 +187,22 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\AgregarAlumno.datasource" />
+    <None Include="Properties\DataSources\AgregarPersonal.datasource" />
+    <None Include="Properties\DataSources\AgregarRutina.datasource" />
+    <None Include="Properties\DataSources\AgregarU_Prop.datasource" />
+    <None Include="Properties\DataSources\EditAlumno.datasource" />
+    <None Include="Properties\DataSources\EditPersonal.datasource" />
+    <None Include="Properties\DataSources\EditRutina.datasource" />
+    <None Include="Properties\DataSources\EditUser.datasource" />
+    <None Include="Properties\DataSources\HomePageAdmin.datasource" />
+    <None Include="Properties\DataSources\homePageCoach.datasource" />
+    <None Include="Properties\DataSources\HomePagePropietario.datasource" />
+    <None Include="Properties\DataSources\login.datasource" />
+    <None Include="Properties\DataSources\NuevoEjercicio.datasource" />
+    <None Include="Properties\DataSources\Program.datasource" />
+    <None Include="Properties\DataSources\Taller2_G34.Properties.Resources.datasource" />
+    <None Include="Properties\DataSources\Taller2_G34.Properties.Settings.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
