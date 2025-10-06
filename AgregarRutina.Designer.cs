@@ -179,7 +179,6 @@
             this.ColTiempo});
             this.dataGridEjercicios.Location = new System.Drawing.Point(65, 100);
             this.dataGridEjercicios.Name = "dataGridEjercicios";
-            this.dataGridEjercicios.ReadOnly = true;
             this.dataGridEjercicios.RowHeadersWidth = 51;
             this.dataGridEjercicios.RowTemplate.Height = 24;
             this.dataGridEjercicios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -232,6 +231,7 @@
             this.dataGridCoaches.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridCoaches.Size = new System.Drawing.Size(944, 158);
             this.dataGridCoaches.TabIndex = 19;
+            this.dataGridCoaches.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridCoaches_CellContentClick_1);
             // 
             // ColNombreCoach
             // 

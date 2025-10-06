@@ -116,23 +116,56 @@ namespace Taller2_G34
             }
             if (tipo == "rutinas")
             {
-                dataGridView.Columns.Add("ID", "ID");
-                dataGridView.Columns.Add("Nombre", "Nombre");
-                dataGridView.Columns.Add("Estado","Estado");
-                btnDetalles.UseColumnTextForButtonValue = true;
-                dataGridView.Columns.Add(btnDetalles);
-                dataGridView.Rows.Add(1, "Rutina de fuerza", "Activa");
-                dataGridView.Rows.Add(2, "Rutina de resistencia", "Inactiva");
-
-                // Configuro título y botones
                 labelTitulo.Text = "Rutinas";
                 btnAgregar.Visible = true;
                 btnEliminar.Visible = true;
                 BRefresh.Visible = true;
+
+                CargarRutinasDesdeBD(); // 🔹 Llama al nuevo método real
             }
+
             // Ajustes visuales opcionales
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
+
+
+        private void CargarRutinasDesdeBD()
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["EnerGymDB"].ConnectionString;
+            string query = @"
+        SELECT 
+            p.id_plan AS ID,
+            p.nombre AS Nombre,
+            p.fechaInicio AS [Fecha de inicio],
+            p.fechaFin AS [Fecha de fin],
+            p.cantSeries AS [Series],
+            u.nombre + ' ' + u.apellido AS [Coach],
+            COUNT(pe.id_ejercicio) AS [Ejercicios]
+        FROM PlanEntrenamiento p
+        LEFT JOIN Usuario_Plan up ON up.id_plan = p.id_plan
+        LEFT JOIN Usuario u ON u.id_usuario = up.id_usuario
+        LEFT JOIN Plan_Ejercicio pe ON pe.id_plan = p.id_plan
+        GROUP BY p.id_plan, p.nombre, p.fechaInicio, p.fechaFin, p.cantSeries, u.nombre, u.apellido
+        ORDER BY p.id_plan DESC";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
+                {
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    dataGridView.AutoGenerateColumns = true;
+                    dataGridView.DataSource = dt;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar rutinas: " + ex.Message);
+            }
+        }
+
         private void ContainerAlumnos_Panel1_Paint(object sender, PaintEventArgs e)
         {
 
@@ -176,7 +209,8 @@ namespace Taller2_G34
 
         private void BRefresh_Click(object sender, EventArgs e)
         {
-
+            CargarRutinasDesdeBD(); // 🔄 Recarga los datos desde la base
         }
+
     }
 }
