@@ -19,6 +19,7 @@ namespace Taller2_G34
         public homePageCoach()
         {
             InitializeComponent();
+           // dataGridView.CellContentClick += dataGridView_CellContentClick;
         }
 
         private void homePageCoach_Load(object sender, EventArgs e)
@@ -116,13 +117,14 @@ namespace Taller2_G34
             }
             if (tipo == "rutinas")
             {
-                labelTitulo.Text = "Rutinas";
-                btnAgregar.Visible = true;
-                btnEliminar.Visible = true;
+                labelTitulo.Text = "Plantillas de Entrenamiento";
+                btnAgregar.Visible = false; // ya no se crean desde aquí
+                btnEliminar.Visible = false;
                 BRefresh.Visible = true;
 
-                CargarRutinasDesdeBD(); // 🔹 Llama al nuevo método real
+                CargarRutinasDesdeBD();
             }
+
 
             // Ajustes visuales opcionales
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -132,21 +134,23 @@ namespace Taller2_G34
         private void CargarRutinasDesdeBD()
         {
             string connectionString = ConfigurationManager.ConnectionStrings["EnerGymDB"].ConnectionString;
+
             string query = @"
-        SELECT 
-            p.id_plan AS ID,
-            p.nombre AS Nombre,
-            p.fechaInicio AS [Fecha de inicio],
-            p.fechaFin AS [Fecha de fin],
-            p.cantSeries AS [Series],
-            u.nombre + ' ' + u.apellido AS [Coach],
-            COUNT(pe.id_ejercicio) AS [Ejercicios]
-        FROM PlanEntrenamiento p
-        LEFT JOIN Usuario_Plan up ON up.id_plan = p.id_plan
-        LEFT JOIN Usuario u ON u.id_usuario = up.id_usuario
-        LEFT JOIN Plan_Ejercicio pe ON pe.id_plan = p.id_plan
-        GROUP BY p.id_plan, p.nombre, p.fechaInicio, p.fechaFin, p.cantSeries, u.nombre, u.apellido
-        ORDER BY p.id_plan DESC";
+    SELECT 
+        p.id_plan AS ID,
+        p.nombre AS [Nombre del Plan],
+        t.descripcion AS [Tipo],
+        p.cantSeries AS [Series],
+        COUNT(DISTINCT d.id_dia) AS [Días],
+        COUNT(DISTINCT e.id_ejercicio) AS [Ejercicios Totales]
+    FROM PlanEntrenamiento p
+    INNER JOIN TipoPlan t ON p.id_tipoPlan = t.id_tipoPlan
+    LEFT JOIN Plan_Dia d ON p.id_plan = d.id_plan
+    LEFT JOIN Plan_Ejercicio e ON e.id_plan = p.id_plan
+    WHERE p.estado = 1
+    GROUP BY p.id_plan, p.nombre, t.descripcion, p.cantSeries
+    ORDER BY p.id_plan;
+    ";
 
             try
             {
@@ -158,13 +162,25 @@ namespace Taller2_G34
 
                     dataGridView.AutoGenerateColumns = true;
                     dataGridView.DataSource = dt;
+                    // Agregar columna de botón si aún no existe
+                    if (!dataGridView.Columns.Contains("Detalles"))
+                    {
+                        DataGridViewButtonColumn btnDetalles = new DataGridViewButtonColumn();
+                        btnDetalles.HeaderText = "Detalles";
+                        btnDetalles.Text = "Ver más";
+                        btnDetalles.Name = "Detalles";
+                        btnDetalles.UseColumnTextForButtonValue = true;
+                        dataGridView.Columns.Add(btnDetalles);
+                    }
+
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar rutinas: " + ex.Message);
+                MessageBox.Show("Error al cargar plantillas de entrenamiento: " + ex.Message);
             }
         }
+
 
         private void ContainerAlumnos_Panel1_Paint(object sender, PaintEventArgs e)
         {
@@ -211,6 +227,26 @@ namespace Taller2_G34
         {
             CargarRutinasDesdeBD(); // 🔄 Recarga los datos desde la base
         }
+
+        /*
+        private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Ignorar clics fuera de las filas válidas
+            if (e.RowIndex < 0)
+                return;
+
+            // Si se hace clic en el botón "Detalles"
+            if (dataGridView.Columns[e.ColumnIndex].Name == "Detalles")
+            {
+                int idPlan = Convert.ToInt32(dataGridView.Rows[e.RowIndex].Cells["ID"].Value);
+
+                // Abrir formulario de detalles
+                VerPlanPlantilla formDetalles = new VerPlanPlantilla(idPlan);
+                formDetalles.ShowDialog();
+            }
+        }
+        */
+
 
     }
 }
