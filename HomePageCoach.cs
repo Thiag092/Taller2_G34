@@ -19,7 +19,7 @@ namespace Taller2_G34
         public homePageCoach()
         {
             InitializeComponent();
-           // dataGridView.CellContentClick += dataGridView_CellContentClick;
+            dataGridView.CellContentClick += dataGridView_CellContentClick;
         }
 
         private void homePageCoach_Load(object sender, EventArgs e)
@@ -228,7 +228,7 @@ namespace Taller2_G34
             CargarRutinasDesdeBD(); // 🔄 Recarga los datos desde la base
         }
 
-        /*
+        
         private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             // Ignorar clics fuera de las filas válidas
@@ -245,7 +245,7 @@ namespace Taller2_G34
                 formDetalles.ShowDialog();
             }
         }
-        */
+        
 
 
     }
