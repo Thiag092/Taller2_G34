@@ -1,29 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Taller2_G34
 {
     public partial class NuevoEjercicio : Form
     {
-        public string NombreEjercicio { get; private set; }
-        public string Repeticiones { get; private set; }
-        public string Series { get; private set; }
-        public string Objetivo { get; private set; }
+        private readonly int _idPlan;
+        private readonly int _idDia;
+        private readonly string _connectionString;
 
-        private int idPlan;
-        public NuevoEjercicio(int planId)
+        // Modificar el constructor para recibir el id_dia
+        public NuevoEjercicio(int planId, int diaId)
         {
             InitializeComponent();
-            idPlan = planId;
+            _idPlan = planId;
+            _idDia = diaId;
+            _connectionString = ConfigurationManager.ConnectionStrings["EnerGymDB"].ConnectionString;
+
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -34,91 +30,161 @@ namespace Taller2_G34
 
         private void btnAceptar_Click_1(object sender, EventArgs e)
         {
+            if (!ValidarCampos())
+                return;
+
+            if (!ProcesarEjercicio())
+                return;
+
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        private bool ValidarCampos()
+        {
+            // Validar campos obligatorios
+            if (string.IsNullOrWhiteSpace(txtNombre.Text))
+            {
+                MessageBox.Show("El nombre del ejercicio es obligatorio.", "Atención",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // Validar que al menos uno de los campos (repeticiones o tiempo) tenga valor
+            if (string.IsNullOrWhiteSpace(txtRepeticiones.Text) && string.IsNullOrWhiteSpace(txtTiempo.Text))
+            {
+                MessageBox.Show("Debe ingresar repeticiones o tiempo para el ejercicio.", "Atención",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // Validar que las series sean numéricas y mayores a 0
+            if (!int.TryParse(txtSeries.Text, out int series) || series <= 0)
+            {
+                MessageBox.Show("Las series deben ser un número mayor a 0.", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            // Validar repeticiones si se ingresaron
+            if (!string.IsNullOrWhiteSpace(txtRepeticiones.Text))
+            {
+                if (!int.TryParse(txtRepeticiones.Text, out int repeticiones) || repeticiones <= 0)
+                {
+                    MessageBox.Show("Las repeticiones deben ser un número mayor a 0.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+
+            // Validar tiempo si se ingresó
+            if (!string.IsNullOrWhiteSpace(txtTiempo.Text))
+            {
+                if (!int.TryParse(txtTiempo.Text, out int tiempo) || tiempo <= 0)
+                {
+                    MessageBox.Show("El tiempo debe ser un número mayor a 0.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private bool ProcesarEjercicio()
+        {
             try
             {
-                // Validar campos obligatorios
-                if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
-                    string.IsNullOrWhiteSpace(txtRepeticiones.Text) ||
-                    string.IsNullOrWhiteSpace(txtSeries.Text) ||
-                    string.IsNullOrWhiteSpace(txtTiempo.Text))
-                {
-                    MessageBox.Show("Todos los campos son obligatorios.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                // Validar que repeticiones y series sean números
-                if (!int.TryParse(txtRepeticiones.Text, out int repeticiones))
-                {
-                    MessageBox.Show("Las repeticiones deben tener un valor numérico.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                if (!int.TryParse(txtSeries.Text, out int series))
-                {
-                    MessageBox.Show("Las series deben tener un valor numérico.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                string connectionString = ConfigurationManager
-                                            .ConnectionStrings["EnerGymDB"]
-                                            .ConnectionString;
-
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (var connection = new SqlConnection(_connectionString))
                 {
                     connection.Open();
-
-                    // 1️⃣ Insertar el ejercicio
-                    string queryEjercicio = @"
-                INSERT INTO Ejercicio (nombre, repeticiones, tiempo)
-                VALUES (@nombre, @repeticiones, @tiempo);
-                SELECT SCOPE_IDENTITY();";
-
-                    int idEjercicio;
-                    using (SqlCommand cmdEjercicio = new SqlCommand(queryEjercicio, connection))
+                    using (var transaction = connection.BeginTransaction())
                     {
-                        cmdEjercicio.Parameters.AddWithValue("@nombre", txtNombre.Text.Trim());
-                        cmdEjercicio.Parameters.AddWithValue("@repeticiones", txtRepeticiones.Text.Trim()); 
-                        cmdEjercicio.Parameters.AddWithValue("@tiempo", txtTiempo.Text.Trim());
-
-                        idEjercicio = Convert.ToInt32(cmdEjercicio.ExecuteScalar());
-                    }
-
-                    // 2️⃣ Insertar en Plan_Ejercicio
-                    string queryPlanEjercicio = @"
-                INSERT INTO Plan_Ejercicio (id_plan, id_ejercicio, repeticiones, cant_series)
-                VALUES (@id_plan, @id_ejercicio, @repeticiones, @series);";
-
-                    using (SqlCommand cmdPlanEjercicio = new SqlCommand(queryPlanEjercicio, connection))
-                    {
-                        cmdPlanEjercicio.Parameters.AddWithValue("@id_plan", idPlan);
-                        cmdPlanEjercicio.Parameters.AddWithValue("@id_ejercicio", idEjercicio);
-                        cmdPlanEjercicio.Parameters.AddWithValue("@repeticiones", repeticiones);
-                        cmdPlanEjercicio.Parameters.AddWithValue("@series", txtSeries.Text.Trim());
-
-                        int filasAfectadas = cmdPlanEjercicio.ExecuteNonQuery();
-
-                        if (filasAfectadas > 0)
+                        try
                         {
-                            MessageBox.Show("Ejercicio agregado correctamente al plan.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            this.DialogResult = DialogResult.OK;
-                            this.Close();
+                            // 1️⃣ Insertar el ejercicio (solo nombre)
+                            int idEjercicio = InsertarEjercicio(connection, transaction);
+
+                            // 2️⃣ Insertar en Plan_Ejercicio con todos los parámetros
+                            bool exito = InsertarEnPlanEjercicio(connection, transaction, idEjercicio);
+
+                            if (exito)
+                            {
+                                transaction.Commit();
+                                MessageBox.Show("Ejercicio creado y agregado al plan correctamente.", "Éxito",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                return true;
+                            }
+                            else
+                            {
+                                transaction.Rollback();
+                                return false;
+                            }
                         }
-                        else
+                        catch
                         {
-                            MessageBox.Show("No se pudo agregar el ejercicio al plan.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            transaction.Rollback();
+                            throw;
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al insertar el ejercicio: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error al crear el ejercicio: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
+        private int InsertarEjercicio(SqlConnection connection, SqlTransaction transaction)
+        {
+            string queryEjercicio = @"
+                INSERT INTO Ejercicio (nombre)
+                VALUES (@nombre);
+                SELECT SCOPE_IDENTITY();";
+
+            using (var cmd = new SqlCommand(queryEjercicio, connection, transaction))
+            {
+                cmd.Parameters.AddWithValue("@nombre", txtNombre.Text.Trim());
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
+        private bool InsertarEnPlanEjercicio(SqlConnection connection, SqlTransaction transaction, int idEjercicio)
+        {
+            string queryPlanEjercicio = @"
+                INSERT INTO Plan_Ejercicio 
+                (id_plan, id_ejercicio, id_dia, cant_series, repeticiones, tiempo) 
+                VALUES (@id_plan, @id_ejercicio, @id_dia, @series, @repeticiones, @tiempo);";
+
+            using (var cmd = new SqlCommand(queryPlanEjercicio, connection, transaction))
+            {
+                cmd.Parameters.AddWithValue("@id_plan", _idPlan);
+                cmd.Parameters.AddWithValue("@id_ejercicio", idEjercicio);
+                cmd.Parameters.AddWithValue("@id_dia", _idDia); // Usar el día que viene del formulario padre
+                cmd.Parameters.AddWithValue("@series", int.Parse(txtSeries.Text.Trim()));
+
+                // Manejar repeticiones 
+                if (int.TryParse(txtRepeticiones.Text, out int repeticiones))
+                    cmd.Parameters.AddWithValue("@repeticiones", repeticiones);
+                else
+                    cmd.Parameters.AddWithValue("@repeticiones", DBNull.Value);
+
+                // Manejar tiempo
+                if (int.TryParse(txtTiempo.Text, out int tiempo))
+                    cmd.Parameters.AddWithValue("@tiempo", tiempo);
+                else
+                    cmd.Parameters.AddWithValue("@tiempo", DBNull.Value);
+
+                int filasAfectadas = cmd.ExecuteNonQuery();
+                return filasAfectadas > 0;
             }
         }
 
         private void NuevoEjercicio_Load(object sender, EventArgs e)
         {
-
+            // No necesitamos cargar días, ya tenemos el id_dia
         }
     }
 }

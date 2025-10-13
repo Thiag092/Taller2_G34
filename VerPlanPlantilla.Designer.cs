@@ -34,7 +34,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnConfirmar = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnNuevoEjercicio = new System.Windows.Forms.Button();
@@ -50,6 +50,12 @@
             this.ColTiempo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cboDias = new System.Windows.Forms.ComboBox();
             this.labelDia = new System.Windows.Forms.Label();
+            this.cantRepeticiones = new System.Windows.Forms.NumericUpDown();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cantSeries = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtTiempo = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -58,6 +64,8 @@
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEjercicios)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cantRepeticiones)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cantSeries)).BeginInit();
             this.SuspendLayout();
             // 
             // labelTitulo
@@ -136,26 +144,37 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.txtTiempo);
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.cantSeries);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.cantRepeticiones);
+            this.panel1.Controls.Add(this.btnConfirmar);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.btnNuevoEjercicio);
             this.panel1.Controls.Add(this.cboEjercicioCatalogo);
-            this.panel1.Location = new System.Drawing.Point(88, 245);
+            this.panel1.Location = new System.Drawing.Point(55, 169);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(230, 185);
+            this.panel1.Size = new System.Drawing.Size(253, 261);
             this.panel1.TabIndex = 55;
             this.panel1.Visible = false;
             this.panel1.VisibleChanged += new System.EventHandler(this.btnAgregar_Click);
             // 
-            // button1
+            // btnConfirmar
             // 
-            this.button1.Location = new System.Drawing.Point(78, 140);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 64;
-            this.button1.Text = "Confirmar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnConfirmar.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnConfirmar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConfirmar.Font = new System.Drawing.Font("Microsoft YaHei UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConfirmar.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnConfirmar.Location = new System.Drawing.Point(70, 216);
+            this.btnConfirmar.Name = "btnConfirmar";
+            this.btnConfirmar.Size = new System.Drawing.Size(99, 30);
+            this.btnConfirmar.TabIndex = 64;
+            this.btnConfirmar.Text = "Confirmar";
+            this.btnConfirmar.UseVisualStyleBackColor = false;
+            this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
             // label3
             // 
@@ -194,7 +213,7 @@
             // cboEjercicioCatalogo
             // 
             this.cboEjercicioCatalogo.FormattingEnabled = true;
-            this.cboEjercicioCatalogo.Location = new System.Drawing.Point(6, 100);
+            this.cboEjercicioCatalogo.Location = new System.Drawing.Point(6, 91);
             this.cboEjercicioCatalogo.Name = "cboEjercicioCatalogo";
             this.cboEjercicioCatalogo.Size = new System.Drawing.Size(211, 24);
             this.cboEjercicioCatalogo.TabIndex = 60;
@@ -207,9 +226,9 @@
             this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregar.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnAgregar.Location = new System.Drawing.Point(88, 210);
+            this.btnAgregar.Location = new System.Drawing.Point(55, 136);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(230, 36);
+            this.btnAgregar.Size = new System.Drawing.Size(253, 36);
             this.btnAgregar.TabIndex = 54;
             this.btnAgregar.Text = "Agregar ejercicios";
             this.btnAgregar.UseVisualStyleBackColor = false;
@@ -217,16 +236,16 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(88, 65);
+            this.textBox1.Location = new System.Drawing.Point(55, 39);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(220, 22);
+            this.textBox1.Size = new System.Drawing.Size(253, 22);
             this.textBox1.TabIndex = 52;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(85, 31);
+            this.label1.Location = new System.Drawing.Point(50, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(163, 25);
             this.label1.TabIndex = 51;
@@ -304,9 +323,9 @@
             // cboDias
             // 
             this.cboDias.FormattingEnabled = true;
-            this.cboDias.Location = new System.Drawing.Point(88, 137);
+            this.cboDias.Location = new System.Drawing.Point(55, 92);
             this.cboDias.Name = "cboDias";
-            this.cboDias.Size = new System.Drawing.Size(220, 24);
+            this.cboDias.Size = new System.Drawing.Size(253, 24);
             this.cboDias.TabIndex = 45;
             this.cboDias.SelectedIndexChanged += new System.EventHandler(this.cboDias_SelectedIndexChanged);
             // 
@@ -314,11 +333,60 @@
             // 
             this.labelDia.AutoSize = true;
             this.labelDia.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDia.Location = new System.Drawing.Point(83, 99);
+            this.labelDia.Location = new System.Drawing.Point(50, 64);
             this.labelDia.Name = "labelDia";
             this.labelDia.Size = new System.Drawing.Size(117, 25);
             this.labelDia.TabIndex = 36;
             this.labelDia.Text = "Dia del Plan";
+            // 
+            // cantRepeticiones
+            // 
+            this.cantRepeticiones.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cantRepeticiones.Location = new System.Drawing.Point(173, 123);
+            this.cantRepeticiones.Name = "cantRepeticiones";
+            this.cantRepeticiones.Size = new System.Drawing.Size(44, 22);
+            this.cantRepeticiones.TabIndex = 65;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 123);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(87, 16);
+            this.label4.TabIndex = 66;
+            this.label4.Text = "Repeticiones";
+            // 
+            // cantSeries
+            // 
+            this.cantSeries.Location = new System.Drawing.Point(171, 153);
+            this.cantSeries.Name = "cantSeries";
+            this.cantSeries.Size = new System.Drawing.Size(46, 22);
+            this.cantSeries.TabIndex = 67;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 153);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(46, 16);
+            this.label5.TabIndex = 68;
+            this.label5.Text = "Series";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 185);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(135, 16);
+            this.label6.TabIndex = 69;
+            this.label6.Text = "Tiempo en segundos";
+            // 
+            // txtTiempo
+            // 
+            this.txtTiempo.Location = new System.Drawing.Point(147, 182);
+            this.txtTiempo.Name = "txtTiempo";
+            this.txtTiempo.Size = new System.Drawing.Size(70, 22);
+            this.txtTiempo.TabIndex = 70;
             // 
             // VerPlanPlantilla
             // 
@@ -340,6 +408,8 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEjercicios)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cantRepeticiones)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cantSeries)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -362,10 +432,16 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnConfirmar;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnNuevoEjercicio;
         private System.Windows.Forms.ComboBox cboEjercicioCatalogo;
+        private System.Windows.Forms.NumericUpDown cantSeries;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.NumericUpDown cantRepeticiones;
+        private System.Windows.Forms.TextBox txtTiempo;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
     }
 }

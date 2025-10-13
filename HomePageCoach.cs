@@ -14,8 +14,6 @@ namespace Taller2_G34
 {
     public partial class homePageCoach : Form
     {
-       // private object verFicha;
-
         public homePageCoach()
         {
             InitializeComponent();
@@ -118,7 +116,7 @@ namespace Taller2_G34
             if (tipo == "rutinas")
             {
                 labelTitulo.Text = "Plantillas de Entrenamiento";
-                btnAgregar.Visible = false; // ya no se crean desde aquí
+                btnAgregar.Visible = false; 
                 btnEliminar.Visible = false;
                 BRefresh.Visible = true;
 
@@ -145,7 +143,7 @@ namespace Taller2_G34
             FROM PlanEntrenamiento p
             INNER JOIN TipoPlan t ON p.id_tipoPlan = t.id_tipoPlan
             LEFT JOIN Plan_Dia d ON p.id_plan = d.id_plan
-            LEFT JOIN Plan_Ejercicio pe ON pe.id_plan = p.id_plan AND pe.id_dia = d.id_dia
+            LEFT JOIN Plan_Ejercicio pe ON pe.id_plan = p.id_plan
             WHERE p.estado = 1
             GROUP BY p.id_plan, p.nombre, t.descripcion
             ORDER BY p.id_plan;";
@@ -223,7 +221,7 @@ namespace Taller2_G34
 
         private void BRefresh_Click(object sender, EventArgs e)
         {
-            CargarRutinasDesdeBD(); // 🔄 Recarga los datos desde la base
+            CargarRutinasDesdeBD(); // Recarga los datos desde la base
         }
 
         
