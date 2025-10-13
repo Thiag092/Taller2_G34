@@ -133,28 +133,85 @@ namespace Taller2_G34
 
             if (tipo == "alumnos")
             {
-                // Creo columnas
+                // Limpio columnas y filas previas
+                dataGridView.Columns.Clear();
+                dataGridView.Rows.Clear();
+
+                // Defino las columnas a mostrar
                 dataGridView.Columns.Add("DNI", "DNI");
                 dataGridView.Columns.Add("Nombre", "Nombre");
                 dataGridView.Columns.Add("Apellido", "Apellido");
-                dataGridView.Columns.Add("FechaNacimiento", "Fecha de nacimiento");
-                dataGridView.Columns.Add("Email", "Email");
                 dataGridView.Columns.Add("Telefono", "Teléfono");
                 dataGridView.Columns.Add("Sexo", "Sexo");
-                dataGridView.Columns.Add("Estado", "Estado");
-                // importante para identificar la columna
+                dataGridView.Columns.Add("Membresia", "Membresía");
+                dataGridView.Columns.Add("Plan", "Plan");
+                dataGridView.Columns.Add("Coach", "Coach");
+
+                // Columna de botón "Ver más"
+                btnDetalles = new DataGridViewButtonColumn();
+                btnDetalles.HeaderText = "Detalles";
+                btnDetalles.Text = "Ver más";
+                btnDetalles.Name = "btnDetallesAlumnos";
                 btnDetalles.UseColumnTextForButtonValue = true;
                 dataGridView.Columns.Add(btnDetalles);
-                // Agrego filas
-                dataGridView.Rows.Add(12345678, "Juan", "Pérez", "22/10/2001", "juanitoperez@gmail.com", "+543794572343", "M", "Activo");
-                dataGridView.Rows.Add(23456789, "Ana", "Fernández", "03/07/1992", "anafnandez@gmail.com", "+543704456200", "F", "Activo");
 
-                // Configuro título y botones
-                btnDetalles.Name = "btnDetallesAlumnos"; // para identificar la columna en el evento
+                // Leo la cadena de conexión
+                string connectionString = ConfigurationManager.ConnectionStrings["EnerGymDB"].ConnectionString;
+
+                // Consulta SQL uniendo Alumno, Membresia, PlanEntrenamiento y Usuario (coach)
+                string query = @"
+        SELECT 
+            a.dni,
+            a.nombre,
+            a.apellido,
+            a.telefono,
+            a.sexo,
+            m.nombre AS Membresia,
+            p.nombre AS [Plan],
+            u.nombre + ' ' + u.apellido AS Coach
+        FROM Alumno a
+        INNER JOIN Membresia m ON a.id_membresia = m.id_membresia
+        INNER JOIN PlanEntrenamiento p ON a.id_plan = p.id_plan
+        INNER JOIN Usuario u ON a.id_coach = u.id_usuario
+        WHERE a.estado = 1;
+    ";
+
+                // Cargo los datos desde la BD
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    try
+                    {
+                        conn.Open();
+                        SqlDataReader reader = cmd.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            dataGridView.Rows.Add(
+                                reader["dni"].ToString(),
+                                reader["nombre"].ToString(),
+                                reader["apellido"].ToString(),
+                                reader["telefono"].ToString(),
+                                reader["sexo"].ToString(),
+                                reader["Membresia"].ToString(),
+                                reader["Plan"].ToString(),
+                                reader["Coach"].ToString()
+                            );
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al cargar alumnos: " + ex.Message);
+                    }
+                }
+
+                // Ajustes visuales
                 labelTitulo.Text = "Alumnos";
                 btnAgregar.Text = "Agregar Alumno";
                 btnEliminar.Text = "Eliminar Alumno";
+                dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
+
             if (tipo == "Personal")
             {
                 // Defino las columnas que quiero ver en la grilla

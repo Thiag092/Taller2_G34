@@ -22,40 +22,52 @@ namespace Taller2_G34
             dniAlumno = dni;
             CargarDatosAlumno();
         }
-        private void CargarDatosAlumno() //NO VA A MOSTRAR LOS DAATOS PORQUE FUERON HARDCODEADOS EN LA TABLA. NO VIENEN DE LA BASE DE DATOS
+        private void CargarDatosAlumno()
         {
             try
             {
                 string connectionString = ConfigurationManager.ConnectionStrings["EnerGymDB"].ConnectionString;
 
-                string query = @"SELECT A.id_alumno, 
-                                U.nombre, U.apellido, U.email, 
-                                U.telefono, U.dni, 
-                                U.fecha_nacimiento, U.contrasena
-                         FROM Alumno A
-                         INNER JOIN Usuario U ON A.id_usuario = U.id_usuario
-                         WHERE U.dni = @dni";
+                string query = @"
+            SELECT 
+                id_alumno,
+                nombre,
+                apellido,
+                telefono,
+                dni,
+                sexo,
+                contacto_emergencia,
+                observaciones
+            FROM Alumno
+            WHERE dni = @dni;
+        ";
 
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@dni", dniAlumno);
-
                     conn.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
 
+                    SqlDataReader reader = cmd.ExecuteReader();
                     if (reader.Read())
                     {
                         txtDniAlumno.Text = reader["dni"].ToString();
                         txtNombre.Text = reader["nombre"].ToString();
                         txtApellido.Text = reader["apellido"].ToString();
                         txtTelefono.Text = reader["telefono"].ToString();
-                        txtEmail.Text = reader["email"].ToString();
 
-                        if (reader["fecha_nacimiento"] != DBNull.Value)
-                        {
-                            dateTimePicker1.Value = Convert.ToDateTime(reader["fecha_nacimiento"]);
-                        }
+                        // Si tenés combobox o textbox para sexo, emergencia u observaciones:
+                        if (reader["sexo"] != DBNull.Value)
+                            txtSexo.Text = reader["sexo"].ToString();
+
+                        if (reader["contacto_emergencia"] != DBNull.Value)
+                            txtContactoEmergencia.Text = reader["contacto_emergencia"].ToString();
+
+                        
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontró ningún alumno con el DNI especificado.");
                     }
                 }
             }
@@ -64,6 +76,7 @@ namespace Taller2_G34
                 MessageBox.Show("Error al cargar alumno: " + ex.Message);
             }
         }
+
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
@@ -151,6 +164,11 @@ namespace Taller2_G34
             {
                 e.Handled = true;
             }
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

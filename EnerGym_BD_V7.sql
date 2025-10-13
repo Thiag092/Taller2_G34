@@ -87,18 +87,19 @@ CREATE TABLE Usuario_Plan (
     PRIMARY KEY (id_usuario, id_plan)
 );
 GO
-
 CREATE TABLE Alumno (
     id_alumno INT PRIMARY KEY IDENTITY(1,1),
-    id_usuario INT FOREIGN KEY REFERENCES Usuario(id_usuario), 
     id_membresia INT FOREIGN KEY REFERENCES Membresia(id_membresia),
     id_plan INT FOREIGN KEY REFERENCES PlanEntrenamiento(id_plan),
     id_coach INT FOREIGN KEY REFERENCES Usuario(id_usuario),
-    foto NVARCHAR(MAX),
     contacto_emergencia NVARCHAR(100),
     sexo NVARCHAR(10) CHECK (sexo IN ('Masculino','Femenino','Otro')),
     observaciones NVARCHAR(MAX),
-    estado BIT NOT NULL
+    estado BIT NOT NULL,
+    nombre NVARCHAR(100) NOT NULL,
+    apellido NVARCHAR(100) NOT NULL,
+    dni NVARCHAR(20),
+    telefono NVARCHAR(50)
 );
 GO
 
@@ -259,6 +260,98 @@ VALUES
 (3,6,13,5,15,60),(3,7,13,5,15,60),(3,8,13,4,12,60),(3,3,13,4,10,60),(3,4,13,4,12,60),(3,10,13,4,25,60);
 GO
 
+
 -------------------------------------------------------
--- ✅ FIN DEL SCRIPT – EnerGym_BD_V7 LISTA PARA USO
+--  MEMBRESÍAS DISPONIBLES (VALORES ACTUALIZADOS)
 -------------------------------------------------------
+
+INSERT INTO Membresia (nombre, duracion, costo, estado)
+VALUES
+('Diaria', 1, 2000.00, 1),       -- 1 día
+('Semanal', 7, 10000.00, 1),     -- 7 días
+('Mensual', 30, 30000.00, 1),    -- 30 días
+('Anual', 365, 300000.00, 1);    -- 365 días
+GO
+
+-------------------------------------------------------
+--  2USUARIOS COACH
+-------------------------------------------------------
+
+INSERT INTO Usuario (id_rol, nombre, apellido, email, telefono, dni, fecha_nacimiento, estado, contrasena)
+VALUES
+(3, 'Lucas', 'Ramirez', 'lucas.ramirez@energym.com', '341-555-0404', '44444444', '1991-07-18', 1, 'coach123'),
+(3, 'Camila', 'Fernandez', 'camila.fernandez@energym.com', '341-555-0505', '55555555', '1993-09-05', 1, 'coach123');
+GO
+
+-------------------------------------------------------
+-- 🗑️ 1️⃣ ELIMINAR TABLA ALUMNO SI EXISTE
+-------------------------------------------------------
+IF OBJECT_ID('Alumno', 'U') IS NOT NULL
+    DROP TABLE Alumno;
+GO
+
+-------------------------------------------------------
+-- 🧩 2️⃣ CREAR TABLA ALUMNO (VERSIÓN FINAL)
+-------------------------------------------------------
+CREATE TABLE Alumno (
+    id_alumno INT PRIMARY KEY IDENTITY(1,1),
+    nombre NVARCHAR(100) NOT NULL,
+    apellido NVARCHAR(100) NOT NULL,
+    dni NVARCHAR(20),
+    telefono NVARCHAR(50),
+    contacto_emergencia NVARCHAR(100),
+    sexo NVARCHAR(10) CHECK (sexo IN ('Masculino','Femenino','Otro')),
+    id_membresia INT FOREIGN KEY REFERENCES Membresia(id_membresia),
+    id_plan INT FOREIGN KEY REFERENCES PlanEntrenamiento(id_plan),
+    id_coach INT FOREIGN KEY REFERENCES Usuario(id_usuario),
+    observaciones NVARCHAR(MAX),
+    estado BIT NOT NULL
+);
+GO
+
+-------------------------------------------------------
+-- 👤 3️⃣ INSERT DE EJEMPLO — ALUMNO NUEVO
+-------------------------------------------------------
+INSERT INTO Alumno (
+    nombre,
+    apellido,
+    dni,
+    telefono,
+    contacto_emergencia,
+    sexo,
+    id_membresia,
+    id_plan,
+    id_coach,
+    observaciones,
+    estado
+)
+VALUES (
+    'Lucía',
+    'Martínez',
+    '45988777',
+    '+54 3794 556700',
+    'María López - 3794 123456',
+    'Femenino',
+    3,  -- Membresía mensual
+    1,  -- Plan principiante
+    4,  -- Coach existente
+    'Alumna nueva, sin experiencia previa. Evaluar progreso en 2 semanas.',
+    1   -- Activo
+);
+GO
+
+-------------------------------------------------------
+-- 🔍 4️⃣ CONSULTA DE VERIFICACIÓN
+-------------------------------------------------------
+SELECT 
+    a.id_alumno,
+    a.nombre,
+    a.apellido,
+    m.nombre AS Membresia,
+    p.nombre AS Plan,
+    u.nombre + ' ' + u.apellido AS Coach
+FROM Alumno a
+INNER JOIN Membresia m ON a.id_membresia = m.id_membresia
+INNER JOIN PlanEntrenamiento p ON a.id_plan = p.id_plan
+INNER JOIN Usuario u ON a.id_coach = u.id_usuario;
+GO
