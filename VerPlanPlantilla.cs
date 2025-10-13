@@ -12,6 +12,7 @@ namespace Taller2_G34
         private readonly int _idPlan;
         private DataTable _dtDiaEjercicios;
 
+
         public VerPlanPlantilla(int idPlan)
         {
             InitializeComponent();
@@ -38,7 +39,7 @@ namespace Taller2_G34
         private void CargarInfoPlan()
         {
             string sql = @"
-                SELECT p.nombre, t.descripcion AS Tipo, p.cantSeries
+                SELECT p.nombre, t.descripcion AS Tipo
                 FROM PlanEntrenamiento p
                 INNER JOIN TipoPlan t ON t.id_tipoPlan = p.id_tipoPlan
                 WHERE p.id_plan = @id";
@@ -50,7 +51,7 @@ namespace Taller2_G34
                 using (var r = cmd.ExecuteReader())
                 {
                     if (r.Read())
-                        labelTitulo.Text = $"{r["nombre"]} ({r["Tipo"]}) – {r["cantSeries"]} series";
+                        labelTitulo.Text = $"{r["nombre"]} ({r["Tipo"]})";
                 }
             }
         }
@@ -112,24 +113,42 @@ namespace Taller2_G34
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            if (cboEjercicioCatalogo.SelectedValue == null) return;
-            int idEj = (int)cboEjercicioCatalogo.SelectedValue;
-
-            bool yaEsta = _dtDiaEjercicios.AsEnumerable()
-                          .Any(r => r.Field<int>("id_ejercicio") == idEj);
-            if (yaEsta)
-            {
-                MessageBox.Show("Ese ejercicio ya está en este día.");
-                return;
-            }
-
-            var fila = ((DataRowView)cboEjercicioCatalogo.SelectedItem).Row;
-            var nueva = _dtDiaEjercicios.NewRow();
-            nueva["id_ejercicio"] = fila["id_ejercicio"];
-            nueva["nombre"] = fila["nombre"];
-            _dtDiaEjercicios.Rows.Add(nueva);
+            panel1.Visible = true;
         }
 
+
+        // Método separado para crear nuevo ejercicio
+        private void btnNuevoEjercicio_Click(object sender, EventArgs e)
+        {
+            using (var nuevoEjercicioForm = new NuevoEjercicio(_idPlan))
+            {
+                var resultado = nuevoEjercicioForm.ShowDialog();
+
+                if (resultado == DialogResult.OK)
+                {
+                    // Recargar los datos después de agregar nuevo ejercicio
+                    RecargarDatos();
+                    MessageBox.Show("Nuevo ejercicio creado y agregado al plan.", "Éxito");
+                }
+            }
+        }
+
+        // Método para recargar todos los datos
+        private void RecargarDatos()
+        {
+            try
+            {
+                CargarCatalogoEjercicios();
+                CargarDias();
+
+                if (cboDias.Items.Count > 0)
+                    cboDias.SelectedIndex = 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al recargar datos: {ex.Message}", "Error");
+            }
+        }
         private void btnQuitar_Click(object sender, EventArgs e)
         {
             foreach (DataGridViewRow row in dgvEjercicios.SelectedRows)
@@ -185,7 +204,8 @@ namespace Taller2_G34
             this.Close();
         }
 
-        private void btnAgregar_Click_1(object sender, EventArgs e)
+
+        private void dgvEjercicios_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

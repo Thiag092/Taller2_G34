@@ -21,12 +21,12 @@
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.lblReps = new System.Windows.Forms.Label();
             this.txtRepeticiones = new System.Windows.Forms.TextBox();
-            this.lblSeries = new System.Windows.Forms.Label();
-            this.txtSeries = new System.Windows.Forms.TextBox();
             this.lblObjetivo = new System.Windows.Forms.Label();
-            this.txtMusculoObjetivo = new System.Windows.Forms.TextBox();
+            this.txtTiempo = new System.Windows.Forms.TextBox();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.lblSeries = new System.Windows.Forms.Label();
+            this.txtSeries = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // lblNombre
@@ -63,39 +63,22 @@
             this.txtRepeticiones.Size = new System.Drawing.Size(100, 22);
             this.txtRepeticiones.TabIndex = 3;
             // 
-            // lblSeries
-            // 
-            this.lblSeries.AutoSize = true;
-            this.lblSeries.Location = new System.Drawing.Point(30, 96);
-            this.lblSeries.Name = "lblSeries";
-            this.lblSeries.Size = new System.Drawing.Size(46, 16);
-            this.lblSeries.TabIndex = 4;
-            this.lblSeries.Text = "Series";
-            // 
-            // txtSeries
-            // 
-            this.txtSeries.Location = new System.Drawing.Point(150, 94);
-            this.txtSeries.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtSeries.Name = "txtSeries";
-            this.txtSeries.Size = new System.Drawing.Size(100, 22);
-            this.txtSeries.TabIndex = 5;
-            // 
             // lblObjetivo
             // 
             this.lblObjetivo.AutoSize = true;
             this.lblObjetivo.Location = new System.Drawing.Point(30, 132);
             this.lblObjetivo.Name = "lblObjetivo";
-            this.lblObjetivo.Size = new System.Drawing.Size(57, 16);
+            this.lblObjetivo.Size = new System.Drawing.Size(54, 16);
             this.lblObjetivo.TabIndex = 6;
-            this.lblObjetivo.Text = "Objetivo";
+            this.lblObjetivo.Text = "Tiempo";
             // 
-            // txtMusculoObjetivo
+            // txtTiempo
             // 
-            this.txtMusculoObjetivo.Location = new System.Drawing.Point(150, 130);
-            this.txtMusculoObjetivo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtMusculoObjetivo.Name = "txtMusculoObjetivo";
-            this.txtMusculoObjetivo.Size = new System.Drawing.Size(100, 22);
-            this.txtMusculoObjetivo.TabIndex = 7;
+            this.txtTiempo.Location = new System.Drawing.Point(150, 130);
+            this.txtTiempo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtTiempo.Name = "txtTiempo";
+            this.txtTiempo.Size = new System.Drawing.Size(100, 22);
+            this.txtTiempo.TabIndex = 7;
             // 
             // btnAceptar
             // 
@@ -125,6 +108,23 @@
             this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
+            // lblSeries
+            // 
+            this.lblSeries.AutoSize = true;
+            this.lblSeries.Location = new System.Drawing.Point(30, 96);
+            this.lblSeries.Name = "lblSeries";
+            this.lblSeries.Size = new System.Drawing.Size(46, 16);
+            this.lblSeries.TabIndex = 4;
+            this.lblSeries.Text = "Series";
+            // 
+            // txtSeries
+            // 
+            this.txtSeries.Location = new System.Drawing.Point(150, 94);
+            this.txtSeries.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtSeries.Name = "txtSeries";
+            this.txtSeries.Size = new System.Drawing.Size(100, 22);
+            this.txtSeries.TabIndex = 5;
+            // 
             // NuevoEjercicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -132,7 +132,7 @@
             this.ClientSize = new System.Drawing.Size(380, 224);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
-            this.Controls.Add(this.txtMusculoObjetivo);
+            this.Controls.Add(this.txtTiempo);
             this.Controls.Add(this.lblObjetivo);
             this.Controls.Add(this.txtSeries);
             this.Controls.Add(this.lblSeries);
@@ -143,6 +143,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "NuevoEjercicio";
             this.Text = "Nuevo Ejercicio";
+            this.Load += new System.EventHandler(this.NuevoEjercicio_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -154,11 +155,11 @@
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label lblReps;
         private System.Windows.Forms.TextBox txtRepeticiones;
-        private System.Windows.Forms.Label lblSeries;
-        private System.Windows.Forms.TextBox txtSeries;
         private System.Windows.Forms.Label lblObjetivo;
-        private System.Windows.Forms.TextBox txtMusculoObjetivo;
+        private System.Windows.Forms.TextBox txtTiempo;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Label lblSeries;
+        private System.Windows.Forms.TextBox txtSeries;
     }
 }

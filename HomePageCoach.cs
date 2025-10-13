@@ -136,21 +136,19 @@ namespace Taller2_G34
             string connectionString = ConfigurationManager.ConnectionStrings["EnerGymDB"].ConnectionString;
 
             string query = @"
-    SELECT 
-        p.id_plan AS ID,
-        p.nombre AS [Nombre del Plan],
-        t.descripcion AS [Tipo],
-        p.cantSeries AS [Series],
-        COUNT(DISTINCT d.id_dia) AS [Días],
-        COUNT(DISTINCT e.id_ejercicio) AS [Ejercicios Totales]
-    FROM PlanEntrenamiento p
-    INNER JOIN TipoPlan t ON p.id_tipoPlan = t.id_tipoPlan
-    LEFT JOIN Plan_Dia d ON p.id_plan = d.id_plan
-    LEFT JOIN Plan_Ejercicio e ON e.id_plan = p.id_plan
-    WHERE p.estado = 1
-    GROUP BY p.id_plan, p.nombre, t.descripcion, p.cantSeries
-    ORDER BY p.id_plan;
-    ";
+            SELECT 
+                p.id_plan AS ID,
+                p.nombre AS [Nombre del Plan],
+                t.descripcion AS [Tipo],
+                COUNT(DISTINCT d.id_dia) AS [Días],
+                COUNT(DISTINCT pe.id_ejercicio) AS [Ejercicios Totales]
+            FROM PlanEntrenamiento p
+            INNER JOIN TipoPlan t ON p.id_tipoPlan = t.id_tipoPlan
+            LEFT JOIN Plan_Dia d ON p.id_plan = d.id_plan
+            LEFT JOIN Plan_Ejercicio pe ON pe.id_plan = p.id_plan AND pe.id_dia = d.id_dia
+            WHERE p.estado = 1
+            GROUP BY p.id_plan, p.nombre, t.descripcion
+            ORDER BY p.id_plan;";
 
             try
             {
@@ -162,6 +160,7 @@ namespace Taller2_G34
 
                     dataGridView.AutoGenerateColumns = true;
                     dataGridView.DataSource = dt;
+
                     // Agregar columna de botón si aún no existe
                     if (!dataGridView.Columns.Contains("Detalles"))
                     {
@@ -172,7 +171,6 @@ namespace Taller2_G34
                         btnDetalles.UseColumnTextForButtonValue = true;
                         dataGridView.Columns.Add(btnDetalles);
                     }
-
                 }
             }
             catch (Exception ex)

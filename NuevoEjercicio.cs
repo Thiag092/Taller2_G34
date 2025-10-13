@@ -40,7 +40,7 @@ namespace Taller2_G34
                 if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
                     string.IsNullOrWhiteSpace(txtRepeticiones.Text) ||
                     string.IsNullOrWhiteSpace(txtSeries.Text) ||
-                    string.IsNullOrWhiteSpace(txtMusculoObjetivo.Text))
+                    string.IsNullOrWhiteSpace(txtTiempo.Text))
                 {
                     MessageBox.Show("Todos los campos son obligatorios.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
@@ -69,23 +69,23 @@ namespace Taller2_G34
 
                     // 1️⃣ Insertar el ejercicio
                     string queryEjercicio = @"
-                INSERT INTO Ejercicio (nombre, descripcion, musculo_objetivo)
-                VALUES (@nombre, @descripcion, @musculo_objetivo);
+                INSERT INTO Ejercicio (nombre, repeticiones, tiempo)
+                VALUES (@nombre, @repeticiones, @tiempo);
                 SELECT SCOPE_IDENTITY();";
 
                     int idEjercicio;
                     using (SqlCommand cmdEjercicio = new SqlCommand(queryEjercicio, connection))
                     {
                         cmdEjercicio.Parameters.AddWithValue("@nombre", txtNombre.Text.Trim());
-                        cmdEjercicio.Parameters.AddWithValue("@descripcion", ""); // opcional
-                        cmdEjercicio.Parameters.AddWithValue("@musculo_objetivo", txtMusculoObjetivo.Text.Trim());
+                        cmdEjercicio.Parameters.AddWithValue("@repeticiones", txtRepeticiones.Text.Trim()); 
+                        cmdEjercicio.Parameters.AddWithValue("@tiempo", txtTiempo.Text.Trim());
 
                         idEjercicio = Convert.ToInt32(cmdEjercicio.ExecuteScalar());
                     }
 
                     // 2️⃣ Insertar en Plan_Ejercicio
                     string queryPlanEjercicio = @"
-                INSERT INTO Plan_Ejercicio (id_plan, id_ejercicio, repeticiones, series)
+                INSERT INTO Plan_Ejercicio (id_plan, id_ejercicio, repeticiones, cant_series)
                 VALUES (@id_plan, @id_ejercicio, @repeticiones, @series);";
 
                     using (SqlCommand cmdPlanEjercicio = new SqlCommand(queryPlanEjercicio, connection))
@@ -93,7 +93,7 @@ namespace Taller2_G34
                         cmdPlanEjercicio.Parameters.AddWithValue("@id_plan", idPlan);
                         cmdPlanEjercicio.Parameters.AddWithValue("@id_ejercicio", idEjercicio);
                         cmdPlanEjercicio.Parameters.AddWithValue("@repeticiones", repeticiones);
-                        cmdPlanEjercicio.Parameters.AddWithValue("@series", series);
+                        cmdPlanEjercicio.Parameters.AddWithValue("@series", txtSeries.Text.Trim());
 
                         int filasAfectadas = cmdPlanEjercicio.ExecuteNonQuery();
 
@@ -114,6 +114,11 @@ namespace Taller2_G34
             {
                 MessageBox.Show("Error al insertar el ejercicio: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void NuevoEjercicio_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

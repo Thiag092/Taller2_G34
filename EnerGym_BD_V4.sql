@@ -49,7 +49,6 @@ CREATE TABLE PlanEntrenamiento (
     nombre NVARCHAR(100) NOT NULL,
     fechaInicio DATE,
     fechaFin DATE,
-    cantSeries INT,
     estado BIT NOT NULL,
     id_tipoPlan INT NULL FOREIGN KEY REFERENCES TipoPlan(id_tipoPlan)
 );
@@ -74,7 +73,8 @@ GO
 CREATE TABLE Plan_Ejercicio (
     id_plan INT NOT NULL FOREIGN KEY REFERENCES PlanEntrenamiento(id_plan),
     id_ejercicio INT NOT NULL FOREIGN KEY REFERENCES Ejercicio(id_ejercicio),
-    id_dia INT NOT NULL FOREIGN KEY REFERENCES Plan_Dia(id_dia)
+    id_dia INT NOT NULL FOREIGN KEY REFERENCES Plan_Dia(id_dia),
+    cant_series INT NOT NULL
 );
 GO
 
@@ -192,11 +192,11 @@ GO
 -------------------------------------------------------
 -- 🧩 PLANES BASE (3 niveles)
 -------------------------------------------------------
-INSERT INTO PlanEntrenamiento (nombre, fechaInicio, fechaFin, cantSeries, estado, id_tipoPlan)
+INSERT INTO PlanEntrenamiento (nombre, fechaInicio, fechaFin, estado, id_tipoPlan)
 VALUES
-('Plan Principiante Full Body', NULL, NULL, 3, 1, 1),
-('Plan Intermedio Push Pull Legs', NULL, NULL, 4, 1, 2),
-('Plan Avanzado 2x6', NULL, NULL, 6, 1, 3);
+('Plan Principiante Full Body', NULL, NULL, 1, 1),
+('Plan Intermedio Push Pull Legs', NULL, NULL, 1, 2),
+('Plan Avanzado 2x6', NULL, NULL, 1, 3);
 GO
 
 -------------------------------------------------------
@@ -232,11 +232,11 @@ GO
 -------------------------------------------------------
 
 -- Principiante
-INSERT INTO Plan_Ejercicio (id_plan, id_dia, id_ejercicio)
+INSERT INTO Plan_Ejercicio (id_plan, id_dia, id_ejercicio, cant_series)
 VALUES
-(1, 1, 1),(1, 1, 3),(1, 1, 2),
-(1, 2, 4),(1, 2, 5),(1, 2, 2),
-(1, 3, 1),(1, 3, 9),(1, 3, 10);
+(1, 1, 1, 3),(1, 1, 3, 4),(1, 1, 2, 3),
+(1, 2, 4, 4),(1, 2, 5, 4),(1, 2, 2, 4),
+(1, 3, 1, 4),(1, 3, 9, 4),(1, 3, 10, 4);
 
 -- Intermedio
 INSERT INTO Plan_Ejercicio (id_plan, id_dia, id_ejercicio)
