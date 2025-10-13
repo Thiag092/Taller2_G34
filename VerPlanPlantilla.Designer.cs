@@ -34,6 +34,12 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtTiempo = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cantSeries = new System.Windows.Forms.NumericUpDown();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cantRepeticiones = new System.Windows.Forms.NumericUpDown();
             this.btnConfirmar = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -50,12 +56,6 @@
             this.ColTiempo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cboDias = new System.Windows.Forms.ComboBox();
             this.labelDia = new System.Windows.Forms.Label();
-            this.cantRepeticiones = new System.Windows.Forms.NumericUpDown();
-            this.label4 = new System.Windows.Forms.Label();
-            this.cantSeries = new System.Windows.Forms.NumericUpDown();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtTiempo = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -63,9 +63,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEjercicios)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cantRepeticiones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cantSeries)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cantRepeticiones)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEjercicios)).BeginInit();
             this.SuspendLayout();
             // 
             // labelTitulo
@@ -161,6 +161,55 @@
             this.panel1.TabIndex = 55;
             this.panel1.Visible = false;
             this.panel1.VisibleChanged += new System.EventHandler(this.btnAgregar_Click);
+            // 
+            // txtTiempo
+            // 
+            this.txtTiempo.Location = new System.Drawing.Point(147, 182);
+            this.txtTiempo.Name = "txtTiempo";
+            this.txtTiempo.Size = new System.Drawing.Size(70, 22);
+            this.txtTiempo.TabIndex = 70;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 185);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(135, 16);
+            this.label6.TabIndex = 69;
+            this.label6.Text = "Tiempo en segundos";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 153);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(46, 16);
+            this.label5.TabIndex = 68;
+            this.label5.Text = "Series";
+            // 
+            // cantSeries
+            // 
+            this.cantSeries.Location = new System.Drawing.Point(171, 153);
+            this.cantSeries.Name = "cantSeries";
+            this.cantSeries.Size = new System.Drawing.Size(46, 22);
+            this.cantSeries.TabIndex = 67;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 123);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(87, 16);
+            this.label4.TabIndex = 66;
+            this.label4.Text = "Repeticiones";
+            // 
+            // cantRepeticiones
+            // 
+            this.cantRepeticiones.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cantRepeticiones.Location = new System.Drawing.Point(173, 123);
+            this.cantRepeticiones.Name = "cantRepeticiones";
+            this.cantRepeticiones.Size = new System.Drawing.Size(44, 22);
+            this.cantRepeticiones.TabIndex = 65;
             // 
             // btnConfirmar
             // 
@@ -265,6 +314,7 @@
             this.btnGuardar.TabIndex = 50;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = false;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click_1);
             // 
             // dgvEjercicios
             // 
@@ -339,55 +389,6 @@
             this.labelDia.TabIndex = 36;
             this.labelDia.Text = "Dia del Plan";
             // 
-            // cantRepeticiones
-            // 
-            this.cantRepeticiones.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cantRepeticiones.Location = new System.Drawing.Point(173, 123);
-            this.cantRepeticiones.Name = "cantRepeticiones";
-            this.cantRepeticiones.Size = new System.Drawing.Size(44, 22);
-            this.cantRepeticiones.TabIndex = 65;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 123);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(87, 16);
-            this.label4.TabIndex = 66;
-            this.label4.Text = "Repeticiones";
-            // 
-            // cantSeries
-            // 
-            this.cantSeries.Location = new System.Drawing.Point(171, 153);
-            this.cantSeries.Name = "cantSeries";
-            this.cantSeries.Size = new System.Drawing.Size(46, 22);
-            this.cantSeries.TabIndex = 67;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 153);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(46, 16);
-            this.label5.TabIndex = 68;
-            this.label5.Text = "Series";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 185);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(135, 16);
-            this.label6.TabIndex = 69;
-            this.label6.Text = "Tiempo en segundos";
-            // 
-            // txtTiempo
-            // 
-            this.txtTiempo.Location = new System.Drawing.Point(147, 182);
-            this.txtTiempo.Name = "txtTiempo";
-            this.txtTiempo.Size = new System.Drawing.Size(70, 22);
-            this.txtTiempo.TabIndex = 70;
-            // 
             // VerPlanPlantilla
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -407,9 +408,9 @@
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEjercicios)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cantRepeticiones)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cantSeries)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cantRepeticiones)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEjercicios)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -22,7 +22,7 @@ namespace Taller2_G34
 
         private void VerPlanPlantilla_Load(object sender, EventArgs e)
         {
-            dgvEjercicios.AutoGenerateColumns = true;
+            dgvEjercicios.AutoGenerateColumns = false;
             dgvEjercicios.MultiSelect = true;
             dgvEjercicios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
@@ -350,6 +350,11 @@ namespace Taller2_G34
             cantRepeticiones.Value = 0;
             txtTiempo.Clear();
             panel1.Visible = false;
+        }
+
+        private void btnGuardar_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
