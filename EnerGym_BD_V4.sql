@@ -76,7 +76,7 @@ CREATE TABLE Plan_Ejercicio (
     repeticiones INT NOT NULL,
     tiempo INT NOT NULL
 );
-GO
+GO 
 
 -- Fijamos PK compuesta correcta
 ALTER TABLE Plan_Ejercicio

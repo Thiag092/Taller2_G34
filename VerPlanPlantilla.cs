@@ -214,7 +214,7 @@ namespace Taller2_G34
                     }
 
                     tx.Commit();
-                    MessageBox.Show("✅ Cambios guardados correctamente.");
+                    MessageBox.Show("Cambios guardados correctamente.");
                 }
                 catch (Exception ex)
                 {
@@ -355,6 +355,11 @@ namespace Taller2_G34
         private void btnGuardar_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

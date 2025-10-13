@@ -30,7 +30,7 @@
         {
             this.labelTitulo = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -53,6 +53,7 @@
             this.ColIdEjercicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColReps = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSeries = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColTiempo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cboDias = new System.Windows.Forms.ComboBox();
             this.labelDia = new System.Windows.Forms.Label();
@@ -89,7 +90,6 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.splitContainer1.Panel1.Controls.Add(this.button2);
             this.splitContainer1.Panel1.Controls.Add(this.labelTitulo);
             this.splitContainer1.Panel1.Controls.Add(this.pictureBox1);
             // 
@@ -101,20 +101,21 @@
             this.splitContainer1.SplitterDistance = 124;
             this.splitContainer1.TabIndex = 10;
             // 
-            // button2
+            // btnCancelar
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.BackColor = System.Drawing.SystemColors.MenuText;
-            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(1151, 28);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(157, 50);
-            this.button2.TabIndex = 52;
-            this.button2.Text = "Salir";
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancelar.BackColor = System.Drawing.SystemColors.MenuText;
+            this.btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnCancelar.Location = new System.Drawing.Point(805, 385);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(147, 45);
+            this.btnCancelar.TabIndex = 52;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // pictureBox1
             // 
@@ -128,6 +129,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btnCancelar);
             this.panel2.Controls.Add(this.panel1);
             this.panel2.Controls.Add(this.btnAgregar);
             this.panel2.Controls.Add(this.textBox1);
@@ -308,7 +310,7 @@
             this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuardar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnGuardar.Location = new System.Drawing.Point(885, 385);
+            this.btnGuardar.Location = new System.Drawing.Point(1009, 385);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(157, 45);
             this.btnGuardar.TabIndex = 50;
@@ -323,13 +325,14 @@
             this.ColIdEjercicio,
             this.ColNombre,
             this.ColReps,
+            this.colSeries,
             this.ColTiempo});
             this.dgvEjercicios.Location = new System.Drawing.Point(400, 31);
             this.dgvEjercicios.Name = "dgvEjercicios";
             this.dgvEjercicios.ReadOnly = true;
             this.dgvEjercicios.RowHeadersWidth = 51;
             this.dgvEjercicios.RowTemplate.Height = 24;
-            this.dgvEjercicios.Size = new System.Drawing.Size(642, 320);
+            this.dgvEjercicios.Size = new System.Drawing.Size(766, 320);
             this.dgvEjercicios.TabIndex = 46;
             this.dgvEjercicios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEjercicios_CellContentClick);
             // 
@@ -360,6 +363,15 @@
             this.ColReps.Name = "ColReps";
             this.ColReps.ReadOnly = true;
             this.ColReps.Width = 125;
+            // 
+            // colSeries
+            // 
+            this.colSeries.DataPropertyName = "cant_series";
+            this.colSeries.HeaderText = "Series";
+            this.colSeries.MinimumWidth = 6;
+            this.colSeries.Name = "colSeries";
+            this.colSeries.ReadOnly = true;
+            this.colSeries.Width = 125;
             // 
             // ColTiempo
             // 
@@ -424,11 +436,7 @@
         private System.Windows.Forms.ComboBox cboDias;
         private System.Windows.Forms.DataGridView dgvEjercicios;
         private System.Windows.Forms.Button btnGuardar;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColIdEjercicio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColNombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColReps;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColTiempo;
+        private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnAgregar;
@@ -444,5 +452,10 @@
         private System.Windows.Forms.TextBox txtTiempo;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColIdEjercicio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColNombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColReps;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSeries;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColTiempo;
     }
 }
