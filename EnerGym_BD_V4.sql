@@ -57,8 +57,6 @@ GO
 CREATE TABLE Ejercicio (
     id_ejercicio INT PRIMARY KEY IDENTITY(1,1),
     nombre NVARCHAR(100) NOT NULL,
-    repeticiones INT,
-    tiempo INT
 );
 GO
 
@@ -74,11 +72,13 @@ CREATE TABLE Plan_Ejercicio (
     id_plan INT NOT NULL FOREIGN KEY REFERENCES PlanEntrenamiento(id_plan),
     id_ejercicio INT NOT NULL FOREIGN KEY REFERENCES Ejercicio(id_ejercicio),
     id_dia INT NOT NULL FOREIGN KEY REFERENCES Plan_Dia(id_dia),
-    cant_series INT NOT NULL
+    cant_series INT NOT NULL,
+    repeticiones INT NOT NULL,
+    tiempo INT NOT NULL
 );
 GO
 
--- ✅ Fijamos PK compuesta correcta
+-- Fijamos PK compuesta correcta
 ALTER TABLE Plan_Ejercicio
 ADD CONSTRAINT PK_Plan_Ejercicio PRIMARY KEY (id_plan, id_dia, id_ejercicio);
 GO
@@ -176,12 +176,12 @@ GO
 -------------------------------------------------------
 -- 💪 EJERCICIOS BASE
 -------------------------------------------------------
-INSERT INTO Ejercicio (nombre, repeticiones, tiempo) VALUES
-('Sentadillas con peso corporal', 15, 60),
-('Plancha abdominal', 1, 45),
-('Press de banca', 12, 90),
-('Remo con mancuernas', 12, 90),
-('Zancadas', 10, 60),
+INSERT INTO Ejercicio (nombre) VALUES
+('Sentadillas con peso corporal'),
+('Plancha abdominal'),
+('Press de banca'),
+('Remo con mancuernas'),
+('Zancadas'),
 ('Curl de bíceps', 12, 60),
 ('Extensión de tríceps', 12, 60),
 ('Elevaciones laterales', 15, 60),
@@ -200,59 +200,96 @@ VALUES
 GO
 
 -------------------------------------------------------
--- 🗓️ DÍAS POR PLAN
 -------------------------------------------------------
+-- 🗓️ DÍAS POR PLAN (CORREGIDO - DÍAS SEMANALES)
+-------------------------------------------------------
+DELETE FROM Plan_Dia;
+GO
+
 INSERT INTO Plan_Dia (id_plan, nombreDia, descripcion) VALUES
--- Principiante (3 días)
-(1, 'Día 1 - Full Body A', 'Cuerpo completo con foco en técnica'),
-(1, 'Día 2 - Full Body B', 'Cuerpo completo con variaciones'),
-(1, 'Día 3 - Full Body C', 'Cuerpo completo con foco en core'),
--- Intermedio (4 días)
-(2, 'Día 1 - Push', 'Pecho, hombros, tríceps'),
-(2, 'Día 2 - Pull', 'Espalda y bíceps'),
-(2, 'Día 3 - Legs', 'Piernas y glúteos'),
-(2, 'Día 4 - Core', 'Zona media y estabilidad'),
--- Avanzado (6 días)
-(3, 'Día 1 - Pecho y Tríceps', NULL),
-(3, 'Día 2 - Espalda y Bíceps', NULL),
-(3, 'Día 3 - Piernas', NULL),
-(3, 'Día 4 - Hombros', NULL),
-(3, 'Día 5 - Core', NULL),
-(3, 'Día 6 - Brazos', NULL);
+-- Principiante (Lunes, Miércoles, Viernes)
+(1, 'Lunes - Full Body A', 'Cuerpo completo con foco en técnica'),
+(1, 'Miércoles - Full Body B', 'Cuerpo completo con variaciones'),
+(1, 'Viernes - Full Body C', 'Cuerpo completo con foco en core'),
+
+-- Intermedio (Lunes, Martes, Jueves, Viernes)
+(2, 'Lunes - Push', 'Pecho, hombros, tríceps'),
+(2, 'Martes - Pull', 'Espalda y bíceps'),
+(2, 'Jueves - Legs', 'Piernas y glúteos'),
+(2, 'Viernes - Core', 'Zona media y estabilidad'),
+
+-- Avanzado (Lunes a Sábado)
+(3, 'Lunes - Pecho/Tríceps', NULL),
+(3, 'Martes - Espalda/Bíceps', NULL),
+(3, 'Miércoles - Piernas', NULL),
+(3, 'Jueves - Hombros', NULL),
+(3, 'Viernes - Core', NULL),
+(3, 'Sábado - Brazos', NULL);
 GO
 
 -------------------------------------------------------
--- 🧠 AUTO-LIMPIEZA ANTES DE CARGAR EJERCICIOS
+-- 🔗 RELACIÓN EJERCICIOS ↔ DÍAS ↔ PLANES (CORREGIDO)
 -------------------------------------------------------
+
 DELETE FROM Plan_Ejercicio;
 GO
 
--------------------------------------------------------
--- 🔗 RELACIÓN EJERCICIOS ↔ DÍAS ↔ PLANES
--------------------------------------------------------
-
--- Principiante
-INSERT INTO Plan_Ejercicio (id_plan, id_dia, id_ejercicio, cant_series)
+-- Principiante (Lunes=1, Miércoles=3, Viernes=5)
+INSERT INTO Plan_Ejercicio (id_plan, id_dia, id_ejercicio, cant_series, repeticiones, tiempo)
 VALUES
-(1, 1, 1, 3),(1, 1, 3, 4),(1, 1, 2, 3),
-(1, 2, 4, 4),(1, 2, 5, 4),(1, 2, 2, 4),
-(1, 3, 1, 4),(1, 3, 9, 4),(1, 3, 10, 4);
+-- Lunes (id_dia 1)
+(1, 1, 1, 3, 15, NULL),    -- Sentadillas
+(1, 1, 3, 4, 12, NULL),    -- Press banca
+(1, 1, 2, 3, NULL, 45),    -- Plancha
+-- Miércoles (id_dia 3)
+(1, 3, 4, 4, 12, NULL),    -- Remo
+(1, 3, 5, 4, 10, NULL),    -- Zancadas
+(1, 3, 6, 3, 12, NULL),    -- Bíceps
+-- Viernes (id_dia 5)
+(1, 5, 9, 4, 10, NULL),    -- Peso muerto
+(1, 5, 10, 4, 20, NULL),   -- Abdominales
+(1, 5, 7, 3, 12, NULL);    -- Tríceps
+GO
 
--- Intermedio
-INSERT INTO Plan_Ejercicio (id_plan, id_dia, id_ejercicio)
+-- Intermedio (Lunes=1, Martes=2, Jueves=4, Viernes=5)
+INSERT INTO Plan_Ejercicio (id_plan, id_dia, id_ejercicio, cant_series, repeticiones, tiempo)
 VALUES
-(2, 4, 2),(2, 4, 10),
-(2, 1, 3),(2, 1, 8),(2, 1, 7),
-(2, 2, 4),(2, 2, 6),
-(2, 3, 5),(2, 3, 9);
+-- Lunes (id_dia 1 - Push)
+(2, 1, 3, 4, 10, NULL),    -- Press banca
+(2, 1, 8, 3, 12, NULL),    -- Elevaciones
+(2, 1, 7, 3, 10, NULL),    -- Tríceps
+-- Martes (id_dia 2 - Pull)
+(2, 2, 4, 4, 10, NULL),    -- Remo
+(2, 2, 6, 3, 12, NULL),    -- Bíceps
+(2, 2, 2, 3, NULL, 60),    -- Plancha
+-- Jueves (id_dia 4 - Legs)
+(2, 4, 1, 4, 12, NULL),    -- Sentadillas
+(2, 4, 5, 4, 10, NULL),    -- Zancadas
+(2, 4, 9, 4, 8, NULL),     -- Peso muerto
+-- Viernes (id_dia 5 - Core)
+(2, 5, 10, 4, 15, NULL),   -- Abdominales
+(2, 5, 2, 3, NULL, 90, NULL); -- Plancha avanzada
+GO
 
--- Avanzado
-INSERT INTO Plan_Ejercicio (id_plan, id_dia, id_ejercicio)
+-- Avanzado (Lunes=1, Martes=2, Miércoles=3, Jueves=4, Viernes=5, Sábado=6)
+INSERT INTO Plan_Ejercicio (id_plan, id_dia, id_ejercicio, cant_series, repeticiones, tiempo)
 VALUES
-(3, 7, 3),(3, 7, 7),
-(3, 8, 4),(3, 8, 6),
-(3, 9, 1),(3, 9, 9),
-(3,10, 8),(3,10, 2),
-(3,11, 4),(3,11, 3),
-(3,12, 6),(3,12,10);
+-- Lunes (id_dia 1 - Pecho/Tríceps)
+(3, 1, 3, 4, 8, NULL),     -- Press banca
+(3, 1, 7, 3, 10, NULL),    -- Tríceps
+-- Martes (id_dia 2 - Espalda/Bíceps)
+(3, 2, 4, 4, 8, NULL),     -- Remo
+(3, 2, 6, 3, 10, NULL),    -- Bíceps
+-- Miércoles (id_dia 3 - Piernas)
+(3, 3, 1, 4, 10, NULL),    -- Sentadillas
+(3, 3, 9, 4, 6, NULL),     -- Peso muerto
+-- Jueves (id_dia 4 - Hombros)
+(3, 4, 8, 4, 12, NULL),    -- Elevaciones
+(3, 4, 2, 3, NULL, 60),    -- Plancha
+-- Viernes (id_dia 5 - Core)
+(3, 5, 10, 4, 20, NULL),   -- Abdominales
+(3, 5, 5, 3, 15, NULL),    -- Zancadas
+-- Sábado (id_dia 6 - Brazos)
+(3, 6, 6, 4, 12, NULL),    -- Bíceps
+(3, 6, 7, 4, 12, NULL);    -- Tríceps
 GO
