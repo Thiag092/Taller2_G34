@@ -451,75 +451,123 @@ namespace Taller2_G34
         {
             if (labelTitulo.Text == "Personal")
             {
-                MostrarVista("Personal"); //recarga la lista del personal
+                MostrarVista("Personal"); 
             }
             if (labelTitulo.Text == "Alumnos")
             {
-                MostrarVista("alumnos"); //recarga la lista de los alumnos
+                MostrarVista("alumnos"); 
             }
             if (labelTitulo.Text == "Entrenadores")
             {
-                MostrarVista("entrenadores"); //recarga la lista de los entrenadores
+                MostrarVista("entrenadores"); 
             }
             if (labelTitulo.Text == "Rutinas")
             {
-                MostrarVista("rutinas"); //recarga la lista del personal
+                MostrarVista("rutinas"); 
             }
         }
-
+        
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            if (dataGridView.SelectedRows.Count > 0)
+            if (dataGridView.SelectedRows.Count == 0)
             {
-                // Tomo el DNI del usuario seleccionado en el DataGridView
-                string dniUsuario = dataGridView.SelectedRows[0].Cells["DNI"].Value.ToString();
+                MessageBox.Show("Por favor seleccione un registro primero.");
+                return;
+            }
 
-                // Pregunto confirmación
-                DialogResult confirmacion = MessageBox.Show(
-                    $"¿Está seguro que desea dar de baja al usuario con DNI {dniUsuario}?",
-                    "Confirmación",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Warning
-                );
+            string vistaActual = labelTitulo.Text;
+            string query = "";
+            string valorClave = "";
+            string mensajeExito = "";
+            string mensajeError = "";
+            string mensajeConfirmacion = "";
 
-                if (confirmacion == DialogResult.Yes)
+            // Determina la acción basandose en la vista actual
+            switch (vistaActual)
+            {
+                case "Personal":
+                    valorClave = dataGridView.SelectedRows[0].Cells["DNI"].Value.ToString();
+                    query = "UPDATE Usuario SET estado = 0 WHERE dni = @dni";
+                    mensajeExito = "El personal fue dado de baja correctamente.";
+                    mensajeError = "No se encontró el registro del personal especificado.";
+                    mensajeConfirmacion = $"¿Desea dar de baja al personal con DNI {valorClave}?";
+                    break;
+
+                case "Alumnos":
+                    valorClave = dataGridView.SelectedRows[0].Cells["DNI"].Value.ToString();
+                    query = "UPDATE Alumno SET estado = 0 WHERE dni = @dni";
+                    mensajeExito = "El alumno fue dado de baja correctamente.";
+                    mensajeError = "No se encontró el registro del alumno especificado.";
+                    mensajeConfirmacion = $"¿Desea dar de baja al alumno con DNI {valorClave}?";
+                    break;
+
+                case "Rutinas":
+                    valorClave = dataGridView.SelectedRows[0].Cells["ID"].Value.ToString();
+                    query = "UPDATE PlanEntrenamiento SET estado = 0 WHERE id_plan = @id";
+                    mensajeExito = "La rutina fue desactivada correctamente.";
+                    mensajeError = "No se encontró la rutina especificada.";
+                    mensajeConfirmacion = $"¿Desea desactivar la rutina con ID {valorClave}?";
+                    break;
+
+                default:
+                    MessageBox.Show("No hay una vista activa válida para eliminar.");
+                    return;
+            }
+
+            // Confirmación de accion con mensaje adaptado según la vista actual
+            DialogResult confirmacion = MessageBox.Show(
+                mensajeConfirmacion,
+                "Confirmación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            );
+
+            if (confirmacion != DialogResult.Yes)
+                return;
+
+            string connectionString = ConfigurationManager.ConnectionStrings["EnerGymDB"].ConnectionString;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                //según la vista actual uso @id o @dni como parametro
+                if (vistaActual == "Rutinas")
+                    command.Parameters.AddWithValue("@id", valorClave);
+                else
+                    command.Parameters.AddWithValue("@dni", valorClave);
+
+                try
                 {
-                    // Leo cadena de conexión desde App.config
-                    string connectionString = ConfigurationManager.ConnectionStrings["EnerGymDB"].ConnectionString;
+                    connection.Open();
+                    int filasAfectadas = command.ExecuteNonQuery();
 
-                    // Query para baja lógica (estado = 0)
-                    string query = "UPDATE Usuario SET estado = 0 WHERE dni = @dni";
-
-                    using (SqlConnection connection = new SqlConnection(connectionString))
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    if (filasAfectadas > 0)
                     {
-                        command.Parameters.AddWithValue("@dni", dniUsuario);
+                        MessageBox.Show(mensajeExito, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        try
+                        // Carga nuevamente la vista actual
+                        switch (vistaActual)
                         {
-                            connection.Open();
-                            int filasAfectadas = command.ExecuteNonQuery();
-
-                            if (filasAfectadas > 0)
-                            {
-                                MessageBox.Show("Usuario dado de baja correctamente ");
-                                MostrarVista("Personal"); // refresca la grilla
-                            }
-                            else
-                            {
-                                MessageBox.Show("No se encontró el usuario ");
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Error al dar de baja: " + ex.Message);
+                            case "Personal":
+                                MostrarVista("Personal");
+                                break;
+                            case "Alumnos":
+                                MostrarVista("alumnos");
+                                break;
+                            case "Rutinas":
+                                MostrarVista("rutinas");
+                                break;
                         }
                     }
+                    else
+                    {
+                        MessageBox.Show(mensajeError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-            }
-            else
-            {
-                MessageBox.Show("Por favor seleccione un usuario primero.");
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al realizar la baja: " + ex.Message);
+                }
             }
         }
 
