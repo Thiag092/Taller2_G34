@@ -40,14 +40,16 @@
             this.labelFichaAlumno = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtSexo = new System.Windows.Forms.ComboBox();
+            this.datePickerNacimiento = new System.Windows.Forms.DateTimePicker();
             this.txtTelefono = new System.Windows.Forms.TextBox();
             this.txtContactoEmergencia = new System.Windows.Forms.TextBox();
             this.txtDniAlumno = new System.Windows.Forms.TextBox();
             this.txtApellido = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
-            this.txtSexo = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.lblEmail = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -60,7 +62,7 @@
             // 
             this.LRol.AutoSize = true;
             this.LRol.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LRol.Location = new System.Drawing.Point(450, 127);
+            this.LRol.Location = new System.Drawing.Point(483, 127);
             this.LRol.Name = "LRol";
             this.LRol.Size = new System.Drawing.Size(188, 24);
             this.LRol.TabIndex = 47;
@@ -70,7 +72,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(482, 78);
+            this.label3.Location = new System.Drawing.Point(483, 82);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(84, 24);
             this.label3.TabIndex = 45;
@@ -80,7 +82,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 82);
+            this.label2.Location = new System.Drawing.Point(26, 84);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(194, 24);
             this.label2.TabIndex = 44;
@@ -90,7 +92,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(170, 125);
+            this.label1.Location = new System.Drawing.Point(170, 131);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(44, 24);
             this.label1.TabIndex = 43;
@@ -110,7 +112,7 @@
             // 
             this.labelNombre.AutoSize = true;
             this.labelNombre.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNombre.Location = new System.Drawing.Point(132, 27);
+            this.labelNombre.Location = new System.Drawing.Point(138, 33);
             this.labelNombre.Name = "labelNombre";
             this.labelNombre.Size = new System.Drawing.Size(82, 24);
             this.labelNombre.TabIndex = 36;
@@ -165,8 +167,8 @@
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.Gold;
             this.splitContainer1.Panel2.Controls.Add(this.panel2);
-            this.splitContainer1.Size = new System.Drawing.Size(854, 641);
-            this.splitContainer1.SplitterDistance = 115;
+            this.splitContainer1.Size = new System.Drawing.Size(854, 514);
+            this.splitContainer1.SplitterDistance = 101;
             this.splitContainer1.TabIndex = 9;
             // 
             // labelFichaAlumno
@@ -176,7 +178,7 @@
             this.labelFichaAlumno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(201)))), ((int)(((byte)(19)))));
             this.labelFichaAlumno.Location = new System.Drawing.Point(62, 40);
             this.labelFichaAlumno.Name = "labelFichaAlumno";
-            this.labelFichaAlumno.Size = new System.Drawing.Size(269, 36);
+            this.labelFichaAlumno.Size = new System.Drawing.Size(215, 29);
             this.labelFichaAlumno.TabIndex = 55;
             this.labelFichaAlumno.Text = "Ficha del Alumno";
             this.labelFichaAlumno.Click += new System.EventHandler(this.labelAdmin_Click);
@@ -193,10 +195,12 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.lblEmail);
+            this.panel2.Controls.Add(this.txtEmail);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.txtSexo);
             this.panel2.Controls.Add(this.LRol);
-            this.panel2.Controls.Add(this.dateTimePicker1);
+            this.panel2.Controls.Add(this.datePickerNacimiento);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.label1);
@@ -212,18 +216,37 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(854, 522);
+            this.panel2.Size = new System.Drawing.Size(854, 409);
             this.panel2.TabIndex = 0;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
-            // dateTimePicker1
+            // label4
             // 
-            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(665, 125);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(139, 30);
-            this.dateTimePicker1.TabIndex = 5;
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(170, 169);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(50, 24);
+            this.label4.TabIndex = 49;
+            this.label4.Text = "Sexo";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // txtSexo
+            // 
+            this.txtSexo.FormattingEnabled = true;
+            this.txtSexo.Location = new System.Drawing.Point(251, 172);
+            this.txtSexo.Name = "txtSexo";
+            this.txtSexo.Size = new System.Drawing.Size(144, 24);
+            this.txtSexo.TabIndex = 48;
+            // 
+            // datePickerNacimiento
+            // 
+            this.datePickerNacimiento.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.datePickerNacimiento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.datePickerNacimiento.Location = new System.Drawing.Point(679, 125);
+            this.datePickerNacimiento.Name = "datePickerNacimiento";
+            this.datePickerNacimiento.Size = new System.Drawing.Size(125, 30);
+            this.datePickerNacimiento.TabIndex = 5;
             // 
             // txtTelefono
             // 
@@ -273,30 +296,30 @@
             this.txtNombre.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
             // 
-            // txtSexo
+            // txtEmail
             // 
-            this.txtSexo.FormattingEnabled = true;
-            this.txtSexo.Location = new System.Drawing.Point(251, 172);
-            this.txtSexo.Name = "txtSexo";
-            this.txtSexo.Size = new System.Drawing.Size(121, 24);
-            this.txtSexo.TabIndex = 48;
+            this.txtEmail.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEmail.Location = new System.Drawing.Point(572, 193);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(232, 29);
+            this.txtEmail.TabIndex = 50;
             // 
-            // label4
+            // lblEmail
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(170, 169);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(50, 24);
-            this.label4.TabIndex = 49;
-            this.label4.Text = "Sexo";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
+            this.lblEmail.AutoSize = true;
+            this.lblEmail.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmail.Location = new System.Drawing.Point(483, 199);
+            this.lblEmail.Name = "lblEmail";
+            this.lblEmail.Size = new System.Drawing.Size(54, 23);
+            this.lblEmail.TabIndex = 51;
+            this.lblEmail.Text = "Email";
             // 
             // EditAlumno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(854, 641);
+            this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.ClientSize = new System.Drawing.Size(854, 514);
             this.Controls.Add(this.splitContainer1);
             this.Name = "EditAlumno";
             this.Text = "Ficha de Alumno";
@@ -325,7 +348,7 @@
         private System.Windows.Forms.Label labelFichaAlumno;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker datePickerNacimiento;
         private System.Windows.Forms.TextBox txtTelefono;
         private System.Windows.Forms.TextBox txtContactoEmergencia;
         private System.Windows.Forms.TextBox txtDniAlumno;
@@ -333,5 +356,7 @@
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.ComboBox txtSexo;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtEmail;
+        private System.Windows.Forms.Label lblEmail;
     }
 }

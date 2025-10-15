@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -37,7 +38,9 @@ namespace Taller2_G34
                 dni,
                 sexo,
                 contacto_emergencia,
-                observaciones
+                observaciones,
+                fecha_nacimiento,
+                email
             FROM Alumno
             WHERE dni = @dni;
         ";
@@ -55,15 +58,24 @@ namespace Taller2_G34
                         txtNombre.Text = reader["nombre"].ToString();
                         txtApellido.Text = reader["apellido"].ToString();
                         txtTelefono.Text = reader["telefono"].ToString();
+                        if (reader["fecha_nacimiento"] != DBNull.Value)
+                        {
+                            DateTime fechaNacimiento = Convert.ToDateTime(reader["fecha_nacimiento"]);
+                            datePickerNacimiento.Value = fechaNacimiento;
+                        }
+                        else
+                        {
+                            datePickerNacimiento.Value = DateTime.Today;
+                        }
 
-                        // Si tenés combobox o textbox para sexo, emergencia u observaciones:
+                        txtEmail.Text = reader["email"] != DBNull.Value ? reader["email"].ToString() : "";
+                        // combobox o textbox para sexo, emergencia u observaciones:
                         if (reader["sexo"] != DBNull.Value)
                             txtSexo.Text = reader["sexo"].ToString();
 
                         if (reader["contacto_emergencia"] != DBNull.Value)
                             txtContactoEmergencia.Text = reader["contacto_emergencia"].ToString();
-
-                        
+                            
                     }
                     else
                     {
