@@ -116,8 +116,8 @@ namespace Taller2_G34
                     MessageBox.Show("Alumno registrado exitosamente.");
 
                     // Abrimos el formulario de pago pasándole el ID del alumno recién creado
-                    //FormPagos formPagos = new FormPagos(idAlumno);
-                    //formPagos.ShowDialog();
+                    FormPagos formPagos = new FormPagos(idAlumno);
+                    formPagos.ShowDialog();
                 }
 
                 // Cerramos el formulario actual después de registrar y pagar
