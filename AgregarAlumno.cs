@@ -9,7 +9,7 @@ namespace Taller2_G34
 {
     public partial class AgregarAlumno : Form
     {
-        private string Cn => ConfigurationManager.ConnectionStrings["EnerGymDB"].ConnectionString;
+        private string Conexion => ConfigurationManager.ConnectionStrings["EnerGymDB"].ConnectionString;
 
         public AgregarAlumno()
         {
@@ -20,19 +20,19 @@ namespace Taller2_G34
         // Carga inicial de los ComboBox
         private void CargarCombos()
         {
-            // 1️⃣ Combo de sexo (valores fijos)
+            // Combo de sexo (valores fijos)
             comboBoxSexo.Items.Add("Masculino");
             comboBoxSexo.Items.Add("Femenino");
             comboBoxSexo.Items.Add("Otro");
             comboBoxSexo.SelectedIndex = 0;
 
-            // 2️⃣ Combo de Coachs (Usuarios con rol = 3)
-            using (SqlConnection cn = new SqlConnection(Cn))
+            // Combo de Coachs (Usuarios con rol = 3)
+            using (SqlConnection conexion = new SqlConnection(Conexion))
             {
-                cn.Open();
+                conexion.Open();
                 SqlDataAdapter daCoach = new SqlDataAdapter(
                     "SELECT id_usuario, nombre + ' ' + apellido AS nombreCompleto FROM Usuario WHERE id_rol = 3 AND estado = 1",
-                    cn);
+                    conexion);
                 DataTable dtCoach = new DataTable();
                 daCoach.Fill(dtCoach);
                 comboBoxCoach.DataSource = dtCoach;
@@ -40,8 +40,8 @@ namespace Taller2_G34
                 comboBoxCoach.ValueMember = "id_usuario";
             }
 
-            // 3️⃣ Combo de Planes de entrenamiento
-            using (SqlConnection cn = new SqlConnection(Cn))
+            // Combo de Planes de entrenamiento
+            using (SqlConnection cn = new SqlConnection(Conexion))
             {
                 cn.Open();
                 SqlDataAdapter daPlan = new SqlDataAdapter(
@@ -54,13 +54,13 @@ namespace Taller2_G34
                 comboBoxPlan.ValueMember = "id_plan";
             }
 
-            // 4️⃣ Combo de Membresías
-            using (SqlConnection cn = new SqlConnection(Cn))
+            // Combo de Membresías
+            using (SqlConnection conexion = new SqlConnection(Conexion))
             {
-                cn.Open();
+                conexion.Open();
                 SqlDataAdapter daMem = new SqlDataAdapter(
                     "SELECT id_membresia, nombre FROM Membresia",
-                    cn);
+                    conexion);
                 DataTable dtMem = new DataTable();
                 daMem.Fill(dtMem);
                 comboBoxMembresia.DataSource = dtMem;
@@ -81,42 +81,51 @@ namespace Taller2_G34
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(Cn))
+                using (SqlConnection conexion = new SqlConnection(Conexion))
                 using (SqlCommand cmd = new SqlCommand(@"
-                    INSERT INTO Alumno (
-                        nombre, apellido, dni, telefono, email, fecha_nacimiento,
-                        sexo, id_membresia, id_plan, id_coach,
-                        contacto_emergencia, observaciones, estado
-                    )
-                    VALUES (
-                        @nombre, @apellido, @dni, @telefono, @correo, @fechaNac,
-                        @sexo, @idMembresia, @idPlan, @idCoach,
-                        @contactoEmergencia, @observaciones, 1
-                    )", cn))
+            INSERT INTO Alumno (
+                nombre, apellido, dni, telefono, email, fecha_nacimiento,
+                sexo, id_membresia, id_plan, id_coach,
+                contacto_emergencia, observaciones, estado
+            )
+            VALUES (
+                @nombre, @apellido, @dni, @telefono, @correo, @fechaNac,
+                @sexo, @idMembresia, @idPlan, @idCoach,
+                @contactoEmergencia, @observaciones, 1
+            );
+            SELECT SCOPE_IDENTITY();", conexion)) // devuelve el ID del nuevo alumno
                 {
                     cmd.Parameters.AddWithValue("@nombre", txtNombreAlumno.Text.Trim());
                     cmd.Parameters.AddWithValue("@apellido", txtApellidoAlumno.Text.Trim());
                     cmd.Parameters.AddWithValue("@dni", txtDNI.Text.Trim());
                     cmd.Parameters.AddWithValue("@telefono", txtTelefono.Text.Trim());
                     cmd.Parameters.AddWithValue("@correo", txtEmail.Text.Trim());
-                    cmd.Parameters.AddWithValue("@fechaNac", dateTimePicker1.Value.Date);
+                    cmd.Parameters.AddWithValue("@fechaNac", datePickerNacimiento.Value.Date);
                     cmd.Parameters.AddWithValue("@sexo", comboBoxSexo.SelectedItem.ToString());
                     cmd.Parameters.AddWithValue("@idMembresia", comboBoxMembresia.SelectedValue);
                     cmd.Parameters.AddWithValue("@idPlan", comboBoxPlan.SelectedValue);
                     cmd.Parameters.AddWithValue("@idCoach", comboBoxCoach.SelectedValue);
-                    cmd.Parameters.AddWithValue("@contactoEmergencia", DBNull.Value);
+                    cmd.Parameters.AddWithValue("@contactoEmergencia", txtContactoEmergencia.Text.Trim());
                     cmd.Parameters.AddWithValue("@observaciones", textBoxObservaciones.Text.Trim());
 
-                    cn.Open();
-                    cmd.ExecuteNonQuery();
+                    conexion.Open();
+
+                    // Ejecuta el INSERT y devuelve el id generado
+                    int idAlumno = Convert.ToInt32(cmd.ExecuteScalar());
+
+                    MessageBox.Show("Alumno registrado exitosamente.");
+
+                    // Abrimos el formulario de pago pasándole el ID del alumno recién creado
+                    //FormPagos formPagos = new FormPagos(idAlumno);
+                    //formPagos.ShowDialog();
                 }
 
-                MessageBox.Show("✅ Alumno registrado exitosamente.");
+                // Cerramos el formulario actual después de registrar y pagar
                 this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("❌ Error al registrar alumno: " + ex.Message);
+                MessageBox.Show("Error al registrar alumno: " + ex.Message);
             }
         }
 

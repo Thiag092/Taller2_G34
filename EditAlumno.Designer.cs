@@ -40,6 +40,8 @@
             this.labelFichaAlumno = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lblEmail = new System.Windows.Forms.Label();
+            this.txtEmail = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtSexo = new System.Windows.Forms.ComboBox();
             this.datePickerNacimiento = new System.Windows.Forms.DateTimePicker();
@@ -48,8 +50,6 @@
             this.txtDniAlumno = new System.Windows.Forms.TextBox();
             this.txtApellido = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
-            this.txtEmail = new System.Windows.Forms.TextBox();
-            this.lblEmail = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -62,7 +62,7 @@
             // 
             this.LRol.AutoSize = true;
             this.LRol.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LRol.Location = new System.Drawing.Point(483, 127);
+            this.LRol.Location = new System.Drawing.Point(530, 136);
             this.LRol.Name = "LRol";
             this.LRol.Size = new System.Drawing.Size(188, 24);
             this.LRol.TabIndex = 47;
@@ -72,7 +72,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(483, 82);
+            this.label3.Location = new System.Drawing.Point(530, 80);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(84, 24);
             this.label3.TabIndex = 45;
@@ -82,17 +82,17 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(26, 84);
+            this.label2.Location = new System.Drawing.Point(27, 80);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(194, 24);
+            this.label2.Size = new System.Drawing.Size(221, 24);
             this.label2.TabIndex = 44;
-            this.label2.Text = "Contacto emergencia";
+            this.label2.Text = "Contacto de emergencia";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(170, 131);
+            this.label1.Location = new System.Drawing.Point(202, 136);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(44, 24);
             this.label1.TabIndex = 43;
@@ -102,7 +102,7 @@
             // 
             this.labelApellido.AutoSize = true;
             this.labelApellido.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelApellido.Location = new System.Drawing.Point(483, 23);
+            this.labelApellido.Location = new System.Drawing.Point(531, 27);
             this.labelApellido.Name = "labelApellido";
             this.labelApellido.Size = new System.Drawing.Size(83, 24);
             this.labelApellido.TabIndex = 37;
@@ -112,7 +112,7 @@
             // 
             this.labelNombre.AutoSize = true;
             this.labelNombre.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNombre.Location = new System.Drawing.Point(138, 33);
+            this.labelNombre.Location = new System.Drawing.Point(164, 30);
             this.labelNombre.Name = "labelNombre";
             this.labelNombre.Size = new System.Drawing.Size(82, 24);
             this.labelNombre.TabIndex = 36;
@@ -126,7 +126,7 @@
             this.BConfirmar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BConfirmar.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BConfirmar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BConfirmar.Location = new System.Drawing.Point(572, 278);
+            this.BConfirmar.Location = new System.Drawing.Point(746, 297);
             this.BConfirmar.Name = "BConfirmar";
             this.BConfirmar.Size = new System.Drawing.Size(132, 40);
             this.BConfirmar.TabIndex = 35;
@@ -142,7 +142,7 @@
             this.BCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BCancelar.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BCancelar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BCancelar.Location = new System.Drawing.Point(174, 278);
+            this.BCancelar.Location = new System.Drawing.Point(31, 297);
             this.BCancelar.Name = "BCancelar";
             this.BCancelar.Size = new System.Drawing.Size(147, 40);
             this.BCancelar.TabIndex = 34;
@@ -167,8 +167,8 @@
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.Gold;
             this.splitContainer1.Panel2.Controls.Add(this.panel2);
-            this.splitContainer1.Size = new System.Drawing.Size(854, 514);
-            this.splitContainer1.SplitterDistance = 101;
+            this.splitContainer1.Size = new System.Drawing.Size(940, 493);
+            this.splitContainer1.SplitterDistance = 96;
             this.splitContainer1.TabIndex = 9;
             // 
             // labelFichaAlumno
@@ -186,7 +186,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Taller2_G34.Properties.Resources.ChatGPT_Image_1_sept_2025__17_46_04;
-            this.pictureBox1.Location = new System.Drawing.Point(385, 0);
+            this.pictureBox1.Location = new System.Drawing.Point(421, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(126, 95);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -216,15 +216,33 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(854, 409);
+            this.panel2.Size = new System.Drawing.Size(940, 393);
             this.panel2.TabIndex = 0;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // lblEmail
+            // 
+            this.lblEmail.AutoSize = true;
+            this.lblEmail.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmail.Location = new System.Drawing.Point(530, 193);
+            this.lblEmail.Name = "lblEmail";
+            this.lblEmail.Size = new System.Drawing.Size(54, 23);
+            this.lblEmail.TabIndex = 51;
+            this.lblEmail.Text = "Email";
+            // 
+            // txtEmail
+            // 
+            this.txtEmail.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEmail.Location = new System.Drawing.Point(646, 190);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(232, 29);
+            this.txtEmail.TabIndex = 50;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(170, 169);
+            this.label4.Location = new System.Drawing.Point(196, 187);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(50, 24);
             this.label4.TabIndex = 49;
@@ -233,17 +251,18 @@
             // 
             // txtSexo
             // 
+            this.txtSexo.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSexo.FormattingEnabled = true;
-            this.txtSexo.Location = new System.Drawing.Point(251, 172);
+            this.txtSexo.Location = new System.Drawing.Point(276, 190);
             this.txtSexo.Name = "txtSexo";
-            this.txtSexo.Size = new System.Drawing.Size(144, 24);
+            this.txtSexo.Size = new System.Drawing.Size(181, 31);
             this.txtSexo.TabIndex = 48;
             // 
             // datePickerNacimiento
             // 
             this.datePickerNacimiento.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.datePickerNacimiento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.datePickerNacimiento.Location = new System.Drawing.Point(679, 125);
+            this.datePickerNacimiento.Location = new System.Drawing.Point(753, 131);
             this.datePickerNacimiento.Name = "datePickerNacimiento";
             this.datePickerNacimiento.Size = new System.Drawing.Size(125, 30);
             this.datePickerNacimiento.TabIndex = 5;
@@ -251,7 +270,7 @@
             // txtTelefono
             // 
             this.txtTelefono.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTelefono.Location = new System.Drawing.Point(601, 75);
+            this.txtTelefono.Location = new System.Drawing.Point(675, 77);
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(203, 31);
             this.txtTelefono.TabIndex = 3;
@@ -260,18 +279,18 @@
             // txtContactoEmergencia
             // 
             this.txtContactoEmergencia.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtContactoEmergencia.Location = new System.Drawing.Point(250, 77);
+            this.txtContactoEmergencia.Location = new System.Drawing.Point(276, 77);
             this.txtContactoEmergencia.Name = "txtContactoEmergencia";
-            this.txtContactoEmergencia.Size = new System.Drawing.Size(145, 31);
+            this.txtContactoEmergencia.Size = new System.Drawing.Size(181, 31);
             this.txtContactoEmergencia.TabIndex = 2;
             this.txtContactoEmergencia.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // txtDniAlumno
             // 
             this.txtDniAlumno.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDniAlumno.Location = new System.Drawing.Point(251, 124);
+            this.txtDniAlumno.Location = new System.Drawing.Point(276, 131);
             this.txtDniAlumno.Name = "txtDniAlumno";
-            this.txtDniAlumno.Size = new System.Drawing.Size(144, 31);
+            this.txtDniAlumno.Size = new System.Drawing.Size(181, 31);
             this.txtDniAlumno.TabIndex = 4;
             this.txtDniAlumno.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             this.txtDniAlumno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDniAlumno_KeyPress);
@@ -279,7 +298,7 @@
             // txtApellido
             // 
             this.txtApellido.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtApellido.Location = new System.Drawing.Point(601, 20);
+            this.txtApellido.Location = new System.Drawing.Point(675, 24);
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(203, 31);
             this.txtApellido.TabIndex = 1;
@@ -289,37 +308,19 @@
             // txtNombre
             // 
             this.txtNombre.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombre.Location = new System.Drawing.Point(250, 26);
+            this.txtNombre.Location = new System.Drawing.Point(276, 27);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(145, 31);
+            this.txtNombre.Size = new System.Drawing.Size(181, 31);
             this.txtNombre.TabIndex = 0;
             this.txtNombre.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
-            // 
-            // txtEmail
-            // 
-            this.txtEmail.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmail.Location = new System.Drawing.Point(572, 193);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(232, 29);
-            this.txtEmail.TabIndex = 50;
-            // 
-            // lblEmail
-            // 
-            this.lblEmail.AutoSize = true;
-            this.lblEmail.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmail.Location = new System.Drawing.Point(483, 199);
-            this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(54, 23);
-            this.lblEmail.TabIndex = 51;
-            this.lblEmail.Text = "Email";
             // 
             // EditAlumno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ClientSize = new System.Drawing.Size(854, 514);
+            this.ClientSize = new System.Drawing.Size(940, 493);
             this.Controls.Add(this.splitContainer1);
             this.Name = "EditAlumno";
             this.Text = "Ficha de Alumno";
