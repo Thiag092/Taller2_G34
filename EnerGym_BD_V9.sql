@@ -1,14 +1,8 @@
-﻿-------------------------------------------------------
--- 🧩 CREACION BASE DE DATOS
--------------------------------------------------------
+﻿
 CREATE DATABASE EnerGym_BD_V9;
 GO
 USE EnerGym_BD_V9;
 GO
-
--------------------------------------------------------
--- 🧱 TABLAS BASE
--------------------------------------------------------
 
 CREATE TABLE Rol (
     id_rol INT PRIMARY KEY IDENTITY(1,1),
@@ -49,8 +43,6 @@ GO
 CREATE TABLE PlanEntrenamiento (
     id_plan INT PRIMARY KEY IDENTITY(1,1),
     nombre NVARCHAR(100) NOT NULL,
-    fechaInicio DATE,
-    fechaFin DATE,
     estado BIT NOT NULL,
     id_tipoPlan INT NULL FOREIGN KEY REFERENCES TipoPlan(id_tipoPlan)
 );
@@ -184,11 +176,11 @@ INSERT INTO Ejercicio (nombre) VALUES
 ('Abdominales bicicleta');
 GO
 
-INSERT INTO PlanEntrenamiento (nombre, fechaInicio, fechaFin, estado, id_tipoPlan)
+INSERT INTO PlanEntrenamiento (nombre, estado, id_tipoPlan)
 VALUES
-('Plan Principiante Full Body', NULL, NULL, 1, 1),
-('Plan Intermedio Push Pull Legs', NULL, NULL, 1, 2),
-('Plan Avanzado 2x6', NULL, NULL, 1, 3);
+('Plan Principiante Full Body', 1, 1),
+('Plan Intermedio Push Pull Legs', 1, 2),
+('Plan Avanzado 2x6', 1, 3);
 GO
 
 -------------------------------------------------------
