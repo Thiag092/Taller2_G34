@@ -9,16 +9,44 @@ namespace Taller2_G34
 {
     public partial class VerPlanPlantilla : Form
     {
-        private readonly int _idPlan;
+        private readonly ModoPlan _modo;
+        private int _idPlan;
         private DataTable _dtDiaEjercicios;
 
-        public VerPlanPlantilla(int idPlan)
+        // Enum para identificar el modo actual del formulario
+        public enum ModoPlan
         {
-            InitializeComponent();
-            _idPlan = idPlan;
+            Nuevo,
+            DesdePlantilla,
+            Editar
         }
 
         private string Cn => ConfigurationManager.ConnectionStrings["EnerGymDB"].ConnectionString;
+
+        // === Constructores ===
+
+        // Crear un plan desde cero
+        public VerPlanPlantilla()
+        {
+            InitializeComponent();
+            _modo = ModoPlan.Nuevo;
+        }
+
+        // Crear un plan nuevo basado en otro existente (plantilla)
+        public VerPlanPlantilla(int idPlan)
+        {
+            InitializeComponent();
+            _modo = ModoPlan.DesdePlantilla;
+            _idPlan = idPlan;
+        }
+
+        // Editar un plan existente
+        public VerPlanPlantilla(int idPlan, bool editar)
+        {
+            InitializeComponent();
+            _modo = ModoPlan.Editar;
+            _idPlan = idPlan;
+        }
 
         private void VerPlanPlantilla_Load(object sender, EventArgs e)
         {
@@ -26,9 +54,26 @@ namespace Taller2_G34
             dgvEjercicios.MultiSelect = true;
             dgvEjercicios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
-            CargarInfoPlan();
-            CargarDias();
+            CargarTiposPlan();
             CargarCatalogoEjercicios();
+
+            switch (_modo)
+            {
+                case ModoPlan.Nuevo:
+                    PrepararNuevoPlan();
+                    break;
+
+                case ModoPlan.DesdePlantilla:
+                    CargarInfoPlan();
+                    CargarDias();
+                    ClonarDatosPlantilla();
+                    break;
+
+                case ModoPlan.Editar:
+                    CargarInfoPlan();
+                    CargarDias();
+                    break;
+            }
 
             cboDias.SelectedIndexChanged += cboDias_SelectedIndexChanged;
             if (cboDias.Items.Count > 0)
@@ -38,10 +83,11 @@ namespace Taller2_G34
         private void CargarInfoPlan()
         {
             string sql = @"
-                SELECT p.nombre, t.descripcion AS Tipo
-                FROM PlanEntrenamiento p
-                INNER JOIN TipoPlan t ON t.id_tipoPlan = p.id_tipoPlan
-                WHERE p.id_plan = @id";
+        SELECT p.nombre, p.id_tipoPlan, t.descripcion AS Tipo
+        FROM PlanEntrenamiento p
+        INNER JOIN TipoPlan t ON t.id_tipoPlan = p.id_tipoPlan
+        WHERE p.id_plan = @id";
+
             using (var cn = new SqlConnection(Cn))
             using (var cmd = new SqlCommand(sql, cn))
             {
@@ -50,11 +96,47 @@ namespace Taller2_G34
                 using (var r = cmd.ExecuteReader())
                 {
                     if (r.Read())
-                        labelTitulo.Text = $"{r["nombre"]} ({r["Tipo"]})";
+                    {
+                        txtNombrePlan.Text = r["nombre"].ToString();
+                        comboBoxTipoPlan.SelectedValue = Convert.ToInt32(r["id_tipoPlan"]);
+                        labelTitulo.Text = $"Tipo de plan: {r["Tipo"]}";
+                    }
                 }
             }
         }
+        private void ClonarDatosPlantilla()
+        {
+            try
+            {
+                using (var cn = new SqlConnection(Cn))
+                using (var cmd = new SqlCommand("SELECT nombre FROM PlanEntrenamiento WHERE id_plan = @id", cn))
+                {
+                    cmd.Parameters.AddWithValue("@id", _idPlan);
+                    cn.Open();
+                    var nombreBase = cmd.ExecuteScalar()?.ToString();
+                    txtNombrePlan.Text = $"{nombreBase}";
+                }
 
+                _dtDiaEjercicios = new DataTable();
+                dgvEjercicios.DataSource = _dtDiaEjercicios;
+
+                MessageBox.Show("Plantilla cargada. Personaliza el nombre y los ejercicios antes de guardar.",
+                    "Plantilla cargada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al clonar plantilla: {ex.Message}", "Error");
+            }
+        }
+        private void PrepararNuevoPlan()
+        {
+            labelTitulo.Text = "Nuevo plan de entrenamiento";
+            txtNombrePlan.Text = string.Empty;
+            comboBoxTipoPlan.SelectedIndex = -1;
+            cboDias.DataSource = null;
+            _dtDiaEjercicios = new DataTable();
+            dgvEjercicios.DataSource = _dtDiaEjercicios;
+        }
         private void CargarDias()
         {
             string sql = "SELECT id_dia, nombreDia FROM Plan_Dia WHERE id_plan = @id ORDER BY id_dia";
@@ -81,6 +163,29 @@ namespace Taller2_G34
                 cboEjercicioCatalogo.DisplayMember = "nombre";
                 cboEjercicioCatalogo.ValueMember = "id_ejercicio";
                 cboEjercicioCatalogo.DataSource = dt;
+            }
+        }
+        private void CargarTiposPlan()
+        {
+            string sql = "SELECT id_tipoPlan, descripcion FROM TipoPlan ORDER BY descripcion";
+
+            try
+            {
+                using (var cn = new SqlConnection(Cn))
+                using (var da = new SqlDataAdapter(sql, cn))
+                {
+                    var dt = new DataTable();
+                    da.Fill(dt);
+
+                    comboBoxTipoPlan.DisplayMember = "descripcion";
+                    comboBoxTipoPlan.ValueMember = "id_tipoPlan";
+                    comboBoxTipoPlan.DataSource = dt;
+                    comboBoxTipoPlan.SelectedIndex = -1; // Ninguno seleccionado al inicio
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los tipos de plan: " + ex.Message, "Error");
             }
         }
 
@@ -175,59 +280,148 @@ namespace Taller2_G34
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (cboDias.SelectedValue == null) return;
-            int idDia = Convert.ToInt32(cboDias.SelectedValue);
-
-            using (var cn = new SqlConnection(Cn))
-            using (var cmd = new SqlCommand())
+            switch (_modo)
             {
-                cmd.Connection = cn;
-                cn.Open();
-                var tx = cn.BeginTransaction();
-                cmd.Transaction = tx;
-
-                try
-                {
-                    // Eliminar ejercicios existentes para este día
-                    cmd.CommandText = "DELETE FROM Plan_Ejercicio WHERE id_plan = @p AND id_dia = @d";
-                    cmd.Parameters.Clear();
-                    cmd.Parameters.AddWithValue("@p", _idPlan);
-                    cmd.Parameters.AddWithValue("@d", idDia);
-                    cmd.ExecuteNonQuery();
-
-                    // Insertar nuevos ejercicios con todos los parámetros
-                    cmd.CommandText = @"
-                        INSERT INTO Plan_Ejercicio 
-                        (id_plan, id_dia, id_ejercicio, cant_series, repeticiones, tiempo) 
-                        VALUES (@p, @d, @e, @series, @reps, @tiempo)";
-
-                    foreach (DataRow r in _dtDiaEjercicios.Rows)
-                    {
-                        cmd.Parameters.Clear();
-                        cmd.Parameters.AddWithValue("@p", _idPlan);
-                        cmd.Parameters.AddWithValue("@d", idDia);
-                        cmd.Parameters.AddWithValue("@e", r.Field<int>("id_ejercicio"));
-                        cmd.Parameters.AddWithValue("@series", r.Field<int>("cant_series"));
-                        cmd.Parameters.AddWithValue("@reps", r.Field<int>("repeticiones"));
-                        cmd.Parameters.AddWithValue("@tiempo", r.Field<int>("tiempo"));
-                        cmd.ExecuteNonQuery();
-                    }
-
-                    tx.Commit();
-                    MessageBox.Show("Cambios guardados correctamente.");
-                }
-                catch (Exception ex)
-                {
-                    tx.Rollback();
-                    MessageBox.Show("Error al guardar: " + ex.Message);
-                }
+                case ModoPlan.Nuevo:
+                    GuardarNuevoPlan();
+                    break;
+                case ModoPlan.DesdePlantilla:
+                    GuardarPlanDesdePlantilla();
+                    break;
+                case ModoPlan.Editar:
+                    GuardarCambiosPlanExistente();
+                    break;
             }
         }
 
-        private void btnCerrar_Click(object sender, EventArgs e)
+        private void GuardarNuevoPlan()
         {
+            if (string.IsNullOrWhiteSpace(txtNombrePlan.Text) || comboBoxTipoPlan.SelectedIndex < 0)
+            {
+                MessageBox.Show("Debes ingresar un nombre y tipo de plan.", "Campos incompletos");
+                return;
+            }
+
+            string sqlInsert = "INSERT INTO PlanEntrenamiento (nombre, estado, id_tipoPlan) OUTPUT INSERTED.id_plan VALUES (@n, @estado, @t)";
+
+            try
+            {
+                using (var cn = new SqlConnection(Cn))
+                using (var cmd = new SqlCommand(sqlInsert, cn))
+                {
+                    cmd.Parameters.AddWithValue("@n", txtNombrePlan.Text);
+                    cmd.Parameters.Add("@estado", SqlDbType.Bit).Value = true;
+                    cmd.Parameters.AddWithValue("@t", comboBoxTipoPlan.SelectedValue);
+                    cn.Open();
+                    int nuevoId = (int)cmd.ExecuteScalar();
+
+                    MessageBox.Show($"Plan '{txtNombrePlan.Text}' creado correctamente (ID: {nuevoId})",
+                        "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al crear plan: {ex.Message}");
+            }
+        }
+        private void GuardarPlanDesdePlantilla()
+        {
+            try
+            {
+                using (var cn = new SqlConnection(Cn))
+                {
+                    cn.Open();
+                    using (var tx = cn.BeginTransaction())
+                    {
+                        //Obtiene id_tipoPlan de la plantilla
+                        int tipoPlan;
+                        using (var cmdTipo = new SqlCommand(
+                            "SELECT id_tipoPlan FROM PlanEntrenamiento WHERE id_plan = @plantilla", cn, tx))
+                        {
+                            cmdTipo.Parameters.Add("@plantilla", SqlDbType.Int).Value = _idPlan;
+                            var result = cmdTipo.ExecuteScalar();
+                            if (result == null)
+                                throw new Exception("La plantilla seleccionada no existe.");
+                            tipoPlan = Convert.ToInt32(result);
+                        }
+
+                        //Inserta nuevo plan
+                        int nuevoId;
+                        using (var cmdInsert = new SqlCommand(@"
+                        INSERT INTO PlanEntrenamiento (nombre, estado, id_tipoPlan)
+                        OUTPUT INSERTED.id_plan
+                        VALUES (@nombre, @estado, @tipoPlan)", cn, tx))
+                        {
+                            cmdInsert.Parameters.Add("@nombre", SqlDbType.NVarChar, 100).Value = txtNombrePlan.Text;
+                            cmdInsert.Parameters.Add("@estado", SqlDbType.Bit).Value = true; 
+                            cmdInsert.Parameters.Add("@tipoPlan", SqlDbType.Int).Value = tipoPlan;
+
+                            nuevoId = (int)cmdInsert.ExecuteScalar();
+                        }
+
+                        //Copia días
+                        using (var cmdDias = new SqlCommand(@"
+                        INSERT INTO Plan_Dia (id_plan, nombreDia)
+                        SELECT @nuevoId, nombreDia
+                        FROM Plan_Dia
+                        WHERE id_plan = @plantilla", cn, tx))
+                        {
+                            cmdDias.Parameters.Add("@nuevoId", SqlDbType.Int).Value = nuevoId;
+                            cmdDias.Parameters.Add("@plantilla", SqlDbType.Int).Value = _idPlan;
+                            cmdDias.ExecuteNonQuery();
+                        }
+
+                        //Copia ejercicios
+                        using (var cmdEjs = new SqlCommand(@"
+                        INSERT INTO Plan_Ejercicio (id_plan, id_dia, id_ejercicio, cant_series, repeticiones, tiempo)
+                        SELECT @nuevoId, d2.id_dia, pe.id_ejercicio, pe.cant_series, pe.repeticiones, pe.tiempo
+                        FROM Plan_Ejercicio pe
+                        INNER JOIN Plan_Dia d1 ON d1.id_dia = pe.id_dia
+                        INNER JOIN Plan_Dia d2 ON d2.nombreDia = d1.nombreDia AND d2.id_plan = @nuevoId
+                        WHERE pe.id_plan = @plantilla", cn, tx))
+                        {
+                            cmdEjs.Parameters.Add("@nuevoId", SqlDbType.Int).Value = nuevoId;
+                            cmdEjs.Parameters.Add("@plantilla", SqlDbType.Int).Value = _idPlan;
+                            cmdEjs.ExecuteNonQuery();
+                        }
+                        tx.Commit();
+
+                        MessageBox.Show($"Nuevo plan creado en base a la plantilla (ID: {nuevoId})", "Éxito");
+                        this.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al crear plan desde plantilla: " + ex.Message, "Error");
+            }
+        }
+
+        private void GuardarCambiosPlanExistente()
+        {
+            string sqlNombre = "UPDATE PlanEntrenamiento SET nombre = @n, id_tipoPlan = @t WHERE id_plan = @id";
+
+            using (var cn = new SqlConnection(Cn))
+            using (var cmd = new SqlCommand(sqlNombre, cn))
+            {
+                cn.Open();
+                cmd.Parameters.AddWithValue("@n", txtNombrePlan.Text);
+                cmd.Parameters.AddWithValue("@t", comboBoxTipoPlan.SelectedValue);
+                cmd.Parameters.AddWithValue("@id", _idPlan);
+                cmd.ExecuteNonQuery();
+            }
+
+            MessageBox.Show("Cambios guardados correctamente.", "Éxito");
             this.Close();
         }
+    
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+            {
+                this.Close();
+            }
 
         private void dgvEjercicios_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -352,14 +546,66 @@ namespace Taller2_G34
             panel1.Visible = false;
         }
 
-        private void btnGuardar_Click_1(object sender, EventArgs e)
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void comboBoxTipoPlan_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.Close();
+            if (comboBoxTipoPlan.SelectedValue == null) return;
+
+            int idTipoPlan = Convert.ToInt32(comboBoxTipoPlan.SelectedValue);
+            CargarPlantillaPorTipo(idTipoPlan);
+        }
+        private void CargarPlantillaPorTipo(int idTipoPlan)
+        {
+            try
+            {
+                // Trae la plantilla predeterminada de ese tipo
+                string sqlPlan = @"
+                SELECT TOP 1 id_plan, nombre
+                FROM PlanEntrenamiento
+                WHERE id_tipoPlan = @idTipo
+                ORDER BY id_plan";
+
+                int idPlanPlantilla = 0;
+                string nombrePlantilla = "";
+
+                using (var cn = new SqlConnection(Cn))
+                using (var cmd = new SqlCommand(sqlPlan, cn))
+                {
+                    cmd.Parameters.AddWithValue("@idTipo", idTipoPlan);
+                    cn.Open();
+                    using (var r = cmd.ExecuteReader())
+                    {
+                        if (r.Read())
+                        {
+                            idPlanPlantilla = Convert.ToInt32(r["id_plan"]);
+                            nombrePlantilla = r["nombre"].ToString();
+                        }
+                    }
+                }
+
+                if (idPlanPlantilla == 0)
+                {
+                    MessageBox.Show("No hay plantillas predeterminadas para este tipo de plan.", "Aviso");
+                    return;
+                }
+
+                //Cargar días y ejercicios del plan seleccionado
+                _idPlan = idPlanPlantilla;
+                CargarDias();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar la plantilla: {ex.Message}", "Error");
+            }
         }
     }
 }

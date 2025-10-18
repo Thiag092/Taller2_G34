@@ -436,7 +436,7 @@ namespace Taller2_G34
                 formulario.Show();
             }
             if (btnAgregar.Text == "Nueva Rutina"){ 
-                AgregarRutina formulario = new AgregarRutina();
+                VerPlanPlantilla formulario = new VerPlanPlantilla();
                 formulario.Show();
             }
 

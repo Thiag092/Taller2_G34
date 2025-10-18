@@ -210,7 +210,7 @@ namespace Taller2_G34
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            AgregarRutina formulario = new AgregarRutina();
+            VerPlanPlantilla formulario = new VerPlanPlantilla();
             formulario.Show();
         }
 
@@ -241,8 +241,10 @@ namespace Taller2_G34
                 formDetalles.ShowDialog();
             }
         }
-        
 
+        private void contentPanel_Paint(object sender, PaintEventArgs e)
+        {
 
+        }
     }
 }

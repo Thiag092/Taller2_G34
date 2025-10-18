@@ -30,7 +30,6 @@ C:\Users\anafa\OneDrive\Escritorio\Taller de programación 2\Practico 1\Taller2_
 C:\Users\anafa\OneDrive\Escritorio\Taller de programación 2\Practico 1\Taller2_G34\obj\Debug\Taller2_G34.csproj.AssemblyReference.cache
 C:\Users\anafa\OneDrive\Escritorio\Taller de programación 2\Practico 1\Taller2_G34\obj\Debug\Taller2_G34.exe.config
 C:\Users\anafa\OneDrive\Escritorio\Taller de programación 2\Practico 1\Taller2_G34\obj\Debug\Taller2_G34.AgregarAlumno.resources
-C:\Users\anafa\OneDrive\Escritorio\Taller de programación 2\Practico 1\Taller2_G34\obj\Debug\Taller2_G34.AgregarRutina.resources
 C:\Users\anafa\OneDrive\Escritorio\Taller de programación 2\Practico 1\Taller2_G34\obj\Debug\Taller2_G34.AgregarPersonal.resources
 C:\Users\anafa\OneDrive\Escritorio\Taller de programación 2\Practico 1\Taller2_G34\obj\Debug\Taller2_G34.AgregarU_Prop.resources
 C:\Users\anafa\OneDrive\Escritorio\Taller de programación 2\Practico 1\Taller2_G34\obj\Debug\Taller2_G34.EditAlumno.resources

@@ -63,12 +63,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AgregarRutina.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AgregarRutina.Designer.cs">
-      <DependentUpon>AgregarRutina.cs</DependentUpon>
-    </Compile>
     <Compile Include="AgregarPersonal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -169,9 +163,6 @@
     </Compile>
     <EmbeddedResource Include="AgregarAlumno.resx">
       <DependentUpon>AgregarAlumno.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AgregarRutina.resx">
-      <DependentUpon>AgregarRutina.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AgregarPersonal.resx">
       <DependentUpon>AgregarPersonal.cs</DependentUpon>

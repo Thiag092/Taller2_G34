@@ -164,6 +164,7 @@
             this.contentPanel.Size = new System.Drawing.Size(733, 515);
             this.contentPanel.TabIndex = 3;
             this.contentPanel.Visible = false;
+            this.contentPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.contentPanel_Paint);
             // 
             // BRefresh
             // 

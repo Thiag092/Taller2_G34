@@ -30,9 +30,11 @@
         {
             this.labelTitulo = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.btnCancelar = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.comboBoxTipoPlan = new System.Windows.Forms.ComboBox();
+            this.lblTipoPlan = new System.Windows.Forms.Label();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtTiempo = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -42,11 +44,11 @@
             this.cantRepeticiones = new System.Windows.Forms.NumericUpDown();
             this.btnConfirmar = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblEjercicioNuevo = new System.Windows.Forms.Label();
             this.btnNuevoEjercicio = new System.Windows.Forms.Button();
             this.cboEjercicioCatalogo = new System.Windows.Forms.ComboBox();
             this.btnAgregar = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtNombrePlan = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.dgvEjercicios = new System.Windows.Forms.DataGridView();
@@ -101,6 +103,55 @@
             this.splitContainer1.SplitterDistance = 124;
             this.splitContainer1.TabIndex = 10;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Taller2_G34.Properties.Resources.ChatGPT_Image_1_sept_2025__17_46_04;
+            this.pictureBox1.Location = new System.Drawing.Point(543, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(126, 95);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.comboBoxTipoPlan);
+            this.panel2.Controls.Add(this.lblTipoPlan);
+            this.panel2.Controls.Add(this.btnCancelar);
+            this.panel2.Controls.Add(this.panel1);
+            this.panel2.Controls.Add(this.btnAgregar);
+            this.panel2.Controls.Add(this.txtNombrePlan);
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.btnGuardar);
+            this.panel2.Controls.Add(this.dgvEjercicios);
+            this.panel2.Controls.Add(this.cboDias);
+            this.panel2.Controls.Add(this.labelDia);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1373, 569);
+            this.panel2.TabIndex = 0;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // comboBoxTipoPlan
+            // 
+            this.comboBoxTipoPlan.FormattingEnabled = true;
+            this.comboBoxTipoPlan.Location = new System.Drawing.Point(55, 103);
+            this.comboBoxTipoPlan.Name = "comboBoxTipoPlan";
+            this.comboBoxTipoPlan.Size = new System.Drawing.Size(253, 24);
+            this.comboBoxTipoPlan.TabIndex = 57;
+            this.comboBoxTipoPlan.SelectedIndexChanged += new System.EventHandler(this.comboBoxTipoPlan_SelectedIndexChanged);
+            // 
+            // lblTipoPlan
+            // 
+            this.lblTipoPlan.AutoSize = true;
+            this.lblTipoPlan.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTipoPlan.Location = new System.Drawing.Point(50, 75);
+            this.lblTipoPlan.Name = "lblTipoPlan";
+            this.lblTipoPlan.Size = new System.Drawing.Size(123, 25);
+            this.lblTipoPlan.TabIndex = 56;
+            this.lblTipoPlan.Text = "Tipo de Plan";
+            // 
             // btnCancelar
             // 
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -117,33 +168,6 @@
             this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Taller2_G34.Properties.Resources.ChatGPT_Image_1_sept_2025__17_46_04;
-            this.pictureBox1.Location = new System.Drawing.Point(543, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(126, 95);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.btnCancelar);
-            this.panel2.Controls.Add(this.panel1);
-            this.panel2.Controls.Add(this.btnAgregar);
-            this.panel2.Controls.Add(this.textBox1);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.btnGuardar);
-            this.panel2.Controls.Add(this.dgvEjercicios);
-            this.panel2.Controls.Add(this.cboDias);
-            this.panel2.Controls.Add(this.labelDia);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1373, 569);
-            this.panel2.TabIndex = 0;
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.txtTiempo);
@@ -154,10 +178,10 @@
             this.panel1.Controls.Add(this.cantRepeticiones);
             this.panel1.Controls.Add(this.btnConfirmar);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.lblEjercicioNuevo);
             this.panel1.Controls.Add(this.btnNuevoEjercicio);
             this.panel1.Controls.Add(this.cboEjercicioCatalogo);
-            this.panel1.Location = new System.Drawing.Point(55, 169);
+            this.panel1.Location = new System.Drawing.Point(55, 235);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(253, 261);
             this.panel1.TabIndex = 55;
@@ -236,14 +260,14 @@
             this.label3.TabIndex = 63;
             this.label3.Text = "Agregar ejercicio existente";
             // 
-            // label2
+            // lblEjercicioNuevo
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 26);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(150, 16);
-            this.label2.TabIndex = 62;
-            this.label2.Text = "Agregar ejercicio nuevo";
+            this.lblEjercicioNuevo.AutoSize = true;
+            this.lblEjercicioNuevo.Location = new System.Drawing.Point(3, 26);
+            this.lblEjercicioNuevo.Name = "lblEjercicioNuevo";
+            this.lblEjercicioNuevo.Size = new System.Drawing.Size(150, 16);
+            this.lblEjercicioNuevo.TabIndex = 62;
+            this.lblEjercicioNuevo.Text = "Agregar ejercicio nuevo";
             // 
             // btnNuevoEjercicio
             // 
@@ -277,7 +301,7 @@
             this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregar.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnAgregar.Location = new System.Drawing.Point(55, 136);
+            this.btnAgregar.Location = new System.Drawing.Point(55, 202);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(253, 36);
             this.btnAgregar.TabIndex = 54;
@@ -285,12 +309,12 @@
             this.btnAgregar.UseVisualStyleBackColor = false;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
-            // textBox1
+            // txtNombrePlan
             // 
-            this.textBox1.Location = new System.Drawing.Point(55, 39);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(253, 22);
-            this.textBox1.TabIndex = 52;
+            this.txtNombrePlan.Location = new System.Drawing.Point(55, 39);
+            this.txtNombrePlan.Name = "txtNombrePlan";
+            this.txtNombrePlan.Size = new System.Drawing.Size(253, 22);
+            this.txtNombrePlan.TabIndex = 52;
             // 
             // label1
             // 
@@ -316,7 +340,7 @@
             this.btnGuardar.TabIndex = 50;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = false;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click_1);
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // dgvEjercicios
             // 
@@ -385,7 +409,7 @@
             // cboDias
             // 
             this.cboDias.FormattingEnabled = true;
-            this.cboDias.Location = new System.Drawing.Point(55, 92);
+            this.cboDias.Location = new System.Drawing.Point(55, 158);
             this.cboDias.Name = "cboDias";
             this.cboDias.Size = new System.Drawing.Size(253, 24);
             this.cboDias.TabIndex = 45;
@@ -395,7 +419,7 @@
             // 
             this.labelDia.AutoSize = true;
             this.labelDia.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDia.Location = new System.Drawing.Point(50, 64);
+            this.labelDia.Location = new System.Drawing.Point(50, 130);
             this.labelDia.Name = "labelDia";
             this.labelDia.Size = new System.Drawing.Size(117, 25);
             this.labelDia.TabIndex = 36;
@@ -437,13 +461,13 @@
         private System.Windows.Forms.DataGridView dgvEjercicios;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtNombrePlan;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnConfirmar;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblEjercicioNuevo;
         private System.Windows.Forms.Button btnNuevoEjercicio;
         private System.Windows.Forms.ComboBox cboEjercicioCatalogo;
         private System.Windows.Forms.NumericUpDown cantSeries;
@@ -457,5 +481,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColReps;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSeries;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColTiempo;
+        private System.Windows.Forms.ComboBox comboBoxTipoPlan;
+        private System.Windows.Forms.Label lblTipoPlan;
     }
 }
