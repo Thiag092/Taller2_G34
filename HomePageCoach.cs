@@ -13,7 +13,11 @@ using System.Windows.Forms;
 namespace Taller2_G34
 {
     public partial class homePageCoach : Form
+
     {
+
+        private string vistaActual = "";
+
         public homePageCoach()
         {
             InitializeComponent();
@@ -72,61 +76,85 @@ namespace Taller2_G34
         {
             MostrarVista("alumnos");
         }
+
         private void MostrarVista(string tipo)
         {
+
+            vistaActual = tipo; // Guarda si estamos mostrando alumnos o rutinas
+
             // Oculto el label de bienvenida
             labelTextoBienvenida.Visible = false;
-            // Hago visible el panel de contenido
             contentPanel.Visible = true;
-            //hago invisible los botones 
             btnAgregar.Visible = false;
             btnEliminar.Visible = false;
             BRefresh.Visible = false;
-            // Limpio el DataGridView antes de cargar nuevos datos
-            dataGridView.Columns.Clear();
-            dataGridView.Rows.Clear();
 
-            // Columna de botón
+            // Limpio el DataGridView antes de cargar nuevos datos
+            dataGridView.DataSource = null;
+            dataGridView.Rows.Clear();
+            dataGridView.Columns.Clear();
+
+
+            // ✅ Declarar el botón UNA SOLA VEZ
             DataGridViewButtonColumn btnDetalles = new DataGridViewButtonColumn();
             btnDetalles.HeaderText = "Detalles";
             btnDetalles.Text = "Ver más";
             btnDetalles.Name = "Detalles";
+            btnDetalles.UseColumnTextForButtonValue = true;
 
             if (tipo == "alumnos")
             {
-                // Creo columnas
-                dataGridView.Columns.Add("DNI", "DNI");
-                dataGridView.Columns.Add("Nombre", "Nombre");
-                dataGridView.Columns.Add("Apellido", "Apellido");
-                dataGridView.Columns.Add("FechaNacimiento", "Fecha de nacimiento");
-                dataGridView.Columns.Add("Email", "Email");
-                dataGridView.Columns.Add("Telefono", "Teléfono");
-                dataGridView.Columns.Add("Sexo", "Sexo");
-                dataGridView.Columns.Add("Estado", "Estado");
-                // importante para identificar la columna
-                btnDetalles.UseColumnTextForButtonValue = true;
-                dataGridView.Columns.Add(btnDetalles);
-                // Agrego filas
-                dataGridView.Rows.Add(12345678, "Juan", "Pérez", "22/10/2001", "juanitoperez@gmail.com", "+543794572343", "M", "Activo");
-                dataGridView.Rows.Add(23456789, "Ana", "Fernández", "03/07/1992", "anafnandez@gmail.com", "+543704456200", "F", "Activo");
-
-                // Configuro título y botones
                 labelTitulo.Text = "Alumnos";
+
+                string connectionString = ConfigurationManager.ConnectionStrings["EnerGymDB"].ConnectionString;
+
+                string query = @"
+            SELECT 
+                dni AS DNI,
+                nombre AS Nombre,
+                apellido AS Apellido,
+                CONVERT(varchar(10), fecha_nacimiento, 103) AS [Fecha de nacimiento],
+                email AS Email,
+                telefono AS Teléfono,
+                LEFT(sexo, 1) AS Sexo,
+                CASE WHEN estado = 1 THEN 'Activo' ELSE 'Inactivo' END AS Estado
+            FROM Alumno
+            ORDER BY apellido, nombre;";
+
+                try
+                {
+                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
+                    {
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+
+                        dataGridView.AutoGenerateColumns = true;
+                        dataGridView.DataSource = dt;
+
+                        // ✅ Agregar columna del botón una sola vez
+                        if (!dataGridView.Columns.Contains("Detalles"))
+                        {
+                            dataGridView.Columns.Add(btnDetalles);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al cargar alumnos: " + ex.Message);
+                }
+
+                dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
+
             if (tipo == "rutinas")
             {
                 labelTitulo.Text = "Plantillas de Entrenamiento";
-                btnAgregar.Visible = false; 
-                btnEliminar.Visible = false;
                 BRefresh.Visible = true;
-
                 CargarRutinasDesdeBD();
             }
-
-
-            // Ajustes visuales opcionales
-            dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
+
 
 
         private void CargarRutinasDesdeBD()
@@ -224,23 +252,37 @@ namespace Taller2_G34
             CargarRutinasDesdeBD(); // Recarga los datos desde la base
         }
 
-        
+
         private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Ignorar clics fuera de las filas válidas
             if (e.RowIndex < 0)
                 return;
 
-            // Si se hace clic en el botón "Detalles"
             if (dataGridView.Columns[e.ColumnIndex].Name == "Detalles")
             {
-                int idPlan = Convert.ToInt32(dataGridView.Rows[e.RowIndex].Cells["ID"].Value);
+                if (vistaActual == "alumnos")
+                {
+                    // Obtener DNI del alumno
+                    string dniAlumno = dataGridView.Rows[e.RowIndex].Cells["DNI"].Value.ToString();
 
-                // Abrir formulario de detalles
-                VerPlanPlantilla formDetalles = new VerPlanPlantilla(idPlan);
-                formDetalles.ShowDialog();
+                    // Mostrar detalles del alumno
+                    EditAlumno formDetalles = new EditAlumno(dniAlumno);
+                    formDetalles.ShowDialog();
+                }
+                else if (vistaActual == "rutinas")
+                {
+                    // Obtener ID del plan de entrenamiento
+                    int idPlan = Convert.ToInt32(dataGridView.Rows[e.RowIndex].Cells["ID"].Value);
+
+                    // Mostrar detalles del plan (tu formulario VerPlanPlantilla)
+                    VerPlanPlantilla formPlan = new VerPlanPlantilla(idPlan);
+                    formPlan.ShowDialog();
+                }
             }
         }
+
+
+
 
         private void contentPanel_Paint(object sender, PaintEventArgs e)
         {
