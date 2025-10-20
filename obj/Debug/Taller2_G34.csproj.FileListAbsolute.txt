@@ -54,3 +54,7 @@ C:\Users\yago_\LIC\Taller 2\Proyecto 34\Taller2_G34\bin\Debug\BouncyCastle.Crypt
 C:\Users\yago_\LIC\Taller 2\Proyecto 34\Taller2_G34\bin\Debug\itextsharp.dll
 C:\Users\yago_\LIC\Taller 2\Proyecto 34\Taller2_G34\bin\Debug\itextsharp.xml
 C:\Users\yago_\LIC\Taller 2\Proyecto 34\Taller2_G34\obj\Debug\Taller2_.8AE78F14.Up2Date
+C:\Users\anafa\OneDrive\Escritorio\Taller de programación 2\Practico 1\Taller2_G34\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\anafa\OneDrive\Escritorio\Taller de programación 2\Practico 1\Taller2_G34\bin\Debug\itextsharp.dll
+C:\Users\anafa\OneDrive\Escritorio\Taller de programación 2\Practico 1\Taller2_G34\bin\Debug\itextsharp.xml
+C:\Users\anafa\OneDrive\Escritorio\Taller de programación 2\Practico 1\Taller2_G34\obj\Debug\Taller2_.8AE78F14.Up2Date

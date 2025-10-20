@@ -133,13 +133,89 @@ namespace Taller2_G34
                 MessageBox.Show("El correo electrónico no tiene un formato válido.");
                 return false;
             }
+            if (datePickerNacimiento.Value.Date >= DateTime.Today)
+            {
+                MessageBox.Show("La fecha de nacimiento no puede ser hoy o en el futuro.");
+                return false;
+            }
+            if (txtDNI.Text.Length != 8)
+            {
+                MessageBox.Show("El DNI debe tener 8 dígitos.");
+                return false;
+            }
 
             return true;
+
         }
 
         private void txtNombreAlumno_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtNombreAlumno_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
+            {
+                e.Handled = true; // Ignorar el carácter si no es letra, control o espacio
+            }
+        }
+
+        private void txtDNI_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Ignorar el carácter si no es dígito
+            }
+        }
+
+        private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
+            {
+                e.Handled = true; // Ignorar el carácter si no es dígito
+            }
+        }
+
+        private void txtApellidoAlumno_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
+            {
+                e.Handled = true; // Ignorar el carácter si no es letra, control o espacio
+            }
+        }
+
+        private void txtEmail_Leave(object sender, EventArgs e)
+        {
+            string email = txtEmail.Text.Trim();
+
+            // Si el campo está vacío, no mostrar error todavía
+            if (string.IsNullOrEmpty(email))
+                return;
+
+            // Validar formato de correo electrónico
+            if (!EsEmailValido(email))
+            {
+                MessageBox.Show("El formato del correo electrónico no es válido.",
+                                "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                // Devolver el foco al TextBox para que el usuario corrija
+                txtEmail.Focus();
+            }
+        }
+
+        // Método auxiliar reutilizable
+        private bool EsEmailValido(string email)
+        {
+            try
+            {
+                var mail = new System.Net.Mail.MailAddress(email);
+                return mail.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

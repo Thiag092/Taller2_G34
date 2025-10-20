@@ -74,7 +74,7 @@
             this.lblCantidad.AutoSize = true;
             this.lblCantidad.Location = new System.Drawing.Point(88, 203);
             this.lblCantidad.Name = "lblCantidad";
-            this.lblCantidad.Size = new System.Drawing.Size(101, 20);
+            this.lblCantidad.Size = new System.Drawing.Size(81, 16);
             this.lblCantidad.TabIndex = 6;
             this.lblCantidad.Text = "Monto base:";
             this.lblCantidad.Click += new System.EventHandler(this.lblCantidad_Click);
@@ -108,7 +108,7 @@
             this.lblTotal.AutoSize = true;
             this.lblTotal.Location = new System.Drawing.Point(88, 283);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(114, 20);
+            this.lblTotal.Size = new System.Drawing.Size(91, 16);
             this.lblTotal.TabIndex = 10;
             this.lblTotal.Text = "Total a pagar:";
             // 
@@ -153,13 +153,13 @@
             this.labelMembresia.AutoSize = true;
             this.labelMembresia.Location = new System.Drawing.Point(205, 123);
             this.labelMembresia.Name = "labelMembresia";
-            this.labelMembresia.Size = new System.Drawing.Size(94, 20);
+            this.labelMembresia.Size = new System.Drawing.Size(75, 16);
             this.labelMembresia.TabIndex = 16;
             this.labelMembresia.Text = "Membresia";
             // 
             // FormPagos
             // 
-            this.ClientSize = new System.Drawing.Size(444, 356);
+            this.ClientSize = new System.Drawing.Size(513, 410);
             this.Controls.Add(this.labelMembresia);
             this.Controls.Add(this.labelAlumno);
             this.Controls.Add(this.btnCancelar);
