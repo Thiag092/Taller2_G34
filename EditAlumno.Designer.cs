@@ -33,28 +33,29 @@
             this.labelFichaAlumno = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.textBoxObservaciones = new System.Windows.Forms.TextBox();
-            this.labelObservaciones = new System.Windows.Forms.Label();
-            this.LRol = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtSexo = new System.Windows.Forms.ComboBox();
-            this.labelNombre = new System.Windows.Forms.Label();
-            this.txtNombre = new System.Windows.Forms.TextBox();
-            this.txtDniAlumno = new System.Windows.Forms.TextBox();
-            this.txtContactoEmergencia = new System.Windows.Forms.TextBox();
-            this.datePickerNacimiento = new System.Windows.Forms.DateTimePicker();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtTelefono = new System.Windows.Forms.TextBox();
-            this.labelApellido = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtEmail = new System.Windows.Forms.TextBox();
-            this.txtApellido = new System.Windows.Forms.TextBox();
-            this.lblEmail = new System.Windows.Forms.Label();
+            this.BConfirmar = new System.Windows.Forms.Button();
             this.labelMembresia = new System.Windows.Forms.Label();
             this.comboBoxMembresia = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.comboBoxPlan = new System.Windows.Forms.ComboBox();
+            this.textBoxObservaciones = new System.Windows.Forms.TextBox();
+            this.labelObservaciones = new System.Windows.Forms.Label();
+            this.lblEmail = new System.Windows.Forms.Label();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtSexo = new System.Windows.Forms.ComboBox();
+            this.LRol = new System.Windows.Forms.Label();
+            this.datePickerNacimiento = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtTelefono = new System.Windows.Forms.TextBox();
+            this.txtContactoEmergencia = new System.Windows.Forms.TextBox();
+            this.txtDniAlumno = new System.Windows.Forms.TextBox();
+            this.txtApellido = new System.Windows.Forms.TextBox();
+            this.txtNombre = new System.Windows.Forms.TextBox();
+            this.labelApellido = new System.Windows.Forms.Label();
+            this.labelNombre = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -71,7 +72,7 @@
             this.BCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BCancelar.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BCancelar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BCancelar.Location = new System.Drawing.Point(444, 501);
+            this.BCancelar.Location = new System.Drawing.Point(200, 501);
             this.BCancelar.Name = "BCancelar";
             this.BCancelar.Size = new System.Drawing.Size(147, 40);
             this.BCancelar.TabIndex = 34;
@@ -125,6 +126,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.BConfirmar);
             this.panel2.Controls.Add(this.labelMembresia);
             this.panel2.Controls.Add(this.comboBoxMembresia);
             this.panel2.Controls.Add(this.label6);
@@ -155,180 +157,21 @@
             this.panel2.TabIndex = 0;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
-            // textBoxObservaciones
+            // BConfirmar
             // 
-            this.textBoxObservaciones.Location = new System.Drawing.Point(200, 365);
-            this.textBoxObservaciones.Multiline = true;
-            this.textBoxObservaciones.Name = "textBoxObservaciones";
-            this.textBoxObservaciones.Size = new System.Drawing.Size(620, 102);
-            this.textBoxObservaciones.TabIndex = 62;
-            this.textBoxObservaciones.TextChanged += new System.EventHandler(this.textBoxObservaciones_TextChanged);
-            // 
-            // labelObservaciones
-            // 
-            this.labelObservaciones.AutoSize = true;
-            this.labelObservaciones.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelObservaciones.Location = new System.Drawing.Point(196, 338);
-            this.labelObservaciones.Name = "labelObservaciones";
-            this.labelObservaciones.Size = new System.Drawing.Size(139, 24);
-            this.labelObservaciones.TabIndex = 61;
-            this.labelObservaciones.Text = "Observaciones:";
-            this.labelObservaciones.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // LRol
-            // 
-            this.LRol.AutoSize = true;
-            this.LRol.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LRol.Location = new System.Drawing.Point(530, 136);
-            this.LRol.Name = "LRol";
-            this.LRol.Size = new System.Drawing.Size(188, 24);
-            this.LRol.TabIndex = 47;
-            this.LRol.Text = "Fecha de nacimiento";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(202, 136);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 24);
-            this.label1.TabIndex = 43;
-            this.label1.Text = "DNI";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(27, 245);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(221, 24);
-            this.label2.TabIndex = 44;
-            this.label2.Text = "Contacto de emergencia";
-            // 
-            // txtSexo
-            // 
-            this.txtSexo.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSexo.FormattingEnabled = true;
-            this.txtSexo.Location = new System.Drawing.Point(276, 190);
-            this.txtSexo.Name = "txtSexo";
-            this.txtSexo.Size = new System.Drawing.Size(181, 31);
-            this.txtSexo.TabIndex = 48;
-            // 
-            // labelNombre
-            // 
-            this.labelNombre.AutoSize = true;
-            this.labelNombre.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNombre.Location = new System.Drawing.Point(164, 30);
-            this.labelNombre.Name = "labelNombre";
-            this.labelNombre.Size = new System.Drawing.Size(82, 24);
-            this.labelNombre.TabIndex = 36;
-            this.labelNombre.Text = "Nombre";
-            // 
-            // txtNombre
-            // 
-            this.txtNombre.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombre.Location = new System.Drawing.Point(276, 27);
-            this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(218, 31);
-            this.txtNombre.TabIndex = 0;
-            this.txtNombre.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
-            // 
-            // txtDniAlumno
-            // 
-            this.txtDniAlumno.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDniAlumno.Location = new System.Drawing.Point(276, 131);
-            this.txtDniAlumno.Name = "txtDniAlumno";
-            this.txtDniAlumno.Size = new System.Drawing.Size(218, 31);
-            this.txtDniAlumno.TabIndex = 4;
-            this.txtDniAlumno.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
-            this.txtDniAlumno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDniAlumno_KeyPress);
-            // 
-            // txtContactoEmergencia
-            // 
-            this.txtContactoEmergencia.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtContactoEmergencia.Location = new System.Drawing.Point(276, 242);
-            this.txtContactoEmergencia.Name = "txtContactoEmergencia";
-            this.txtContactoEmergencia.Size = new System.Drawing.Size(218, 31);
-            this.txtContactoEmergencia.TabIndex = 2;
-            this.txtContactoEmergencia.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
-            // 
-            // datePickerNacimiento
-            // 
-            this.datePickerNacimiento.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.datePickerNacimiento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.datePickerNacimiento.Location = new System.Drawing.Point(753, 131);
-            this.datePickerNacimiento.Name = "datePickerNacimiento";
-            this.datePickerNacimiento.Size = new System.Drawing.Size(125, 30);
-            this.datePickerNacimiento.TabIndex = 5;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(196, 187);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(50, 24);
-            this.label4.TabIndex = 49;
-            this.label4.Text = "Sexo";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
-            // 
-            // txtTelefono
-            // 
-            this.txtTelefono.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTelefono.Location = new System.Drawing.Point(276, 80);
-            this.txtTelefono.Name = "txtTelefono";
-            this.txtTelefono.Size = new System.Drawing.Size(218, 31);
-            this.txtTelefono.TabIndex = 3;
-            this.txtTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTelefono_KeyPress);
-            // 
-            // labelApellido
-            // 
-            this.labelApellido.AutoSize = true;
-            this.labelApellido.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelApellido.Location = new System.Drawing.Point(531, 27);
-            this.labelApellido.Name = "labelApellido";
-            this.labelApellido.Size = new System.Drawing.Size(83, 24);
-            this.labelApellido.TabIndex = 37;
-            this.labelApellido.Text = "Apellido";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(109, 83);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(84, 24);
-            this.label3.TabIndex = 45;
-            this.label3.Text = "Telefono";
-            // 
-            // txtEmail
-            // 
-            this.txtEmail.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmail.Location = new System.Drawing.Point(647, 77);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(232, 29);
-            this.txtEmail.TabIndex = 50;
-            // 
-            // txtApellido
-            // 
-            this.txtApellido.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtApellido.Location = new System.Drawing.Point(675, 24);
-            this.txtApellido.Name = "txtApellido";
-            this.txtApellido.Size = new System.Drawing.Size(203, 31);
-            this.txtApellido.TabIndex = 1;
-            this.txtApellido.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
-            this.txtApellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtApellido_KeyPress);
-            // 
-            // lblEmail
-            // 
-            this.lblEmail.AutoSize = true;
-            this.lblEmail.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmail.Location = new System.Drawing.Point(560, 80);
-            this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(54, 23);
-            this.lblEmail.TabIndex = 51;
-            this.lblEmail.Text = "Email";
+            this.BConfirmar.BackColor = System.Drawing.Color.Green;
+            this.BConfirmar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BConfirmar.FlatAppearance.BorderSize = 0;
+            this.BConfirmar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BConfirmar.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BConfirmar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BConfirmar.Location = new System.Drawing.Point(688, 501);
+            this.BConfirmar.Name = "BConfirmar";
+            this.BConfirmar.Size = new System.Drawing.Size(132, 40);
+            this.BConfirmar.TabIndex = 69;
+            this.BConfirmar.Text = "Confirmar";
+            this.BConfirmar.UseVisualStyleBackColor = false;
+            this.BConfirmar.Click += new System.EventHandler(this.BConfirmar_Click);
             // 
             // labelMembresia
             // 
@@ -365,6 +208,181 @@
             this.comboBoxPlan.Name = "comboBoxPlan";
             this.comboBoxPlan.Size = new System.Drawing.Size(160, 24);
             this.comboBoxPlan.TabIndex = 66;
+            // 
+            // textBoxObservaciones
+            // 
+            this.textBoxObservaciones.Location = new System.Drawing.Point(200, 365);
+            this.textBoxObservaciones.Multiline = true;
+            this.textBoxObservaciones.Name = "textBoxObservaciones";
+            this.textBoxObservaciones.Size = new System.Drawing.Size(620, 102);
+            this.textBoxObservaciones.TabIndex = 62;
+            this.textBoxObservaciones.TextChanged += new System.EventHandler(this.textBoxObservaciones_TextChanged);
+            // 
+            // labelObservaciones
+            // 
+            this.labelObservaciones.AutoSize = true;
+            this.labelObservaciones.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelObservaciones.Location = new System.Drawing.Point(196, 338);
+            this.labelObservaciones.Name = "labelObservaciones";
+            this.labelObservaciones.Size = new System.Drawing.Size(139, 24);
+            this.labelObservaciones.TabIndex = 61;
+            this.labelObservaciones.Text = "Observaciones:";
+            this.labelObservaciones.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblEmail
+            // 
+            this.lblEmail.AutoSize = true;
+            this.lblEmail.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmail.Location = new System.Drawing.Point(560, 80);
+            this.lblEmail.Name = "lblEmail";
+            this.lblEmail.Size = new System.Drawing.Size(54, 23);
+            this.lblEmail.TabIndex = 51;
+            this.lblEmail.Text = "Email";
+            // 
+            // txtEmail
+            // 
+            this.txtEmail.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEmail.Location = new System.Drawing.Point(647, 77);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(232, 29);
+            this.txtEmail.TabIndex = 50;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(196, 187);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(50, 24);
+            this.label4.TabIndex = 49;
+            this.label4.Text = "Sexo";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // txtSexo
+            // 
+            this.txtSexo.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSexo.FormattingEnabled = true;
+            this.txtSexo.Location = new System.Drawing.Point(276, 190);
+            this.txtSexo.Name = "txtSexo";
+            this.txtSexo.Size = new System.Drawing.Size(181, 31);
+            this.txtSexo.TabIndex = 48;
+            // 
+            // LRol
+            // 
+            this.LRol.AutoSize = true;
+            this.LRol.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LRol.Location = new System.Drawing.Point(530, 136);
+            this.LRol.Name = "LRol";
+            this.LRol.Size = new System.Drawing.Size(188, 24);
+            this.LRol.TabIndex = 47;
+            this.LRol.Text = "Fecha de nacimiento";
+            // 
+            // datePickerNacimiento
+            // 
+            this.datePickerNacimiento.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.datePickerNacimiento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.datePickerNacimiento.Location = new System.Drawing.Point(753, 131);
+            this.datePickerNacimiento.Name = "datePickerNacimiento";
+            this.datePickerNacimiento.Size = new System.Drawing.Size(125, 30);
+            this.datePickerNacimiento.TabIndex = 5;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(109, 83);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(84, 24);
+            this.label3.TabIndex = 45;
+            this.label3.Text = "Telefono";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(27, 245);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(221, 24);
+            this.label2.TabIndex = 44;
+            this.label2.Text = "Contacto de emergencia";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(202, 136);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(44, 24);
+            this.label1.TabIndex = 43;
+            this.label1.Text = "DNI";
+            // 
+            // txtTelefono
+            // 
+            this.txtTelefono.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTelefono.Location = new System.Drawing.Point(276, 80);
+            this.txtTelefono.Name = "txtTelefono";
+            this.txtTelefono.Size = new System.Drawing.Size(218, 31);
+            this.txtTelefono.TabIndex = 3;
+            this.txtTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTelefono_KeyPress);
+            // 
+            // txtContactoEmergencia
+            // 
+            this.txtContactoEmergencia.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtContactoEmergencia.Location = new System.Drawing.Point(276, 242);
+            this.txtContactoEmergencia.Name = "txtContactoEmergencia";
+            this.txtContactoEmergencia.Size = new System.Drawing.Size(218, 31);
+            this.txtContactoEmergencia.TabIndex = 2;
+            this.txtContactoEmergencia.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
+            // 
+            // txtDniAlumno
+            // 
+            this.txtDniAlumno.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDniAlumno.Location = new System.Drawing.Point(276, 131);
+            this.txtDniAlumno.Name = "txtDniAlumno";
+            this.txtDniAlumno.Size = new System.Drawing.Size(218, 31);
+            this.txtDniAlumno.TabIndex = 4;
+            this.txtDniAlumno.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            this.txtDniAlumno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDniAlumno_KeyPress);
+            // 
+            // txtApellido
+            // 
+            this.txtApellido.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtApellido.Location = new System.Drawing.Point(675, 24);
+            this.txtApellido.Name = "txtApellido";
+            this.txtApellido.Size = new System.Drawing.Size(203, 31);
+            this.txtApellido.TabIndex = 1;
+            this.txtApellido.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.txtApellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtApellido_KeyPress);
+            // 
+            // txtNombre
+            // 
+            this.txtNombre.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombre.Location = new System.Drawing.Point(276, 27);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(218, 31);
+            this.txtNombre.TabIndex = 0;
+            this.txtNombre.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
+            // 
+            // labelApellido
+            // 
+            this.labelApellido.AutoSize = true;
+            this.labelApellido.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelApellido.Location = new System.Drawing.Point(531, 27);
+            this.labelApellido.Name = "labelApellido";
+            this.labelApellido.Size = new System.Drawing.Size(83, 24);
+            this.labelApellido.TabIndex = 37;
+            this.labelApellido.Text = "Apellido";
+            // 
+            // labelNombre
+            // 
+            this.labelNombre.AutoSize = true;
+            this.labelNombre.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNombre.Location = new System.Drawing.Point(164, 30);
+            this.labelNombre.Name = "labelNombre";
+            this.labelNombre.Size = new System.Drawing.Size(82, 24);
+            this.labelNombre.TabIndex = 36;
+            this.labelNombre.Text = "Nombre";
             // 
             // EditAlumno
             // 
@@ -415,5 +433,6 @@
         private System.Windows.Forms.ComboBox comboBoxMembresia;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox comboBoxPlan;
+        private System.Windows.Forms.Button BConfirmar;
     }
 }

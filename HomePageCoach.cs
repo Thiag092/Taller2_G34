@@ -266,8 +266,10 @@ namespace Taller2_G34
                     string dniAlumno = dataGridView.Rows[e.RowIndex].Cells["DNI"].Value.ToString();
 
                     // Mostrar detalles del alumno
-                    EditAlumno formDetalles = new EditAlumno(dniAlumno);
+                    // 👇 El segundo parámetro "true" indica modo solo lectura (no editable)
+                    EditAlumno formDetalles = new EditAlumno(dniAlumno, true);
                     formDetalles.ShowDialog();
+
                 }
                 else if (vistaActual == "rutinas")
                 {
