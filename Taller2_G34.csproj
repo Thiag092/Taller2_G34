@@ -48,6 +48,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.3, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\iTextSharp.5.5.13.3\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -214,6 +220,7 @@
     <EmbeddedResource Include="VerPlanPlantilla.resx">
       <DependentUpon>VerPlanPlantilla.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\DataSources\AgregarAlumno.datasource" />
     <None Include="Properties\DataSources\AgregarPersonal.datasource" />
     <None Include="Properties\DataSources\AgregarRutina.datasource" />
@@ -283,6 +290,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\facturacion_gimnasio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Comprobantes\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

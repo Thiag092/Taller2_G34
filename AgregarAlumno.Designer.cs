@@ -30,7 +30,10 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.txtContactoEmergencia = new System.Windows.Forms.TextBox();
+            this.lblContactoEmergencia = new System.Windows.Forms.Label();
             this.textBoxObservaciones = new System.Windows.Forms.TextBox();
             this.labelMembresia = new System.Windows.Forms.Label();
             this.comboBoxMembresia = new System.Windows.Forms.ComboBox();
@@ -55,16 +58,13 @@
             this.labelNombre = new System.Windows.Forms.Label();
             this.BConfirmar = new System.Windows.Forms.Button();
             this.BCancelar = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.lblContactoEmergencia = new System.Windows.Forms.Label();
-            this.txtContactoEmergencia = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -94,6 +94,16 @@
             this.splitContainer1.Size = new System.Drawing.Size(877, 771);
             this.splitContainer1.SplitterDistance = 138;
             this.splitContainer1.TabIndex = 5;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Taller2_G34.Properties.Resources.ChatGPT_Image_1_sept_2025__17_46_04;
+            this.pictureBox1.Location = new System.Drawing.Point(346, 4);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(186, 126);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
             // 
             // panel2
             // 
@@ -128,6 +138,24 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(877, 629);
             this.panel2.TabIndex = 0;
+            // 
+            // txtContactoEmergencia
+            // 
+            this.txtContactoEmergencia.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtContactoEmergencia.Location = new System.Drawing.Point(48, 282);
+            this.txtContactoEmergencia.Name = "txtContactoEmergencia";
+            this.txtContactoEmergencia.Size = new System.Drawing.Size(360, 29);
+            this.txtContactoEmergencia.TabIndex = 62;
+            // 
+            // lblContactoEmergencia
+            // 
+            this.lblContactoEmergencia.AutoSize = true;
+            this.lblContactoEmergencia.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblContactoEmergencia.Location = new System.Drawing.Point(44, 258);
+            this.lblContactoEmergencia.Name = "lblContactoEmergencia";
+            this.lblContactoEmergencia.Size = new System.Drawing.Size(210, 23);
+            this.lblContactoEmergencia.TabIndex = 61;
+            this.lblContactoEmergencia.Text = "Contacto de emergencia";
             // 
             // textBoxObservaciones
             // 
@@ -312,6 +340,7 @@
             this.txtNombreAlumno.Name = "txtNombreAlumno";
             this.txtNombreAlumno.Size = new System.Drawing.Size(238, 31);
             this.txtNombreAlumno.TabIndex = 38;
+            this.txtNombreAlumno.TextChanged += new System.EventHandler(this.txtNombreAlumno_TextChanged);
             // 
             // labelApellido
             // 
@@ -363,34 +392,6 @@
             this.BCancelar.UseVisualStyleBackColor = false;
             this.BCancelar.Click += new System.EventHandler(this.BCancelar_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Taller2_G34.Properties.Resources.ChatGPT_Image_1_sept_2025__17_46_04;
-            this.pictureBox1.Location = new System.Drawing.Point(346, 4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(186, 126);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
-            // 
-            // lblContactoEmergencia
-            // 
-            this.lblContactoEmergencia.AutoSize = true;
-            this.lblContactoEmergencia.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblContactoEmergencia.Location = new System.Drawing.Point(44, 258);
-            this.lblContactoEmergencia.Name = "lblContactoEmergencia";
-            this.lblContactoEmergencia.Size = new System.Drawing.Size(210, 23);
-            this.lblContactoEmergencia.TabIndex = 61;
-            this.lblContactoEmergencia.Text = "Contacto de emergencia";
-            // 
-            // txtContactoEmergencia
-            // 
-            this.txtContactoEmergencia.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtContactoEmergencia.Location = new System.Drawing.Point(48, 282);
-            this.txtContactoEmergencia.Name = "txtContactoEmergencia";
-            this.txtContactoEmergencia.Size = new System.Drawing.Size(360, 29);
-            this.txtContactoEmergencia.TabIndex = 62;
-            // 
             // AgregarAlumno
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -405,9 +406,9 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }

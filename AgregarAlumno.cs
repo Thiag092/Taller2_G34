@@ -79,55 +79,41 @@ namespace Taller2_G34
         {
             if (!ValidarCampos()) return;
 
-            try
+            // Guardamos los datos del formulario en memoria
+            string nombre = txtNombreAlumno.Text.Trim();
+            string apellido = txtApellidoAlumno.Text.Trim();
+            string nombreCompleto = $"{nombre} {apellido}";
+            string dni = txtDNI.Text.Trim();
+            string telefono = txtTelefono.Text.Trim();
+            string correo = txtEmail.Text.Trim();
+            DateTime fechaNac = datePickerNacimiento.Value.Date;
+            string sexo = comboBoxSexo.SelectedItem.ToString();
+            int idMembresia = Convert.ToInt32(comboBoxMembresia.SelectedValue);
+            string nombreMembresia = comboBoxMembresia.Text;
+            int idPlan = Convert.ToInt32(comboBoxPlan.SelectedValue);
+            string nombrePlan = comboBoxPlan.Text;
+            int idCoach = Convert.ToInt32(comboBoxCoach.SelectedValue);
+            string contactoEmergencia = txtContactoEmergencia.Text.Trim();
+            string observaciones = textBoxObservaciones.Text.Trim();
+
+            // 🔹 Abrimos FormPagos, pasando los datos (no insertamos todavía)
+            FormPagos formPagos = new FormPagos(
+          nombreCompleto, dni, telefono, correo,
+           fechaNac, sexo,
+           idMembresia, nombreMembresia,
+           idPlan, nombrePlan,
+          idCoach, contactoEmergencia, observaciones
+                         );
+
+            // Si el pago se completa correctamente, cerramos el formulario actual
+            if (formPagos.ShowDialog() == DialogResult.OK)
             {
-                using (SqlConnection conexion = new SqlConnection(Conexion))
-                using (SqlCommand cmd = new SqlCommand(@"
-            INSERT INTO Alumno (
-                nombre, apellido, dni, telefono, email, fecha_nacimiento,
-                sexo, id_membresia, id_plan, id_coach,
-                contacto_emergencia, observaciones, estado
-            )
-            VALUES (
-                @nombre, @apellido, @dni, @telefono, @correo, @fechaNac,
-                @sexo, @idMembresia, @idPlan, @idCoach,
-                @contactoEmergencia, @observaciones, 1
-            );
-            SELECT SCOPE_IDENTITY();", conexion)) // devuelve el ID del nuevo alumno
-                {
-                    cmd.Parameters.AddWithValue("@nombre", txtNombreAlumno.Text.Trim());
-                    cmd.Parameters.AddWithValue("@apellido", txtApellidoAlumno.Text.Trim());
-                    cmd.Parameters.AddWithValue("@dni", txtDNI.Text.Trim());
-                    cmd.Parameters.AddWithValue("@telefono", txtTelefono.Text.Trim());
-                    cmd.Parameters.AddWithValue("@correo", txtEmail.Text.Trim());
-                    cmd.Parameters.AddWithValue("@fechaNac", datePickerNacimiento.Value.Date);
-                    cmd.Parameters.AddWithValue("@sexo", comboBoxSexo.SelectedItem.ToString());
-                    cmd.Parameters.AddWithValue("@idMembresia", comboBoxMembresia.SelectedValue);
-                    cmd.Parameters.AddWithValue("@idPlan", comboBoxPlan.SelectedValue);
-                    cmd.Parameters.AddWithValue("@idCoach", comboBoxCoach.SelectedValue);
-                    cmd.Parameters.AddWithValue("@contactoEmergencia", txtContactoEmergencia.Text.Trim());
-                    cmd.Parameters.AddWithValue("@observaciones", textBoxObservaciones.Text.Trim());
-
-                    conexion.Open();
-
-                    // Ejecuta el INSERT y devuelve el id generado
-                    int idAlumno = Convert.ToInt32(cmd.ExecuteScalar());
-
-                    MessageBox.Show("Alumno registrado exitosamente.");
-
-                    // Abrimos el formulario de pago pasándole el ID del alumno recién creado
-                    FormPagos formPagos = new FormPagos(idAlumno);
-                    formPagos.ShowDialog();
-                }
-
-                // Cerramos el formulario actual después de registrar y pagar
                 this.Close();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al registrar alumno: " + ex.Message);
-            }
+
+
         }
+
 
         // Validación de campos obligatorios
         private bool ValidarCampos()
@@ -149,6 +135,11 @@ namespace Taller2_G34
             }
 
             return true;
+        }
+
+        private void txtNombreAlumno_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

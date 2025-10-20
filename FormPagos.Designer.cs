@@ -18,9 +18,7 @@
         private void InitializeComponent()
         {
             this.lblAlumno = new System.Windows.Forms.Label();
-            this.comboAlumno = new System.Windows.Forms.ComboBox();
             this.lblMembresia = new System.Windows.Forms.Label();
-            this.comboMembresia = new System.Windows.Forms.ComboBox();
             this.lblMedioPago = new System.Windows.Forms.Label();
             this.comboMedioPago = new System.Windows.Forms.ComboBox();
             this.lblCantidad = new System.Windows.Forms.Label();
@@ -29,9 +27,10 @@
             this.txtRecargo = new System.Windows.Forms.TextBox();
             this.lblTotal = new System.Windows.Forms.Label();
             this.txtTotal = new System.Windows.Forms.TextBox();
-            this.btnCalcular = new System.Windows.Forms.Button();
             this.btnRegistrarPago = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.labelAlumno = new System.Windows.Forms.Label();
+            this.labelMembresia = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblAlumno
@@ -43,15 +42,6 @@
             this.lblAlumno.TabIndex = 0;
             this.lblAlumno.Text = "Alumno:";
             // 
-            // comboAlumno
-            // 
-            this.comboAlumno.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboAlumno.FormattingEnabled = true;
-            this.comboAlumno.Location = new System.Drawing.Point(208, 80);
-            this.comboAlumno.Name = "comboAlumno";
-            this.comboAlumno.Size = new System.Drawing.Size(250, 24);
-            this.comboAlumno.TabIndex = 1;
-            // 
             // lblMembresia
             // 
             this.lblMembresia.AutoSize = true;
@@ -60,15 +50,6 @@
             this.lblMembresia.Size = new System.Drawing.Size(78, 16);
             this.lblMembresia.TabIndex = 2;
             this.lblMembresia.Text = "Membresía:";
-            // 
-            // comboMembresia
-            // 
-            this.comboMembresia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboMembresia.FormattingEnabled = true;
-            this.comboMembresia.Location = new System.Drawing.Point(208, 120);
-            this.comboMembresia.Name = "comboMembresia";
-            this.comboMembresia.Size = new System.Drawing.Size(250, 24);
-            this.comboMembresia.TabIndex = 3;
             // 
             // lblMedioPago
             // 
@@ -93,9 +74,10 @@
             this.lblCantidad.AutoSize = true;
             this.lblCantidad.Location = new System.Drawing.Point(88, 203);
             this.lblCantidad.Name = "lblCantidad";
-            this.lblCantidad.Size = new System.Drawing.Size(64, 16);
+            this.lblCantidad.Size = new System.Drawing.Size(101, 20);
             this.lblCantidad.TabIndex = 6;
-            this.lblCantidad.Text = "Cantidad:";
+            this.lblCantidad.Text = "Monto base:";
+            this.lblCantidad.Click += new System.EventHandler(this.lblCantidad_Click);
             // 
             // txtCantidad
             // 
@@ -126,9 +108,9 @@
             this.lblTotal.AutoSize = true;
             this.lblTotal.Location = new System.Drawing.Point(88, 283);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(41, 16);
+            this.lblTotal.Size = new System.Drawing.Size(114, 20);
             this.lblTotal.TabIndex = 10;
-            this.lblTotal.Text = "Total:";
+            this.lblTotal.Text = "Total a pagar:";
             // 
             // txtTotal
             // 
@@ -138,15 +120,6 @@
             this.txtTotal.Size = new System.Drawing.Size(100, 22);
             this.txtTotal.TabIndex = 11;
             // 
-            // btnCalcular
-            // 
-            this.btnCalcular.Location = new System.Drawing.Point(328, 198);
-            this.btnCalcular.Name = "btnCalcular";
-            this.btnCalcular.Size = new System.Drawing.Size(130, 27);
-            this.btnCalcular.TabIndex = 12;
-            this.btnCalcular.Text = "Calcular Total";
-            this.btnCalcular.UseVisualStyleBackColor = true;
-            // 
             // btnRegistrarPago
             // 
             this.btnRegistrarPago.Location = new System.Drawing.Point(328, 325);
@@ -155,6 +128,7 @@
             this.btnRegistrarPago.TabIndex = 13;
             this.btnRegistrarPago.Text = "Registrar Pago";
             this.btnRegistrarPago.UseVisualStyleBackColor = true;
+            this.btnRegistrarPago.Click += new System.EventHandler(this.btnRegistrarPago_Click);
             // 
             // btnCancelar
             // 
@@ -165,12 +139,31 @@
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
+            // labelAlumno
+            // 
+            this.labelAlumno.AutoSize = true;
+            this.labelAlumno.Location = new System.Drawing.Point(205, 83);
+            this.labelAlumno.Name = "labelAlumno";
+            this.labelAlumno.Size = new System.Drawing.Size(55, 16);
+            this.labelAlumno.TabIndex = 15;
+            this.labelAlumno.Text = "Alumno:";
+            // 
+            // labelMembresia
+            // 
+            this.labelMembresia.AutoSize = true;
+            this.labelMembresia.Location = new System.Drawing.Point(205, 123);
+            this.labelMembresia.Name = "labelMembresia";
+            this.labelMembresia.Size = new System.Drawing.Size(94, 20);
+            this.labelMembresia.TabIndex = 16;
+            this.labelMembresia.Text = "Membresia";
+            // 
             // FormPagos
             // 
-            this.ClientSize = new System.Drawing.Size(555, 446);
+            this.ClientSize = new System.Drawing.Size(444, 356);
+            this.Controls.Add(this.labelMembresia);
+            this.Controls.Add(this.labelAlumno);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnRegistrarPago);
-            this.Controls.Add(this.btnCalcular);
             this.Controls.Add(this.txtTotal);
             this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.txtRecargo);
@@ -179,9 +172,7 @@
             this.Controls.Add(this.lblCantidad);
             this.Controls.Add(this.comboMedioPago);
             this.Controls.Add(this.lblMedioPago);
-            this.Controls.Add(this.comboMembresia);
             this.Controls.Add(this.lblMembresia);
-            this.Controls.Add(this.comboAlumno);
             this.Controls.Add(this.lblAlumno);
             this.Name = "FormPagos";
             this.Text = "Gestión de Pagos";
@@ -194,9 +185,7 @@
         #endregion
 
         private System.Windows.Forms.Label lblAlumno;
-        private System.Windows.Forms.ComboBox comboAlumno;
         private System.Windows.Forms.Label lblMembresia;
-        private System.Windows.Forms.ComboBox comboMembresia;
         private System.Windows.Forms.Label lblMedioPago;
         private System.Windows.Forms.ComboBox comboMedioPago;
         private System.Windows.Forms.Label lblCantidad;
@@ -205,8 +194,9 @@
         private System.Windows.Forms.TextBox txtRecargo;
         private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.TextBox txtTotal;
-        private System.Windows.Forms.Button btnCalcular;
         private System.Windows.Forms.Button btnRegistrarPago;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Label labelAlumno;
+        private System.Windows.Forms.Label labelMembresia;
     }
 }
