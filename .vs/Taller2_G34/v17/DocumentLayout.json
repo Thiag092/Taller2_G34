@@ -3,7 +3,7 @@
   "WorkspaceRootPath": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\editalumno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|c:\\users\\yago_\\lic\\taller 2\\proyecto 34\\taller2_g34\\editalumno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:editalumno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -15,7 +15,7 @@
       "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:homepageadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|c:\\users\\yago_\\lic\\taller 2\\proyecto 34\\taller2_g34\\homepagecoach.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\homepagecoach.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:homepagecoach.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -23,11 +23,11 @@
       "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:homepageadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|c:\\users\\yago_\\lic\\taller 2\\proyecto 34\\taller2_g34\\editrutina.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\editrutina.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:editrutina.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|c:\\users\\yago_\\lic\\taller 2\\proyecto 34\\taller2_g34\\homepagecoach.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\homepagecoach.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:homepagecoach.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
@@ -57,8 +57,7 @@
               "ToolTip": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\EditRutina.cs [Dise\u00F1o]",
               "RelativeToolTip": "EditRutina.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-19T23:05:07.634Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2025-10-19T23:05:07.634Z"
             },
             {
               "$type": "Document",
@@ -70,8 +69,7 @@
               "RelativeToolTip": "HomePageCoach.cs",
               "ViewState": "AgIAAPkAAAAAAAAAAAAwwA8BAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-19T22:59:34.368Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-19T22:59:34.368Z"
             },
             {
               "$type": "Document",
@@ -82,8 +80,7 @@
               "ToolTip": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\HomePageCoach.cs [Dise\u00F1o]",
               "RelativeToolTip": "HomePageCoach.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-19T22:59:32.814Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2025-10-19T22:59:32.814Z"
             },
             {
               "$type": "Document",
@@ -119,8 +116,7 @@
               "ToolTip": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\HomePageAdmin.cs [Dise\u00F1o]",
               "RelativeToolTip": "HomePageAdmin.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-18T20:54:03.526Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2025-10-18T20:54:03.526Z"
             },
             {
               "$type": "Document",
@@ -132,8 +128,7 @@
               "RelativeToolTip": "HomePageAdmin.cs",
               "ViewState": "AgIAAC4CAAAAAAAAAAAAAG8AAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-18T16:52:57.296Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-18T16:52:57.296Z"
             },
             {
               "$type": "Document",
@@ -145,8 +140,7 @@
               "RelativeToolTip": "App.config",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAABbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2025-10-12T20:59:10.161Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-12T20:59:10.161Z"
             },
             {
               "$type": "Document",
@@ -157,8 +151,7 @@
               "ToolTip": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\AgregarEjercicio.cs [Dise\u00F1o]",
               "RelativeToolTip": "AgregarEjercicio.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-04T16:14:22.32Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2025-10-04T16:14:22.32Z"
             }
           ]
         }

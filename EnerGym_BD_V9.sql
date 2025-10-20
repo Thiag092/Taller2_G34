@@ -342,3 +342,11 @@ VALUES (
 );
 GO
 
+
+--INSERTS DE MEDIOS DE PAGO
+INSERT INTO MedioDePago (nombre, comision, estado)
+VALUES 
+('Efectivo', 0.00, 1),                   -- sin recargo
+('Tarjeta de Débito', 5.00, 1),          -- 5% de recargo
+('Tarjeta de Crédito', 8.00, 1);         -- 8% de recargo
+GO
