@@ -96,14 +96,14 @@ namespace Taller2_G34
             string contactoEmergencia = txtContactoEmergencia.Text.Trim();
             string observaciones = textBoxObservaciones.Text.Trim();
 
-            // 🔹 Abrimos FormPagos, pasando los datos (no insertamos todavía)
+            //Abrimos FormPagos, pasando los datos (no insertamos todavía)
             FormPagos formPagos = new FormPagos(
-          nombreCompleto, dni, telefono, correo,
-           fechaNac, sexo,
-           idMembresia, nombreMembresia,
-           idPlan, nombrePlan,
-          idCoach, contactoEmergencia, observaciones
-                         );
+              nombreCompleto, dni, telefono, correo,
+               fechaNac, sexo,
+               idMembresia, nombreMembresia,
+               idPlan, nombrePlan,
+              idCoach, contactoEmergencia, observaciones
+            );
 
             // Si el pago se completa correctamente, cerramos el formulario actual
             if (formPagos.ShowDialog() == DialogResult.OK)
@@ -111,9 +111,7 @@ namespace Taller2_G34
                 this.Close();
             }
 
-
         }
-
 
         // Validación de campos obligatorios
         private bool ValidarCampos()
@@ -157,7 +155,7 @@ namespace Taller2_G34
         {
             if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
             {
-                e.Handled = true; // Ignorar el carácter si no es letra, control o espacio
+                e.Handled = true; // Ignorar el caracter si no es letra, control o espacio
             }
         }
 
@@ -173,7 +171,7 @@ namespace Taller2_G34
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
             {
-                e.Handled = true; // Ignorar el carácter si no es dígito
+                e.Handled = true; // Ignorar el caracter si no es dígito
             }
         }
 
@@ -181,7 +179,7 @@ namespace Taller2_G34
         {
             if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
             {
-                e.Handled = true; // Ignorar el carácter si no es letra, control o espacio
+                e.Handled = true; // Ignorar el caracter si no es letra, control o espacio
             }
         }
 

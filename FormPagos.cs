@@ -19,9 +19,6 @@ using System.Diagnostics;
 namespace Taller2_G34
 {
 
-    
-
-
     public partial class FormPagos : Form
     {
 
@@ -45,12 +42,12 @@ namespace Taller2_G34
 
 
         public FormPagos(
-    string nombreCompleto, string dni, string telefono, string correo,
-    DateTime fechaNac, string sexo,
-    int idMembresia, string nombreMembresia,
-    int idPlan, string nombrePlan,
-    int idCoach, string contactoEmergencia, string observaciones)
-        {
+        string nombreCompleto, string dni, string telefono, string correo,
+        DateTime fechaNac, string sexo,
+        int idMembresia, string nombreMembresia,
+        int idPlan, string nombrePlan,
+        int idCoach, string contactoEmergencia, string observaciones)
+            {
             InitializeComponent();
             this.nombreAlumno = nombreCompleto;
             this.membresia = nombreMembresia;
@@ -70,7 +67,10 @@ namespace Taller2_G34
             this.Load += FormPagos_Load;
         }
 
+        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
+        {
 
+        }
 
         private void FormPagos_Load(object sender, EventArgs e)
         {
@@ -102,19 +102,19 @@ namespace Taller2_G34
 
                 try
                 {
-                    // 1️⃣ Insertar el alumno y obtener su ID
+                    //Insertar el alumno y obtener su ID
                     SqlCommand cmdAlumno = new SqlCommand(@"
-                INSERT INTO Alumno (
-                    id_membresia, id_plan, id_coach, contacto_emergencia,
-                    sexo, observaciones, estado, nombre, apellido, dni,
-                    telefono, fecha_nacimiento, email
-                )
-                VALUES (
-                    @idMembresia, @idPlan, @idCoach, @contactoEmergencia,
-                    @sexo, @observaciones, 1, @nombre, @apellido, @dni,
-                    @telefono, @fechaNac, @correo
-                );
-                SELECT SCOPE_IDENTITY();", cn, tran);
+                    INSERT INTO Alumno (
+                        id_membresia, id_plan, id_coach, contacto_emergencia,
+                        sexo, observaciones, estado, nombre, apellido, dni,
+                        telefono, fecha_nacimiento, email
+                    )
+                    VALUES (
+                        @idMembresia, @idPlan, @idCoach, @contactoEmergencia,
+                        @sexo, @observaciones, 1, @nombre, @apellido, @dni,
+                        @telefono, @fechaNac, @correo
+                    );
+                    SELECT SCOPE_IDENTITY();", cn, tran);
 
                     string[] partes = nombreAlumno.Split(' ');
                     string nombre = partes[0];
@@ -135,7 +135,7 @@ namespace Taller2_G34
 
                     int idAlumnoInsertado = Convert.ToInt32(cmdAlumno.ExecuteScalar());
 
-                    // 2️⃣ Insertar el pago y obtener su ID
+                    // Insertar el pago y obtener su ID
                     SqlCommand cmdPago = new SqlCommand(@"
                 INSERT INTO Pago (id_alumno, id_medioPago, cantidad, recargo, total, fecha)
                 VALUES (@idAlumno, @idMedioPago, @cantidad, @recargo, @total, GETDATE());
@@ -149,7 +149,7 @@ namespace Taller2_G34
 
                     int idPagoInsertado = Convert.ToInt32(cmdPago.ExecuteScalar());
 
-                    // 3️⃣ Insertar el detalle del pago
+                    // Insertar el detalle del pago
                     SqlCommand cmdDetalle = new SqlCommand(@"
                 INSERT INTO PagoDetalle (id_pago, id_membresia, periodo, monto)
                 VALUES (@idPago, @idMembresia, @periodo, @monto);", cn, tran);
@@ -161,10 +161,10 @@ namespace Taller2_G34
 
                     cmdDetalle.ExecuteNonQuery();
 
-                    // 4️⃣ Confirmar transacción
+                    //Confirmar transacción
                     tran.Commit();
 
-                    // 5️⃣ Generar y abrir el comprobante
+                    //Generar y abrir el comprobante
                     GenerarComprobantePDF(nombreAlumno, membresia, plan,
                         decimal.Parse(txtCantidad.Text),
                         decimal.Parse(txtRecargo.Text),
@@ -173,6 +173,7 @@ namespace Taller2_G34
 
                     MessageBox.Show("Pago con éxito. Generando comprobante, aguarde...");
                     this.Close();
+
                 }
                 catch (Exception ex)
                 {
@@ -181,9 +182,6 @@ namespace Taller2_G34
                 }
             }
         }
-
-
-
 
         private void CargarMediosDePago()
         {
@@ -220,16 +218,16 @@ namespace Taller2_G34
 private void GenerarComprobantePDF(string alumno, string membresia, string plan,
     decimal monto, decimal recargo, decimal total, string medioPago)
     {
-        // 📁 Carpeta donde se guarda
+        // Carpeta donde se guarda
         string carpeta = Path.Combine(Application.StartupPath, "Comprobantes");
         if (!Directory.Exists(carpeta))
             Directory.CreateDirectory(carpeta);
 
-        // 📄 Nombre del archivo
+        // Nombre del archivo
         string nombreArchivo = $"Comprobante_{alumno.Replace(" ", "_")}_{DateTime.Now:yyyyMMdd_HHmm}.pdf";
         string ruta = Path.Combine(carpeta, nombreArchivo);
 
-        // 🧾 Crear el documento
+        // Crear el documento
         using (var doc = new iTextSharp.text.Document(PageSize.A4, 50, 50, 50, 50))
         {
             PdfWriter.GetInstance(doc, new FileStream(ruta, FileMode.Create));
@@ -309,14 +307,9 @@ private void GenerarComprobantePDF(string alumno, string membresia, string plan,
             doc.Close();
         }
 
-        // 🔹 Abrir automáticamente el PDF generado
+        // Abrir automáticamente el PDF generado
         System.Diagnostics.Process.Start("explorer.exe", ruta);
     }
-
-
-    
-
-
 
         private decimal ObtenerCostoMembresia(int idMembresia)
         {

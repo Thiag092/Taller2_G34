@@ -54,11 +54,6 @@ namespace Taller2_G34
 
         }
 
-        private void splitContainer3_Panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void splitContainer1_Panel2_Paint_1(object sender, PaintEventArgs e)
         {
 
@@ -160,21 +155,21 @@ namespace Taller2_G34
 
                 // Consulta SQL uniendo Alumno, Membresia, PlanEntrenamiento y Usuario (coach)
                 string query = @"
-        SELECT 
-            a.dni,
-            a.nombre,
-            a.apellido,
-            a.telefono,
-            a.sexo,
-            m.nombre AS Membresia,
-            p.nombre AS [Plan],
-            u.nombre + ' ' + u.apellido AS Coach
-        FROM Alumno a
-        INNER JOIN Membresia m ON a.id_membresia = m.id_membresia
-        INNER JOIN PlanEntrenamiento p ON a.id_plan = p.id_plan
-        INNER JOIN Usuario u ON a.id_coach = u.id_usuario
-        WHERE a.estado = 1;
-    ";
+                SELECT 
+                    a.dni,
+                    a.nombre,
+                    a.apellido,
+                    a.telefono,
+                    a.sexo,
+                    m.nombre AS Membresia,
+                    p.nombre AS [Plan],
+                    u.nombre + ' ' + u.apellido AS Coach
+                FROM Alumno a
+                INNER JOIN Membresia m ON a.id_membresia = m.id_membresia
+                INNER JOIN PlanEntrenamiento p ON a.id_plan = p.id_plan
+                INNER JOIN Usuario u ON a.id_coach = u.id_usuario
+                WHERE a.estado = 1;
+            ";
 
                 // Cargo los datos desde la BD
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -390,23 +385,6 @@ namespace Taller2_G34
             }
         }
 
-
-
-        private void homeContainer_SplitterMoved(object sender, SplitterEventArgs e)
-        {
-
-        }
-
-        private void BVerUsuarios_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void BVerAlumnos_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnVerEntrenadores_Click(object sender, EventArgs e)
         {
             MostrarVista("entrenadores");
@@ -591,9 +569,10 @@ namespace Taller2_G34
                 EditAlumno frm = new EditAlumno(dniAlumno);
                 frm.ShowDialog(); // abre como ventana modal
             }
-            if(e.RowIndex >= 0 && dataGridView.Columns[e.ColumnIndex].Name == "btnDetallesRutina")
+            if (e.RowIndex >= 0 && dataGridView.Columns[e.ColumnIndex].Name == "btnDetallesRutina")
             {
-                EditRutina frm = new EditRutina();
+                int idPlan = Convert.ToInt32(dataGridView.Rows[e.RowIndex].Cells["ID"].Value);
+                VerPlanPlantilla frm = new VerPlanPlantilla(idPlan, true); // modo edición
                 frm.ShowDialog();
             }
         }

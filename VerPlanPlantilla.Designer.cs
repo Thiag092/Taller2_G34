@@ -32,6 +32,7 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnQuitar = new System.Windows.Forms.Button();
             this.comboBoxTipoPlan = new System.Windows.Forms.ComboBox();
             this.lblTipoPlan = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
@@ -115,6 +116,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btnQuitar);
             this.panel2.Controls.Add(this.comboBoxTipoPlan);
             this.panel2.Controls.Add(this.lblTipoPlan);
             this.panel2.Controls.Add(this.btnCancelar);
@@ -131,7 +133,20 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1373, 569);
             this.panel2.TabIndex = 0;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // btnQuitar
+            // 
+            this.btnQuitar.BackColor = System.Drawing.Color.Black;
+            this.btnQuitar.FlatAppearance.BorderSize = 0;
+            this.btnQuitar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnQuitar.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnQuitar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnQuitar.Location = new System.Drawing.Point(974, 358);
+            this.btnQuitar.Name = "btnQuitar";
+            this.btnQuitar.Size = new System.Drawing.Size(192, 46);
+            this.btnQuitar.TabIndex = 58;
+            this.btnQuitar.Text = "Eliminar ejercicio";
+            this.btnQuitar.UseVisualStyleBackColor = false;
             // 
             // comboBoxTipoPlan
             // 
@@ -140,7 +155,6 @@
             this.comboBoxTipoPlan.Name = "comboBoxTipoPlan";
             this.comboBoxTipoPlan.Size = new System.Drawing.Size(253, 24);
             this.comboBoxTipoPlan.TabIndex = 57;
-            this.comboBoxTipoPlan.SelectedIndexChanged += new System.EventHandler(this.comboBoxTipoPlan_SelectedIndexChanged);
             // 
             // lblTipoPlan
             // 
@@ -160,13 +174,12 @@
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnCancelar.Location = new System.Drawing.Point(805, 385);
+            this.btnCancelar.Location = new System.Drawing.Point(816, 495);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(147, 45);
             this.btnCancelar.TabIndex = 52;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = false;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // panel1
             // 
@@ -186,7 +199,7 @@
             this.panel1.Size = new System.Drawing.Size(253, 261);
             this.panel1.TabIndex = 55;
             this.panel1.Visible = false;
-            this.panel1.VisibleChanged += new System.EventHandler(this.btnAgregar_Click);
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // txtTiempo
             // 
@@ -249,7 +262,6 @@
             this.btnConfirmar.TabIndex = 64;
             this.btnConfirmar.Text = "Confirmar";
             this.btnConfirmar.UseVisualStyleBackColor = false;
-            this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
             // label3
             // 
@@ -334,7 +346,7 @@
             this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuardar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnGuardar.Location = new System.Drawing.Point(1009, 385);
+            this.btnGuardar.Location = new System.Drawing.Point(1009, 495);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(157, 45);
             this.btnGuardar.TabIndex = 50;
@@ -358,7 +370,6 @@
             this.dgvEjercicios.RowTemplate.Height = 24;
             this.dgvEjercicios.Size = new System.Drawing.Size(766, 320);
             this.dgvEjercicios.TabIndex = 46;
-            this.dgvEjercicios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEjercicios_CellContentClick);
             // 
             // ColIdEjercicio
             // 
@@ -483,5 +494,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColTiempo;
         private System.Windows.Forms.ComboBox comboBoxTipoPlan;
         private System.Windows.Forms.Label lblTipoPlan;
+        private System.Windows.Forms.Button btnQuitar;
     }
 }
