@@ -117,6 +117,12 @@
     <Compile Include="AgregarEjercicio.Designer.cs">
       <DependentUpon>AgregarEjercicio.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormEditarPlan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEditarPlan.Designer.cs">
+      <DependentUpon>FormEditarPlan.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormPagos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -193,6 +199,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AgregarEjercicio.resx">
       <DependentUpon>AgregarEjercicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEditarPlan.resx">
+      <DependentUpon>FormEditarPlan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPagos.resx">
       <DependentUpon>FormPagos.cs</DependentUpon>

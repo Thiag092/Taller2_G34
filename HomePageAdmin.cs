@@ -342,16 +342,14 @@ namespace Taller2_G34
             {
                 dataGridView.Columns.Add("ID", "ID");
                 dataGridView.Columns.Add("Nombre", "Nombre");
-                dataGridView.Columns.Add("Estado", "Estado");
-
                 btnDetalles.UseColumnTextForButtonValue = true;
                 dataGridView.Columns.Add(btnDetalles);
 
                 string connectionString = ConfigurationManager.ConnectionStrings["EnerGymDB"].ConnectionString;
 
-                string query = @"SELECT id_plan, nombre, 
-                            CASE WHEN estado = 1 THEN 'Activa' ELSE 'Inactiva' END AS estado
-                     FROM PlanEntrenamiento";
+                string query = @"SELECT id_plan, nombre
+                 FROM PlanEntrenamiento
+                 WHERE estado = 1";
 
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -365,8 +363,7 @@ namespace Taller2_G34
                         {
                             dataGridView.Rows.Add(
                                 reader["id_plan"],
-                                reader["nombre"],
-                                reader["estado"]
+                                reader["nombre"]
                             );
                         }
                     }
@@ -572,8 +569,8 @@ namespace Taller2_G34
             if (e.RowIndex >= 0 && dataGridView.Columns[e.ColumnIndex].Name == "btnDetallesRutina")
             {
                 int idPlan = Convert.ToInt32(dataGridView.Rows[e.RowIndex].Cells["ID"].Value);
-                VerPlanPlantilla frm = new VerPlanPlantilla(idPlan, true); // modo edición
-                frm.ShowDialog();
+                //FormEditarPlan frm = new FormEditarPlan(idPlan); // modo edición
+                //frm.ShowDialog();
             }
         }
     }

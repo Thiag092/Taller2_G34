@@ -266,7 +266,7 @@ namespace Taller2_G34
                     string dniAlumno = dataGridView.Rows[e.RowIndex].Cells["DNI"].Value.ToString();
 
                     // Mostrar detalles del alumno
-                    // 👇 El segundo parámetro "true" indica modo solo lectura (no editable)
+                    // El segundo parámetro "true" indica modo solo lectura (no editable)
                     EditAlumno formDetalles = new EditAlumno(dniAlumno, true);
                     formDetalles.ShowDialog();
 
@@ -276,9 +276,9 @@ namespace Taller2_G34
                     // Obtener ID del plan de entrenamiento
                     int idPlan = Convert.ToInt32(dataGridView.Rows[e.RowIndex].Cells["ID"].Value);
 
-                    // Mostrar detalles del plan (tu formulario VerPlanPlantilla)
-                    VerPlanPlantilla formPlan = new VerPlanPlantilla(idPlan);
-                    formPlan.ShowDialog();
+                    // Mostrar detalles del plan (formulario VerPlanPlantilla)
+                    //VerPlanPlantilla formPlan = new VerPlanPlantilla(idPlan);
+                    //formPlan.ShowDialog();
                 }
             }
         }
