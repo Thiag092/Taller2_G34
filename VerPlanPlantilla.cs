@@ -1,210 +1,331 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
+using Taller2_G34.Services;
 
 namespace Taller2_G34
 {
     public partial class VerPlanPlantilla : Form
     {
+        private readonly PlanEntrenamientoService _planService;
+        private readonly List<EjercicioTemporal> _ejerciciosTemporales;
         private string Cn => ConfigurationManager.ConnectionStrings["EnerGymDB"].ConnectionString;
 
         public VerPlanPlantilla()
         {
             InitializeComponent();
+            _planService = new PlanEntrenamientoService(Cn);
+            _ejerciciosTemporales = new List<EjercicioTemporal>();
         }
 
         private void VerPlanPlantilla_Load(object sender, EventArgs e)
         {
             InicializarDataGridView();
-            CargarTiposPlan();
+            CargarComboTipoPlan();
+            CargarEjerciciosCatalogo();
         }
+
         private void InicializarDataGridView()
         {
-            if (dgvEjercicios.Columns.Count == 0)
-            {
-                // Columnas ocultas
-                dgvEjercicios.Columns.Add("id_dia", "id_dia");
-                dgvEjercicios.Columns["id_dia"].Visible = false;
-
-                dgvEjercicios.Columns.Add("id_ejercicio", "id_ejercicio");
-                dgvEjercicios.Columns["id_ejercicio"].Visible = false;
-
-                // Columnas visibles
-                dgvEjercicios.Columns.Add("nombreEjercicio", "Ejercicio");
-                dgvEjercicios.Columns.Add("cant_series", "Series");
-                dgvEjercicios.Columns.Add("repeticiones", "Repeticiones");
-                dgvEjercicios.Columns.Add("tiempo", "Tiempo (segundos)");
-            }
-        }
-        // Cargar tipos de plan
-        private void CargarTiposPlan()
-        {
-            comboBoxTipoPlan.Items.Clear();
-
-            using (var cn = new SqlConnection(Cn))
-            {
-                cn.Open();
-                string sql = "SELECT id_tipoPlan, descripcion FROM TipoPlan ORDER BY id_tipoPlan";
-                using (var cmd = new SqlCommand(sql, cn))
-                using (var dr = cmd.ExecuteReader())
-                {
-                    while (dr.Read())
-                    {
-                        comboBoxTipoPlan.Items.Add(new
-                        {
-                            Id = dr.GetInt32(0),
-                            Nombre = dr.GetString(1)
-                        });
-                    }
-                }
-            }
-
-            comboBoxTipoPlan.DisplayMember = "Nombre";
-            comboBoxTipoPlan.ValueMember = "Id";
-
-            if (comboBoxTipoPlan.Items.Count > 0)
-                comboBoxTipoPlan.SelectedIndex = 0;
-        }
-
-        // Cargar días según el tipo de plan seleccionado
-        private void CargarDias(int idTipoPlan)
-        {
-            cboDias.Items.Clear();
-
-            using (var cn = new SqlConnection(Cn))
-            {
-                cn.Open();
-                string sql = @"
-                    SELECT pd.id_dia, pd.nombreDia
-                    FROM PlanEntrenamiento p
-                    INNER JOIN Plan_Dia pd ON pd.id_plan = p.id_plan
-                    WHERE p.id_tipoPlan = @idTipoPlan
-                    ORDER BY pd.id_dia";
-                using (var cmd = new SqlCommand(sql, cn))
-                {
-                    cmd.Parameters.AddWithValue("@idTipoPlan", idTipoPlan);
-                    using (var dr = cmd.ExecuteReader())
-                    {
-                        while (dr.Read())
-                        {
-                            cboDias.Items.Add(new
-                            {
-                                Id = dr.GetInt32(0),
-                                Nombre = dr.GetString(1)
-                            });
-                        }
-                    }
-                }
-            }
-
-            cboDias.DisplayMember = "Nombre";
-            cboDias.ValueMember = "Id";
-
-            if (cboDias.Items.Count > 0)
-                cboDias.SelectedIndex = 0;
-        }
-
-        // Cargar ejercicios filtrados por tipo de plan y día
-        private void CargarEjercicios(int idTipoPlan, int? idDia = null)
-        {
+            dgvEjercicios.AutoGenerateColumns = false;
             dgvEjercicios.Columns.Clear();
 
-            // Columnas ocultas
-            dgvEjercicios.Columns.Add("id_dia", "id_dia");
-            dgvEjercicios.Columns["id_dia"].Visible = false;
-
-            dgvEjercicios.Columns.Add("id_ejercicio", "id_ejercicio");
-            dgvEjercicios.Columns["id_ejercicio"].Visible = false;
-
-            // Columnas visibles
-            dgvEjercicios.Columns.Add("nombreEjercicio", "Ejercicio");
-            dgvEjercicios.Columns.Add("cant_series", "Series");
-            dgvEjercicios.Columns.Add("repeticiones", "Repeticiones");
-            dgvEjercicios.Columns.Add("tiempo", "Tiempo (segundos)");
-
-            using (var cn = new SqlConnection(Cn))
+            dgvEjercicios.Columns.Add(new DataGridViewTextBoxColumn()
             {
-                cn.Open();
-                string sql = @"
-                    SELECT pe.id_dia, e.id_ejercicio, e.nombre, pe.cant_series, pe.repeticiones, pe.tiempo
-                    FROM PlanEntrenamiento p
-                    INNER JOIN Plan_Dia pd ON pd.id_plan = p.id_plan
-                    INNER JOIN Plan_Ejercicio pe ON pe.id_plan = p.id_plan AND pe.id_dia = pd.id_dia
-                    INNER JOIN Ejercicio e ON e.id_ejercicio = pe.id_ejercicio
-                    WHERE p.id_tipoPlan = @idTipoPlan";
+                Name = "Dia",
+                HeaderText = "Día",
+                DataPropertyName = "NombreDia",
+                ReadOnly = true
+            });
 
-                if (idDia.HasValue)
-                    sql += " AND pd.id_dia = @idDia";
+            dgvEjercicios.Columns.Add(new DataGridViewTextBoxColumn()
+            {
+                Name = "Ejercicio",
+                HeaderText = "Ejercicio",
+                DataPropertyName = "Nombre",
+                ReadOnly = true
+            });
 
-                sql += " ORDER BY pd.id_dia, e.id_ejercicio";
+            dgvEjercicios.Columns.Add(new DataGridViewTextBoxColumn()
+            {
+                Name = "Series",
+                HeaderText = "Series",
+                DataPropertyName = "Series"
+            });
 
-                using (var cmd = new SqlCommand(sql, cn))
-                {
-                    cmd.Parameters.AddWithValue("@idTipoPlan", idTipoPlan);
-                    if (idDia.HasValue)
-                        cmd.Parameters.AddWithValue("@idDia", idDia.Value);
+            dgvEjercicios.Columns.Add(new DataGridViewTextBoxColumn()
+            {
+                Name = "Repeticiones",
+                HeaderText = "Repeticiones",
+                DataPropertyName = "Repeticiones"
+            });
 
-                    using (var dr = cmd.ExecuteReader())
+            dgvEjercicios.Columns.Add(new DataGridViewTextBoxColumn()
+            {
+                Name = "Tiempo",
+                HeaderText = "Tiempo (seg)",
+                DataPropertyName = "Tiempo"
+            });
+
+            dgvEjercicios.AllowUserToAddRows = false;
+            dgvEjercicios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
+
+        private void CargarComboTipoPlan()
+        {
+            try
+            {
+                var dt = _planService.ObtenerTiposPlan();
+                comboBoxTipoPlan.DataSource = dt;
+                comboBoxTipoPlan.ValueMember = "id_tipoPlan";
+                comboBoxTipoPlan.DisplayMember = "descripcion";
+                comboBoxTipoPlan.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar tipos de plan: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void CargarEjerciciosCatalogo()
+        {
+            try
+            {
+                var dt = _planService.ObtenerEjerciciosCatalogo();
+                cboEjercicioCatalogo.DataSource = dt;
+                cboEjercicioCatalogo.ValueMember = "id_ejercicio";
+                cboEjercicioCatalogo.DisplayMember = "nombre";
+                cboEjercicioCatalogo.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar catálogo de ejercicios: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ComboBoxTipoPlan_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxTipoPlan.SelectedValue != null && int.TryParse(comboBoxTipoPlan.SelectedValue.ToString(), out int idTipoPlan))
+            {
+                CargarComboDias(idTipoPlan);
+            }
+        }
+
+        private void CargarComboDias(int idTipoPlan)
+        {
+            try
+            {
+                cboDias.SelectedIndexChanged -= cboDias_SelectedIndexChanged;
+
+                var dt = _planService.ObtenerDiasPorPlan(idTipoPlan);
+                cboDias.DataSource = dt;
+                cboDias.ValueMember = "id_dia";
+                cboDias.DisplayMember = "nombreDia";
+                cboDias.SelectedIndex = -1;
+
+                cboDias.SelectedIndexChanged += cboDias_SelectedIndexChanged;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar días: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void cboDias_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboDias.SelectedValue != null && comboBoxTipoPlan.SelectedValue != null)
+            {
+                int idDia = Convert.ToInt32(cboDias.SelectedValue);
+                int idPlan = Convert.ToInt32(comboBoxTipoPlan.SelectedValue);
+
+                // Cargar ejercicios existentes de la base de datos para este día
+                CargarEjerciciosDia(idPlan, idDia);
+            }
+        }
+
+        private void CargarEjerciciosDia(int idPlan, int idDia)
+        {
+            try
+            {
+                var ejerciciosBD = _planService.ObtenerEjerciciosPlanDia(idPlan, idDia);
+                var nombreDia = cboDias.Text;
+
+                // Combinar ejercicios de BD con ejercicios temporales para este día
+                var ejerciciosCombinados = _ejerciciosTemporales
+                    .Where(e => e.IdDia == idDia)
+                    .Select(e => new
                     {
-                        while (dr.Read())
-                        {
-                            dgvEjercicios.Rows.Add(
-                                dr.GetInt32(0),  // id_dia
-                                dr.GetInt32(1),  // id_ejercicio
-                                dr.GetString(2), // nombre ejercicio
-                                dr.GetInt32(3),  // series
-                                dr.GetInt32(4),  // repeticiones
-                                dr.GetInt32(5)   // tiempo
-                            );
-                        }
-                    }
+                        e.NombreDia,
+                        e.Nombre,
+                        e.Series,
+                        e.Repeticiones,
+                        e.Tiempo
+                    })
+                    .ToList();
+
+                // Agregar ejercicios de la base de datos
+                foreach (DataRow row in ejerciciosBD.Rows)
+                {
+                    ejerciciosCombinados.Add(new
+                    {
+                        NombreDia = nombreDia,
+                        Nombre = row["Ejercicio"].ToString(),
+                        Series = Convert.ToInt32(row["Series"]),
+                        Repeticiones = Convert.ToInt32(row["Repeticiones"]),
+                        Tiempo = Convert.ToInt32(row["Tiempo"])
+                    });
+                }
+
+                dgvEjercicios.DataSource = ejerciciosCombinados;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar ejercicios: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnConfirmar_Click(object sender, EventArgs e)
+        {
+            if (cboEjercicioCatalogo.SelectedValue == null || cboDias.SelectedValue == null)
+            {
+                MessageBox.Show("Seleccione un ejercicio y un día primero.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                int idEjercicio = Convert.ToInt32(cboEjercicioCatalogo.SelectedValue);
+                string nombreEjercicio = cboEjercicioCatalogo.Text;
+                int idDia = Convert.ToInt32(cboDias.SelectedValue);
+                string nombreDia = cboDias.Text;
+
+                int series = cantSeries.Value == 0 ? 3 : (int)cantSeries.Value;
+                int repeticiones = cantRepeticiones.Value == 0 ? 10 : (int)cantRepeticiones.Value;
+                int tiempo = string.IsNullOrEmpty(txtTiempo.Text) ? 30 : int.Parse(txtTiempo.Text);
+
+                // Agregar a la lista temporal
+                var ejercicio = new EjercicioTemporal
+                {
+                    IdEjercicio = idEjercicio,
+                    Nombre = nombreEjercicio,
+                    IdDia = idDia,
+                    NombreDia = nombreDia,
+                    Series = series,
+                    Repeticiones = repeticiones,
+                    Tiempo = tiempo
+                };
+
+                _ejerciciosTemporales.Add(ejercicio);
+
+                // CORRECCIÓN: En lugar de ActualizarDataGridViewCompleto(),
+                // llamar a CargarEjerciciosDia para combinar temporales + BD
+                if (comboBoxTipoPlan.SelectedValue != null && cboDias.SelectedValue != null)
+                {
+                    int idPlan = Convert.ToInt32(comboBoxTipoPlan.SelectedValue);
+                    int currentIdDia = Convert.ToInt32(cboDias.SelectedValue);
+                    CargarEjerciciosDia(idPlan, currentIdDia); // ← Esto combina ambos
+                }
+
+                // Limpiar controles
+                cboEjercicioCatalogo.SelectedIndex = -1;
+                cantSeries.Value = 0;
+                cantRepeticiones.Value = 0;
+                txtTiempo.Text = "";
+
+                MessageBox.Show("Ejercicio agregado temporalmente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al agregar ejercicio: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ActualizarDataGridViewCompleto()
+        {
+            var datosMostrar = _ejerciciosTemporales.Select(e => new
+            {
+                e.NombreDia,
+                e.Nombre,
+                e.Series,
+                e.Repeticiones,
+                e.Tiempo
+            }).ToList();
+
+            dgvEjercicios.DataSource = datosMostrar;
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtNombrePlan.Text))
+            {
+                MessageBox.Show("Ingrese un nombre para el plan.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!_ejerciciosTemporales.Any())
+            {
+                MessageBox.Show("Agregue al menos un ejercicio al plan.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (comboBoxTipoPlan.SelectedValue == null)
+            {
+                MessageBox.Show("Seleccione un tipo de plan.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                int idTipoPlan = Convert.ToInt32(comboBoxTipoPlan.SelectedValue);
+                string nombrePlan = txtNombrePlan.Text;
+
+                int idNuevoPlan = _planService.GuardarPlanCompleto(nombrePlan, idTipoPlan, _ejerciciosTemporales);
+
+                MessageBox.Show($"Plan guardado exitosamente con ID: {idNuevoPlan}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Limpiar todo después de guardar
+                _ejerciciosTemporales.Clear();
+                dgvEjercicios.DataSource = null;
+                txtNombrePlan.Text = "";
+                comboBoxTipoPlan.SelectedIndex = -1;
+                cboDias.DataSource = null;
+                panel1.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al guardar el plan: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnQuitar_Click(object sender, EventArgs e)
+        {
+            if (dgvEjercicios.CurrentRow != null)
+            {
+                int index = dgvEjercicios.CurrentRow.Index;
+                if (index < _ejerciciosTemporales.Count)
+                {
+                    _ejerciciosTemporales.RemoveAt(index);
+                    ActualizarDataGridViewCompleto();
                 }
             }
         }
-        private void btnCerrar_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             panel1.Visible = true;
         }
 
-        // Evento: cambio de tipo de plan
-        private void ComboBoxTipoPlan_SelectedIndexChanged(object sender, EventArgs e)
+        private void btnCerrar_Click(object sender, EventArgs e)
         {
-            if (comboBoxTipoPlan.SelectedItem == null) return;
-
-            dynamic tipo = comboBoxTipoPlan.SelectedItem;
-            CargarDias(tipo.Id);
-            CargarEjercicios(tipo.Id); // Mostrar todos los ejercicios de ese tipo
+            this.Close();
         }
-
-        // Evento: cambio de día
-        private void cboDias_SelectedIndexChanged(object sender, EventArgs e)
+        private void txtNombrePlan_TextChanged(object sender, EventArgs e)
         {
-            if (cboDias.SelectedItem == null || comboBoxTipoPlan.SelectedItem == null) return;
-
-            dynamic dia = cboDias.SelectedItem;
-            dynamic tipo = comboBoxTipoPlan.SelectedItem;
-
-            CargarEjercicios(tipo.Id, dia.Id); // Filtrar por día
         }
-        private void btnConfirmar_Click(object sender, EventArgs e)
-        {
-            //agrega el ejercicio al datagrid pero aun no confirma su insercion en la base de datos
-        }
-
-        private void btnGuardar_Click(object sender, EventArgs e)
-        {
-            //aqui se deberia insertar en la base de datos el o los nuevos ejercicios agregados
-        }
-
-        private void btnQuitar_Click(object sender, EventArgs e)
-        {
-            //elimina el ejercicio seleccionado del datagrid y no permite su insercion en la base de datos
-        }
-
     }
 }
