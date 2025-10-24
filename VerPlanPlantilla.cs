@@ -267,12 +267,6 @@ namespace Taller2_G34
                 return;
             }
 
-            if (!_ejerciciosTemporales.Any())
-            {
-                MessageBox.Show("Agregue al menos un ejercicio al plan.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
             if (comboBoxTipoPlan.SelectedValue == null)
             {
                 MessageBox.Show("Seleccione un tipo de plan.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -284,9 +278,17 @@ namespace Taller2_G34
                 int idTipoPlan = Convert.ToInt32(comboBoxTipoPlan.SelectedValue);
                 string nombrePlan = txtNombrePlan.Text;
 
-                int idNuevoPlan = _planService.GuardarPlanCompleto(nombrePlan, idTipoPlan, _ejerciciosTemporales);
+                // Obtener el ID del plan original para copiar la plantilla base
+                int? idPlanOriginal = _planService.ObtenerIdPlanPorTipo(idTipoPlan);
 
-                MessageBox.Show($"Plan guardado exitosamente con ID: {idNuevoPlan}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Solo los ejercicios temporales (nuevos que agregó el usuario)
+                var ejerciciosNuevos = _ejerciciosTemporales;
+
+                int idNuevoPlan = _planService.GuardarPlanCompleto(nombrePlan, idTipoPlan, ejerciciosNuevos, idPlanOriginal);
+
+                MessageBox.Show($"Plan guardado exitosamente con ID: {idNuevoPlan}\n" +
+                               $"Se copió la plantilla base + {ejerciciosNuevos.Count} ejercicios nuevos.",
+                               "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 // Limpiar todo después de guardar
                 _ejerciciosTemporales.Clear();

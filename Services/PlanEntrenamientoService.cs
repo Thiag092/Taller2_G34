@@ -79,7 +79,7 @@ namespace Taller2_G34.Services
             }
         }
 
-        public int GuardarPlanCompleto(string nombrePlan, int idTipoPlan, List<EjercicioTemporal> ejercicios)
+        public int GuardarPlanCompleto(string nombrePlan, int idTipoPlan, List<EjercicioTemporal> ejerciciosNuevos, int? idPlanOriginal = null)
         {
             using (var conn = new SqlConnection(_connectionString))
             {
@@ -99,61 +99,117 @@ namespace Taller2_G34.Services
 
                         int idNuevoPlan = Convert.ToInt32(cmdPlan.ExecuteScalar());
 
-                        // 2. Agrupar ejercicios por día y crear días únicos
-                        var diasUnicos = ejercicios.GroupBy(e => e.IdDia)
-                                                  .Select(g => new { IdDia = g.Key, NombreDia = g.First().NombreDia })
-                                                  .ToList();
-
-                        // 3. Insertar días del plan
-                        foreach (var dia in diasUnicos)
+                        // 2. COPIAR EJERCICIOS DEL PLAN ORIGINAL (si se proporciona)
+                        if (idPlanOriginal.HasValue)
                         {
-                            var queryDia = @"INSERT INTO Plan_Dia (id_plan, nombreDia) 
-                                       VALUES (@idPlan, @nombreDia)";
-                            var cmdDia = new SqlCommand(queryDia, conn, transaction);
-                            cmdDia.Parameters.AddWithValue("@idPlan", idNuevoPlan);
-                            cmdDia.Parameters.AddWithValue("@nombreDia", dia.NombreDia);
-                            cmdDia.ExecuteNonQuery();
+                            var queryCopiarEjercicios = @"
+                            -- Copiar días del plan original
+                            INSERT INTO Plan_Dia (id_plan, nombreDia, descripcion)
+                            SELECT @idNuevoPlan, nombreDia, descripcion 
+                            FROM Plan_Dia 
+                            WHERE id_plan = @idPlanOriginal;
+                            
+                            -- Copiar ejercicios del plan original
+                            INSERT INTO Plan_Ejercicio (id_plan, id_ejercicio, id_dia, cant_series, repeticiones, tiempo)
+                            SELECT @idNuevoPlan, pe.id_ejercicio, pd_new.id_dia, pe.cant_series, pe.repeticiones, pe.tiempo
+                            FROM Plan_Ejercicio pe
+                            INNER JOIN Plan_Dia pd_old ON pe.id_dia = pd_old.id_dia AND pe.id_plan = pd_old.id_plan
+                            INNER JOIN Plan_Dia pd_new ON pd_old.nombreDia = pd_new.nombreDia AND pd_new.id_plan = @idNuevoPlan
+                            WHERE pe.id_plan = @idPlanOriginal;";
+
+                            var cmdCopiar = new SqlCommand(queryCopiarEjercicios, conn, transaction);
+                            cmdCopiar.Parameters.AddWithValue("@idNuevoPlan", idNuevoPlan);
+                            cmdCopiar.Parameters.AddWithValue("@idPlanOriginal", idPlanOriginal.Value);
+                            cmdCopiar.ExecuteNonQuery();
                         }
 
-                        // 4. Obtener IDs de días recién creados
-                        var cmdGetDias = new SqlCommand("SELECT id_dia, nombreDia FROM Plan_Dia WHERE id_plan = @idPlan", conn, transaction);
-                        cmdGetDias.Parameters.AddWithValue("@idPlan", idNuevoPlan);
-                        var da = new SqlDataAdapter(cmdGetDias);
-                        var dtDias = new DataTable();
-                        da.Fill(dtDias);
-
-                        // 5. Insertar ejercicios para cada día
-                        foreach (var ejercicio in ejercicios)
+                        // 3. AGREGAR NUEVOS EJERCICIOS TEMPORALES (si hay)
+                        if (ejerciciosNuevos != null && ejerciciosNuevos.Any())
                         {
-                            var idDiaCorrespondiente = dtDias.AsEnumerable()
-                                .Where(row => row.Field<string>("nombreDia") == ejercicio.NombreDia)
-                                .Select(row => row.Field<int>("id_dia"))
-                                .FirstOrDefault();
+                            // Para nuevos ejercicios, se crean días si aún no existen
+                            var diasUnicos = ejerciciosNuevos.GroupBy(e => e.NombreDia)
+                                                          .Select(g => g.First().NombreDia)
+                                                          .ToList();
 
-                            var queryEjercicio = @"INSERT INTO Plan_Ejercicio 
-                                            (id_plan, id_ejercicio, id_dia, cant_series, repeticiones, tiempo) 
-                                            VALUES (@idPlan, @idEjercicio, @idDia, @series, @repeticiones, @tiempo)";
+                            // Crear días que no existan
+                            foreach (var nombreDia in diasUnicos)
+                            {
+                                var queryVerificarDia = "SELECT COUNT(*) FROM Plan_Dia WHERE id_plan = @idPlan AND nombreDia = @nombreDia";
+                                var cmdVerificar = new SqlCommand(queryVerificarDia, conn, transaction);
+                                cmdVerificar.Parameters.AddWithValue("@idPlan", idNuevoPlan);
+                                cmdVerificar.Parameters.AddWithValue("@nombreDia", nombreDia);
 
-                            var cmdEjercicio = new SqlCommand(queryEjercicio, conn, transaction);
-                            cmdEjercicio.Parameters.AddWithValue("@idPlan", idNuevoPlan);
-                            cmdEjercicio.Parameters.AddWithValue("@idEjercicio", ejercicio.IdEjercicio);
-                            cmdEjercicio.Parameters.AddWithValue("@idDia", idDiaCorrespondiente);
-                            cmdEjercicio.Parameters.AddWithValue("@series", ejercicio.Series);
-                            cmdEjercicio.Parameters.AddWithValue("@repeticiones", ejercicio.Repeticiones);
-                            cmdEjercicio.Parameters.AddWithValue("@tiempo", ejercicio.Tiempo);
+                                int existeDia = Convert.ToInt32(cmdVerificar.ExecuteScalar());
 
-                            cmdEjercicio.ExecuteNonQuery();
+                                if (existeDia == 0)
+                                {
+                                    var queryCrearDia = @"INSERT INTO Plan_Dia (id_plan, nombreDia) 
+                                                   VALUES (@idPlan, @nombreDia)";
+                                    var cmdCrearDia = new SqlCommand(queryCrearDia, conn, transaction);
+                                    cmdCrearDia.Parameters.AddWithValue("@idPlan", idNuevoPlan);
+                                    cmdCrearDia.Parameters.AddWithValue("@nombreDia", nombreDia);
+                                    cmdCrearDia.ExecuteNonQuery();
+                                }
+                            }
+
+                            // Obtener IDs de días actualizados
+                            var cmdGetDias = new SqlCommand("SELECT id_dia, nombreDia FROM Plan_Dia WHERE id_plan = @idPlan", conn, transaction);
+                            cmdGetDias.Parameters.AddWithValue("@idPlan", idNuevoPlan);
+                            var da = new SqlDataAdapter(cmdGetDias);
+                            var dtDias = new DataTable();
+                            da.Fill(dtDias);
+
+                            // Insertar nuevos ejercicios
+                            foreach (var ejercicio in ejerciciosNuevos)
+                            {
+                                var idDiaCorrespondiente = dtDias.AsEnumerable()
+                                    .Where(row => row.Field<string>("nombreDia") == ejercicio.NombreDia)
+                                    .Select(row => row.Field<int>("id_dia"))
+                                    .FirstOrDefault();
+
+                                if (idDiaCorrespondiente > 0)
+                                {
+                                    var queryEjercicio = @"INSERT INTO Plan_Ejercicio 
+                                                    (id_plan, id_ejercicio, id_dia, cant_series, repeticiones, tiempo) 
+                                                    VALUES (@idPlan, @idEjercicio, @idDia, @series, @repeticiones, @tiempo)";
+
+                                    var cmdEjercicio = new SqlCommand(queryEjercicio, conn, transaction);
+                                    cmdEjercicio.Parameters.AddWithValue("@idPlan", idNuevoPlan);
+                                    cmdEjercicio.Parameters.AddWithValue("@idEjercicio", ejercicio.IdEjercicio);
+                                    cmdEjercicio.Parameters.AddWithValue("@idDia", idDiaCorrespondiente);
+                                    cmdEjercicio.Parameters.AddWithValue("@series", ejercicio.Series);
+                                    cmdEjercicio.Parameters.AddWithValue("@repeticiones", ejercicio.Repeticiones);
+                                    cmdEjercicio.Parameters.AddWithValue("@tiempo", ejercicio.Tiempo);
+
+                                    cmdEjercicio.ExecuteNonQuery();
+                                }
+                            }
                         }
 
                         transaction.Commit();
                         return idNuevoPlan;
                     }
-                    catch
+                    catch (Exception ex)
                     {
                         transaction.Rollback();
-                        throw;
+                        throw new Exception($"Error al guardar plan completo: {ex.Message}", ex);
                     }
                 }
+            }
+        }
+
+        // Método adicional para obtener el ID del plan original basado en el tipo de plan
+        public int? ObtenerIdPlanPorTipo(int idTipoPlan)
+        {
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                conn.Open();
+                string query = "SELECT TOP 1 id_plan FROM PlanEntrenamiento WHERE id_tipoPlan = @idTipoPlan AND estado = 1";
+                var cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@idTipoPlan", idTipoPlan);
+
+                var result = cmd.ExecuteScalar();
+                return result != null ? Convert.ToInt32(result) : (int?)null;
             }
         }
     }
