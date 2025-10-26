@@ -129,7 +129,7 @@ namespace Taller2_G34
             chartInscriptos.Visible = false; // importante
             contentPanel.Visible = true;
             chartPagos.Visible = false;
-
+            labelTotalAlumnos.Visible = false;
 
             //  Si es PAGOS
             if (tipo == "Pagos")
@@ -310,6 +310,11 @@ namespace Taller2_G34
         {
             MostrarVista("Estadisticas");
             CargarGraficoInscriptos();
+            // Mostrar la label
+            labelTotalAlumnos.Visible = true;
+
+            //  Cargar el total actual de alumnos activos
+            CargarTotalAlumnosActivos();
 
         }
 
@@ -343,18 +348,24 @@ namespace Taller2_G34
 
             string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
             string query = @"
-        SELECT 
-            DATENAME(MONTH, a.fecha_nacimiento) AS Mes,
-            COUNT(*) AS TotalInscriptos,
-            SUM(CASE WHEN tp.descripcion = 'Principiante' THEN 1 ELSE 0 END) AS Principiante,
-            SUM(CASE WHEN tp.descripcion = 'Intermedio' THEN 1 ELSE 0 END) AS Intermedio,
-            SUM(CASE WHEN tp.descripcion = 'Avanzado' THEN 1 ELSE 0 END) AS Avanzado
-        FROM Alumno a
-        JOIN PlanEntrenamiento p ON a.id_plan = p.id_plan
-        JOIN TipoPlan tp ON p.id_tipoPlan = tp.id_tipoPlan
-        WHERE a.estado = 1
-        GROUP BY DATENAME(MONTH, a.fecha_nacimiento), MONTH(a.fecha_nacimiento)
-        ORDER BY MONTH(a.fecha_nacimiento);";
+SELECT 
+    DATENAME(MONTH, primerPago.PrimerPagoFecha) AS Mes,
+    SUM(CASE WHEN tp.descripcion = 'Principiante' THEN 1 ELSE 0 END) AS Principiante,
+    SUM(CASE WHEN tp.descripcion = 'Intermedio' THEN 1 ELSE 0 END) AS Intermedio,
+    SUM(CASE WHEN tp.descripcion = 'Avanzado' THEN 1 ELSE 0 END) AS Avanzado
+FROM (
+    SELECT id_alumno, MIN(fecha) AS PrimerPagoFecha
+    FROM Pago
+    GROUP BY id_alumno
+) AS primerPago
+JOIN Alumno a ON primerPago.id_alumno = a.id_alumno
+JOIN PlanEntrenamiento pl ON a.id_plan = pl.id_plan
+JOIN TipoPlan tp ON pl.id_tipoPlan = tp.id_tipoPlan
+WHERE a.estado = 1 AND YEAR(primerPago.PrimerPagoFecha) = YEAR(GETDATE())
+GROUP BY DATENAME(MONTH, primerPago.PrimerPagoFecha), MONTH(primerPago.PrimerPagoFecha)
+ORDER BY MONTH(primerPago.PrimerPagoFecha);";
+
+
 
             DataTable dt = new DataTable();
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -379,8 +390,15 @@ namespace Taller2_G34
 
             chartInscriptos.DataSource = dt;
             chartInscriptos.DataBind();
-            chartInscriptos.Titles.Clear();
-            chartInscriptos.Titles.Add("Nuevos alumnos por mes y tipo de plan");
+
+            // Forzar a mostrar todos los meses, incluso los de valor 0
+            chartInscriptos.ChartAreas["Area1"].AxisX.Interval = 1;
+            chartInscriptos.ChartAreas["Area1"].RecalculateAxesScale();
+
+            // Evita que colapse categorías sin valores
+            chartInscriptos.ChartAreas["Area1"].AxisX.IsMarginVisible = true;
+            chartInscriptos.ChartAreas["Area1"].AxisX.LabelStyle.IsStaggered = true;
+
         }
 
         private void CargarGraficoPagos()
@@ -455,6 +473,30 @@ namespace Taller2_G34
 
 
         }
+
+        private void CargarTotalAlumnosActivos()
+        {
+            try
+            {
+                string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+                string query = "SELECT COUNT(*) FROM Alumno WHERE estado = 1";
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    int totalActivos = (int)cmd.ExecuteScalar();
+
+                    // 🔹 Mostrar el resultado en la label
+                    labelTotalAlumnos.Text = $"Total alumnos activos: {totalActivos}";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar total de alumnos: " + ex.Message);
+            }
+        }
+
 
 
     }

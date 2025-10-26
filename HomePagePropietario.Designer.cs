@@ -28,19 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.BUsuarios = new System.Windows.Forms.Button();
             this.labelTextoBienvenida = new System.Windows.Forms.Label();
             this.textBoxBusqueda = new System.Windows.Forms.TextBox();
             this.BBuscar = new System.Windows.Forms.Button();
             this.labelTitulo = new System.Windows.Forms.Label();
             this.contentPanel = new System.Windows.Forms.Panel();
+            this.chartPagos = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chartInscriptos = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.picBoxEstadisticas = new System.Windows.Forms.PictureBox();
             this.BGraficoPagos = new System.Windows.Forms.Button();
             this.BGraficoInscriptos = new System.Windows.Forms.Button();
@@ -55,9 +57,10 @@
             this.labelAdmin = new System.Windows.Forms.Label();
             this.homeContainer = new System.Windows.Forms.SplitContainer();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.chartInscriptos = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.chartPagos = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.labelTotalAlumnos = new System.Windows.Forms.Label();
             this.contentPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartPagos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartInscriptos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxEstadisticas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.contentContainer)).BeginInit();
@@ -69,8 +72,6 @@
             this.homeContainer.Panel2.SuspendLayout();
             this.homeContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chartInscriptos)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chartPagos)).BeginInit();
             this.SuspendLayout();
             // 
             // BUsuarios
@@ -138,6 +139,7 @@
             // 
             // contentPanel
             // 
+            this.contentPanel.Controls.Add(this.labelTotalAlumnos);
             this.contentPanel.Controls.Add(this.chartPagos);
             this.contentPanel.Controls.Add(this.chartInscriptos);
             this.contentPanel.Controls.Add(this.picBoxEstadisticas);
@@ -157,6 +159,40 @@
             this.contentPanel.TabIndex = 2;
             this.contentPanel.Visible = false;
             this.contentPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.contentPanel_Paint);
+            // 
+            // chartPagos
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chartPagos.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartPagos.Legends.Add(legend1);
+            this.chartPagos.Location = new System.Drawing.Point(24, 126);
+            this.chartPagos.Name = "chartPagos";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartPagos.Series.Add(series1);
+            this.chartPagos.Size = new System.Drawing.Size(883, 386);
+            this.chartPagos.TabIndex = 14;
+            this.chartPagos.Text = "chart1";
+            this.chartPagos.Visible = false;
+            // 
+            // chartInscriptos
+            // 
+            chartArea2.Name = "ChartArea1";
+            this.chartInscriptos.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chartInscriptos.Legends.Add(legend2);
+            this.chartInscriptos.Location = new System.Drawing.Point(24, 103);
+            this.chartInscriptos.Name = "chartInscriptos";
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chartInscriptos.Series.Add(series2);
+            this.chartInscriptos.Size = new System.Drawing.Size(923, 409);
+            this.chartInscriptos.TabIndex = 13;
+            this.chartInscriptos.Text = "chart1";
+            this.chartInscriptos.Visible = false;
             // 
             // picBoxEstadisticas
             // 
@@ -386,39 +422,16 @@
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
-            // chartInscriptos
+            // labelTotalAlumnos
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chartInscriptos.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chartInscriptos.Legends.Add(legend2);
-            this.chartInscriptos.Location = new System.Drawing.Point(24, 109);
-            this.chartInscriptos.Name = "chartInscriptos";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chartInscriptos.Series.Add(series2);
-            this.chartInscriptos.Size = new System.Drawing.Size(713, 403);
-            this.chartInscriptos.TabIndex = 13;
-            this.chartInscriptos.Text = "chart1";
-            this.chartInscriptos.Visible = false;
-            // 
-            // chartPagos
-            // 
-            chartArea1.Name = "ChartArea1";
-            this.chartPagos.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartPagos.Legends.Add(legend1);
-            this.chartPagos.Location = new System.Drawing.Point(24, 126);
-            this.chartPagos.Name = "chartPagos";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartPagos.Series.Add(series1);
-            this.chartPagos.Size = new System.Drawing.Size(713, 386);
-            this.chartPagos.TabIndex = 14;
-            this.chartPagos.Text = "chart1";
-            this.chartPagos.Visible = false;
+            this.labelTotalAlumnos.AutoSize = true;
+            this.labelTotalAlumnos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTotalAlumnos.Location = new System.Drawing.Point(264, 574);
+            this.labelTotalAlumnos.Name = "labelTotalAlumnos";
+            this.labelTotalAlumnos.Size = new System.Drawing.Size(229, 25);
+            this.labelTotalAlumnos.TabIndex = 15;
+            this.labelTotalAlumnos.Text = "Total alumnos activos:";
+            this.labelTotalAlumnos.Visible = false;
             // 
             // HomePagePropietario
             // 
@@ -430,6 +443,8 @@
             this.Text = "Panel del Propietario";
             this.contentPanel.ResumeLayout(false);
             this.contentPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartPagos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartInscriptos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxEstadisticas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.contentContainer.Panel1.ResumeLayout(false);
@@ -444,8 +459,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.homeContainer)).EndInit();
             this.homeContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chartInscriptos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chartPagos)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -474,5 +487,6 @@
         private System.Windows.Forms.PictureBox picBoxEstadisticas;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartInscriptos;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartPagos;
+        private System.Windows.Forms.Label labelTotalAlumnos;
     }
 }
