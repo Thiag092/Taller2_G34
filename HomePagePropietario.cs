@@ -8,6 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting; //para graficos
+using System.Globalization;
+using System.Threading;
+
 
 
 namespace Taller2_G34
@@ -113,7 +117,8 @@ namespace Taller2_G34
 
         private void MostrarVista(string tipo)
         {
-            // Oculto todo por defecto
+            // 🔸 Ocultar todo por defecto
+            labelTextoBienvenida.Visible = false;
             picBoxEstadisticas.Visible = false;
             BGraficoInscriptos.Visible = false;
             BGraficoPagos.Visible = false;
@@ -121,112 +126,109 @@ namespace Taller2_G34
             btnAgregar.Visible = false;
             btnEliminar.Visible = false;
             BRefresh.Visible = false;
-            PBPagos.Visible = false;
+            chartInscriptos.Visible = false; // importante
+            contentPanel.Visible = true;
+            chartPagos.Visible = false;
 
 
-
+            //  Si es PAGOS
             if (tipo == "Pagos")
             {
                 labelTitulo.Text = "Estadísticas de facturación";
-                contentPanel.Visible = true;
-
-                // Oculto la grilla
+                chartInscriptos.Visible = false;
                 dataGridView.Visible = false;
+                btnAgregar.Visible = false;
+                btnEliminar.Visible = false;
+                BRefresh.Visible = false;
 
-                // Muestro el PictureBox con la imagen
-                PBPagos.Visible = true;
-                PBPagos.Image = Properties.Resources.facturacion_gimnasio;
-                
+                // 🔸 aseguramos que el gráfico de pagos se vea encima del resto
+                chartPagos.BringToFront();
+
+                return; // ✅ Salimos aquí, sin que se cargue el DataGridView
             }
 
 
+
+            //  Si es ESTADÍSTICAS
             if (tipo == "Estadisticas")
             {
                 labelTitulo.Text = "Estadísticas del gimnasio";
-                picBoxEstadisticas.Visible = true;
-                BGraficoInscriptos.Visible = true;
-                BGraficoPagos.Visible = true;
+
+                // mostramos el chart real (se carga desde el botón BEstadisticas)
+                chartInscriptos.Visible = true;
+
+                return; // salgo, no sigo abajo
             }
-            else
+
+            //  Si no es ni pagos ni estadísticas → mostrar DataGridView (Usuarios)
+            dataGridView.Columns.Clear();
+            dataGridView.Rows.Clear();
+
+            // Botón de detalles
+            DataGridViewButtonColumn btnDetalles = new DataGridViewButtonColumn
             {
-                // Oculto bienvenida
-                labelTextoBienvenida.Visible = false;
-                contentPanel.Visible = true;
+                HeaderText = "Detalles",
+                Text = "Ver más",
+                Name = "Detalles",
+                UseColumnTextForButtonValue = true
+            };
 
-                // Limpio la grilla
-                dataGridView.Columns.Clear();
-                dataGridView.Rows.Clear();
+            // Columnas del listado
+            dataGridView.Columns.Add("DNI", "DNI");
+            dataGridView.Columns.Add("Nombre", "Nombre");
+            dataGridView.Columns.Add("Apellido", "Apellido");
+            dataGridView.Columns.Add("Email", "Email");
+            dataGridView.Columns.Add("TipoUsuario", "Tipo de usuario");
+            dataGridView.Columns.Add(btnDetalles);
 
-                // Botón de detalles
-                DataGridViewButtonColumn btnDetalles = new DataGridViewButtonColumn
+            // Conexión y carga de datos
+            string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+            string query = @"
+        SELECT u.dni, u.nombre, u.apellido, u.email, r.descripcion
+        FROM Usuario u
+        INNER JOIN Rol r ON u.id_rol = r.id_rol
+        WHERE u.estado = 1";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
                 {
-                    HeaderText = "Detalles",
-                    Text = "Ver más",
-                    Name = "Detalles",
-                    UseColumnTextForButtonValue = true
-                };
-
-                // Columnas
-                dataGridView.Columns.Add("DNI", "DNI");
-                dataGridView.Columns.Add("Nombre", "Nombre");
-                dataGridView.Columns.Add("Apellido", "Apellido");
-                dataGridView.Columns.Add("Email", "Email");
-                dataGridView.Columns.Add("TipoUsuario", "Tipo de usuario");
-                dataGridView.Columns.Add(btnDetalles);
-
-                // Conexión y carga de datos
-                string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V2;Trusted_Connection=True;";
-                string query = @"
-                SELECT u.dni, u.nombre, u.apellido, u.email, r.descripcion
-                FROM Usuario u
-                INNER JOIN Rol r ON u.id_rol = r.id_rol
-                WHERE u.estado = 1";
-
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    while (reader.Read())
-                    {
-                        dataGridView.Rows.Add(
-                            reader["dni"],
-                            reader["nombre"],
-                            reader["apellido"],
-                            reader["email"],
-                            reader["descripcion"]
-                        );
-                    }
+                    dataGridView.Rows.Add(
+                        reader["dni"],
+                        reader["nombre"],
+                        reader["apellido"],
+                        reader["email"],
+                        reader["descripcion"]
+                    );
                 }
+            }
 
-                dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                dataGridView.Visible = true;
+            dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView.Visible = true;
 
-                //  Configuro según tipo
-                if (tipo == "entrenadores")
-                {
-                    labelTitulo.Text = "Entrenadores";
-                    // botones ocultos
-                    btnAgregar.Visible = false;
-                    btnEliminar.Visible = false;
-                }
-                else if (tipo == "Personal")
-                {
-                    labelTitulo.Text = "Personal";
-                    btnAgregar.Text = "Agregar Usuario";
-                    btnEliminar.Text = "Eliminar Usuario";
-                    btnAgregar.Visible = true;
-                    btnEliminar.Visible = true;
-                }
-                else if (tipo == "alumnos")
-                {
-                    labelTitulo.Text = "Alumnos";
-                    btnAgregar.Visible = false;
-                    btnEliminar.Visible =false;
-                }
+            //  Configurar según tipo
+            if (tipo == "Personal")
+            {
+                labelTitulo.Text = "Personal";
+                btnAgregar.Text = "Agregar Usuario";
+                btnEliminar.Text = "Eliminar Usuario";
+                btnAgregar.Visible = true;
+                btnEliminar.Visible = true;
+            }
+            else if (tipo == "entrenadores")
+            {
+                labelTitulo.Text = "Entrenadores";
+            }
+            else if (tipo == "alumnos")
+            {
+                labelTitulo.Text = "Alumnos";
             }
         }
+
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
@@ -291,12 +293,24 @@ namespace Taller2_G34
         private void BPagos_Click(object sender, EventArgs e)
         {
             MostrarVista("Pagos");
+
+            // Ocultamos todo lo demás
+            chartInscriptos.Visible = false;
+            picBoxEstadisticas.Visible = false;
+
+            // Mostramos el gráfico de pagos
+            chartPagos.Visible = true;
+
+            // Cargamos los datos
+            CargarGraficoPagos();
         }
 
 
         private void BEstadisticas_Click(object sender, EventArgs e)
         {
             MostrarVista("Estadisticas");
+            CargarGraficoInscriptos();
+
         }
 
 
@@ -312,15 +326,137 @@ namespace Taller2_G34
             picBoxEstadisticas.Image = Properties.Resources.metodos_pago;
         }
 
-        private void PBPagos_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void contentPanel_Paint(object sender, PaintEventArgs e)
         {
 
         }
+
+        private void CargarGraficoInscriptos()
+        {
+            chartInscriptos.Series.Clear();
+            chartInscriptos.ChartAreas.Clear();
+
+            ChartArea area = new ChartArea("Area1");
+            chartInscriptos.ChartAreas.Add(area);
+
+            string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+            string query = @"
+        SELECT 
+            DATENAME(MONTH, a.fecha_nacimiento) AS Mes,
+            COUNT(*) AS TotalInscriptos,
+            SUM(CASE WHEN tp.descripcion = 'Principiante' THEN 1 ELSE 0 END) AS Principiante,
+            SUM(CASE WHEN tp.descripcion = 'Intermedio' THEN 1 ELSE 0 END) AS Intermedio,
+            SUM(CASE WHEN tp.descripcion = 'Avanzado' THEN 1 ELSE 0 END) AS Avanzado
+        FROM Alumno a
+        JOIN PlanEntrenamiento p ON a.id_plan = p.id_plan
+        JOIN TipoPlan tp ON p.id_tipoPlan = tp.id_tipoPlan
+        WHERE a.estado = 1
+        GROUP BY DATENAME(MONTH, a.fecha_nacimiento), MONTH(a.fecha_nacimiento)
+        ORDER BY MONTH(a.fecha_nacimiento);";
+
+            DataTable dt = new DataTable();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                da.Fill(dt);
+            }
+
+            // Crear series
+            string[] categorias = { "Principiante", "Intermedio", "Avanzado" };
+            foreach (var cat in categorias)
+            {
+                Series serie = new Series(cat)
+                {
+                    ChartType = SeriesChartType.Column,
+                    XValueMember = "Mes",
+                    YValueMembers = cat,
+                    IsValueShownAsLabel = true
+                };
+                chartInscriptos.Series.Add(serie);
+            }
+
+            chartInscriptos.DataSource = dt;
+            chartInscriptos.DataBind();
+            chartInscriptos.Titles.Clear();
+            chartInscriptos.Titles.Add("Nuevos alumnos por mes y tipo de plan");
+        }
+
+        private void CargarGraficoPagos()
+        {
+            chartPagos.Series.Clear();
+            chartPagos.ChartAreas.Clear();
+            chartPagos.Titles.Clear();
+
+            ChartArea area = new ChartArea("Area1");
+            chartPagos.ChartAreas.Add(area);
+
+            string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+            string query = @"
+        SELECT 
+            DATENAME(MONTH, p.fecha) AS Mes,
+            MONTH(p.fecha) AS MesN,
+            SUM(pd.monto) AS TotalRecaudado
+        FROM Pago p
+        INNER JOIN PagoDetalle pd ON p.id_pago = pd.id_pago
+        WHERE YEAR(p.fecha) = YEAR(GETDATE())
+        GROUP BY DATENAME(MONTH, p.fecha), MONTH(p.fecha)
+        ORDER BY MesN;";
+
+            DataTable dt = new DataTable();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                da.Fill(dt);
+            }
+
+            // Serie
+            Series serie = new Series("Recaudación")
+            {
+                ChartType = SeriesChartType.Column,
+                XValueMember = "Mes",
+                YValueMembers = "TotalRecaudado",
+                IsValueShownAsLabel = true,
+                LabelFormat = "C0"   // ← formateo de etiquetas de cada barra como moneda
+            };
+            chartPagos.Series.Add(serie);
+
+            // Títulos y ejes
+            chartPagos.Titles.Add("Total recaudado por mes en el año actual");
+            var area1 = chartPagos.ChartAreas["Area1"];
+            area1.AxisX.Title = "Mes";
+            area1.AxisY.Title = "Total recaudado";
+            area1.AxisX.Interval = 1;
+            area1.AxisX.LabelStyle.Angle = -45;
+            area1.AxisY.LabelStyle.Format = "C0"; // ← formateo del eje Y como moneda
+
+            if (chartPagos.Legends.Count == 0)
+                chartPagos.Legends.Add(new Legend("Default"));
+            chartPagos.Legends[0].Docking = Docking.Bottom;
+
+
+            //  Enlazamos los datos normalmente
+            chartPagos.DataSource = dt;
+            chartPagos.DataBind();
+
+            // 🔹 Forzamos el formato manualmente
+            foreach (var p in chartPagos.Series["Recaudación"].Points)
+            {
+                p.Label = "$" + p.YValues[0].ToString("N0"); // etiqueta sobre cada barra
+            }
+
+            //  Cambiamos el formato del eje Y también
+            chartPagos.ChartAreas["Area1"].AxisY.LabelStyle.Format = "N0"; // números simples
+            chartPagos.ChartAreas["Area1"].AxisY.LabelStyle.ForeColor = Color.Black;
+
+            //  Dibujamos el símbolo $ en el título del eje Y
+            chartPagos.ChartAreas["Area1"].AxisY.Title = "Total recaudado ($)";
+
+
+        }
+
+
     }
 }
 

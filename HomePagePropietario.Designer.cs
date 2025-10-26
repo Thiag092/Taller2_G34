@@ -29,13 +29,18 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.BUsuarios = new System.Windows.Forms.Button();
             this.labelTextoBienvenida = new System.Windows.Forms.Label();
             this.textBoxBusqueda = new System.Windows.Forms.TextBox();
             this.BBuscar = new System.Windows.Forms.Button();
             this.labelTitulo = new System.Windows.Forms.Label();
             this.contentPanel = new System.Windows.Forms.Panel();
-            this.PBPagos = new System.Windows.Forms.PictureBox();
             this.picBoxEstadisticas = new System.Windows.Forms.PictureBox();
             this.BGraficoPagos = new System.Windows.Forms.Button();
             this.BGraficoInscriptos = new System.Windows.Forms.Button();
@@ -50,8 +55,9 @@
             this.labelAdmin = new System.Windows.Forms.Label();
             this.homeContainer = new System.Windows.Forms.SplitContainer();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.chartInscriptos = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chartPagos = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.contentPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PBPagos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxEstadisticas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.contentContainer)).BeginInit();
@@ -63,6 +69,8 @@
             this.homeContainer.Panel2.SuspendLayout();
             this.homeContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartInscriptos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartPagos)).BeginInit();
             this.SuspendLayout();
             // 
             // BUsuarios
@@ -130,7 +138,8 @@
             // 
             // contentPanel
             // 
-            this.contentPanel.Controls.Add(this.PBPagos);
+            this.contentPanel.Controls.Add(this.chartPagos);
+            this.contentPanel.Controls.Add(this.chartInscriptos);
             this.contentPanel.Controls.Add(this.picBoxEstadisticas);
             this.contentPanel.Controls.Add(this.BGraficoPagos);
             this.contentPanel.Controls.Add(this.BGraficoInscriptos);
@@ -148,18 +157,6 @@
             this.contentPanel.TabIndex = 2;
             this.contentPanel.Visible = false;
             this.contentPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.contentPanel_Paint);
-            // 
-            // PBPagos
-            // 
-            this.PBPagos.Image = global::Taller2_G34.Properties.Resources.facturacion_gimnasio;
-            this.PBPagos.Location = new System.Drawing.Point(24, 109);
-            this.PBPagos.Name = "PBPagos";
-            this.PBPagos.Size = new System.Drawing.Size(713, 403);
-            this.PBPagos.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.PBPagos.TabIndex = 12;
-            this.PBPagos.TabStop = false;
-            this.PBPagos.Visible = false;
-            this.PBPagos.Click += new System.EventHandler(this.PBPagos_Click);
             // 
             // picBoxEstadisticas
             // 
@@ -389,6 +386,40 @@
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
+            // chartInscriptos
+            // 
+            chartArea2.Name = "ChartArea1";
+            this.chartInscriptos.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chartInscriptos.Legends.Add(legend2);
+            this.chartInscriptos.Location = new System.Drawing.Point(24, 109);
+            this.chartInscriptos.Name = "chartInscriptos";
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chartInscriptos.Series.Add(series2);
+            this.chartInscriptos.Size = new System.Drawing.Size(713, 403);
+            this.chartInscriptos.TabIndex = 13;
+            this.chartInscriptos.Text = "chart1";
+            this.chartInscriptos.Visible = false;
+            // 
+            // chartPagos
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chartPagos.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartPagos.Legends.Add(legend1);
+            this.chartPagos.Location = new System.Drawing.Point(24, 126);
+            this.chartPagos.Name = "chartPagos";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartPagos.Series.Add(series1);
+            this.chartPagos.Size = new System.Drawing.Size(713, 386);
+            this.chartPagos.TabIndex = 14;
+            this.chartPagos.Text = "chart1";
+            this.chartPagos.Visible = false;
+            // 
             // HomePagePropietario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -399,7 +430,6 @@
             this.Text = "Panel del Propietario";
             this.contentPanel.ResumeLayout(false);
             this.contentPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PBPagos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxEstadisticas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.contentContainer.Panel1.ResumeLayout(false);
@@ -414,6 +444,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.homeContainer)).EndInit();
             this.homeContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartInscriptos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartPagos)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -440,6 +472,7 @@
         private System.Windows.Forms.Button BGraficoInscriptos;
         private System.Windows.Forms.Button BGraficoPagos;
         private System.Windows.Forms.PictureBox picBoxEstadisticas;
-        private System.Windows.Forms.PictureBox PBPagos;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartInscriptos;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartPagos;
     }
 }
