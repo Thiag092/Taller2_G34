@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 using Taller2_G34.Services;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Taller2_G34
 {
@@ -14,6 +15,7 @@ namespace Taller2_G34
     {
         private readonly PlanEntrenamientoService _planService;
         private readonly List<EjercicioTemporal> _ejerciciosTemporales;
+
         private string Cn => ConfigurationManager.ConnectionStrings["EnerGymDB"].ConnectionString;
 
         public VerPlanPlantilla()
@@ -155,40 +157,52 @@ namespace Taller2_G34
                 var ejerciciosBD = _planService.ObtenerEjerciciosPlanDia(idPlan, idDia);
                 var nombreDia = cboDias.Text;
 
-                // Combinar ejercicios de BD con ejercicios temporales para este día
-                var ejerciciosCombinados = _ejerciciosTemporales
-                    .Where(e => e.IdDia == idDia)
-                    .Select(e => new
-                    {
-                        e.NombreDia,
-                        e.Nombre,
-                        e.Series,
-                        e.Repeticiones,
-                        e.Tiempo
-                    })
-                    .ToList();
+                // Limpiar ejercicios anteriores de este día (mantener ejercicios de otros días)
+                _ejerciciosTemporales.RemoveAll(e => e.IdDia == idDia && !e.EsTemporal);
 
-                // Agregar ejercicios de la base de datos
+                // Agregar ejercicios de la base de datos para este día
                 foreach (DataRow row in ejerciciosBD.Rows)
                 {
-                    ejerciciosCombinados.Add(new
+                    _ejerciciosTemporales.Add(new EjercicioTemporal
                     {
-                        NombreDia = nombreDia,
+                        IdEjercicio = Convert.ToInt32(row["id_ejercicio"]),
                         Nombre = row["Ejercicio"].ToString(),
+                        IdDia = idDia,
+                        NombreDia = nombreDia,
                         Series = Convert.ToInt32(row["Series"]),
                         Repeticiones = Convert.ToInt32(row["Repeticiones"]),
-                        Tiempo = Convert.ToInt32(row["Tiempo"])
+                        Tiempo = Convert.ToInt32(row["Tiempo"]),
+                        EsTemporal = false
                     });
                 }
 
-                dgvEjercicios.DataSource = ejerciciosCombinados;
+                // Actualizar DataGridView con todos los ejercicios del día seleccionado
+                ActualizarDataGridViewPorDia(idDia);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error al cargar ejercicios: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void ActualizarDataGridViewPorDia(int idDia)
+        {
+            var ejerciciosDelDia = _ejerciciosTemporales
+                .Where(e => e.IdDia == idDia)
+                .Select(e => new
+                {
+                    e.NombreDia,
+                    e.Nombre,
+                    e.Series,
+                    e.Repeticiones,
+                    e.Tiempo,
+                    Origen = e.EsTemporal ? "Nuevo" : "Plantilla" // Para mostrar de dónde viene
+                })
+                .ToList();
 
+            dgvEjercicios.DataSource = ejerciciosDelDia;
+        }
+
+        //agregar validaciones otra vez
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
             if (cboEjercicioCatalogo.SelectedValue == null || cboDias.SelectedValue == null)
@@ -208,7 +222,7 @@ namespace Taller2_G34
                 int repeticiones = cantRepeticiones.Value == 0 ? 10 : (int)cantRepeticiones.Value;
                 int tiempo = string.IsNullOrEmpty(txtTiempo.Text) ? 30 : int.Parse(txtTiempo.Text);
 
-                // Agregar a la lista temporal
+                // Agregar a la lista completa como ejercicio temporal
                 var ejercicio = new EjercicioTemporal
                 {
                     IdEjercicio = idEjercicio,
@@ -217,19 +231,12 @@ namespace Taller2_G34
                     NombreDia = nombreDia,
                     Series = series,
                     Repeticiones = repeticiones,
-                    Tiempo = tiempo
+                    Tiempo = tiempo,
+                    EsTemporal = true
                 };
 
                 _ejerciciosTemporales.Add(ejercicio);
-
-                // CORRECCIÓN: En lugar de ActualizarDataGridViewCompleto(),
-                // llamar a CargarEjerciciosDia para combinar temporales + BD
-                if (comboBoxTipoPlan.SelectedValue != null && cboDias.SelectedValue != null)
-                {
-                    int idPlan = Convert.ToInt32(comboBoxTipoPlan.SelectedValue);
-                    int currentIdDia = Convert.ToInt32(cboDias.SelectedValue);
-                    CargarEjerciciosDia(idPlan, currentIdDia); // ← Esto combina ambos
-                }
+                ActualizarDataGridViewPorDia(idDia);
 
                 // Limpiar controles
                 cboEjercicioCatalogo.SelectedIndex = -1;
@@ -237,11 +244,38 @@ namespace Taller2_G34
                 cantRepeticiones.Value = 0;
                 txtTiempo.Text = "";
 
-                MessageBox.Show("Ejercicio agregado temporalmente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Ejercicio agregado.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error al agregar ejercicio: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void cboEjercicioCatalogo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboEjercicioCatalogo.SelectedValue != null && cboDias.SelectedValue != null)
+            {
+                int idEjercicio = Convert.ToInt32(cboEjercicioCatalogo.SelectedValue);
+                string nombreEjercicio = cboEjercicioCatalogo.Text;
+                int idDia = Convert.ToInt32(cboDias.SelectedValue);
+
+                // Verificar si ya existe
+                bool existeDuplicado = _ejerciciosTemporales
+                    .Any(eje => (eje.IdEjercicio == idEjercicio ||
+                              eje.Nombre.Equals(nombreEjercicio, StringComparison.OrdinalIgnoreCase)) &&
+                             eje.IdDia == idDia);
+
+                if (existeDuplicado)
+                {
+                    btnConfirmar.Enabled = false;
+                    toolTip1.SetToolTip(btnConfirmar, "Este ejercicio ya existe para el día seleccionado");
+                }
+                else
+                {
+                    btnConfirmar.Enabled = true;
+                    toolTip1.RemoveAll();
+                }
             }
         }
 
@@ -304,6 +338,7 @@ namespace Taller2_G34
             }
         }
 
+        //modificar para que se puedan eliminar ejercicios que vienen de la plantilla también
         private void btnQuitar_Click(object sender, EventArgs e)
         {
             if (dgvEjercicios.CurrentRow != null)

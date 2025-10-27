@@ -220,7 +220,7 @@ namespace Taller2_G34
                         cboDias.DataSource = dt;
                         cboDias.ValueMember = "id_dia";
                         cboDias.DisplayMember = "nombreDia";
-                        cboDias.SelectedIndex = -1;
+                        cboDias.SelectedIndex = 0;
                     }
                 }
 
@@ -340,6 +340,8 @@ namespace Taller2_G34
             panel1.Visible = !panel1.Visible;
         }
 
+
+        //falta validar si ya existe el ejercicio
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
             if (cboEjercicioCatalogo.SelectedValue == null || cboDias.SelectedValue == null)
@@ -347,7 +349,6 @@ namespace Taller2_G34
                 MessageBox.Show("Seleccione un ejercicio y un día primero.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
             try
             {
                 int idEjercicio = Convert.ToInt32(cboEjercicioCatalogo.SelectedValue);

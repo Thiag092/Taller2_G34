@@ -41,6 +41,7 @@
             this.BBuscar = new System.Windows.Forms.Button();
             this.labelTitulo = new System.Windows.Forms.Label();
             this.contentPanel = new System.Windows.Forms.Panel();
+            this.labelTotalAlumnos = new System.Windows.Forms.Label();
             this.chartPagos = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chartInscriptos = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.picBoxEstadisticas = new System.Windows.Forms.PictureBox();
@@ -57,7 +58,6 @@
             this.labelAdmin = new System.Windows.Forms.Label();
             this.homeContainer = new System.Windows.Forms.SplitContainer();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.labelTotalAlumnos = new System.Windows.Forms.Label();
             this.contentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartPagos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartInscriptos)).BeginInit();
@@ -160,6 +160,17 @@
             this.contentPanel.Visible = false;
             this.contentPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.contentPanel_Paint);
             // 
+            // labelTotalAlumnos
+            // 
+            this.labelTotalAlumnos.AutoSize = true;
+            this.labelTotalAlumnos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTotalAlumnos.Location = new System.Drawing.Point(264, 574);
+            this.labelTotalAlumnos.Name = "labelTotalAlumnos";
+            this.labelTotalAlumnos.Size = new System.Drawing.Size(229, 25);
+            this.labelTotalAlumnos.TabIndex = 15;
+            this.labelTotalAlumnos.Text = "Total alumnos activos:";
+            this.labelTotalAlumnos.Visible = false;
+            // 
             // chartPagos
             // 
             chartArea1.Name = "ChartArea1";
@@ -189,7 +200,7 @@
             series2.Legend = "Legend1";
             series2.Name = "Series1";
             this.chartInscriptos.Series.Add(series2);
-            this.chartInscriptos.Size = new System.Drawing.Size(923, 409);
+            this.chartInscriptos.Size = new System.Drawing.Size(1037, 409);
             this.chartInscriptos.TabIndex = 13;
             this.chartInscriptos.Text = "chart1";
             this.chartInscriptos.Visible = false;
@@ -421,17 +432,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
-            // 
-            // labelTotalAlumnos
-            // 
-            this.labelTotalAlumnos.AutoSize = true;
-            this.labelTotalAlumnos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalAlumnos.Location = new System.Drawing.Point(264, 574);
-            this.labelTotalAlumnos.Name = "labelTotalAlumnos";
-            this.labelTotalAlumnos.Size = new System.Drawing.Size(229, 25);
-            this.labelTotalAlumnos.TabIndex = 15;
-            this.labelTotalAlumnos.Text = "Total alumnos activos:";
-            this.labelTotalAlumnos.Visible = false;
             // 
             // HomePagePropietario
             // 

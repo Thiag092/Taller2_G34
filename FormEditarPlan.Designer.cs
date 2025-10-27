@@ -134,9 +134,10 @@
             // lblEstadisticas
             // 
             this.lblEstadisticas.AutoSize = true;
-            this.lblEstadisticas.Location = new System.Drawing.Point(551, 364);
+            this.lblEstadisticas.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEstadisticas.Location = new System.Drawing.Point(396, 360);
             this.lblEstadisticas.Name = "lblEstadisticas";
-            this.lblEstadisticas.Size = new System.Drawing.Size(118, 16);
+            this.lblEstadisticas.Size = new System.Drawing.Size(142, 20);
             this.lblEstadisticas.TabIndex = 59;
             this.lblEstadisticas.Text = "Total de ejercicios";
             // 
@@ -214,6 +215,7 @@
             this.txtTiempo.Name = "txtTiempo";
             this.txtTiempo.Size = new System.Drawing.Size(70, 22);
             this.txtTiempo.TabIndex = 70;
+            this.txtTiempo.Text = "30";
             // 
             // label6
             // 
@@ -239,6 +241,11 @@
             this.cantSeries.Name = "cantSeries";
             this.cantSeries.Size = new System.Drawing.Size(46, 22);
             this.cantSeries.TabIndex = 67;
+            this.cantSeries.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
             // 
             // label4
             // 
@@ -256,6 +263,11 @@
             this.cantRepeticiones.Name = "cantRepeticiones";
             this.cantRepeticiones.Size = new System.Drawing.Size(44, 22);
             this.cantRepeticiones.TabIndex = 65;
+            this.cantRepeticiones.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             // 
             // btnConfirmar
             // 
@@ -312,7 +324,6 @@
             this.cboEjercicioCatalogo.Name = "cboEjercicioCatalogo";
             this.cboEjercicioCatalogo.Size = new System.Drawing.Size(211, 24);
             this.cboEjercicioCatalogo.TabIndex = 60;
-
             // 
             // btnAgregar
             // 
@@ -396,6 +407,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(1234, 694);
             this.Controls.Add(this.splitContainer1);
             this.Name = "FormEditarPlan";

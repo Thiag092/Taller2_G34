@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnQuitar = new System.Windows.Forms.Button();
             this.comboBoxTipoPlan = new System.Windows.Forms.ComboBox();
@@ -60,6 +61,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.labelTitulo = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cantSeries)).BeginInit();
@@ -263,7 +265,6 @@
             this.cboEjercicioCatalogo.Name = "cboEjercicioCatalogo";
             this.cboEjercicioCatalogo.Size = new System.Drawing.Size(211, 24);
             this.cboEjercicioCatalogo.TabIndex = 60;
-
             // 
             // btnAgregar
             // 
@@ -499,5 +500,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label labelTitulo;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
