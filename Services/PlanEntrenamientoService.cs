@@ -212,5 +212,153 @@ namespace Taller2_G34.Services
                 return result != null ? Convert.ToInt32(result) : (int?)null;
             }
         }
+
+
+        public DataTable ObtenerDatosPlanPorId(int idPlan)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                string query = @"
+            SELECT 
+                p.id_plan,
+                p.nombre,
+                p.estado,
+                p.id_tipoPlan,
+                tp.descripcion as TipoPlan
+            FROM PlanEntrenamiento p
+            LEFT JOIN TipoPlan tp ON p.id_tipoPlan = tp.id_tipoPlan
+            WHERE p.id_plan = @idPlan";
+
+                using (var command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@idPlan", idPlan);
+                    var dt = new DataTable();
+                    using (var adapter = new SqlDataAdapter(command))
+                    {
+                        adapter.Fill(dt);
+                    }
+                    return dt;
+                }
+            }
+        }
+
+        public DataTable ObtenerDetallePlanCompleto(int idPlan)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                string query = @"
+            SELECT 
+                pd.id_dia,
+                pd.nombreDia,
+                e.id_ejercicio,
+                e.nombre as nombre_ejercicio,
+                pe.cant_series,
+                pe.repeticiones,
+                pe.tiempo
+            FROM Plan_Ejercicio pe
+            INNER JOIN Ejercicio e ON pe.id_ejercicio = e.id_ejercicio
+            INNER JOIN Plan_Dia pd ON pe.id_dia = pd.id_dia
+            WHERE pe.id_plan = @idPlan
+            ORDER BY pd.id_dia, e.nombre";
+
+                using (var command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@idPlan", idPlan);
+                    var dt = new DataTable();
+                    using (var adapter = new SqlDataAdapter(command))
+                    {
+                        adapter.Fill(dt);
+                    }
+                    return dt;
+                }
+            }
+        }
+
+        public DataTable ObtenerEjerciciosPorDia(int idPlan, int idDia)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                string query = @"
+            SELECT 
+                e.id_ejercicio,
+                e.nombre,
+                pe.cant_series,
+                pe.repeticiones,
+                pe.tiempo
+            FROM Plan_Ejercicio pe
+            INNER JOIN Ejercicio e ON pe.id_ejercicio = e.id_ejercicio
+            WHERE pe.id_plan = @idPlan AND pe.id_dia = @idDia
+            ORDER BY e.nombre";
+
+                using (var command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@idPlan", idPlan);
+                    command.Parameters.AddWithValue("@idDia", idDia);
+                    var dt = new DataTable();
+                    using (var adapter = new SqlDataAdapter(command))
+                    {
+                        adapter.Fill(dt);
+                    }
+                    return dt;
+                }
+            }
+        }
+
+        public bool ActualizarPlan(int idPlan, string nombre, int? idTipoPlan, List<FormEditarPlan.EjercicioTemporal> ejerciciosNuevos)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                using (var transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        // Actualizar datos básicos del plan
+                        string updatePlan = @"
+                        UPDATE PlanEntrenamiento 
+                        SET nombre = @nombre, id_tipoPlan = @idTipoPlan 
+                        WHERE id_plan = @idPlan";
+
+                        using (var cmd = new SqlCommand(updatePlan, connection, transaction))
+                        {
+                            cmd.Parameters.AddWithValue("@nombre", nombre);
+                            cmd.Parameters.AddWithValue("@idPlan", idPlan);
+                            cmd.Parameters.AddWithValue("@idTipoPlan", idTipoPlan ?? (object)DBNull.Value);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        // Agregar nuevos ejercicios
+                        foreach (var ejercicio in ejerciciosNuevos)
+                        {
+                            string insertEjercicio = @"
+                            INSERT INTO Plan_Ejercicio (id_plan, id_ejercicio, id_dia, cant_series, repeticiones, tiempo)
+                            VALUES (@idPlan, @idEjercicio, @idDia, @series, @repeticiones, @tiempo)";
+
+                            using (var cmd = new SqlCommand(insertEjercicio, connection, transaction))
+                            {
+                                cmd.Parameters.AddWithValue("@idPlan", idPlan);
+                                cmd.Parameters.AddWithValue("@idEjercicio", ejercicio.IdEjercicio);
+                                cmd.Parameters.AddWithValue("@idDia", ejercicio.IdDia);
+                                cmd.Parameters.AddWithValue("@series", ejercicio.Series);
+                                cmd.Parameters.AddWithValue("@repeticiones", ejercicio.Repeticiones);
+                                cmd.Parameters.AddWithValue("@tiempo", ejercicio.Tiempo);
+                                cmd.ExecuteNonQuery();
+                            }
+                        }
+
+                        transaction.Commit();
+                        return true;
+                    }
+                    catch (Exception)
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
+                }
+            }
+        }
     }
 }

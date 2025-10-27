@@ -144,7 +144,7 @@ namespace Taller2_G34
                 // 🔸 aseguramos que el gráfico de pagos se vea encima del resto
                 chartPagos.BringToFront();
 
-                return; // ✅ Salimos aquí, sin que se cargue el DataGridView
+                return; 
             }
 
 
@@ -160,7 +160,7 @@ namespace Taller2_G34
                 return; // salgo, no sigo abajo
             }
 
-            //  Si no es ni pagos ni estadísticas → mostrar DataGridView (Usuarios)
+            //  Si no es ni pagos ni estadísticas hay que mostrar DataGridView (Usuarios)
             dataGridView.Columns.Clear();
             dataGridView.Rows.Clear();
 
@@ -182,7 +182,7 @@ namespace Taller2_G34
             dataGridView.Columns.Add(btnDetalles);
 
             // Conexión y carga de datos
-            string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+            string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
             string query = @"
         SELECT u.dni, u.nombre, u.apellido, u.email, r.descripcion
         FROM Usuario u
@@ -245,7 +245,7 @@ namespace Taller2_G34
 
                 if (confirmacion == DialogResult.Yes)
                 {
-                    string connectionString = "Data Source=YAGO_DELL\\SQLEXPRESS01;Initial Catalog=EnerGym_BD_V2;Integrated Security=True";
+                    string connectionString = "Data Source=alcachofio\\SQLEXPRESS;Initial Catalog=EnerGym_BD_V9;Integrated Security=True";
                     string query = "UPDATE Usuario SET estado = 0 WHERE dni = @dni"; // Baja lógica
 
                     using (SqlConnection connection = new SqlConnection(connectionString))
@@ -346,7 +346,7 @@ namespace Taller2_G34
             ChartArea area = new ChartArea("Area1");
             chartInscriptos.ChartAreas.Add(area);
 
-            string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+            string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
             string query = @"
 SELECT 
     DATENAME(MONTH, primerPago.PrimerPagoFecha) AS Mes,
@@ -410,17 +410,17 @@ ORDER BY MONTH(primerPago.PrimerPagoFecha);";
             ChartArea area = new ChartArea("Area1");
             chartPagos.ChartAreas.Add(area);
 
-            string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+            string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
             string query = @"
-        SELECT 
-            DATENAME(MONTH, p.fecha) AS Mes,
-            MONTH(p.fecha) AS MesN,
-            SUM(pd.monto) AS TotalRecaudado
-        FROM Pago p
-        INNER JOIN PagoDetalle pd ON p.id_pago = pd.id_pago
-        WHERE YEAR(p.fecha) = YEAR(GETDATE())
-        GROUP BY DATENAME(MONTH, p.fecha), MONTH(p.fecha)
-        ORDER BY MesN;";
+            SELECT 
+                DATENAME(MONTH, p.fecha) AS Mes,
+                MONTH(p.fecha) AS MesN,
+                SUM(pd.monto) AS TotalRecaudado
+            FROM Pago p
+            INNER JOIN PagoDetalle pd ON p.id_pago = pd.id_pago
+            WHERE YEAR(p.fecha) = YEAR(GETDATE())
+            GROUP BY DATENAME(MONTH, p.fecha), MONTH(p.fecha)
+            ORDER BY MesN;";
 
             DataTable dt = new DataTable();
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -436,7 +436,7 @@ ORDER BY MONTH(primerPago.PrimerPagoFecha);";
                 XValueMember = "Mes",
                 YValueMembers = "TotalRecaudado",
                 IsValueShownAsLabel = true,
-                LabelFormat = "C0"   // ← formateo de etiquetas de cada barra como moneda
+                LabelFormat = "C0"   // formateo de etiquetas de cada barra como moneda
             };
             chartPagos.Series.Add(serie);
 
@@ -447,7 +447,7 @@ ORDER BY MONTH(primerPago.PrimerPagoFecha);";
             area1.AxisY.Title = "Total recaudado";
             area1.AxisX.Interval = 1;
             area1.AxisX.LabelStyle.Angle = -45;
-            area1.AxisY.LabelStyle.Format = "C0"; // ← formateo del eje Y como moneda
+            area1.AxisY.LabelStyle.Format = "C0"; // formateo del eje Y como moneda
 
             if (chartPagos.Legends.Count == 0)
                 chartPagos.Legends.Add(new Legend("Default"));
@@ -478,7 +478,7 @@ ORDER BY MONTH(primerPago.PrimerPagoFecha);";
         {
             try
             {
-                string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+                string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
                 string query = "SELECT COUNT(*) FROM Alumno WHERE estado = 1";
 
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -487,7 +487,7 @@ ORDER BY MONTH(primerPago.PrimerPagoFecha);";
                     SqlCommand cmd = new SqlCommand(query, conn);
                     int totalActivos = (int)cmd.ExecuteScalar();
 
-                    // 🔹 Mostrar el resultado en la label
+                    //Mostrar el resultado en la label
                     labelTotalAlumnos.Text = $"Total alumnos activos: {totalActivos}";
                 }
             }

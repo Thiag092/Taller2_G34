@@ -26,7 +26,7 @@ namespace Taller2_G34
             modoSoloLectura = soloLectura; // guarda si está en modo lectura o edición
 
             if (!modoSoloLectura)
-                CargarCombos(); // 🔹 carga listas solo si se puede editar
+                CargarCombos(); //carga listas solo si se puede editar
 
             CargarDatosAlumno();
 
@@ -49,25 +49,25 @@ namespace Taller2_G34
             {
                 string connectionString = ConfigurationManager.ConnectionStrings["EnerGymDB"].ConnectionString;
                 string query = @"
-SELECT 
-    A.id_alumno,
-    A.nombre,
-    A.apellido,
-    A.telefono,
-    A.dni,
-    A.sexo,
-    A.contacto_emergencia,
-    A.observaciones,
-    A.fecha_nacimiento,
-    A.email,
-    A.id_plan,
-    A.id_membresia,
-    P.nombre AS nombre_plan,
-    M.nombre AS nombre_membresia
-FROM Alumno A
-LEFT JOIN PlanEntrenamiento P ON A.id_plan = P.id_plan
-LEFT JOIN Membresia M ON A.id_membresia = M.id_membresia
-WHERE A.dni = @dni;";
+                SELECT 
+                    A.id_alumno,
+                    A.nombre,
+                    A.apellido,
+                    A.telefono,
+                    A.dni,
+                    A.sexo,
+                    A.contacto_emergencia,
+                    A.observaciones,
+                    A.fecha_nacimiento,
+                    A.email,
+                    A.id_plan,
+                    A.id_membresia,
+                    P.nombre AS nombre_plan,
+                    M.nombre AS nombre_membresia
+                FROM Alumno A
+                LEFT JOIN PlanEntrenamiento P ON A.id_plan = P.id_plan
+                LEFT JOIN Membresia M ON A.id_membresia = M.id_membresia
+                WHERE A.dni = @dni;";
 
 
 

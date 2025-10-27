@@ -32,6 +32,7 @@
             this.labelTitulo = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lblEstadisticas = new System.Windows.Forms.Label();
             this.btnQuitar = new System.Windows.Forms.Button();
             this.comboBoxTipoPlan = new System.Windows.Forms.ComboBox();
             this.lblTipoPlan = new System.Windows.Forms.Label();
@@ -53,11 +54,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.dgvEjercicios = new System.Windows.Forms.DataGridView();
-            this.ColIdEjercicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColReps = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSeries = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColTiempo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cboDias = new System.Windows.Forms.ComboBox();
             this.labelDia = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -116,6 +112,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.lblEstadisticas);
             this.panel2.Controls.Add(this.btnQuitar);
             this.panel2.Controls.Add(this.comboBoxTipoPlan);
             this.panel2.Controls.Add(this.lblTipoPlan);
@@ -134,6 +131,15 @@
             this.panel2.Size = new System.Drawing.Size(1234, 567);
             this.panel2.TabIndex = 0;
             // 
+            // lblEstadisticas
+            // 
+            this.lblEstadisticas.AutoSize = true;
+            this.lblEstadisticas.Location = new System.Drawing.Point(551, 364);
+            this.lblEstadisticas.Name = "lblEstadisticas";
+            this.lblEstadisticas.Size = new System.Drawing.Size(118, 16);
+            this.lblEstadisticas.TabIndex = 59;
+            this.lblEstadisticas.Text = "Total de ejercicios";
+            // 
             // btnQuitar
             // 
             this.btnQuitar.BackColor = System.Drawing.Color.Black;
@@ -147,6 +153,7 @@
             this.btnQuitar.TabIndex = 58;
             this.btnQuitar.Text = "Eliminar ejercicio";
             this.btnQuitar.UseVisualStyleBackColor = false;
+            this.btnQuitar.Click += new System.EventHandler(this.btnQuitar_Click);
             // 
             // comboBoxTipoPlan
             // 
@@ -180,6 +187,7 @@
             this.btnCancelar.TabIndex = 52;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // panel1
             // 
@@ -261,6 +269,7 @@
             this.btnConfirmar.TabIndex = 64;
             this.btnConfirmar.Text = "Confirmar";
             this.btnConfirmar.UseVisualStyleBackColor = false;
+            this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
             // label3
             // 
@@ -294,6 +303,7 @@
             this.btnNuevoEjercicio.TabIndex = 61;
             this.btnNuevoEjercicio.Text = "+";
             this.btnNuevoEjercicio.UseVisualStyleBackColor = false;
+            this.btnNuevoEjercicio.Click += new System.EventHandler(this.btnNuevoEjercicio_Click);
             // 
             // cboEjercicioCatalogo
             // 
@@ -302,6 +312,7 @@
             this.cboEjercicioCatalogo.Name = "cboEjercicioCatalogo";
             this.cboEjercicioCatalogo.Size = new System.Drawing.Size(211, 24);
             this.cboEjercicioCatalogo.TabIndex = 60;
+
             // 
             // btnAgregar
             // 
@@ -317,6 +328,7 @@
             this.btnAgregar.TabIndex = 54;
             this.btnAgregar.Text = "Agregar ejercicios";
             this.btnAgregar.UseVisualStyleBackColor = false;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // txtNombrePlan
             // 
@@ -349,69 +361,17 @@
             this.btnGuardar.TabIndex = 50;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = false;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // dgvEjercicios
             // 
             this.dgvEjercicios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEjercicios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ColIdEjercicio,
-            this.ColNombre,
-            this.ColReps,
-            this.colSeries,
-            this.ColTiempo});
             this.dgvEjercicios.Location = new System.Drawing.Point(400, 31);
             this.dgvEjercicios.Name = "dgvEjercicios";
-            this.dgvEjercicios.ReadOnly = true;
             this.dgvEjercicios.RowHeadersWidth = 51;
             this.dgvEjercicios.RowTemplate.Height = 24;
             this.dgvEjercicios.Size = new System.Drawing.Size(766, 320);
             this.dgvEjercicios.TabIndex = 46;
-            // 
-            // ColIdEjercicio
-            // 
-            this.ColIdEjercicio.DataPropertyName = "id_ejercicio";
-            this.ColIdEjercicio.HeaderText = "ID";
-            this.ColIdEjercicio.MinimumWidth = 6;
-            this.ColIdEjercicio.Name = "ColIdEjercicio";
-            this.ColIdEjercicio.ReadOnly = true;
-            this.ColIdEjercicio.Visible = false;
-            this.ColIdEjercicio.Width = 125;
-            // 
-            // ColNombre
-            // 
-            this.ColNombre.DataPropertyName = "nombre";
-            this.ColNombre.HeaderText = "Ejercicio";
-            this.ColNombre.MinimumWidth = 6;
-            this.ColNombre.Name = "ColNombre";
-            this.ColNombre.ReadOnly = true;
-            this.ColNombre.Width = 125;
-            // 
-            // ColReps
-            // 
-            this.ColReps.DataPropertyName = "repeticiones";
-            this.ColReps.HeaderText = "Repeticiones";
-            this.ColReps.MinimumWidth = 6;
-            this.ColReps.Name = "ColReps";
-            this.ColReps.ReadOnly = true;
-            this.ColReps.Width = 125;
-            // 
-            // colSeries
-            // 
-            this.colSeries.DataPropertyName = "cant_series";
-            this.colSeries.HeaderText = "Series";
-            this.colSeries.MinimumWidth = 6;
-            this.colSeries.Name = "colSeries";
-            this.colSeries.ReadOnly = true;
-            this.colSeries.Width = 125;
-            // 
-            // ColTiempo
-            // 
-            this.ColTiempo.DataPropertyName = "tiempo";
-            this.ColTiempo.HeaderText = "Tiempo (Seg)";
-            this.ColTiempo.MinimumWidth = 6;
-            this.ColTiempo.Name = "ColTiempo";
-            this.ColTiempo.ReadOnly = true;
-            this.ColTiempo.Width = 125;
             // 
             // cboDias
             // 
@@ -420,6 +380,7 @@
             this.cboDias.Name = "cboDias";
             this.cboDias.Size = new System.Drawing.Size(253, 24);
             this.cboDias.TabIndex = 45;
+            this.cboDias.SelectedIndexChanged += new System.EventHandler(this.cboDias_SelectedIndexChanged);
             // 
             // labelDia
             // 
@@ -439,6 +400,7 @@
             this.Controls.Add(this.splitContainer1);
             this.Name = "FormEditarPlan";
             this.Text = "FormEditarPlan";
+            this.Load += new System.EventHandler(this.FormEditarPlan_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -462,6 +424,7 @@
         private System.Windows.Forms.Label labelTitulo;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label lblEstadisticas;
         private System.Windows.Forms.Button btnQuitar;
         private System.Windows.Forms.ComboBox comboBoxTipoPlan;
         private System.Windows.Forms.Label lblTipoPlan;
@@ -483,11 +446,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.DataGridView dgvEjercicios;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColIdEjercicio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColNombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColReps;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSeries;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColTiempo;
         private System.Windows.Forms.ComboBox cboDias;
         private System.Windows.Forms.Label labelDia;
     }

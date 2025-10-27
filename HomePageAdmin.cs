@@ -569,8 +569,8 @@ namespace Taller2_G34
             if (e.RowIndex >= 0 && dataGridView.Columns[e.ColumnIndex].Name == "btnDetallesRutina")
             {
                 int idPlan = Convert.ToInt32(dataGridView.Rows[e.RowIndex].Cells["ID"].Value);
-                //FormEditarPlan frm = new FormEditarPlan(idPlan); // modo edición
-                //frm.ShowDialog();
+                FormEditarPlan frm = new FormEditarPlan(idPlan); // modo edición
+                frm.ShowDialog();
             }
         }
     }
