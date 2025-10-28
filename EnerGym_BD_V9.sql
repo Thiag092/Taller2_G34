@@ -350,3 +350,12 @@ VALUES
 ('Tarjeta de Débito', 5.00, 1),          -- 5% de recargo
 ('Tarjeta de Crédito', 8.00, 1);         -- 8% de recargo
 GO
+
+
+--*************************************
+--TABLA DE BACK UPS - EJECUTAR--
+CREATE TABLE HistorialBackup (
+    id_backup INT IDENTITY PRIMARY KEY,
+    fecha DATETIME DEFAULT GETDATE(),
+    ruta NVARCHAR(255)
+);
