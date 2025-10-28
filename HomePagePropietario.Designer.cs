@@ -41,7 +41,8 @@
             this.BBuscar = new System.Windows.Forms.Button();
             this.labelTitulo = new System.Windows.Forms.Label();
             this.contentPanel = new System.Windows.Forms.Panel();
-            this.comboFiltroPlanes = new System.Windows.Forms.ComboBox();
+            this.dataGridBackup = new System.Windows.Forms.DataGridView();
+            this.BBackUp = new System.Windows.Forms.Button();
             this.labelTotalAlumnos = new System.Windows.Forms.Label();
             this.chartPagos = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chartInscriptos = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -53,6 +54,7 @@
             this.btnAgregar = new System.Windows.Forms.Button();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.contentContainer = new System.Windows.Forms.SplitContainer();
+            this.BHistorialBackup = new System.Windows.Forms.Button();
             this.BPagos = new System.Windows.Forms.Button();
             this.BEstadisticas = new System.Windows.Forms.Button();
             this.BSalir = new System.Windows.Forms.Button();
@@ -60,6 +62,7 @@
             this.homeContainer = new System.Windows.Forms.SplitContainer();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.contentPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridBackup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartPagos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartInscriptos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxEstadisticas)).BeginInit();
@@ -140,7 +143,8 @@
             // 
             // contentPanel
             // 
-            this.contentPanel.Controls.Add(this.comboFiltroPlanes);
+            this.contentPanel.Controls.Add(this.dataGridBackup);
+            this.contentPanel.Controls.Add(this.BBackUp);
             this.contentPanel.Controls.Add(this.labelTotalAlumnos);
             this.contentPanel.Controls.Add(this.chartPagos);
             this.contentPanel.Controls.Add(this.chartInscriptos);
@@ -157,19 +161,41 @@
             this.contentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.contentPanel.Location = new System.Drawing.Point(0, 0);
             this.contentPanel.Name = "contentPanel";
-            this.contentPanel.Size = new System.Drawing.Size(910, 639);
+            this.contentPanel.Size = new System.Drawing.Size(957, 639);
             this.contentPanel.TabIndex = 2;
             this.contentPanel.Visible = false;
             this.contentPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.contentPanel_Paint);
             // 
-            // comboFiltroPlanes
+            // dataGridBackup
             // 
-            this.comboFiltroPlanes.FormattingEnabled = true;
-            this.comboFiltroPlanes.Location = new System.Drawing.Point(773, 64);
-            this.comboFiltroPlanes.Name = "comboFiltroPlanes";
-            this.comboFiltroPlanes.Size = new System.Drawing.Size(121, 24);
-            this.comboFiltroPlanes.TabIndex = 16;
-            this.comboFiltroPlanes.SelectedIndexChanged += new System.EventHandler(this.comboFiltroPlanes_SelectedIndexChanged);
+            this.dataGridBackup.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridBackup.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridBackup.Location = new System.Drawing.Point(176, 136);
+            this.dataGridBackup.Name = "dataGridBackup";
+            this.dataGridBackup.ReadOnly = true;
+            this.dataGridBackup.RowHeadersWidth = 51;
+            this.dataGridBackup.RowTemplate.Height = 24;
+            this.dataGridBackup.Size = new System.Drawing.Size(524, 275);
+            this.dataGridBackup.TabIndex = 17;
+            this.dataGridBackup.Visible = false;
+            // 
+            // BBackUp
+            // 
+            this.BBackUp.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.BBackUp.AutoSize = true;
+            this.BBackUp.BackColor = System.Drawing.Color.Black;
+            this.BBackUp.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BBackUp.FlatAppearance.BorderSize = 0;
+            this.BBackUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BBackUp.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BBackUp.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BBackUp.Location = new System.Drawing.Point(698, 561);
+            this.BBackUp.Name = "BBackUp";
+            this.BBackUp.Size = new System.Drawing.Size(196, 66);
+            this.BBackUp.TabIndex = 4;
+            this.BBackUp.Text = "Descargar datos";
+            this.BBackUp.UseVisualStyleBackColor = false;
+            this.BBackUp.Click += new System.EventHandler(this.BBackUp_Click);
             // 
             // labelTotalAlumnos
             // 
@@ -340,14 +366,33 @@
             // contentContainer.Panel2
             // 
             this.contentContainer.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(201)))), ((int)(((byte)(19)))));
+            this.contentContainer.Panel2.Controls.Add(this.BHistorialBackup);
             this.contentContainer.Panel2.Controls.Add(this.BPagos);
             this.contentContainer.Panel2.Controls.Add(this.BUsuarios);
             this.contentContainer.Panel2.Controls.Add(this.BEstadisticas);
             this.contentContainer.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint_1);
             this.contentContainer.Panel2MinSize = 200;
-            this.contentContainer.Size = new System.Drawing.Size(1232, 639);
-            this.contentContainer.SplitterDistance = 910;
+            this.contentContainer.Size = new System.Drawing.Size(1296, 639);
+            this.contentContainer.SplitterDistance = 957;
             this.contentContainer.TabIndex = 7;
+            // 
+            // BHistorialBackup
+            // 
+            this.BHistorialBackup.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.BHistorialBackup.AutoSize = true;
+            this.BHistorialBackup.BackColor = System.Drawing.Color.Black;
+            this.BHistorialBackup.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BHistorialBackup.FlatAppearance.BorderSize = 0;
+            this.BHistorialBackup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BHistorialBackup.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BHistorialBackup.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BHistorialBackup.Location = new System.Drawing.Point(74, 355);
+            this.BHistorialBackup.Name = "BHistorialBackup";
+            this.BHistorialBackup.Size = new System.Drawing.Size(197, 56);
+            this.BHistorialBackup.TabIndex = 5;
+            this.BHistorialBackup.Text = "Historial Backups";
+            this.BHistorialBackup.UseVisualStyleBackColor = false;
+            this.BHistorialBackup.Click += new System.EventHandler(this.BHistorialBackup_Click);
             // 
             // BPagos
             // 
@@ -391,7 +436,7 @@
             this.BSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BSalir.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BSalir.Location = new System.Drawing.Point(1031, 23);
+            this.BSalir.Location = new System.Drawing.Point(1095, 23);
             this.BSalir.Name = "BSalir";
             this.BSalir.Size = new System.Drawing.Size(157, 50);
             this.BSalir.TabIndex = 5;
@@ -431,7 +476,7 @@
             // 
             this.homeContainer.Panel2.BackColor = System.Drawing.Color.Gold;
             this.homeContainer.Panel2.Controls.Add(this.contentContainer);
-            this.homeContainer.Size = new System.Drawing.Size(1232, 736);
+            this.homeContainer.Size = new System.Drawing.Size(1296, 736);
             this.homeContainer.SplitterDistance = 93;
             this.homeContainer.TabIndex = 8;
             // 
@@ -449,12 +494,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1232, 736);
+            this.ClientSize = new System.Drawing.Size(1296, 736);
             this.Controls.Add(this.homeContainer);
             this.Name = "HomePagePropietario";
             this.Text = "Panel del Propietario";
             this.contentPanel.ResumeLayout(false);
             this.contentPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridBackup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartPagos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartInscriptos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxEstadisticas)).EndInit();
@@ -500,6 +546,8 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chartInscriptos;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartPagos;
         private System.Windows.Forms.Label labelTotalAlumnos;
-        private System.Windows.Forms.ComboBox comboFiltroPlanes;
+        private System.Windows.Forms.Button BBackUp;
+        private System.Windows.Forms.Button BHistorialBackup;
+        private System.Windows.Forms.DataGridView dataGridBackup;
     }
 }

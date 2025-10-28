@@ -4,13 +4,14 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient; // se agrego esta libreria para poder usar SQL
 using System.Drawing;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting; //para graficos
-using System.Globalization;
-using System.Threading;
 
 
 
@@ -132,6 +133,9 @@ namespace Taller2_G34
             contentPanel.Visible = true;
             chartPagos.Visible = false;
             labelTotalAlumnos.Visible = false;
+            dataGridBackup.Visible = false;
+            BBackUp.Visible = false;  // OCULTA SIEMPRE POR DEFECTO
+
 
             //  Si es PAGOS
             if (tipo == "Pagos")
@@ -147,6 +151,23 @@ namespace Taller2_G34
                 chartPagos.BringToFront();
 
                 return; 
+            }
+
+            // Si es BACKUPS
+            if (tipo == "HistorialBackup")
+            {
+                labelTitulo.Text = "Historial de copias de seguridad";
+                chartInscriptos.Visible = false;
+                chartPagos.Visible = false;
+                dataGridView.Visible = false;
+                labelTotalAlumnos.Visible = false;
+                dataGridBackup.Visible = true;
+
+                // mostramos el botón para crear backup 👇
+                BBackUp.Visible = true;
+
+                CargarHistorialBackup();
+                return;
             }
 
 
@@ -548,7 +569,116 @@ namespace Taller2_G34
             CargarGraficoInscriptos(filtro);
         }
 
-       
+        private void BBackUp_Click(object sender, EventArgs e)
+        {
+            DialogResult confirmacion = MessageBox.Show(
+                "Usted va a descargar TODOS los datos de la aplicación en su computadora.\n\n" +
+                "Se recomienda guardarlos en un lugar seguro.\n\n¿Desea continuar?",
+                "Confirmación de copia de seguridad",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            );
+
+            if (confirmacion != DialogResult.Yes)
+                return;
+
+            try
+            {
+                using (SaveFileDialog dialog = new SaveFileDialog())
+                {
+                    dialog.Title = "Guardar copia de seguridad";
+                    dialog.Filter = "Archivo de respaldo SQL Server (*.bak)|*.bak";
+                    dialog.FileName = $"EnerGym_Backup_{DateTime.Now:yyyyMMdd_HHmmss}.bak";
+
+                    if (dialog.ShowDialog() == DialogResult.OK)
+                    {
+                        string rutaDestinoFinal = dialog.FileName;
+
+                        // 🔹 1. Creamos una carpeta temporal segura (donde SQL sí puede escribir)
+                        string rutaTemporal = Path.Combine(@"C:\BackupsTemp", Path.GetFileName(rutaDestinoFinal));
+                        Directory.CreateDirectory(@"C:\BackupsTemp");
+
+                        string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=master;Trusted_Connection=True;";
+                        string query = $@"
+                    BACKUP DATABASE EnerGym_BD_V9
+                    TO DISK = '{rutaTemporal}'
+                    WITH FORMAT, MEDIANAME = 'EnerGymBackup', NAME = 'Copia de seguridad EnerGym';";
+
+                        using (SqlConnection conn = new SqlConnection(connectionString))
+                        {
+                            conn.Open();
+
+                            // Ejecuta el BACKUP en la ruta temporal
+                            using (SqlCommand cmd = new SqlCommand(query, conn))
+                                cmd.ExecuteNonQuery();
+
+                            // 🔹 Registrar el backup en la base
+                            string registrarBackup = "INSERT INTO EnerGym_BD_V9.dbo.HistorialBackup (ruta) VALUES (@ruta)";
+                            using (SqlCommand logCmd = new SqlCommand(registrarBackup, conn))
+                            {
+                                logCmd.Parameters.AddWithValue("@ruta", rutaDestinoFinal);
+                                logCmd.ExecuteNonQuery();
+                            }
+                        }
+
+                        // 🔹 2. Mover el backup desde la ruta temporal a la seleccionada por el usuario
+                        File.Copy(rutaTemporal, rutaDestinoFinal, overwrite: true);
+                        File.Delete(rutaTemporal); // opcional, limpia el temporal
+
+                        // 🔹 3. Confirmación visual
+                        MessageBox.Show(
+                            $"✅ Copia de seguridad creada exitosamente.\n\nRuta:\n{rutaDestinoFinal}",
+                            "Backup completado",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information
+                        );
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "❌ Ocurrió un error al generar el backup:\n\n" + ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
+        }
+
+
+        private void BHistorialBackup_Click(object sender, EventArgs e)
+        {
+            MostrarVista("HistorialBackup");
+
+        }
+
+        private void CargarHistorialBackup()
+        {
+            try
+            {
+                string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+                string query = "SELECT fecha AS [Fecha del Backup], ruta AS [Ubicación del Archivo] FROM HistorialBackup ORDER BY fecha DESC;";
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
+                {
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    dataGridBackup.DataSource = dt;
+                }
+
+                // formato visual
+                dataGridBackup.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dataGridBackup.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridBackup.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar historial de backups: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
     }
 }
 
