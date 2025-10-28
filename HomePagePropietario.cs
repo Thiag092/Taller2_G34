@@ -18,6 +18,8 @@ namespace Taller2_G34
 {
     public partial class HomePagePropietario : Form
     {
+        private ToolTip tooltipActivo = new ToolTip();
+
         public HomePagePropietario()
         {
             InitializeComponent();
@@ -338,7 +340,7 @@ namespace Taller2_G34
 
         }
 
-        private void CargarGraficoInscriptos()
+        private void CargarGraficoInscriptos(string filtro = "Todos")
         {
             chartInscriptos.Series.Clear();
             chartInscriptos.ChartAreas.Clear();
@@ -347,17 +349,21 @@ namespace Taller2_G34
             ChartArea area = new ChartArea("Area1");
             chartInscriptos.ChartAreas.Add(area);
 
-            // 🔹 Consulta SQL: total de alumnos activos agrupado por tipo de plan
             string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
             string query = @"
-        SELECT 
-            tp.descripcion AS TipoPlan,
-            COUNT(a.id_alumno) AS Cantidad
+        SELECT tp.descripcion AS TipoPlan, COUNT(a.id_alumno) AS Cantidad
         FROM Alumno a
         INNER JOIN PlanEntrenamiento p ON a.id_plan = p.id_plan
         INNER JOIN TipoPlan tp ON p.id_tipoPlan = tp.id_tipoPlan
-        WHERE a.estado = 1
+        WHERE a.estado = 1 {0}
         GROUP BY tp.descripcion;";
+
+            // 🔸 Si hay filtro, lo agregamos dinámicamente
+            string filtroSQL = "";
+            if (filtro != "Todos")
+                filtroSQL = $"AND tp.descripcion = '{filtro}'";
+
+            query = string.Format(query, filtroSQL);
 
             DataTable dt = new DataTable();
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -366,38 +372,73 @@ namespace Taller2_G34
                 da.Fill(dt);
             }
 
-            // 🔹 Crear la serie de tipo torta
-            Series serie = new Series("Distribución de alumnos activos");
-            serie.ChartType = SeriesChartType.Pie;
-            serie.XValueMember = "TipoPlan";
-            serie.YValueMembers = "Cantidad";
-            serie.IsValueShownAsLabel = true;
-            serie.Label = "#PERCENT{P0}"; // muestra el porcentaje
-            serie.LegendText = "#VALX";   // nombre del tipo de plan
-
-            // 🔹 Opcional: colores personalizados
-            serie.Palette = ChartColorPalette.BrightPastel;
+            Series serie = new Series("Distribución de alumnos activos")
+            {
+                ChartType = SeriesChartType.Pie,
+                XValueMember = "TipoPlan",
+                YValueMembers = "Cantidad",
+                IsValueShownAsLabel = true,
+                Label = "#PERCENT{P0}",
+                LegendText = "#VALX"
+            };
 
             chartInscriptos.Series.Add(serie);
-
-            // 🔹 Título
-            chartInscriptos.Titles.Add("Distribución de alumnos activos por tipo de plan");
-
-            // 🔹 Leyenda
-            if (chartInscriptos.Legends.Count == 0)
-                chartInscriptos.Legends.Add(new Legend("Default"));
-
-            chartInscriptos.Legends[0].Docking = Docking.Right;
-            chartInscriptos.Legends[0].Font = new Font("Segoe UI", 9, FontStyle.Bold);
-
-            // 🔹 Fuente de datos
             chartInscriptos.DataSource = dt;
             chartInscriptos.DataBind();
 
-            // 🔹 Mejora visual
-            chartInscriptos.ChartAreas["Area1"].Area3DStyle.Enable3D = true; // torta en 3D opcional
-            chartInscriptos.ChartAreas["Area1"].Area3DStyle.Inclination = 45;
+            chartInscriptos.Titles.Add("Distribución de alumnos activos por tipo de plan");
+            chartInscriptos.ChartAreas["Area1"].Area3DStyle.Enable3D = true;
         }
+
+        // Evento de clic sobre el gráfico de torta
+        private void chartInscriptos_MouseClick(object sender, MouseEventArgs e)
+        {
+            HitTestResult result = chartInscriptos.HitTest(e.X, e.Y);
+
+            if (result.ChartElementType == ChartElementType.DataPoint)
+            {
+                int index = result.PointIndex;
+                Series serie = result.Series;
+
+                // 🔹 Desexplota todas las porciones
+                foreach (DataPoint p in serie.Points)
+                    p["Exploded"] = "false";
+
+                // 🔹 Explota solo la clickeada
+                DataPoint puntoSeleccionado = serie.Points[index];
+                puntoSeleccionado["Exploded"] = "true";
+
+                // 🔹 Calcula la información
+                string tipo = puntoSeleccionado.AxisLabel;
+                int cantidad = (int)puntoSeleccionado.YValues[0];
+                double porcentaje = puntoSeleccionado.YValues[0] / serie.Points.Sum(p => p.YValues[0]) * 100;
+
+                string mensaje = $"{tipo}: {cantidad} alumno{(cantidad != 1 ? "s" : "")} ({porcentaje:0.0}%)";
+
+                // 🔹 Cierra cualquier tooltip anterior
+                tooltipActivo.Hide(chartInscriptos);
+
+                // 🔹 Configura el tooltip global
+                tooltipActivo.IsBalloon = true;
+                tooltipActivo.ToolTipIcon = ToolTipIcon.Info;
+                tooltipActivo.ToolTipTitle = "Detalle del grupo";
+                tooltipActivo.AutoPopDelay = 4000;
+                tooltipActivo.InitialDelay = 100;
+                tooltipActivo.ReshowDelay = 100;
+
+                // 🔹 Muestra el nuevo tooltip
+                tooltipActivo.Show(mensaje, chartInscriptos, e.Location.X + 10, e.Location.Y - 20);
+            }
+            else
+            {
+                // 🔹 Si se hace clic fuera de una porción, se oculta el tooltip
+                tooltipActivo.Hide(chartInscriptos);
+            }
+        }
+
+
+
+
 
 
         private void CargarGraficoPagos()
@@ -495,9 +536,19 @@ namespace Taller2_G34
                 MessageBox.Show("Error al cargar total de alumnos: " + ex.Message);
             }
         }
+        private void HomePagePropietario_Load(object sender, EventArgs e)
+        {
+            comboFiltroPlanes.Items.AddRange(new string[] { "Todos", "Principiante", "Intermedio", "Avanzado" });
+            comboFiltroPlanes.SelectedIndex = 0;
+        }
 
+        private void comboFiltroPlanes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string filtro = comboFiltroPlanes.SelectedItem.ToString();
+            CargarGraficoInscriptos(filtro);
+        }
 
-
+       
     }
 }
 

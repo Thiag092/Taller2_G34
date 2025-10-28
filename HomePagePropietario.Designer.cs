@@ -41,6 +41,7 @@
             this.BBuscar = new System.Windows.Forms.Button();
             this.labelTitulo = new System.Windows.Forms.Label();
             this.contentPanel = new System.Windows.Forms.Panel();
+            this.comboFiltroPlanes = new System.Windows.Forms.ComboBox();
             this.labelTotalAlumnos = new System.Windows.Forms.Label();
             this.chartPagos = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chartInscriptos = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -139,6 +140,7 @@
             // 
             // contentPanel
             // 
+            this.contentPanel.Controls.Add(this.comboFiltroPlanes);
             this.contentPanel.Controls.Add(this.labelTotalAlumnos);
             this.contentPanel.Controls.Add(this.chartPagos);
             this.contentPanel.Controls.Add(this.chartInscriptos);
@@ -159,6 +161,15 @@
             this.contentPanel.TabIndex = 2;
             this.contentPanel.Visible = false;
             this.contentPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.contentPanel_Paint);
+            // 
+            // comboFiltroPlanes
+            // 
+            this.comboFiltroPlanes.FormattingEnabled = true;
+            this.comboFiltroPlanes.Location = new System.Drawing.Point(773, 64);
+            this.comboFiltroPlanes.Name = "comboFiltroPlanes";
+            this.comboFiltroPlanes.Size = new System.Drawing.Size(121, 24);
+            this.comboFiltroPlanes.TabIndex = 16;
+            this.comboFiltroPlanes.SelectedIndexChanged += new System.EventHandler(this.comboFiltroPlanes_SelectedIndexChanged);
             // 
             // labelTotalAlumnos
             // 
@@ -204,6 +215,7 @@
             this.chartInscriptos.TabIndex = 13;
             this.chartInscriptos.Text = "chart1";
             this.chartInscriptos.Visible = false;
+            this.chartInscriptos.MouseClick += new System.Windows.Forms.MouseEventHandler(this.chartInscriptos_MouseClick);
             // 
             // picBoxEstadisticas
             // 
@@ -488,5 +500,6 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chartInscriptos;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartPagos;
         private System.Windows.Forms.Label labelTotalAlumnos;
+        private System.Windows.Forms.ComboBox comboFiltroPlanes;
     }
 }

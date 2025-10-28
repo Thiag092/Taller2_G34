@@ -3,7 +3,11 @@
   "WorkspaceRootPath": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\homepagepropietario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\homepagepropietario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:homepagepropietario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|c:\\users\\yago_\\lic\\taller 2\\proyecto 34\\taller2_g34\\homepagepropietario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:homepagepropietario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
@@ -11,28 +15,8 @@
       "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\homepagepropietario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:homepagepropietario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|c:\\users\\yago_\\lic\\taller 2\\proyecto 34\\taller2_g34\\ejerciciotemporal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\ejerciciotemporal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:ejerciciotemporal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\verplanplantilla.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:verplanplantilla.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\verplanplantilla.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:verplanplantilla.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\services\\planentrenamientoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:services\\planentrenamientoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\formeditarplan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:formeditarplan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\editalumno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -58,11 +42,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "HomePagePropietario.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\HomePagePropietario.cs",
               "RelativeDocumentMoniker": "HomePagePropietario.cs",
@@ -74,69 +58,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "PlanEntrenamientoService.cs",
-              "DocumentMoniker": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\Services\\PlanEntrenamientoService.cs",
-              "RelativeDocumentMoniker": "Services\\PlanEntrenamientoService.cs",
-              "ToolTip": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\Services\\PlanEntrenamientoService.cs",
-              "RelativeToolTip": "Services\\PlanEntrenamientoService.cs",
-              "ViewState": "AgIAAFYAAAAAAAAAAAAswA4AAABAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-27T18:20:02.656Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "VerPlanPlantilla.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\VerPlanPlantilla.cs",
-              "RelativeDocumentMoniker": "VerPlanPlantilla.cs",
-              "ToolTip": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\VerPlanPlantilla.cs [Dise\u00F1o]",
-              "RelativeToolTip": "VerPlanPlantilla.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-23T00:35:35.56Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "VerPlanPlantilla.cs",
-              "DocumentMoniker": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\VerPlanPlantilla.cs",
-              "RelativeDocumentMoniker": "VerPlanPlantilla.cs",
-              "ToolTip": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\VerPlanPlantilla.cs",
-              "RelativeToolTip": "VerPlanPlantilla.cs",
-              "ViewState": "AgIAAJ8AAAAAAAAAAAAiwK4AAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-27T18:11:13.073Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "FormEditarPlan.cs",
-              "DocumentMoniker": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\FormEditarPlan.cs",
-              "RelativeDocumentMoniker": "FormEditarPlan.cs",
-              "ToolTip": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\FormEditarPlan.cs",
-              "RelativeToolTip": "FormEditarPlan.cs",
-              "ViewState": "AgIAAIkAAAAAAAAAAAAQwJMAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-27T16:53:36.117Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "HomePagePropietario.cs",
               "DocumentMoniker": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\HomePagePropietario.cs",
               "RelativeDocumentMoniker": "HomePagePropietario.cs",
               "ToolTip": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\HomePagePropietario.cs",
               "RelativeToolTip": "HomePagePropietario.cs",
-              "ViewState": "AgIAAF8BAAAAAAAAAADwv20BAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAAGoBAAAAAAAAAAAwwLUBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-26T18:18:09.382Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "App.config",
               "DocumentMoniker": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\App.config",
               "RelativeDocumentMoniker": "App.config",
@@ -157,12 +92,11 @@
               "RelativeToolTip": "EjercicioTemporal.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-27T22:21:36.608Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-27T22:21:36.608Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 7,
               "Title": "HomePageAdmin.cs [Design]",
               "DocumentMoniker": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\HomePageAdmin.cs",
               "RelativeDocumentMoniker": "HomePageAdmin.cs",
@@ -173,7 +107,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 4,
               "Title": "EditAlumno.cs",
               "DocumentMoniker": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\EditAlumno.cs",
               "RelativeDocumentMoniker": "EditAlumno.cs",
@@ -185,7 +119,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 5,
               "Title": "FormEditarPlan.cs [Design]",
               "DocumentMoniker": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\FormEditarPlan.cs",
               "RelativeDocumentMoniker": "FormEditarPlan.cs",
@@ -196,7 +130,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 6,
               "Title": "HomePageAdmin.cs",
               "DocumentMoniker": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\HomePageAdmin.cs",
               "RelativeDocumentMoniker": "HomePageAdmin.cs",
