@@ -182,7 +182,7 @@ namespace Taller2_G34
             dataGridView.Columns.Add(btnDetalles);
 
             // Conexión y carga de datos
-            string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+            string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
             string query = @"
         SELECT u.dni, u.nombre, u.apellido, u.email, r.descripcion
         FROM Usuario u
@@ -245,7 +245,7 @@ namespace Taller2_G34
 
                 if (confirmacion == DialogResult.Yes)
                 {
-                    string connectionString = "Data Source=alcachofio\\SQLEXPRESS;Initial Catalog=EnerGym_BD_V9;Integrated Security=True";
+                    string connectionString = "Data Source=YAGO_DELL\\SQLEXPRESS01;Initial Catalog=EnerGym_BD_V9;Integrated Security=True";
                     string query = "UPDATE Usuario SET estado = 0 WHERE dni = @dni"; // Baja lógica
 
                     using (SqlConnection connection = new SqlConnection(connectionString))
@@ -342,30 +342,22 @@ namespace Taller2_G34
         {
             chartInscriptos.Series.Clear();
             chartInscriptos.ChartAreas.Clear();
+            chartInscriptos.Titles.Clear();
 
             ChartArea area = new ChartArea("Area1");
             chartInscriptos.ChartAreas.Add(area);
 
-            string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+            // 🔹 Consulta SQL: total de alumnos activos agrupado por tipo de plan
+            string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
             string query = @"
-SELECT 
-    DATENAME(MONTH, primerPago.PrimerPagoFecha) AS Mes,
-    SUM(CASE WHEN tp.descripcion = 'Principiante' THEN 1 ELSE 0 END) AS Principiante,
-    SUM(CASE WHEN tp.descripcion = 'Intermedio' THEN 1 ELSE 0 END) AS Intermedio,
-    SUM(CASE WHEN tp.descripcion = 'Avanzado' THEN 1 ELSE 0 END) AS Avanzado
-FROM (
-    SELECT id_alumno, MIN(fecha) AS PrimerPagoFecha
-    FROM Pago
-    GROUP BY id_alumno
-) AS primerPago
-JOIN Alumno a ON primerPago.id_alumno = a.id_alumno
-JOIN PlanEntrenamiento pl ON a.id_plan = pl.id_plan
-JOIN TipoPlan tp ON pl.id_tipoPlan = tp.id_tipoPlan
-WHERE a.estado = 1 AND YEAR(primerPago.PrimerPagoFecha) = YEAR(GETDATE())
-GROUP BY DATENAME(MONTH, primerPago.PrimerPagoFecha), MONTH(primerPago.PrimerPagoFecha)
-ORDER BY MONTH(primerPago.PrimerPagoFecha);";
-
-
+        SELECT 
+            tp.descripcion AS TipoPlan,
+            COUNT(a.id_alumno) AS Cantidad
+        FROM Alumno a
+        INNER JOIN PlanEntrenamiento p ON a.id_plan = p.id_plan
+        INNER JOIN TipoPlan tp ON p.id_tipoPlan = tp.id_tipoPlan
+        WHERE a.estado = 1
+        GROUP BY tp.descripcion;";
 
             DataTable dt = new DataTable();
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -374,32 +366,39 @@ ORDER BY MONTH(primerPago.PrimerPagoFecha);";
                 da.Fill(dt);
             }
 
-            // Crear series
-            string[] categorias = { "Principiante", "Intermedio", "Avanzado" };
-            foreach (var cat in categorias)
-            {
-                Series serie = new Series(cat)
-                {
-                    ChartType = SeriesChartType.Column,
-                    XValueMember = "Mes",
-                    YValueMembers = cat,
-                    IsValueShownAsLabel = true
-                };
-                chartInscriptos.Series.Add(serie);
-            }
+            // 🔹 Crear la serie de tipo torta
+            Series serie = new Series("Distribución de alumnos activos");
+            serie.ChartType = SeriesChartType.Pie;
+            serie.XValueMember = "TipoPlan";
+            serie.YValueMembers = "Cantidad";
+            serie.IsValueShownAsLabel = true;
+            serie.Label = "#PERCENT{P0}"; // muestra el porcentaje
+            serie.LegendText = "#VALX";   // nombre del tipo de plan
 
+            // 🔹 Opcional: colores personalizados
+            serie.Palette = ChartColorPalette.BrightPastel;
+
+            chartInscriptos.Series.Add(serie);
+
+            // 🔹 Título
+            chartInscriptos.Titles.Add("Distribución de alumnos activos por tipo de plan");
+
+            // 🔹 Leyenda
+            if (chartInscriptos.Legends.Count == 0)
+                chartInscriptos.Legends.Add(new Legend("Default"));
+
+            chartInscriptos.Legends[0].Docking = Docking.Right;
+            chartInscriptos.Legends[0].Font = new Font("Segoe UI", 9, FontStyle.Bold);
+
+            // 🔹 Fuente de datos
             chartInscriptos.DataSource = dt;
             chartInscriptos.DataBind();
 
-            // Forzar a mostrar todos los meses, incluso los de valor 0
-            chartInscriptos.ChartAreas["Area1"].AxisX.Interval = 1;
-            chartInscriptos.ChartAreas["Area1"].RecalculateAxesScale();
-
-            // Evita que colapse categorías sin valores
-            chartInscriptos.ChartAreas["Area1"].AxisX.IsMarginVisible = true;
-            chartInscriptos.ChartAreas["Area1"].AxisX.LabelStyle.IsStaggered = true;
-
+            // 🔹 Mejora visual
+            chartInscriptos.ChartAreas["Area1"].Area3DStyle.Enable3D = true; // torta en 3D opcional
+            chartInscriptos.ChartAreas["Area1"].Area3DStyle.Inclination = 45;
         }
+
 
         private void CargarGraficoPagos()
         {
@@ -410,7 +409,7 @@ ORDER BY MONTH(primerPago.PrimerPagoFecha);";
             ChartArea area = new ChartArea("Area1");
             chartPagos.ChartAreas.Add(area);
 
-            string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+            string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
             string query = @"
             SELECT 
                 DATENAME(MONTH, p.fecha) AS Mes,
@@ -478,7 +477,7 @@ ORDER BY MONTH(primerPago.PrimerPagoFecha);";
         {
             try
             {
-                string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+                string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
                 string query = "SELECT COUNT(*) FROM Alumno WHERE estado = 1";
 
                 using (SqlConnection conn = new SqlConnection(connectionString))

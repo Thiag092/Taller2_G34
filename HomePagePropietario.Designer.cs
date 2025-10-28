@@ -200,7 +200,7 @@
             series2.Legend = "Legend1";
             series2.Name = "Series1";
             this.chartInscriptos.Series.Add(series2);
-            this.chartInscriptos.Size = new System.Drawing.Size(1037, 409);
+            this.chartInscriptos.Size = new System.Drawing.Size(883, 409);
             this.chartInscriptos.TabIndex = 13;
             this.chartInscriptos.Text = "chart1";
             this.chartInscriptos.Visible = false;
