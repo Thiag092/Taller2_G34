@@ -120,7 +120,7 @@ namespace Taller2_G34
 
         private void MostrarVista(string tipo)
         {
-            // 🔸 Ocultar todo por defecto
+            //  Ocultar todo por defecto
             labelTextoBienvenida.Visible = false;
             picBoxEstadisticas.Visible = false;
             BGraficoInscriptos.Visible = false;
@@ -135,6 +135,10 @@ namespace Taller2_G34
             labelTotalAlumnos.Visible = false;
             dataGridBackup.Visible = false;
             BBackUp.Visible = false;  // OCULTA SIEMPRE POR DEFECTO
+            chartProfesores.Visible = false;
+            dataGridAlumnosProfesor.Visible = false;
+
+
 
 
             //  Si es PAGOS
@@ -147,7 +151,7 @@ namespace Taller2_G34
                 btnEliminar.Visible = false;
                 BRefresh.Visible = false;
 
-                // 🔸 aseguramos que el gráfico de pagos se vea encima del resto
+                //  aseguramos que el gráfico de pagos se vea encima del resto
                 chartPagos.BringToFront();
 
                 return; 
@@ -167,6 +171,19 @@ namespace Taller2_G34
                 BBackUp.Visible = true;
 
                 CargarHistorialBackup();
+                return;
+            }
+
+            if (tipo == "Profesores")
+            {
+                labelTitulo.Text = "Distribución de alumnos por profesor";
+                chartProfesores.Visible = true;
+                chartPagos.Visible = false;
+                chartInscriptos.Visible = false;
+                dataGridView.Visible = false;
+                dataGridBackup.Visible = false;
+
+                CargarGraficoProfesores();
                 return;
             }
 
@@ -557,17 +574,7 @@ namespace Taller2_G34
                 MessageBox.Show("Error al cargar total de alumnos: " + ex.Message);
             }
         }
-        private void HomePagePropietario_Load(object sender, EventArgs e)
-        {
-            comboFiltroPlanes.Items.AddRange(new string[] { "Todos", "Principiante", "Intermedio", "Avanzado" });
-            comboFiltroPlanes.SelectedIndex = 0;
-        }
-
-        private void comboFiltroPlanes_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string filtro = comboFiltroPlanes.SelectedItem.ToString();
-            CargarGraficoInscriptos(filtro);
-        }
+      
 
         private void BBackUp_Click(object sender, EventArgs e)
         {
@@ -678,7 +685,124 @@ namespace Taller2_G34
                 MessageBox.Show("Error al cargar historial de backups: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void CargarGraficoProfesores()
+        {
+            chartProfesores.Series.Clear();
+            chartProfesores.ChartAreas.Clear();
+            chartProfesores.Titles.Clear();
 
+            ChartArea area = new ChartArea("Area1");
+            chartProfesores.ChartAreas.Add(area);
+
+            string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+            string query = @"
+        SELECT 
+            CONCAT(u.nombre, ' ', u.apellido) AS Profesor,
+            COUNT(a.id_alumno) AS CantidadAlumnos
+        FROM Alumno a
+        INNER JOIN Usuario u ON a.id_coach = u.id_usuario
+        WHERE a.estado = 1 AND u.estado = 1 AND u.id_rol = 3
+        GROUP BY u.nombre, u.apellido
+        ORDER BY CantidadAlumnos DESC;";
+
+            DataTable dt = new DataTable();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                da.Fill(dt);
+            }
+
+            Series serie = new Series("Alumnos por profesor")
+            {
+                ChartType = SeriesChartType.Bar,
+                XValueMember = "Profesor",
+                YValueMembers = "CantidadAlumnos",
+                IsValueShownAsLabel = true,
+                LabelForeColor = Color.Black,
+                Font = new Font("Segoe UI", 9, FontStyle.Bold)
+            };
+
+            chartProfesores.Series.Add(serie);
+            chartProfesores.DataSource = dt;
+            chartProfesores.DataBind();
+
+            chartProfesores.Titles.Add("Cantidad de alumnos activos por profesor");
+
+            var area1 = chartProfesores.ChartAreas["Area1"];
+            area1.AxisX.Title = "Cantidad de alumnos";
+            area1.AxisY.Title = "Profesores";
+            area1.AxisX.LabelStyle.Format = "N0";
+            area1.AxisY.LabelStyle.Font = new Font("Segoe UI", 9);
+            area1.AxisX.MajorGrid.LineColor = Color.LightGray;
+            area1.AxisY.MajorGrid.Enabled = false;
+        }
+        private void chartProfesores_MouseMove(object sender, MouseEventArgs e)
+        {
+            var result = chartProfesores.HitTest(e.X, e.Y);
+            if (result.ChartElementType == ChartElementType.DataPoint)
+            {
+                var punto = result.Series.Points[result.PointIndex];
+                string profesor = punto.AxisLabel;
+                int cantidad = (int)punto.YValues[0];
+                chartProfesores.Series[0].ToolTip = $"{profesor}: {cantidad} alumno{(cantidad != 1 ? "s" : "")}";
+            }
+        }
+
+        private void CargarAlumnosDeProfesor(string nombreProfesor)
+        {
+            // Limpiar y preparar la grilla
+            dataGridAlumnosProfesor.DataSource = null;  // limpia el origen anterior
+            dataGridAlumnosProfesor.Visible = true;
+
+
+            string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+
+            // 🔹 Consulta dinámica según el profesor seleccionado
+            string query = @"
+        SELECT a.nombre AS Nombre, a.apellido AS Apellido, a.dni AS DNI
+        FROM Alumno a
+        INNER JOIN Usuario u ON a.id_coach = u.id_usuario
+        WHERE u.estado = 1 AND a.estado = 1
+          AND CONCAT(u.nombre, ' ', u.apellido) = @nombreProfesor;";
+
+            DataTable dt = new DataTable();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                cmd.Parameters.AddWithValue("@nombreProfesor", nombreProfesor);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+            }
+
+            // Configuración visual
+            dataGridAlumnosProfesor.DataSource = dt;
+            dataGridAlumnosProfesor.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridAlumnosProfesor.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridAlumnosProfesor.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+        }
+        private void chartProfesores_MouseClick(object sender, MouseEventArgs e)
+        {
+            HitTestResult result = chartProfesores.HitTest(e.X, e.Y);
+
+            if (result.ChartElementType == ChartElementType.DataPoint)
+            {
+                string profesor = result.Series.Points[result.PointIndex].AxisLabel;
+
+                // Llamar al método para mostrar los alumnos
+                CargarAlumnosDeProfesor(profesor);
+
+              
+            }
+        }
+
+
+        private void BProfesores_Click(object sender, EventArgs e)
+        {
+            MostrarVista("Profesores");
+
+        }
+
+        
     }
 }
 

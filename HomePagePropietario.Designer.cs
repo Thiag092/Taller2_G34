@@ -34,6 +34,9 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.BUsuarios = new System.Windows.Forms.Button();
             this.labelTextoBienvenida = new System.Windows.Forms.Label();
@@ -41,6 +44,8 @@
             this.BBuscar = new System.Windows.Forms.Button();
             this.labelTitulo = new System.Windows.Forms.Label();
             this.contentPanel = new System.Windows.Forms.Panel();
+            this.dataGridAlumnosProfesor = new System.Windows.Forms.DataGridView();
+            this.chartProfesores = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.dataGridBackup = new System.Windows.Forms.DataGridView();
             this.BBackUp = new System.Windows.Forms.Button();
             this.labelTotalAlumnos = new System.Windows.Forms.Label();
@@ -54,6 +59,7 @@
             this.btnAgregar = new System.Windows.Forms.Button();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.contentContainer = new System.Windows.Forms.SplitContainer();
+            this.BProfesores = new System.Windows.Forms.Button();
             this.BHistorialBackup = new System.Windows.Forms.Button();
             this.BPagos = new System.Windows.Forms.Button();
             this.BEstadisticas = new System.Windows.Forms.Button();
@@ -62,6 +68,8 @@
             this.homeContainer = new System.Windows.Forms.SplitContainer();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.contentPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridAlumnosProfesor)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartProfesores)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridBackup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartPagos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartInscriptos)).BeginInit();
@@ -87,7 +95,7 @@
             this.BUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BUsuarios.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BUsuarios.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BUsuarios.Location = new System.Drawing.Point(66, 45);
+            this.BUsuarios.Location = new System.Drawing.Point(66, 56);
             this.BUsuarios.Name = "BUsuarios";
             this.BUsuarios.Size = new System.Drawing.Size(197, 58);
             this.BUsuarios.TabIndex = 1;
@@ -143,6 +151,8 @@
             // 
             // contentPanel
             // 
+            this.contentPanel.Controls.Add(this.dataGridAlumnosProfesor);
+            this.contentPanel.Controls.Add(this.chartProfesores);
             this.contentPanel.Controls.Add(this.dataGridBackup);
             this.contentPanel.Controls.Add(this.BBackUp);
             this.contentPanel.Controls.Add(this.labelTotalAlumnos);
@@ -165,6 +175,33 @@
             this.contentPanel.TabIndex = 2;
             this.contentPanel.Visible = false;
             this.contentPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.contentPanel_Paint);
+            // 
+            // dataGridAlumnosProfesor
+            // 
+            this.dataGridAlumnosProfesor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridAlumnosProfesor.Location = new System.Drawing.Point(97, 389);
+            this.dataGridAlumnosProfesor.Name = "dataGridAlumnosProfesor";
+            this.dataGridAlumnosProfesor.RowHeadersWidth = 51;
+            this.dataGridAlumnosProfesor.RowTemplate.Height = 24;
+            this.dataGridAlumnosProfesor.Size = new System.Drawing.Size(775, 145);
+            this.dataGridAlumnosProfesor.TabIndex = 19;
+            // 
+            // chartProfesores
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chartProfesores.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartProfesores.Legends.Add(legend1);
+            this.chartProfesores.Location = new System.Drawing.Point(97, 126);
+            this.chartProfesores.Name = "chartProfesores";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartProfesores.Series.Add(series1);
+            this.chartProfesores.Size = new System.Drawing.Size(775, 257);
+            this.chartProfesores.TabIndex = 18;
+            this.chartProfesores.Text = "chart1";
+            this.chartProfesores.MouseClick += new System.Windows.Forms.MouseEventHandler(this.chartProfesores_MouseClick);
             // 
             // dataGridBackup
             // 
@@ -210,16 +247,16 @@
             // 
             // chartPagos
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chartPagos.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartPagos.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.chartPagos.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chartPagos.Legends.Add(legend2);
             this.chartPagos.Location = new System.Drawing.Point(24, 126);
             this.chartPagos.Name = "chartPagos";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartPagos.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chartPagos.Series.Add(series2);
             this.chartPagos.Size = new System.Drawing.Size(883, 386);
             this.chartPagos.TabIndex = 14;
             this.chartPagos.Text = "chart1";
@@ -227,16 +264,16 @@
             // 
             // chartInscriptos
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chartInscriptos.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chartInscriptos.Legends.Add(legend2);
+            chartArea3.Name = "ChartArea1";
+            this.chartInscriptos.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chartInscriptos.Legends.Add(legend3);
             this.chartInscriptos.Location = new System.Drawing.Point(24, 103);
             this.chartInscriptos.Name = "chartInscriptos";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chartInscriptos.Series.Add(series2);
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.chartInscriptos.Series.Add(series3);
             this.chartInscriptos.Size = new System.Drawing.Size(883, 409);
             this.chartInscriptos.TabIndex = 13;
             this.chartInscriptos.Text = "chart1";
@@ -366,6 +403,7 @@
             // contentContainer.Panel2
             // 
             this.contentContainer.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(201)))), ((int)(((byte)(19)))));
+            this.contentContainer.Panel2.Controls.Add(this.BProfesores);
             this.contentContainer.Panel2.Controls.Add(this.BHistorialBackup);
             this.contentContainer.Panel2.Controls.Add(this.BPagos);
             this.contentContainer.Panel2.Controls.Add(this.BUsuarios);
@@ -375,6 +413,23 @@
             this.contentContainer.Size = new System.Drawing.Size(1296, 639);
             this.contentContainer.SplitterDistance = 957;
             this.contentContainer.TabIndex = 7;
+            // 
+            // BProfesores
+            // 
+            this.BProfesores.AutoSize = true;
+            this.BProfesores.BackColor = System.Drawing.Color.Black;
+            this.BProfesores.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BProfesores.FlatAppearance.BorderSize = 0;
+            this.BProfesores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BProfesores.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BProfesores.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BProfesores.Location = new System.Drawing.Point(66, 297);
+            this.BProfesores.Name = "BProfesores";
+            this.BProfesores.Size = new System.Drawing.Size(197, 56);
+            this.BProfesores.TabIndex = 6;
+            this.BProfesores.Text = "Profesores";
+            this.BProfesores.UseVisualStyleBackColor = false;
+            this.BProfesores.Click += new System.EventHandler(this.BProfesores_Click);
             // 
             // BHistorialBackup
             // 
@@ -386,7 +441,7 @@
             this.BHistorialBackup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BHistorialBackup.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BHistorialBackup.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BHistorialBackup.Location = new System.Drawing.Point(74, 355);
+            this.BHistorialBackup.Location = new System.Drawing.Point(66, 372);
             this.BHistorialBackup.Name = "BHistorialBackup";
             this.BHistorialBackup.Size = new System.Drawing.Size(197, 56);
             this.BHistorialBackup.TabIndex = 5;
@@ -403,7 +458,7 @@
             this.BPagos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BPagos.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BPagos.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BPagos.Location = new System.Drawing.Point(66, 255);
+            this.BPagos.Location = new System.Drawing.Point(66, 214);
             this.BPagos.Name = "BPagos";
             this.BPagos.Size = new System.Drawing.Size(197, 56);
             this.BPagos.TabIndex = 2;
@@ -420,7 +475,7 @@
             this.BEstadisticas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BEstadisticas.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BEstadisticas.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BEstadisticas.Location = new System.Drawing.Point(66, 152);
+            this.BEstadisticas.Location = new System.Drawing.Point(66, 136);
             this.BEstadisticas.Name = "BEstadisticas";
             this.BEstadisticas.Size = new System.Drawing.Size(197, 56);
             this.BEstadisticas.TabIndex = 0;
@@ -500,6 +555,8 @@
             this.Text = "Panel del Propietario";
             this.contentPanel.ResumeLayout(false);
             this.contentPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridAlumnosProfesor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartProfesores)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridBackup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartPagos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartInscriptos)).EndInit();
@@ -549,5 +606,8 @@
         private System.Windows.Forms.Button BBackUp;
         private System.Windows.Forms.Button BHistorialBackup;
         private System.Windows.Forms.DataGridView dataGridBackup;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartProfesores;
+        private System.Windows.Forms.Button BProfesores;
+        private System.Windows.Forms.DataGridView dataGridAlumnosProfesor;
     }
 }
