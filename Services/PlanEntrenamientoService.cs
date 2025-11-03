@@ -86,7 +86,6 @@ namespace Taller2_G34.Services
             }
         }
 
-        // ⭐ NUEVO MÉTODO: ObtenerPlanPorTipo (Renombrado para reflejar que es una búsqueda)
         public int? ObtenerIdPlanPorTipo(int idTipoPlan)
         {
             // Busca el ID del plan que sirve de plantilla para ese TipoPlan.
@@ -107,7 +106,7 @@ namespace Taller2_G34.Services
 
         public DataTable ObtenerDatosPlanPorId(int idPlan)
         {
-            // ⭐ NOTA: Este método es nuevo para FormEditarPlan, trae datos principales del plan.
+            // Este método es nuevo para FormEditarPlan, trae datos principales del plan.
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
@@ -134,7 +133,7 @@ namespace Taller2_G34.Services
 
         public DataTable ObtenerDetallePlanCompleto(int idPlan)
         {
-            // ⭐ NOTA: Trae todos los ejercicios de un plan para una edición inicial.
+            //Trae todos los ejercicios de un plan para una edición inicial.
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();

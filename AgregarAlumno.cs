@@ -45,7 +45,16 @@ namespace Taller2_G34
             {
                 cn.Open();
                 SqlDataAdapter daPlan = new SqlDataAdapter(
-                    "SELECT id_plan, nombre FROM PlanEntrenamiento WHERE estado = 1",
+                    @"SELECT 
+                        p.id_plan, 
+                        p.nombre + ' (' + tp.descripcion + ')' AS nombre_completo,
+                        p.nombre,
+                        tp.descripcion AS tipo
+                    FROM PlanEntrenamiento p
+                    INNER JOIN TipoPlan tp ON p.id_tipoPlan = tp.id_tipoPlan
+                    WHERE p.estado = 1
+                    ORDER BY tp.id_tipoPlan, p.nombre;", 
+            
                     cn);
                 DataTable dtPlan = new DataTable();
                 daPlan.Fill(dtPlan);
@@ -214,6 +223,11 @@ namespace Taller2_G34
             {
                 return false;
             }
+        }
+
+        private void comboBoxPlan_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

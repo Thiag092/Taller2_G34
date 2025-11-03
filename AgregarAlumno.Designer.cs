@@ -73,7 +73,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(877, 771);
+            this.panel1.Size = new System.Drawing.Size(912, 795);
             this.panel1.TabIndex = 5;
             // 
             // splitContainer1
@@ -91,8 +91,8 @@
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.Gold;
             this.splitContainer1.Panel2.Controls.Add(this.panel2);
-            this.splitContainer1.Size = new System.Drawing.Size(877, 771);
-            this.splitContainer1.SplitterDistance = 138;
+            this.splitContainer1.Size = new System.Drawing.Size(912, 795);
+            this.splitContainer1.SplitterDistance = 142;
             this.splitContainer1.TabIndex = 5;
             // 
             // pictureBox1
@@ -136,7 +136,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(877, 629);
+            this.panel2.Size = new System.Drawing.Size(912, 649);
             this.panel2.TabIndex = 0;
             // 
             // txtContactoEmergencia
@@ -159,17 +159,17 @@
             // 
             // textBoxObservaciones
             // 
-            this.textBoxObservaciones.Location = new System.Drawing.Point(119, 393);
+            this.textBoxObservaciones.Location = new System.Drawing.Point(170, 464);
             this.textBoxObservaciones.Multiline = true;
             this.textBoxObservaciones.Name = "textBoxObservaciones";
-            this.textBoxObservaciones.Size = new System.Drawing.Size(620, 102);
+            this.textBoxObservaciones.Size = new System.Drawing.Size(641, 102);
             this.textBoxObservaciones.TabIndex = 60;
             // 
             // labelMembresia
             // 
             this.labelMembresia.AutoSize = true;
             this.labelMembresia.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMembresia.Location = new System.Drawing.Point(509, 232);
+            this.labelMembresia.Location = new System.Drawing.Point(464, 232);
             this.labelMembresia.Name = "labelMembresia";
             this.labelMembresia.Size = new System.Drawing.Size(107, 24);
             this.labelMembresia.TabIndex = 59;
@@ -178,16 +178,16 @@
             // comboBoxMembresia
             // 
             this.comboBoxMembresia.FormattingEnabled = true;
-            this.comboBoxMembresia.Location = new System.Drawing.Point(690, 232);
+            this.comboBoxMembresia.Location = new System.Drawing.Point(611, 232);
             this.comboBoxMembresia.Name = "comboBoxMembresia";
-            this.comboBoxMembresia.Size = new System.Drawing.Size(121, 24);
+            this.comboBoxMembresia.Size = new System.Drawing.Size(200, 24);
             this.comboBoxMembresia.TabIndex = 57;
             // 
             // labelObservaciones
             // 
             this.labelObservaciones.AutoSize = true;
             this.labelObservaciones.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelObservaciones.Location = new System.Drawing.Point(115, 366);
+            this.labelObservaciones.Location = new System.Drawing.Point(166, 437);
             this.labelObservaciones.Name = "labelObservaciones";
             this.labelObservaciones.Size = new System.Drawing.Size(139, 24);
             this.labelObservaciones.TabIndex = 55;
@@ -198,16 +198,16 @@
             // 
             this.comboBoxCoach.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxCoach.FormattingEnabled = true;
-            this.comboBoxCoach.Location = new System.Drawing.Point(692, 277);
+            this.comboBoxCoach.Location = new System.Drawing.Point(611, 277);
             this.comboBoxCoach.Name = "comboBoxCoach";
-            this.comboBoxCoach.Size = new System.Drawing.Size(121, 31);
+            this.comboBoxCoach.Size = new System.Drawing.Size(202, 31);
             this.comboBoxCoach.TabIndex = 54;
             // 
             // labelCoach
             // 
             this.labelCoach.AutoSize = true;
             this.labelCoach.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCoach.Location = new System.Drawing.Point(553, 284);
+            this.labelCoach.Location = new System.Drawing.Point(464, 282);
             this.labelCoach.Name = "labelCoach";
             this.labelCoach.Size = new System.Drawing.Size(63, 24);
             this.labelCoach.TabIndex = 53;
@@ -218,7 +218,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(494, 185);
+            this.label5.Location = new System.Drawing.Point(464, 185);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(122, 24);
             this.label5.TabIndex = 0;
@@ -238,10 +238,11 @@
             // comboBoxPlan
             // 
             this.comboBoxPlan.FormattingEnabled = true;
-            this.comboBoxPlan.Location = new System.Drawing.Point(690, 185);
+            this.comboBoxPlan.Location = new System.Drawing.Point(611, 185);
             this.comboBoxPlan.Name = "comboBoxPlan";
-            this.comboBoxPlan.Size = new System.Drawing.Size(121, 24);
+            this.comboBoxPlan.Size = new System.Drawing.Size(200, 24);
             this.comboBoxPlan.TabIndex = 8;
+            this.comboBoxPlan.SelectedIndexChanged += new System.EventHandler(this.comboBoxPlan_SelectedIndexChanged);
             // 
             // comboBoxSexo
             // 
@@ -285,7 +286,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(492, 76);
+            this.label2.Location = new System.Drawing.Point(464, 76);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 24);
             this.label2.TabIndex = 44;
@@ -351,7 +352,7 @@
             // 
             this.labelApellido.AutoSize = true;
             this.labelApellido.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelApellido.Location = new System.Drawing.Point(487, 24);
+            this.labelApellido.Location = new System.Drawing.Point(464, 27);
             this.labelApellido.Name = "labelApellido";
             this.labelApellido.Size = new System.Drawing.Size(83, 24);
             this.labelApellido.TabIndex = 37;
@@ -374,9 +375,9 @@
             this.BConfirmar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BConfirmar.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BConfirmar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BConfirmar.Location = new System.Drawing.Point(560, 543);
+            this.BConfirmar.Location = new System.Drawing.Point(611, 614);
             this.BConfirmar.Name = "BConfirmar";
-            this.BConfirmar.Size = new System.Drawing.Size(179, 40);
+            this.BConfirmar.Size = new System.Drawing.Size(200, 40);
             this.BConfirmar.TabIndex = 35;
             this.BConfirmar.Text = "Confirmar y pagar";
             this.BConfirmar.UseVisualStyleBackColor = false;
@@ -389,9 +390,9 @@
             this.BCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BCancelar.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BCancelar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BCancelar.Location = new System.Drawing.Point(119, 543);
+            this.BCancelar.Location = new System.Drawing.Point(170, 614);
             this.BCancelar.Name = "BCancelar";
-            this.BCancelar.Size = new System.Drawing.Size(147, 40);
+            this.BCancelar.Size = new System.Drawing.Size(168, 40);
             this.BCancelar.TabIndex = 34;
             this.BCancelar.Text = "Cancelar";
             this.BCancelar.UseVisualStyleBackColor = false;
@@ -401,7 +402,7 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ClientSize = new System.Drawing.Size(877, 771);
+            this.ClientSize = new System.Drawing.Size(912, 795);
             this.Controls.Add(this.panel1);
             this.Name = "AgregarAlumno";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

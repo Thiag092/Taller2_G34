@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient; // se agrego esta libreria para poder usar SQL
+using System.Data.SqlClient; 
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -123,8 +123,6 @@ namespace Taller2_G34
             //  Ocultar todo por defecto
             labelTextoBienvenida.Visible = false;
             picBoxEstadisticas.Visible = false;
-            BGraficoInscriptos.Visible = false;
-            BGraficoPagos.Visible = false;
             dataGridView.Visible = false;
             btnAgregar.Visible = false;
             btnEliminar.Visible = false;
@@ -222,7 +220,7 @@ namespace Taller2_G34
             dataGridView.Columns.Add(btnDetalles);
 
             // Conexión y carga de datos
-            string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+            string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
             string query = @"
         SELECT u.dni, u.nombre, u.apellido, u.email, r.descripcion
         FROM Usuario u
@@ -285,7 +283,7 @@ namespace Taller2_G34
 
                 if (confirmacion == DialogResult.Yes)
                 {
-                    string connectionString = "Data Source=YAGO_DELL\\SQLEXPRESS01;Initial Catalog=EnerGym_BD_V9;Integrated Security=True";
+                    string connectionString = "Data Source=alcachofio\\SQLEXPRESS;Initial Catalog=EnerGym_BD_V9;Integrated Security=True";
                     string query = "UPDATE Usuario SET estado = 0 WHERE dni = @dni"; // Baja lógica
 
                     using (SqlConnection connection = new SqlConnection(connectionString))
@@ -387,14 +385,14 @@ namespace Taller2_G34
             ChartArea area = new ChartArea("Area1");
             chartInscriptos.ChartAreas.Add(area);
 
-            string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+            string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
             string query = @"
-        SELECT tp.descripcion AS TipoPlan, COUNT(a.id_alumno) AS Cantidad
-        FROM Alumno a
-        INNER JOIN PlanEntrenamiento p ON a.id_plan = p.id_plan
-        INNER JOIN TipoPlan tp ON p.id_tipoPlan = tp.id_tipoPlan
-        WHERE a.estado = 1 {0}
-        GROUP BY tp.descripcion;";
+            SELECT tp.descripcion AS TipoPlan, COUNT(a.id_alumno) AS Cantidad
+            FROM Alumno a
+            INNER JOIN PlanEntrenamiento p ON a.id_plan = p.id_plan
+            INNER JOIN TipoPlan tp ON p.id_tipoPlan = tp.id_tipoPlan
+            WHERE a.estado = 1 {0}
+            GROUP BY tp.descripcion;";
 
             // 🔸 Si hay filtro, lo agregamos dinámicamente
             string filtroSQL = "";
@@ -488,7 +486,7 @@ namespace Taller2_G34
             ChartArea area = new ChartArea("Area1");
             chartPagos.ChartAreas.Add(area);
 
-            string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+            string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
             string query = @"
             SELECT 
                 DATENAME(MONTH, p.fecha) AS Mes,
@@ -556,7 +554,7 @@ namespace Taller2_G34
         {
             try
             {
-                string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+                string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
                 string query = "SELECT COUNT(*) FROM Alumno WHERE estado = 1";
 
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -605,7 +603,7 @@ namespace Taller2_G34
                         string rutaTemporal = Path.Combine(@"C:\BackupsTemp", Path.GetFileName(rutaDestinoFinal));
                         Directory.CreateDirectory(@"C:\BackupsTemp");
 
-                        string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=master;Trusted_Connection=True;";
+                        string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=master;Trusted_Connection=True;";
                         string query = $@"
                     BACKUP DATABASE EnerGym_BD_V9
                     TO DISK = '{rutaTemporal}'
@@ -634,7 +632,7 @@ namespace Taller2_G34
 
                         // 🔹 3. Confirmación visual
                         MessageBox.Show(
-                            $"✅ Copia de seguridad creada exitosamente.\n\nRuta:\n{rutaDestinoFinal}",
+                            $"Copia de seguridad creada exitosamente.\n\nRuta:\n{rutaDestinoFinal}",
                             "Backup completado",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information
@@ -664,7 +662,7 @@ namespace Taller2_G34
         {
             try
             {
-                string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+                string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
                 string query = "SELECT fecha AS [Fecha del Backup], ruta AS [Ubicación del Archivo] FROM HistorialBackup ORDER BY fecha DESC;";
 
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -694,7 +692,7 @@ namespace Taller2_G34
             ChartArea area = new ChartArea("Area1");
             chartProfesores.ChartAreas.Add(area);
 
-            string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+            string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
             string query = @"
         SELECT 
             CONCAT(u.nombre, ' ', u.apellido) AS Profesor,
@@ -755,7 +753,7 @@ namespace Taller2_G34
             dataGridAlumnosProfesor.Visible = true;
 
 
-            string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+            string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
 
             // 🔹 Consulta dinámica según el profesor seleccionado
             string query = @"

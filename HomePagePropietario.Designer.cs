@@ -28,16 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.BUsuarios = new System.Windows.Forms.Button();
             this.labelTextoBienvenida = new System.Windows.Forms.Label();
             this.textBoxBusqueda = new System.Windows.Forms.TextBox();
@@ -52,8 +52,6 @@
             this.chartPagos = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chartInscriptos = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.picBoxEstadisticas = new System.Windows.Forms.PictureBox();
-            this.BGraficoPagos = new System.Windows.Forms.Button();
-            this.BGraficoInscriptos = new System.Windows.Forms.Button();
             this.BRefresh = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
@@ -159,8 +157,6 @@
             this.contentPanel.Controls.Add(this.chartPagos);
             this.contentPanel.Controls.Add(this.chartInscriptos);
             this.contentPanel.Controls.Add(this.picBoxEstadisticas);
-            this.contentPanel.Controls.Add(this.BGraficoPagos);
-            this.contentPanel.Controls.Add(this.BGraficoInscriptos);
             this.contentPanel.Controls.Add(this.BRefresh);
             this.contentPanel.Controls.Add(this.textBoxBusqueda);
             this.contentPanel.Controls.Add(this.BBuscar);
@@ -188,16 +184,16 @@
             // 
             // chartProfesores
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chartProfesores.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartProfesores.Legends.Add(legend1);
+            chartArea7.Name = "ChartArea1";
+            this.chartProfesores.ChartAreas.Add(chartArea7);
+            legend7.Name = "Legend1";
+            this.chartProfesores.Legends.Add(legend7);
             this.chartProfesores.Location = new System.Drawing.Point(97, 126);
             this.chartProfesores.Name = "chartProfesores";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartProfesores.Series.Add(series1);
+            series7.ChartArea = "ChartArea1";
+            series7.Legend = "Legend1";
+            series7.Name = "Series1";
+            this.chartProfesores.Series.Add(series7);
             this.chartProfesores.Size = new System.Drawing.Size(775, 257);
             this.chartProfesores.TabIndex = 18;
             this.chartProfesores.Text = "chart1";
@@ -247,16 +243,16 @@
             // 
             // chartPagos
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chartPagos.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chartPagos.Legends.Add(legend2);
+            chartArea8.Name = "ChartArea1";
+            this.chartPagos.ChartAreas.Add(chartArea8);
+            legend8.Name = "Legend1";
+            this.chartPagos.Legends.Add(legend8);
             this.chartPagos.Location = new System.Drawing.Point(24, 126);
             this.chartPagos.Name = "chartPagos";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chartPagos.Series.Add(series2);
+            series8.ChartArea = "ChartArea1";
+            series8.Legend = "Legend1";
+            series8.Name = "Series1";
+            this.chartPagos.Series.Add(series8);
             this.chartPagos.Size = new System.Drawing.Size(883, 386);
             this.chartPagos.TabIndex = 14;
             this.chartPagos.Text = "chart1";
@@ -264,16 +260,16 @@
             // 
             // chartInscriptos
             // 
-            chartArea3.Name = "ChartArea1";
-            this.chartInscriptos.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chartInscriptos.Legends.Add(legend3);
-            this.chartInscriptos.Location = new System.Drawing.Point(24, 103);
+            chartArea9.Name = "ChartArea1";
+            this.chartInscriptos.ChartAreas.Add(chartArea9);
+            legend9.Name = "Legend1";
+            this.chartInscriptos.Legends.Add(legend9);
+            this.chartInscriptos.Location = new System.Drawing.Point(24, 109);
             this.chartInscriptos.Name = "chartInscriptos";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.chartInscriptos.Series.Add(series3);
+            series9.ChartArea = "ChartArea1";
+            series9.Legend = "Legend1";
+            series9.Name = "Series1";
+            this.chartInscriptos.Series.Add(series9);
             this.chartInscriptos.Size = new System.Drawing.Size(883, 409);
             this.chartInscriptos.TabIndex = 13;
             this.chartInscriptos.Text = "chart1";
@@ -288,32 +284,6 @@
             this.picBoxEstadisticas.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picBoxEstadisticas.TabIndex = 11;
             this.picBoxEstadisticas.TabStop = false;
-            // 
-            // BGraficoPagos
-            // 
-            this.BGraficoPagos.FlatAppearance.BorderSize = 0;
-            this.BGraficoPagos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BGraficoPagos.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BGraficoPagos.Location = new System.Drawing.Point(208, 45);
-            this.BGraficoPagos.Name = "BGraficoPagos";
-            this.BGraficoPagos.Size = new System.Drawing.Size(193, 58);
-            this.BGraficoPagos.TabIndex = 10;
-            this.BGraficoPagos.Text = "Metodos de pago";
-            this.BGraficoPagos.UseVisualStyleBackColor = true;
-            this.BGraficoPagos.Click += new System.EventHandler(this.BGraficoPagos_Click);
-            // 
-            // BGraficoInscriptos
-            // 
-            this.BGraficoInscriptos.FlatAppearance.BorderSize = 0;
-            this.BGraficoInscriptos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BGraficoInscriptos.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BGraficoInscriptos.Location = new System.Drawing.Point(24, 45);
-            this.BGraficoInscriptos.Name = "BGraficoInscriptos";
-            this.BGraficoInscriptos.Size = new System.Drawing.Size(193, 58);
-            this.BGraficoInscriptos.TabIndex = 9;
-            this.BGraficoInscriptos.Text = "Inscriptos por mes";
-            this.BGraficoInscriptos.UseVisualStyleBackColor = true;
-            this.BGraficoInscriptos.Click += new System.EventHandler(this.BGraficoInscriptos_Click);
             // 
             // BRefresh
             // 
@@ -364,14 +334,14 @@
             this.dataGridView.AllowUserToDeleteRows = false;
             this.dataGridView.AllowUserToResizeRows = false;
             this.dataGridView.BackgroundColor = System.Drawing.Color.Goldenrod;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Goldenrod;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Goldenrod;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.GridColor = System.Drawing.Color.DarkGoldenrod;
             this.dataGridView.Location = new System.Drawing.Point(24, 112);
@@ -433,7 +403,6 @@
             // 
             // BHistorialBackup
             // 
-            this.BHistorialBackup.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.BHistorialBackup.AutoSize = true;
             this.BHistorialBackup.BackColor = System.Drawing.Color.Black;
             this.BHistorialBackup.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -597,8 +566,6 @@
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.DataGridView dataGridView;
-        private System.Windows.Forms.Button BGraficoInscriptos;
-        private System.Windows.Forms.Button BGraficoPagos;
         private System.Windows.Forms.PictureBox picBoxEstadisticas;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartInscriptos;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartPagos;

@@ -155,8 +155,6 @@ namespace Taller2_G34
             }
         }
 
-
-
         private void CargarRutinasDesdeBD()
         {
             string connectionString = ConfigurationManager.ConnectionStrings["EnerGymDB"].ConnectionString;
@@ -277,8 +275,8 @@ namespace Taller2_G34
                     int idPlan = Convert.ToInt32(dataGridView.Rows[e.RowIndex].Cells["ID"].Value);
 
                     // Mostrar detalles del plan (formulario VerPlanPlantilla)
-                    //VerPlanPlantilla formPlan = new VerPlanPlantilla(idPlan);
-                    //formPlan.ShowDialog();
+                    FormEditarPlan formPlan = new FormEditarPlan(idPlan);
+                    formPlan.ShowDialog();
                 }
             }
         }
