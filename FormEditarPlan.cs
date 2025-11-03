@@ -29,12 +29,27 @@ namespace Taller2_G34
             CargarComboTipoPlan();
             CargarEjerciciosCatalogo();
             CargarDatosPlan();
+
+            // Ocultar el DataGridView hasta que se seleccione un día
+            dgvEjercicios.Visible = false;
+            btnQuitar.Visible = false;
+            lblTotal.Visible = false;
+            lblMensaje.Visible = true;
         }
 
         private void InicializarDataGridView()
         {
             dgvEjercicios.AutoGenerateColumns = false;
             dgvEjercicios.Columns.Clear();
+
+            // Columna auxiliar para el ID de Ejercicio (invisible, necesaria para Quitar)
+            dgvEjercicios.Columns.Add(new DataGridViewTextBoxColumn()
+            {
+                Name = "IdEjercicio",
+                HeaderText = "ID",
+                DataPropertyName = "IdEjercicio",
+                Visible = false // Mantenerla oculta
+            });
 
             dgvEjercicios.Columns.Add(new DataGridViewTextBoxColumn()
             {
@@ -76,6 +91,7 @@ namespace Taller2_G34
             });
 
             dgvEjercicios.AllowUserToAddRows = false;
+            dgvEjercicios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         private void CargarComboTipoPlan()
@@ -144,7 +160,7 @@ namespace Taller2_G34
                 {
                     connection.Open();
                     string query = @"
-                        SELECT 
+                        SELECT 
                             p.id_plan,
                             p.nombre,
                             p.estado,
@@ -203,7 +219,7 @@ namespace Taller2_G34
                 {
                     connection.Open();
                     string query = @"
-                        SELECT 
+                        SELECT 
                             id_dia,
                             nombreDia
                         FROM Plan_Dia
@@ -241,7 +257,7 @@ namespace Taller2_G34
                 {
                     connection.Open();
                     string query = @"
-                        SELECT 
+                        SELECT 
                             pd.id_dia,
                             pd.nombreDia,
                             e.id_ejercicio,
@@ -266,11 +282,17 @@ namespace Taller2_G34
 
                         if (_ejerciciosOriginales.Rows.Count > 0)
                         {
-                            lblEstadisticas.Text = $"Total de ejercicios: {_ejerciciosOriginales.Rows.Count}";
+                            lblTotal.Text = $"Total de ejercicios: {_ejerciciosOriginales.Rows.Count}";
                         }
                         else
                         {
-                            lblEstadisticas.Text = "No hay ejercicios en este plan";
+                            lblTotal.Text = "No hay ejercicios en este plan";
+                        }
+
+                        // Una vez cargados los originales, si hay un día seleccionado, filtrar
+                        if (cboDias.SelectedValue != null)
+                        {
+                            FiltrarEjerciciosPorDia(Convert.ToInt32(cboDias.SelectedValue));
                         }
                     }
                 }
@@ -287,6 +309,18 @@ namespace Taller2_G34
             {
                 int idDia = Convert.ToInt32(cboDias.SelectedValue);
                 FiltrarEjerciciosPorDia(idDia);
+
+                // Mostrar DataGridView al seleccionar un día
+                dgvEjercicios.Visible = true;
+                btnQuitar.Visible = true;
+                lblMensaje.Visible = false;
+            }
+            else
+            {
+                // Ocultar si no hay nada seleccionado
+                dgvEjercicios.Visible = false;
+                btnQuitar.Visible = false;
+                lblTotal.Visible = false;
             }
         }
 
@@ -294,40 +328,50 @@ namespace Taller2_G34
         {
             try
             {
-                var vistaFiltrada = new DataView(_ejerciciosOriginales);
-                vistaFiltrada.RowFilter = $"id_dia = {idDia}";
-
                 var ejerciciosCombinados = new List<object>();
 
-                foreach (var ejercicio in _ejerciciosTemporales)
+                // 1. Agregar ejercicios temporales (nuevos)
+                foreach (var ejercicio in _ejerciciosTemporales.Where(e => e.IdDia == idDia))
                 {
-                    if (ejercicio.IdDia == idDia)
+                    ejerciciosCombinados.Add(new
+                    {
+                        ejercicio.IdEjercicio, // Incluir ID del temporal
+                        ejercicio.NombreDia,
+                        NombreEjercicio = ejercicio.Nombre,
+                        ejercicio.Series,
+                        ejercicio.Repeticiones,
+                        ejercicio.Tiempo
+                    });
+                }
+
+                // 2. Agregar ejercicios originales (de la DB)
+                if (_ejerciciosOriginales != null)
+                {
+                    // Usar DataView para filtrar el DataTable
+                    var vistaFiltrada = new DataView(_ejerciciosOriginales);
+                    vistaFiltrada.RowFilter = $"id_dia = {idDia}";
+
+                    foreach (DataRowView row in vistaFiltrada)
                     {
                         ejerciciosCombinados.Add(new
                         {
-                            ejercicio.NombreDia,
-                            NombreEjercicio = ejercicio.Nombre,
-                            ejercicio.Series,
-                            ejercicio.Repeticiones,
-                            ejercicio.Tiempo
+                            IdEjercicio = Convert.ToInt32(row["id_ejercicio"]), // Incluir ID del original (CRUCIAL)
+                            NombreDia = row["nombreDia"].ToString(),
+                            NombreEjercicio = row["nombre_ejercicio"].ToString(),
+                            Series = Convert.ToInt32(row["cant_series"]),
+                            Repeticiones = Convert.ToInt32(row["repeticiones"]),
+                            Tiempo = Convert.ToInt32(row["tiempo"])
                         });
                     }
                 }
 
-                foreach (DataRowView row in vistaFiltrada)
-                {
-                    ejerciciosCombinados.Add(new
-                    {
-                        NombreDia = row["nombreDia"].ToString(),
-                        NombreEjercicio = row["nombre_ejercicio"].ToString(),
-                        Series = Convert.ToInt32(row["cant_series"]),
-                        Repeticiones = Convert.ToInt32(row["repeticiones"]),
-                        Tiempo = Convert.ToInt32(row["tiempo"])
-                    });
-                }
+                // Ordenar por nombre antes de mostrar
+                var ejerciciosOrdenados = ejerciciosCombinados
+                    .OrderBy(e => ((dynamic)e).NombreEjercicio)
+                    .ToList();
 
-                dgvEjercicios.DataSource = ejerciciosCombinados;
-                lblEstadisticas.Text = $"Ejercicios del día: {ejerciciosCombinados.Count}";
+                dgvEjercicios.DataSource = ejerciciosOrdenados;
+                lblTotal.Text = $"Ejercicios del día: {ejerciciosOrdenados.Count}";
             }
             catch (Exception ex)
             {
@@ -355,7 +399,7 @@ namespace Taller2_G34
                 int idDia = Convert.ToInt32(cboDias.SelectedValue);
                 string nombreDia = cboDias.Text;
 
-                // **1. VALIDACIÓN DE DUPLICADOS**
+                // VALIDACIÓN DE DUPLICADOS
                 if (EsEjercicioDuplicado(idEjercicio, idDia))
                 {
                     MessageBox.Show("Este ejercicio ya existe para el día seleccionado, ya sea en el plan original o añadido temporalmente.", "Ejercicio Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -427,6 +471,7 @@ namespace Taller2_G34
             // 2. Verificar en la lista original (ejercicios ya existentes en la DB)
             if (_ejerciciosOriginales != null && _ejerciciosOriginales.Columns.Contains("id_ejercicio") && _ejerciciosOriginales.Columns.Contains("id_dia"))
             {
+                // Asegúrate de que las columnas son accesibles y no DBNull si son numéricas
                 string filter = $"id_ejercicio = {idEjercicio} AND id_dia = {idDia}";
                 if (_ejerciciosOriginales.Select(filter).Length > 0)
                 {
@@ -442,9 +487,13 @@ namespace Taller2_G34
             {
                 try
                 {
-                    var selectedRow = dgvEjercicios.CurrentRow;
-                    string nombreEjercicio = selectedRow.Cells["Ejercicio"].Value.ToString();
-                    string dia = selectedRow.Cells["Dia"].Value.ToString();
+                    dynamic selectedItem = dgvEjercicios.CurrentRow.DataBoundItem;
+                    string nombreEjercicio = selectedItem.NombreEjercicio;
+                    string dia = selectedItem.NombreDia;
+                    int idDiaActual = Convert.ToInt32(cboDias.SelectedValue);
+
+                    // El ID de ejercicio es accesible gracias a la proyección dinámica en FiltrarEjerciciosPorDia
+                    int idEjercicioSeleccionado = selectedItem.IdEjercicio;
 
                     DialogResult result = MessageBox.Show(
                         $"¿Está seguro que desea eliminar el ejercicio '{nombreEjercicio}' del día '{dia}'?",
@@ -454,38 +503,31 @@ namespace Taller2_G34
 
                     if (result == DialogResult.Yes)
                     {
-                        int idDia = 0;
-                        foreach (DataRowView item in cboDias.Items)
+                        // Intentar eliminar primero de la lista temporal (ejercicios nuevos no guardados)
+                        var tempEj = _ejerciciosTemporales.FirstOrDefault(et => et.IdEjercicio == idEjercicioSeleccionado && et.IdDia == idDiaActual);
+
+                        if (tempEj != null)
                         {
-                            if (item["nombreDia"].ToString() == dia)
-                            {
-                                idDia = Convert.ToInt32(item["id_dia"]);
-                                break;
-                            }
+                            _ejerciciosTemporales.Remove(tempEj);
+                            MessageBox.Show("Ejercicio temporal eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            // Recargar la vista para reflejar el cambio en la lista temporal
+                            FiltrarEjerciciosPorDia(idDiaActual);
                         }
-
-                        int idEjercicio = 0;
-                        foreach (DataRowView item in cboEjercicioCatalogo.Items)
+                        else
                         {
-                            if (item["nombre"].ToString() == nombreEjercicio)
-                            {
-                                idEjercicio = Convert.ToInt32(item["id_ejercicio"]);
-                                break;
-                            }
-                        }
+                            // Si no estaba en temporal, debe ser un ejercicio original (de la DB). Eliminar de la DB.
+                            bool eliminadoDB = EliminarEjercicioPlan(idEjercicioSeleccionado, idDiaActual);
 
-                        if (idDia > 0 && idEjercicio > 0)
-                        {
-                            bool eliminado = EliminarEjercicioPlan(idEjercicio, idDia);
-
-                            if (eliminado)
+                            if (eliminadoDB)
                             {
-                                MessageBox.Show("Ejercicio eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.Show("Ejercicio original eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                // Recargar la tabla original y filtrar para refrescar la vista
                                 CargarEjerciciosPlan();
                             }
                             else
                             {
-                                MessageBox.Show("No se pudo eliminar el ejercicio.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show("No se pudo eliminar el ejercicio. Puede que ya no exista.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                     }
@@ -501,6 +543,7 @@ namespace Taller2_G34
             }
         }
 
+
         private bool EliminarEjercicioPlan(int idEjercicio, int idDia)
         {
             try
@@ -509,7 +552,7 @@ namespace Taller2_G34
                 {
                     connection.Open();
                     string query = @"
-                        DELETE FROM Plan_Ejercicio 
+                        DELETE FROM Plan_Ejercicio 
                         WHERE id_plan = @idPlan AND id_ejercicio = @idEjercicio AND id_dia = @idDia";
 
                     using (var command = new SqlCommand(query, connection))
@@ -573,8 +616,8 @@ namespace Taller2_G34
                     {
                         // 1. Actualizar datos básicos del plan
                         string updatePlan = @"
-                    UPDATE PlanEntrenamiento 
-                    SET nombre = @nombre, id_tipoPlan = @idTipoPlan 
+                    UPDATE PlanEntrenamiento 
+                    SET nombre = @nombre, id_tipoPlan = @idTipoPlan 
                     WHERE id_plan = @idPlan";
 
                         using (var cmd = new SqlCommand(updatePlan, connection, transaction))
@@ -590,7 +633,7 @@ namespace Taller2_G34
                         {
                             // Verificar si el ejercicio ya existe en Plan_Ejercicio
                             string checkQuery = @"
-                        SELECT COUNT(*) FROM Plan_Ejercicio 
+                        SELECT COUNT(*) FROM Plan_Ejercicio 
                         WHERE id_plan = @idPlan AND id_ejercicio = @idEjercicio AND id_dia = @idDia";
 
                             using (var checkCmd = new SqlCommand(checkQuery, connection, transaction))

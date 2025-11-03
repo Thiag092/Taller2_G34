@@ -4,7 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
-using Taller2_G34.Services; 
+using Taller2_G34.Services;
 
 namespace Taller2_G34
 {
@@ -32,6 +32,9 @@ namespace Taller2_G34
             InicializarDataGridView();
             CargarComboTipoPlan();
             CargarEjerciciosCatalogo();
+
+            // Ocultar el DataGridView al cargar el formulario.
+            dgvEjercicios.Visible = false;
         }
 
         // --- MÉTODOS DE CARGA E INICIALIZACIÓN ---
@@ -76,6 +79,15 @@ namespace Taller2_G34
                 Name = "Tiempo",
                 HeaderText = "Tiempo (seg)",
                 DataPropertyName = "Tiempo"
+            });
+
+            // Columna adicional para mostrar el origen (Plantilla/Nuevo)
+            dgvEjercicios.Columns.Add(new DataGridViewTextBoxColumn()
+            {
+                Name = "Origen",
+                HeaderText = "Origen",
+                DataPropertyName = "Origen",
+                ReadOnly = true
             });
 
             dgvEjercicios.AllowUserToAddRows = false;
@@ -123,6 +135,11 @@ namespace Taller2_G34
                 _ejerciciosDePlantillaOriginal.Clear();
                 dgvEjercicios.DataSource = null;
 
+                // Ocultar el DataGridView hasta que se escoja un día en el nuevo plan
+                dgvEjercicios.Visible = false;
+                lblMensaje.Visible = true;
+                btnQuitar.Visible = false;
+
                 CargarComboDias(idTipoPlan);
             }
         }
@@ -152,9 +169,19 @@ namespace Taller2_G34
             if (cboDias.SelectedValue != null && comboBoxTipoPlan.SelectedValue != null)
             {
                 int idDia = Convert.ToInt32(cboDias.SelectedValue);
-                int idPlan = Convert.ToInt32(comboBoxTipoPlan.SelectedValue); // ID del TipoPlan 
+                int idPlan = Convert.ToInt32(comboBoxTipoPlan.SelectedValue); // ID del TipoPlan 
 
                 CargarEjerciciosDia(idPlan, idDia);
+
+                // Hacer visible el DataGridView cuando se selecciona un día
+                lblMensaje.Visible = false;
+                dgvEjercicios.Visible = true;
+                btnQuitar.Visible = true;
+            }
+            else
+            {
+                // Ocultar si la selección es nula
+                dgvEjercicios.Visible = false;
             }
         }
 
@@ -222,7 +249,7 @@ namespace Taller2_G34
 
         // --- VALIDACIÓN Y ACCIONES ---
 
-        // ⭐ NOTA: Adaptación de validación de duplicados
+        // Adaptación de validación de duplicados
         private bool EsEjercicioDuplicado(int idEjercicio, int idDia)
         {
             // Verificamos si la combinación de ID de Ejercicio e ID de Día ya existe en la lista temporal.
@@ -327,7 +354,7 @@ namespace Taller2_G34
                     // Buscar y eliminar el objeto exacto de la lista completa
                     var ejercicioAEliminar = _ejerciciosTemporales
                         .FirstOrDefault(ejercicio => ejercicio.IdDia == idDiaActual &&
-                                             ejercicio.IdEjercicio == idEjercicioSeleccionado);
+                                                     ejercicio.IdEjercicio == idEjercicioSeleccionado);
 
                     if (ejercicioAEliminar != null)
                     {
@@ -385,7 +412,7 @@ namespace Taller2_G34
                 int idNuevoPlan = _planService.GuardarPlanCompleto(nombrePlan, idTipoPlan, ejerciciosNuevos, idPlanOriginal);
 
                 MessageBox.Show($"Plan guardado exitosamente con ID: {idNuevoPlan}",
-                                "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                 "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 // Limpiar todo después de guardar
                 _ejerciciosTemporales.Clear();
@@ -395,6 +422,7 @@ namespace Taller2_G34
                 comboBoxTipoPlan.SelectedIndex = -1;
                 cboDias.DataSource = null;
                 panel1.Visible = false;
+                dgvEjercicios.Visible = false; // Ocultar después de guardar
             }
             catch (Exception ex)
             {

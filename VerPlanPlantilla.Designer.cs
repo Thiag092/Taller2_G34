@@ -62,6 +62,7 @@
             this.labelTitulo = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.lblMensaje = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cantSeries)).BeginInit();
@@ -76,6 +77,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.lblMensaje);
             this.panel2.Controls.Add(this.btnQuitar);
             this.panel2.Controls.Add(this.comboBoxTipoPlan);
             this.panel2.Controls.Add(this.lblTipoPlan);
@@ -441,6 +443,16 @@
             this.splitContainer1.SplitterDistance = 124;
             this.splitContainer1.TabIndex = 10;
             // 
+            // lblMensaje
+            // 
+            this.lblMensaje.AutoSize = true;
+            this.lblMensaje.Font = new System.Drawing.Font("Microsoft YaHei UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMensaje.Location = new System.Drawing.Point(503, 182);
+            this.lblMensaje.Name = "lblMensaje";
+            this.lblMensaje.Size = new System.Drawing.Size(595, 31);
+            this.lblMensaje.TabIndex = 59;
+            this.lblMensaje.Text = "Selecciona un tipo de plan y un día para comenzar";
+            // 
             // VerPlanPlantilla
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -502,5 +514,6 @@
         private System.Windows.Forms.Label labelTitulo;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Label lblMensaje;
     }
 }

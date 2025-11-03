@@ -95,7 +95,7 @@ namespace Taller2_G34
             dataGridView.Columns.Clear();
 
 
-            // ✅ Declarar el botón UNA SOLA VEZ
+            // Declarar el botón UNA SOLA VEZ
             DataGridViewButtonColumn btnDetalles = new DataGridViewButtonColumn();
             btnDetalles.HeaderText = "Detalles";
             btnDetalles.Text = "Ver más";
@@ -132,7 +132,7 @@ namespace Taller2_G34
                         dataGridView.AutoGenerateColumns = true;
                         dataGridView.DataSource = dt;
 
-                        // ✅ Agregar columna del botón una sola vez
+                        // Agregar columna del botón una sola vez
                         if (!dataGridView.Columns.Contains("Detalles"))
                         {
                             dataGridView.Columns.Add(btnDetalles);
@@ -151,6 +151,8 @@ namespace Taller2_G34
             {
                 labelTitulo.Text = "Plantillas de Entrenamiento";
                 BRefresh.Visible = true;
+                btnAgregar.Visible = true;
+                btnEliminar.Visible = true;
                 CargarRutinasDesdeBD();
             }
         }

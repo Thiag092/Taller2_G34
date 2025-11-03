@@ -32,7 +32,7 @@
             this.labelTitulo = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.lblEstadisticas = new System.Windows.Forms.Label();
+            this.lblTotal = new System.Windows.Forms.Label();
             this.btnQuitar = new System.Windows.Forms.Button();
             this.comboBoxTipoPlan = new System.Windows.Forms.ComboBox();
             this.lblTipoPlan = new System.Windows.Forms.Label();
@@ -56,6 +56,7 @@
             this.dgvEjercicios = new System.Windows.Forms.DataGridView();
             this.cboDias = new System.Windows.Forms.ComboBox();
             this.labelDia = new System.Windows.Forms.Label();
+            this.lblMensaje = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -112,7 +113,8 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.lblEstadisticas);
+            this.panel2.Controls.Add(this.lblMensaje);
+            this.panel2.Controls.Add(this.lblTotal);
             this.panel2.Controls.Add(this.btnQuitar);
             this.panel2.Controls.Add(this.comboBoxTipoPlan);
             this.panel2.Controls.Add(this.lblTipoPlan);
@@ -131,15 +133,15 @@
             this.panel2.Size = new System.Drawing.Size(1234, 567);
             this.panel2.TabIndex = 0;
             // 
-            // lblEstadisticas
+            // lblTotal
             // 
-            this.lblEstadisticas.AutoSize = true;
-            this.lblEstadisticas.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEstadisticas.Location = new System.Drawing.Point(396, 360);
-            this.lblEstadisticas.Name = "lblEstadisticas";
-            this.lblEstadisticas.Size = new System.Drawing.Size(142, 20);
-            this.lblEstadisticas.TabIndex = 59;
-            this.lblEstadisticas.Text = "Total de ejercicios";
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotal.Location = new System.Drawing.Point(396, 360);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(142, 20);
+            this.lblTotal.TabIndex = 59;
+            this.lblTotal.Text = "Total de ejercicios";
             // 
             // btnQuitar
             // 
@@ -403,6 +405,16 @@
             this.labelDia.TabIndex = 36;
             this.labelDia.Text = "Dia del Plan";
             // 
+            // lblMensaje
+            // 
+            this.lblMensaje.AutoSize = true;
+            this.lblMensaje.Font = new System.Drawing.Font("Microsoft YaHei UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMensaje.Location = new System.Drawing.Point(472, 168);
+            this.lblMensaje.Name = "lblMensaje";
+            this.lblMensaje.Size = new System.Drawing.Size(618, 31);
+            this.lblMensaje.TabIndex = 60;
+            this.lblMensaje.Text = "Selecciona un día para comenzar a editar esta rutina";
+            // 
             // FormEditarPlan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -436,7 +448,7 @@
         private System.Windows.Forms.Label labelTitulo;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label lblEstadisticas;
+        private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.Button btnQuitar;
         private System.Windows.Forms.ComboBox comboBoxTipoPlan;
         private System.Windows.Forms.Label lblTipoPlan;
@@ -460,5 +472,6 @@
         private System.Windows.Forms.DataGridView dgvEjercicios;
         private System.Windows.Forms.ComboBox cboDias;
         private System.Windows.Forms.Label labelDia;
+        private System.Windows.Forms.Label lblMensaje;
     }
 }

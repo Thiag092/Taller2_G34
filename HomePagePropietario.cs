@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
-using System.Linq;
+using System.Linq; 
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -394,7 +394,7 @@ namespace Taller2_G34
             WHERE a.estado = 1 {0}
             GROUP BY tp.descripcion;";
 
-            // 🔸 Si hay filtro, lo agregamos dinámicamente
+            //Si hay filtro, lo agregamos dinámicamente
             string filtroSQL = "";
             if (filtro != "Todos")
                 filtroSQL = $"AND tp.descripcion = '{filtro}'";
@@ -436,25 +436,25 @@ namespace Taller2_G34
                 int index = result.PointIndex;
                 Series serie = result.Series;
 
-                // 🔹 Desexplota todas las porciones
+                //Desexplota todas las porciones
                 foreach (DataPoint p in serie.Points)
                     p["Exploded"] = "false";
 
-                // 🔹 Explota solo la clickeada
+                //Explota solo la clickeada
                 DataPoint puntoSeleccionado = serie.Points[index];
                 puntoSeleccionado["Exploded"] = "true";
 
-                // 🔹 Calcula la información
+                // Calcula la información
                 string tipo = puntoSeleccionado.AxisLabel;
                 int cantidad = (int)puntoSeleccionado.YValues[0];
                 double porcentaje = puntoSeleccionado.YValues[0] / serie.Points.Sum(p => p.YValues[0]) * 100;
 
                 string mensaje = $"{tipo}: {cantidad} alumno{(cantidad != 1 ? "s" : "")} ({porcentaje:0.0}%)";
 
-                // 🔹 Cierra cualquier tooltip anterior
+                // Cierra cualquier tooltip anterior
                 tooltipActivo.Hide(chartInscriptos);
 
-                // 🔹 Configura el tooltip global
+                //Configura el tooltip global
                 tooltipActivo.IsBalloon = true;
                 tooltipActivo.ToolTipIcon = ToolTipIcon.Info;
                 tooltipActivo.ToolTipTitle = "Detalle del grupo";
@@ -462,12 +462,12 @@ namespace Taller2_G34
                 tooltipActivo.InitialDelay = 100;
                 tooltipActivo.ReshowDelay = 100;
 
-                // 🔹 Muestra el nuevo tooltip
+                // Muestra el nuevo tooltip
                 tooltipActivo.Show(mensaje, chartInscriptos, e.Location.X + 10, e.Location.Y - 20);
             }
             else
             {
-                // 🔹 Si se hace clic fuera de una porción, se oculta el tooltip
+                //Si se hace clic fuera de una porción, se oculta el tooltip
                 tooltipActivo.Hide(chartInscriptos);
             }
         }
@@ -534,7 +534,7 @@ namespace Taller2_G34
             chartPagos.DataSource = dt;
             chartPagos.DataBind();
 
-            // 🔹 Forzamos el formato manualmente
+            //Forzamos el formato manualmente
             foreach (var p in chartPagos.Series["Recaudación"].Points)
             {
                 p.Label = "$" + p.YValues[0].ToString("N0"); // etiqueta sobre cada barra
