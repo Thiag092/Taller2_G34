@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
+using System.Linq; 
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Taller2_G34.Services
 {
+
     public class PlanEntrenamientoService
     {
         private readonly string _connectionString;
@@ -16,6 +18,8 @@ namespace Taller2_G34.Services
         {
             _connectionString = connectionString;
         }
+
+        // --- MÉTODOS DE CONSULTA (DATA TABLE) ---
 
         public DataTable ObtenerTiposPlan()
         {
@@ -32,6 +36,7 @@ namespace Taller2_G34.Services
 
         public DataTable ObtenerDiasPorPlan(int idPlan)
         {
+            //Se usa el ID de Plan/Plantilla para traer los días asociados.
             using (var conn = new SqlConnection(_connectionString))
             {
                 conn.Open();
@@ -47,6 +52,7 @@ namespace Taller2_G34.Services
 
         public DataTable ObtenerEjerciciosCatalogo()
         {
+            // Catálogo general de ejercicios para los Combobox.
             using (var conn = new SqlConnection(_connectionString))
             {
                 conn.Open();
@@ -60,15 +66,16 @@ namespace Taller2_G34.Services
 
         public DataTable ObtenerEjerciciosPlanDia(int idPlan, int idDia)
         {
+            // Trae los ejercicios específicos de un Plan/Plantilla para un dia concreto.
             using (var conn = new SqlConnection(_connectionString))
             {
                 conn.Open();
                 string query = @"SELECT e.id_ejercicio, e.nombre AS Ejercicio, 
-                           pe.cant_series AS Series, pe.repeticiones AS Repeticiones, 
-                           pe.tiempo AS Tiempo
-                           FROM Plan_Ejercicio pe 
-                           INNER JOIN Ejercicio e ON pe.id_ejercicio = e.id_ejercicio
-                           WHERE pe.id_plan = @idPlan AND pe.id_dia = @idDia";
+                               pe.cant_series AS Series, pe.repeticiones AS Repeticiones, 
+                               pe.tiempo AS Tiempo
+                               FROM Plan_Ejercicio pe 
+                               INNER JOIN Ejercicio e ON pe.id_ejercicio = e.id_ejercicio
+                               WHERE pe.id_plan = @idPlan AND pe.id_dia = @idDia";
                 var cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@idPlan", idPlan);
                 cmd.Parameters.AddWithValue("@idDia", idDia);
@@ -79,8 +86,84 @@ namespace Taller2_G34.Services
             }
         }
 
+        // ⭐ NUEVO MÉTODO: ObtenerPlanPorTipo (Renombrado para reflejar que es una búsqueda)
+        public int? ObtenerIdPlanPorTipo(int idTipoPlan)
+        {
+            // Busca el ID del plan que sirve de plantilla para ese TipoPlan.
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                conn.Open();
+                // Asume que el plan plantilla tiene estado = 1 o algún criterio de selección.
+                string query = "SELECT TOP 1 id_plan FROM PlanEntrenamiento WHERE id_tipoPlan = @idTipoPlan AND estado = 1";
+                var cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@idTipoPlan", idTipoPlan);
+
+                var result = cmd.ExecuteScalar();
+                return result != null && result != DBNull.Value ? Convert.ToInt32(result) : (int?)null;
+            }
+        }
+
+        // --- MÉTODOS TRANSACCIONALES (GUARDADO / ACTUALIZACIÓN) ---
+
+        public DataTable ObtenerDatosPlanPorId(int idPlan)
+        {
+            // ⭐ NOTA: Este método es nuevo para FormEditarPlan, trae datos principales del plan.
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                string query = @"
+                SELECT 
+                    p.id_plan, p.nombre, p.estado, p.id_tipoPlan,
+                    tp.descripcion as TipoPlan
+                FROM PlanEntrenamiento p
+                LEFT JOIN TipoPlan tp ON p.id_tipoPlan = tp.id_tipoPlan
+                WHERE p.id_plan = @idPlan";
+
+                using (var command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@idPlan", idPlan);
+                    var dt = new DataTable();
+                    using (var adapter = new SqlDataAdapter(command))
+                    {
+                        adapter.Fill(dt);
+                    }
+                    return dt;
+                }
+            }
+        }
+
+        public DataTable ObtenerDetallePlanCompleto(int idPlan)
+        {
+            // ⭐ NOTA: Trae todos los ejercicios de un plan para una edición inicial.
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                string query = @"
+                 SELECT 
+                    pd.id_dia, pd.nombreDia, e.id_ejercicio, e.nombre as nombre_ejercicio,
+                    pe.cant_series, pe.repeticiones, pe.tiempo
+                 FROM Plan_Ejercicio pe
+                 INNER JOIN Ejercicio e ON pe.id_ejercicio = e.id_ejercicio
+                 INNER JOIN Plan_Dia pd ON pe.id_dia = pd.id_dia
+                 WHERE pe.id_plan = @idPlan
+                 ORDER BY pd.id_dia, e.nombre";
+
+                using (var command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@idPlan", idPlan);
+                    var dt = new DataTable();
+                    using (var adapter = new SqlDataAdapter(command))
+                    {
+                        adapter.Fill(dt);
+                    }
+                    return dt;
+                }
+            }
+        }
+
         public int GuardarPlanCompleto(string nombrePlan, int idTipoPlan, List<EjercicioTemporal> ejerciciosNuevos, int? idPlanOriginal = null)
         {
+
             using (var conn = new SqlConnection(_connectionString))
             {
                 conn.Open();
@@ -88,10 +171,10 @@ namespace Taller2_G34.Services
                 {
                     try
                     {
-                        // 1. Insertar el plan principal
+                        // 1. Insertar el plan principal y obtener su nuevo ID
                         var queryPlan = @"INSERT INTO PlanEntrenamiento (nombre, estado, id_tipoPlan) 
-                                    VALUES (@nombre, 1, @idTipoPlan);
-                                    SELECT SCOPE_IDENTITY();";
+                                        VALUES (@nombre, 1, @idTipoPlan);
+                                        SELECT SCOPE_IDENTITY();";
 
                         var cmdPlan = new SqlCommand(queryPlan, conn, transaction);
                         cmdPlan.Parameters.AddWithValue("@nombre", nombrePlan);
@@ -99,9 +182,10 @@ namespace Taller2_G34.Services
 
                         int idNuevoPlan = Convert.ToInt32(cmdPlan.ExecuteScalar());
 
-                        // 2. COPIAR EJERCICIOS DEL PLAN ORIGINAL (si se proporciona)
+                        // 2. COPIAR EJERCICIOS DEL PLAN ORIGINAL (la plantilla)
                         if (idPlanOriginal.HasValue)
                         {
+                            // Copiar Plan_Dia y Plan_Ejercicio del plan original al nuevo.
                             var queryCopiarEjercicios = @"
                             -- Copiar días del plan original
                             INSERT INTO Plan_Dia (id_plan, nombreDia, descripcion)
@@ -109,7 +193,7 @@ namespace Taller2_G34.Services
                             FROM Plan_Dia 
                             WHERE id_plan = @idPlanOriginal;
                             
-                            -- Copiar ejercicios del plan original
+                            -- Copiar ejercicios del plan original, mapeando días viejos a días nuevos
                             INSERT INTO Plan_Ejercicio (id_plan, id_ejercicio, id_dia, cant_series, repeticiones, tiempo)
                             SELECT @idNuevoPlan, pe.id_ejercicio, pd_new.id_dia, pe.cant_series, pe.repeticiones, pe.tiempo
                             FROM Plan_Ejercicio pe
@@ -123,43 +207,41 @@ namespace Taller2_G34.Services
                             cmdCopiar.ExecuteNonQuery();
                         }
 
-                        // 3. AGREGAR NUEVOS EJERCICIOS TEMPORALES (si hay)
+                        // 3. AGREGAR NUEVOS EJERCICIOS TEMPORALES (añadidos por el usuario)
                         if (ejerciciosNuevos != null && ejerciciosNuevos.Any())
                         {
-                            // Para nuevos ejercicios, se crean días si aún no existen
-                            var diasUnicos = ejerciciosNuevos.GroupBy(e => e.NombreDia)
-                                                          .Select(g => g.First().NombreDia)
-                                                          .ToList();
-
-                            // Crear días que no existan
-                            foreach (var nombreDia in diasUnicos)
-                            {
-                                var queryVerificarDia = "SELECT COUNT(*) FROM Plan_Dia WHERE id_plan = @idPlan AND nombreDia = @nombreDia";
-                                var cmdVerificar = new SqlCommand(queryVerificarDia, conn, transaction);
-                                cmdVerificar.Parameters.AddWithValue("@idPlan", idNuevoPlan);
-                                cmdVerificar.Parameters.AddWithValue("@nombreDia", nombreDia);
-
-                                int existeDia = Convert.ToInt32(cmdVerificar.ExecuteScalar());
-
-                                if (existeDia == 0)
-                                {
-                                    var queryCrearDia = @"INSERT INTO Plan_Dia (id_plan, nombreDia) 
-                                                   VALUES (@idPlan, @nombreDia)";
-                                    var cmdCrearDia = new SqlCommand(queryCrearDia, conn, transaction);
-                                    cmdCrearDia.Parameters.AddWithValue("@idPlan", idNuevoPlan);
-                                    cmdCrearDia.Parameters.AddWithValue("@nombreDia", nombreDia);
-                                    cmdCrearDia.ExecuteNonQuery();
-                                }
-                            }
-
-                            // Obtener IDs de días actualizados
+                            // A) Obtener todos los días del NUEVO plan (plantilla copiada + días nuevos si aplica)
                             var cmdGetDias = new SqlCommand("SELECT id_dia, nombreDia FROM Plan_Dia WHERE id_plan = @idPlan", conn, transaction);
                             cmdGetDias.Parameters.AddWithValue("@idPlan", idNuevoPlan);
                             var da = new SqlDataAdapter(cmdGetDias);
                             var dtDias = new DataTable();
                             da.Fill(dtDias);
 
-                            // Insertar nuevos ejercicios
+                            // B) Identificar los días nuevos de la lista que faltan en la DB
+                            var diasExistentes = dtDias.AsEnumerable().Select(r => r.Field<string>("nombreDia")).ToHashSet();
+                            var diasFaltantes = ejerciciosNuevos
+                                .Select(e => e.NombreDia)
+                                .Distinct()
+                                .Where(nombreDia => !diasExistentes.Contains(nombreDia))
+                                .ToList();
+
+                            // C) Crear días que no existan aún en el nuevo plan
+                            foreach (var nombreDia in diasFaltantes)
+                            {
+                                var queryCrearDia = @"INSERT INTO Plan_Dia (id_plan, nombreDia) 
+                                                      VALUES (@idPlan, @nombreDia)";
+                                var cmdCrearDia = new SqlCommand(queryCrearDia, conn, transaction);
+                                cmdCrearDia.Parameters.AddWithValue("@idPlan", idNuevoPlan);
+                                cmdCrearDia.Parameters.AddWithValue("@nombreDia", nombreDia);
+                                cmdCrearDia.ExecuteNonQuery();
+
+                                // Volver a cargar los días para obtener el nuevo ID
+                                // Simplificamos recargando la tabla para obtener el nuevo ID.
+                                dtDias.Clear();
+                                da.Fill(dtDias);
+                            }
+
+                            // D) Insertar nuevos ejercicios
                             foreach (var ejercicio in ejerciciosNuevos)
                             {
                                 var idDiaCorrespondiente = dtDias.AsEnumerable()
@@ -167,20 +249,20 @@ namespace Taller2_G34.Services
                                     .Select(row => row.Field<int>("id_dia"))
                                     .FirstOrDefault();
 
+                                // Solo inserta si el día existe (o se acaba de crear)
                                 if (idDiaCorrespondiente > 0)
                                 {
                                     var queryEjercicio = @"INSERT INTO Plan_Ejercicio 
-                                                    (id_plan, id_ejercicio, id_dia, cant_series, repeticiones, tiempo) 
-                                                    VALUES (@idPlan, @idEjercicio, @idDia, @series, @repeticiones, @tiempo)";
+                                                         (id_plan, id_ejercicio, id_dia, cant_series, repeticiones, tiempo) 
+                                                         VALUES (@idPlan, @idEjercicio, @idDia, @series, @repeticiones, @tiempo)";
 
                                     var cmdEjercicio = new SqlCommand(queryEjercicio, conn, transaction);
                                     cmdEjercicio.Parameters.AddWithValue("@idPlan", idNuevoPlan);
                                     cmdEjercicio.Parameters.AddWithValue("@idEjercicio", ejercicio.IdEjercicio);
-                                    cmdEjercicio.Parameters.AddWithValue("@idDia", idDiaCorrespondiente);
+                                    cmdEjercicio.Parameters.AddWithValue("@idDia", idDiaCorrespondiente); // Usar el ID mapeado
                                     cmdEjercicio.Parameters.AddWithValue("@series", ejercicio.Series);
                                     cmdEjercicio.Parameters.AddWithValue("@repeticiones", ejercicio.Repeticiones);
                                     cmdEjercicio.Parameters.AddWithValue("@tiempo", ejercicio.Tiempo);
-
                                     cmdEjercicio.ExecuteNonQuery();
                                 }
                             }
@@ -198,117 +280,10 @@ namespace Taller2_G34.Services
             }
         }
 
-        // Método adicional para obtener el ID del plan original basado en el tipo de plan
-        public int? ObtenerIdPlanPorTipo(int idTipoPlan)
+        public bool ActualizarPlan(int idPlan, string nombre, int? idTipoPlan, List<EjercicioTemporal> ejerciciosNuevos)
         {
-            using (var conn = new SqlConnection(_connectionString))
-            {
-                conn.Open();
-                string query = "SELECT TOP 1 id_plan FROM PlanEntrenamiento WHERE id_tipoPlan = @idTipoPlan AND estado = 1";
-                var cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@idTipoPlan", idTipoPlan);
-
-                var result = cmd.ExecuteScalar();
-                return result != null ? Convert.ToInt32(result) : (int?)null;
-            }
-        }
-
-
-        public DataTable ObtenerDatosPlanPorId(int idPlan)
-        {
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                connection.Open();
-                string query = @"
-            SELECT 
-                p.id_plan,
-                p.nombre,
-                p.estado,
-                p.id_tipoPlan,
-                tp.descripcion as TipoPlan
-            FROM PlanEntrenamiento p
-            LEFT JOIN TipoPlan tp ON p.id_tipoPlan = tp.id_tipoPlan
-            WHERE p.id_plan = @idPlan";
-
-                using (var command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@idPlan", idPlan);
-                    var dt = new DataTable();
-                    using (var adapter = new SqlDataAdapter(command))
-                    {
-                        adapter.Fill(dt);
-                    }
-                    return dt;
-                }
-            }
-        }
-
-        public DataTable ObtenerDetallePlanCompleto(int idPlan)
-        {
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                connection.Open();
-                string query = @"
-            SELECT 
-                pd.id_dia,
-                pd.nombreDia,
-                e.id_ejercicio,
-                e.nombre as nombre_ejercicio,
-                pe.cant_series,
-                pe.repeticiones,
-                pe.tiempo
-            FROM Plan_Ejercicio pe
-            INNER JOIN Ejercicio e ON pe.id_ejercicio = e.id_ejercicio
-            INNER JOIN Plan_Dia pd ON pe.id_dia = pd.id_dia
-            WHERE pe.id_plan = @idPlan
-            ORDER BY pd.id_dia, e.nombre";
-
-                using (var command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@idPlan", idPlan);
-                    var dt = new DataTable();
-                    using (var adapter = new SqlDataAdapter(command))
-                    {
-                        adapter.Fill(dt);
-                    }
-                    return dt;
-                }
-            }
-        }
-
-        public DataTable ObtenerEjerciciosPorDia(int idPlan, int idDia)
-        {
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                connection.Open();
-                string query = @"
-            SELECT 
-                e.id_ejercicio,
-                e.nombre,
-                pe.cant_series,
-                pe.repeticiones,
-                pe.tiempo
-            FROM Plan_Ejercicio pe
-            INNER JOIN Ejercicio e ON pe.id_ejercicio = e.id_ejercicio
-            WHERE pe.id_plan = @idPlan AND pe.id_dia = @idDia
-            ORDER BY e.nombre";
-
-                using (var command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@idPlan", idPlan);
-                    command.Parameters.AddWithValue("@idDia", idDia);
-                    var dt = new DataTable();
-                    using (var adapter = new SqlDataAdapter(command))
-                    {
-                        adapter.Fill(dt);
-                    }
-                    return dt;
-                }
-            }
-        }
-
-        public bool ActualizarPlan(int idPlan, string nombre, int? idTipoPlan, List<FormEditarPlan.EjercicioTemporal> ejerciciosNuevos)
-        {
+            //Este método es para FormEditarPlan, solo actualiza datos básicos e inserta NUEVOS ejercicios.
+            // La lógica de eliminación de ejercicios se maneja directamente en el FormEditarPlan.
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
@@ -316,7 +291,7 @@ namespace Taller2_G34.Services
                 {
                     try
                     {
-                        // Actualizar datos básicos del plan
+                        // 1. Actualizar datos básicos del plan
                         string updatePlan = @"
                         UPDATE PlanEntrenamiento 
                         SET nombre = @nombre, id_tipoPlan = @idTipoPlan 
@@ -330,7 +305,7 @@ namespace Taller2_G34.Services
                             cmd.ExecuteNonQuery();
                         }
 
-                        // Agregar nuevos ejercicios
+                        // 2. Agregar nuevos ejercicios (el FormEditarPlan ya se encarga de verificar duplicados)
                         foreach (var ejercicio in ejerciciosNuevos)
                         {
                             string insertEjercicio = @"
@@ -348,14 +323,13 @@ namespace Taller2_G34.Services
                                 cmd.ExecuteNonQuery();
                             }
                         }
-
                         transaction.Commit();
                         return true;
                     }
                     catch (Exception)
                     {
                         transaction.Rollback();
-                        throw;
+                        throw; // Re-lanza la excepción para ser manejada en el formulario
                     }
                 }
             }

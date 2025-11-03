@@ -2,12 +2,9 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Reflection;
 using System.Windows.Forms;
-using Taller2_G34.Services;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Taller2_G34.Services; 
 
 namespace Taller2_G34
 {
@@ -16,6 +13,10 @@ namespace Taller2_G34
         private readonly PlanEntrenamientoService _planService;
         private readonly List<EjercicioTemporal> _ejerciciosTemporales;
 
+        //HashSet para guardar los (ID_Ejercicio, ID_Dia) de los ejercicios originales de la plantilla.
+        // para saber qué ejercicios no provienen de la plantilla.
+        private readonly HashSet<(int IdEjercicio, int IdDia)> _ejerciciosDePlantillaOriginal;
+
         private string Cn => ConfigurationManager.ConnectionStrings["EnerGymDB"].ConnectionString;
 
         public VerPlanPlantilla()
@@ -23,6 +24,7 @@ namespace Taller2_G34
             InitializeComponent();
             _planService = new PlanEntrenamientoService(Cn);
             _ejerciciosTemporales = new List<EjercicioTemporal>();
+            _ejerciciosDePlantillaOriginal = new HashSet<(int, int)>(); // Inicialización del rastreador.
         }
 
         private void VerPlanPlantilla_Load(object sender, EventArgs e)
@@ -31,6 +33,8 @@ namespace Taller2_G34
             CargarComboTipoPlan();
             CargarEjerciciosCatalogo();
         }
+
+        // --- MÉTODOS DE CARGA E INICIALIZACIÓN ---
 
         private void InicializarDataGridView()
         {
@@ -114,6 +118,11 @@ namespace Taller2_G34
         {
             if (comboBoxTipoPlan.SelectedValue != null && int.TryParse(comboBoxTipoPlan.SelectedValue.ToString(), out int idTipoPlan))
             {
+                // Limpiar todo al cambiar de plantilla
+                _ejerciciosTemporales.Clear();
+                _ejerciciosDePlantillaOriginal.Clear();
+                dgvEjercicios.DataSource = null;
+
                 CargarComboDias(idTipoPlan);
             }
         }
@@ -143,9 +152,8 @@ namespace Taller2_G34
             if (cboDias.SelectedValue != null && comboBoxTipoPlan.SelectedValue != null)
             {
                 int idDia = Convert.ToInt32(cboDias.SelectedValue);
-                int idPlan = Convert.ToInt32(comboBoxTipoPlan.SelectedValue);
+                int idPlan = Convert.ToInt32(comboBoxTipoPlan.SelectedValue); // ID del TipoPlan 
 
-                // Cargar ejercicios existentes de la base de datos para este día
                 CargarEjerciciosDia(idPlan, idDia);
             }
         }
@@ -157,26 +165,32 @@ namespace Taller2_G34
                 var ejerciciosBD = _planService.ObtenerEjerciciosPlanDia(idPlan, idDia);
                 var nombreDia = cboDias.Text;
 
-                // Limpiar ejercicios anteriores de este día (mantener ejercicios de otros días)
-                _ejerciciosTemporales.RemoveAll(e => e.IdDia == idDia && !e.EsTemporal);
+                // 1. Quitar todos los ejercicios de este día de la lista temporal antes de recargar.
+                _ejerciciosTemporales.RemoveAll(e => e.IdDia == idDia);
+                // 2. Limpiar los IDs de seguimiento de este día (se vuelven a añadir después).
+                _ejerciciosDePlantillaOriginal.RemoveWhere(e => e.IdDia == idDia);
 
-                // Agregar ejercicios de la base de datos para este día
+                // 3. Agregar ejercicios de la plantilla y rastrearlos
                 foreach (DataRow row in ejerciciosBD.Rows)
                 {
+                    int currentIdEjercicio = Convert.ToInt32(row["id_ejercicio"]);
+
+                    // ⭐ Rastrear el ejercicio de la plantilla
+                    _ejerciciosDePlantillaOriginal.Add((currentIdEjercicio, idDia));
+
                     _ejerciciosTemporales.Add(new EjercicioTemporal
                     {
-                        IdEjercicio = Convert.ToInt32(row["id_ejercicio"]),
+                        IdEjercicio = currentIdEjercicio,
                         Nombre = row["Ejercicio"].ToString(),
                         IdDia = idDia,
                         NombreDia = nombreDia,
                         Series = Convert.ToInt32(row["Series"]),
                         Repeticiones = Convert.ToInt32(row["Repeticiones"]),
                         Tiempo = Convert.ToInt32(row["Tiempo"]),
-                        EsTemporal = false
                     });
                 }
 
-                // Actualizar DataGridView con todos los ejercicios del día seleccionado
+                // 4. Actualizar DataGridView con todos los ejercicios del día seleccionado
                 ActualizarDataGridViewPorDia(idDia);
             }
             catch (Exception ex)
@@ -184,27 +198,41 @@ namespace Taller2_G34
                 MessageBox.Show($"Error al cargar ejercicios: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void ActualizarDataGridViewPorDia(int idDia)
         {
+            //Proyección del DataGridView. Incluye el ID de Ejercicio, es VITAL para el botón Quitar.
             var ejerciciosDelDia = _ejerciciosTemporales
                 .Where(e => e.IdDia == idDia)
                 .Select(e => new
                 {
+                    e.IdEjercicio, //Necesario para eliminar
                     e.NombreDia,
                     e.Nombre,
                     e.Series,
                     e.Repeticiones,
                     e.Tiempo,
-                    Origen = e.EsTemporal ? "Nuevo" : "Plantilla" // Para mostrar de dónde viene
+                    //rastreador externo para mostrar el origen
+                    Origen = _ejerciciosDePlantillaOriginal.Contains((e.IdEjercicio, e.IdDia)) ? "Plantilla" : "Nuevo"
                 })
                 .ToList();
 
-            dgvEjercicios.DataSource = ejerciciosDelDia;
+            dgvEjercicios.DataSource = ejerciciosDelDia.OrderBy(e => e.Nombre).ToList();
         }
 
-        //agregar validaciones otra vez
+        // --- VALIDACIÓN Y ACCIONES ---
+
+        // ⭐ NOTA: Adaptación de validación de duplicados
+        private bool EsEjercicioDuplicado(int idEjercicio, int idDia)
+        {
+            // Verificamos si la combinación de ID de Ejercicio e ID de Día ya existe en la lista temporal.
+            return _ejerciciosTemporales
+                .Any(e => e.IdEjercicio == idEjercicio && e.IdDia == idDia);
+        }
+
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
+            // 1. Validar selección
             if (cboEjercicioCatalogo.SelectedValue == null || cboDias.SelectedValue == null)
             {
                 MessageBox.Show("Seleccione un ejercicio y un día primero.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -218,11 +246,33 @@ namespace Taller2_G34
                 int idDia = Convert.ToInt32(cboDias.SelectedValue);
                 string nombreDia = cboDias.Text;
 
+                // 2. Validación de Duplicados
+                if (EsEjercicioDuplicado(idEjercicio, idDia))
+                {
+                    MessageBox.Show("Este ejercicio ya existe para el día seleccionado en el plan.", "Ejercicio Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // 3. Obtención y validación de parámetros (Series, Repeticiones, Tiempo)
                 int series = cantSeries.Value == 0 ? 3 : (int)cantSeries.Value;
                 int repeticiones = cantRepeticiones.Value == 0 ? 10 : (int)cantRepeticiones.Value;
-                int tiempo = string.IsNullOrEmpty(txtTiempo.Text) ? 30 : int.Parse(txtTiempo.Text);
 
-                // Agregar a la lista completa como ejercicio temporal
+                int tiempo = 0;
+                if (!string.IsNullOrEmpty(txtTiempo.Text) && int.TryParse(txtTiempo.Text, out int t) && t >= 0)
+                {
+                    tiempo = t;
+                }
+                else if (string.IsNullOrEmpty(txtTiempo.Text))
+                {
+                    tiempo = 30; // Valor por defecto
+                }
+                else
+                {
+                    MessageBox.Show("El tiempo debe ser un número entero válido (segundos).", "Error de Entrada", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // 4. Crear y agregar el ejercicio temporal (No es necesario EsTemporal)
                 var ejercicio = new EjercicioTemporal
                 {
                     IdEjercicio = idEjercicio,
@@ -231,20 +281,21 @@ namespace Taller2_G34
                     NombreDia = nombreDia,
                     Series = series,
                     Repeticiones = repeticiones,
-                    Tiempo = tiempo,
-                    EsTemporal = true
+                    Tiempo = tiempo
                 };
 
                 _ejerciciosTemporales.Add(ejercicio);
+
+                // Refrescar la vista
                 ActualizarDataGridViewPorDia(idDia);
 
-                // Limpiar controles
+                // 5. Limpiar controles
                 cboEjercicioCatalogo.SelectedIndex = -1;
                 cantSeries.Value = 0;
                 cantRepeticiones.Value = 0;
                 txtTiempo.Text = "";
 
-                MessageBox.Show("Ejercicio agregado.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Ejercicio agregado al plan.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -252,45 +303,54 @@ namespace Taller2_G34
             }
         }
 
-        private void cboEjercicioCatalogo_SelectedIndexChanged(object sender, EventArgs e)
+        // Ahora obtiene el ID_Ejercicio del objeto seleccionado (gracias a la proyección)
+        // y lo usa para buscar y eliminar de la lista completa _ejerciciosTemporales.
+        private void btnQuitar_Click(object sender, EventArgs e)
         {
-            if (cboEjercicioCatalogo.SelectedValue != null && cboDias.SelectedValue != null)
+            if (dgvEjercicios.CurrentRow != null && cboDias.SelectedValue != null)
             {
-                int idEjercicio = Convert.ToInt32(cboEjercicioCatalogo.SelectedValue);
-                string nombreEjercicio = cboEjercicioCatalogo.Text;
-                int idDia = Convert.ToInt32(cboDias.SelectedValue);
+                // El objeto ligado contiene IdEjercicio y NombreDia
+                dynamic selectedItem = dgvEjercicios.CurrentRow.DataBoundItem;
 
-                // Verificar si ya existe
-                bool existeDuplicado = _ejerciciosTemporales
-                    .Any(eje => (eje.IdEjercicio == idEjercicio ||
-                              eje.Nombre.Equals(nombreEjercicio, StringComparison.OrdinalIgnoreCase)) &&
-                             eje.IdDia == idDia);
+                int idDiaActual = Convert.ToInt32(cboDias.SelectedValue);
+                int idEjercicioSeleccionado = selectedItem.IdEjercicio;
+                string nombreEjercicio = selectedItem.Nombre;
 
-                if (existeDuplicado)
+                DialogResult result = MessageBox.Show(
+                    $"¿Está seguro que desea eliminar el ejercicio '{nombreEjercicio}' del día '{selectedItem.NombreDia}'?",
+                    "Confirmar Eliminación",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
                 {
-                    btnConfirmar.Enabled = false;
-                    toolTip1.SetToolTip(btnConfirmar, "Este ejercicio ya existe para el día seleccionado");
-                }
-                else
-                {
-                    btnConfirmar.Enabled = true;
-                    toolTip1.RemoveAll();
+                    // Buscar y eliminar el objeto exacto de la lista completa
+                    var ejercicioAEliminar = _ejerciciosTemporales
+                        .FirstOrDefault(ejercicio => ejercicio.IdDia == idDiaActual &&
+                                             ejercicio.IdEjercicio == idEjercicioSeleccionado);
+
+                    if (ejercicioAEliminar != null)
+                    {
+                        _ejerciciosTemporales.Remove(ejercicioAEliminar);
+
+                        // Si se eliminó un ejercicio de la plantilla, lo saco del rastreador
+                        _ejerciciosDePlantillaOriginal.Remove((idEjercicioSeleccionado, idDiaActual));
+
+                        // Refrescar solo el día actual
+                        ActualizarDataGridViewPorDia(idDiaActual);
+
+                        MessageBox.Show("Ejercicio eliminado correctamente del plan.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo encontrar el ejercicio para eliminar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
-        }
-
-        private void ActualizarDataGridViewCompleto()
-        {
-            var datosMostrar = _ejerciciosTemporales.Select(e => new
+            else
             {
-                e.NombreDia,
-                e.Nombre,
-                e.Series,
-                e.Repeticiones,
-                e.Tiempo
-            }).ToList();
-
-            dgvEjercicios.DataSource = datosMostrar;
+                MessageBox.Show("Seleccione un ejercicio para eliminar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -311,21 +371,25 @@ namespace Taller2_G34
             {
                 int idTipoPlan = Convert.ToInt32(comboBoxTipoPlan.SelectedValue);
                 string nombrePlan = txtNombrePlan.Text;
-
-                // Obtener el ID del plan original para copiar la plantilla base
                 int? idPlanOriginal = _planService.ObtenerIdPlanPorTipo(idTipoPlan);
 
-                // Solo los ejercicios temporales (nuevos que agregó el usuario)
-                var ejerciciosNuevos = _ejerciciosTemporales;
+                // Obtenemos solo los ejercicios que son NUEVOS, excluyendo a los de la Plantilla Original
+                // que quedaron después de las eliminaciones.
+                var ejerciciosNuevos = _ejerciciosTemporales
+                    .Where(ejercicio => !_ejerciciosDePlantillaOriginal.Contains((ejercicio.IdEjercicio, ejercicio.IdDia)))
+                    .ToList();
 
+                // 1. Copiar la estructura base de la plantilla (usando idPlanOriginal).
+                // 2. Insertar los ejercicios de la lista ejerciciosNuevos.
+                // 3. Omitir los ejercicios que fueron eliminados
                 int idNuevoPlan = _planService.GuardarPlanCompleto(nombrePlan, idTipoPlan, ejerciciosNuevos, idPlanOriginal);
 
-                MessageBox.Show($"Plan guardado exitosamente con ID: {idNuevoPlan}\n" +
-                               $"Se copió la plantilla base + {ejerciciosNuevos.Count} ejercicios nuevos.",
-                               "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"Plan guardado exitosamente con ID: {idNuevoPlan}",
+                                "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 // Limpiar todo después de guardar
                 _ejerciciosTemporales.Clear();
+                _ejerciciosDePlantillaOriginal.Clear();
                 dgvEjercicios.DataSource = null;
                 txtNombrePlan.Text = "";
                 comboBoxTipoPlan.SelectedIndex = -1;
@@ -338,31 +402,39 @@ namespace Taller2_G34
             }
         }
 
-        //modificar para que se puedan eliminar ejercicios que vienen de la plantilla también
-        private void btnQuitar_Click(object sender, EventArgs e)
-        {
-            if (dgvEjercicios.CurrentRow != null)
-            {
-                int index = dgvEjercicios.CurrentRow.Index;
-                if (index < _ejerciciosTemporales.Count)
-                {
-                    _ejerciciosTemporales.RemoveAt(index);
-                    ActualizarDataGridViewCompleto();
-                }
-            }
-        }
-
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             panel1.Visible = true;
         }
 
+
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-        private void txtNombrePlan_TextChanged(object sender, EventArgs e)
+
+        private void cboEjercicioCatalogo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (cboEjercicioCatalogo.SelectedValue != null && cboDias.SelectedValue != null)
+            {
+                int idEjercicio = Convert.ToInt32(cboEjercicioCatalogo.SelectedValue);
+                int idDia = Convert.ToInt32(cboDias.SelectedValue);
+
+                bool existeDuplicado = EsEjercicioDuplicado(idEjercicio, idDia);
+
+                if (existeDuplicado)
+                {
+                    btnConfirmar.Enabled = false;
+                    // toolTip1.SetToolTip(btnConfirmar, "Este ejercicio ya existe para el día seleccionado");
+                }
+                else
+                {
+                    btnConfirmar.Enabled = true;
+                    // toolTip1.RemoveAll();
+                }
+            }
         }
+        private void txtNombrePlan_TextChanged(object sender, EventArgs e) { }
+        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e) { }
     }
 }

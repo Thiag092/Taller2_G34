@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Windows.Forms;
-using System.Configuration;
 
 namespace Taller2_G34
 {
@@ -262,7 +263,6 @@ namespace Taller2_G34
                         {
                             adapter.Fill(_ejerciciosOriginales);
                         }
-                        dgvEjercicios.DataSource = _ejerciciosOriginales;
 
                         if (_ejerciciosOriginales.Rows.Count > 0)
                         {
@@ -341,7 +341,6 @@ namespace Taller2_G34
         }
 
 
-        //falta validar si ya existe el ejercicio
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
             if (cboEjercicioCatalogo.SelectedValue == null || cboDias.SelectedValue == null)
@@ -356,10 +355,33 @@ namespace Taller2_G34
                 int idDia = Convert.ToInt32(cboDias.SelectedValue);
                 string nombreDia = cboDias.Text;
 
+                // **1. VALIDACIÓN DE DUPLICADOS**
+                if (EsEjercicioDuplicado(idEjercicio, idDia))
+                {
+                    MessageBox.Show("Este ejercicio ya existe para el día seleccionado, ya sea en el plan original o añadido temporalmente.", "Ejercicio Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // 2. Obtención y validación de parámetros
                 int series = cantSeries.Value == 0 ? 3 : (int)cantSeries.Value;
                 int repeticiones = cantRepeticiones.Value == 0 ? 10 : (int)cantRepeticiones.Value;
-                int tiempo = string.IsNullOrEmpty(txtTiempo.Text) ? 30 : int.Parse(txtTiempo.Text);
 
+                int tiempo = 0;
+                if (!string.IsNullOrEmpty(txtTiempo.Text) && int.TryParse(txtTiempo.Text, out int t) && t >= 0)
+                {
+                    tiempo = t;
+                }
+                else if (string.IsNullOrEmpty(txtTiempo.Text))
+                {
+                    tiempo = 30; // Valor por defecto
+                }
+                else
+                {
+                    MessageBox.Show("El tiempo debe ser un número entero válido (segundos).", "Error de Entrada", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // 3. Crear y agregar el ejercicio temporal
                 var ejercicio = new EjercicioTemporal
                 {
                     IdEjercicio = idEjercicio,
@@ -373,26 +395,47 @@ namespace Taller2_G34
 
                 _ejerciciosTemporales.Add(ejercicio);
 
+                // 4. Refrescar la vista filtrada
                 if (cboDias.SelectedValue != null)
                 {
                     int currentIdDia = Convert.ToInt32(cboDias.SelectedValue);
                     FiltrarEjerciciosPorDia(currentIdDia);
                 }
 
+                // 5. Limpieza de UI
                 cboEjercicioCatalogo.SelectedIndex = -1;
                 cantSeries.Value = 0;
                 cantRepeticiones.Value = 0;
                 txtTiempo.Text = "";
                 panel1.Visible = false;
 
-                MessageBox.Show("Ejercicio agregado al plan.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Ejercicio agregado al plan", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error al agregar ejercicio: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private bool EsEjercicioDuplicado(int idEjercicio, int idDia)
+        {
+            // 1. Verificar en la lista temporal (ejercicios nuevos no guardados)
+            if (_ejerciciosTemporales.Any(et => et.IdEjercicio == idEjercicio && et.IdDia == idDia))
+            {
+                return true;
+            }
 
+            // 2. Verificar en la lista original (ejercicios ya existentes en la DB)
+            if (_ejerciciosOriginales != null && _ejerciciosOriginales.Columns.Contains("id_ejercicio") && _ejerciciosOriginales.Columns.Contains("id_dia"))
+            {
+                string filter = $"id_ejercicio = {idEjercicio} AND id_dia = {idDia}";
+                if (_ejerciciosOriginales.Select(filter).Length > 0)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
         private void btnQuitar_Click(object sender, EventArgs e)
         {
             if (dgvEjercicios.CurrentRow != null && dgvEjercicios.CurrentRow.DataBoundItem != null)
@@ -528,11 +571,11 @@ namespace Taller2_G34
                 {
                     try
                     {
-                        // Actualizar datos básicos del plan
+                        // 1. Actualizar datos básicos del plan
                         string updatePlan = @"
-                            UPDATE PlanEntrenamiento 
-                            SET nombre = @nombre, id_tipoPlan = @idTipoPlan 
-                            WHERE id_plan = @idPlan";
+                    UPDATE PlanEntrenamiento 
+                    SET nombre = @nombre, id_tipoPlan = @idTipoPlan 
+                    WHERE id_plan = @idPlan";
 
                         using (var cmd = new SqlCommand(updatePlan, connection, transaction))
                         {
@@ -542,12 +585,13 @@ namespace Taller2_G34
                             cmd.ExecuteNonQuery();
                         }
 
-                        // Agregar nuevos ejercicios temporales
+                        // 2. Agregar nuevos ejercicios temporales (solo si no existen)
                         foreach (var ejercicio in _ejerciciosTemporales)
                         {
+                            // Verificar si el ejercicio ya existe en Plan_Ejercicio
                             string checkQuery = @"
-                                SELECT COUNT(*) FROM Plan_Ejercicio 
-                                WHERE id_plan = @idPlan AND id_ejercicio = @idEjercicio AND id_dia = @idDia";
+                        SELECT COUNT(*) FROM Plan_Ejercicio 
+                        WHERE id_plan = @idPlan AND id_ejercicio = @idEjercicio AND id_dia = @idDia";
 
                             using (var checkCmd = new SqlCommand(checkQuery, connection, transaction))
                             {
@@ -559,9 +603,10 @@ namespace Taller2_G34
 
                                 if (exists == 0)
                                 {
+                                    // Insertar solo si no existe
                                     string insertEjercicio = @"
-                                        INSERT INTO Plan_Ejercicio (id_plan, id_ejercicio, id_dia, cant_series, repeticiones, tiempo)
-                                        VALUES (@idPlan, @idEjercicio, @idDia, @series, @repeticiones, @tiempo)";
+                                INSERT INTO Plan_Ejercicio (id_plan, id_ejercicio, id_dia, cant_series, repeticiones, tiempo)
+                                VALUES (@idPlan, @idEjercicio, @idDia, @series, @repeticiones, @tiempo)";
 
                                     using (var insertCmd = new SqlCommand(insertEjercicio, connection, transaction))
                                     {
@@ -576,6 +621,9 @@ namespace Taller2_G34
                                 }
                             }
                         }
+
+                        // 3. Limpiar la lista temporal después de un guardado exitoso
+                        _ejerciciosTemporales.Clear();
 
                         transaction.Commit();
                         return true;
@@ -598,18 +646,6 @@ namespace Taller2_G34
         private void btnNuevoEjercicio_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Funcionalidad para agregar nuevo ejercicio al catálogo en desarrollo.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        // Clase para ejercicios temporales
-        public class EjercicioTemporal
-        {
-            public int IdEjercicio { get; set; }
-            public string Nombre { get; set; }
-            public int IdDia { get; set; }
-            public string NombreDia { get; set; }
-            public int Series { get; set; }
-            public int Repeticiones { get; set; }
-            public int Tiempo { get; set; }
         }
     }
 }
