@@ -73,7 +73,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(912, 795);
+            this.panel1.Size = new System.Drawing.Size(927, 704);
             this.panel1.TabIndex = 5;
             // 
             // splitContainer1
@@ -91,8 +91,8 @@
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.Gold;
             this.splitContainer1.Panel2.Controls.Add(this.panel2);
-            this.splitContainer1.Size = new System.Drawing.Size(912, 795);
-            this.splitContainer1.SplitterDistance = 142;
+            this.splitContainer1.Size = new System.Drawing.Size(927, 704);
+            this.splitContainer1.SplitterDistance = 120;
             this.splitContainer1.TabIndex = 5;
             // 
             // pictureBox1
@@ -107,6 +107,7 @@
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(175)))), ((int)(((byte)(46)))));
             this.panel2.Controls.Add(this.txtContactoEmergencia);
             this.panel2.Controls.Add(this.lblContactoEmergencia);
             this.panel2.Controls.Add(this.textBoxObservaciones);
@@ -136,13 +137,13 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(912, 649);
+            this.panel2.Size = new System.Drawing.Size(927, 580);
             this.panel2.TabIndex = 0;
             // 
             // txtContactoEmergencia
             // 
             this.txtContactoEmergencia.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtContactoEmergencia.Location = new System.Drawing.Point(48, 282);
+            this.txtContactoEmergencia.Location = new System.Drawing.Point(48, 284);
             this.txtContactoEmergencia.Name = "txtContactoEmergencia";
             this.txtContactoEmergencia.Size = new System.Drawing.Size(360, 29);
             this.txtContactoEmergencia.TabIndex = 62;
@@ -159,17 +160,17 @@
             // 
             // textBoxObservaciones
             // 
-            this.textBoxObservaciones.Location = new System.Drawing.Point(170, 464);
+            this.textBoxObservaciones.Location = new System.Drawing.Point(170, 380);
             this.textBoxObservaciones.Multiline = true;
             this.textBoxObservaciones.Name = "textBoxObservaciones";
-            this.textBoxObservaciones.Size = new System.Drawing.Size(641, 102);
+            this.textBoxObservaciones.Size = new System.Drawing.Size(690, 102);
             this.textBoxObservaciones.TabIndex = 60;
             // 
             // labelMembresia
             // 
             this.labelMembresia.AutoSize = true;
             this.labelMembresia.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMembresia.Location = new System.Drawing.Point(464, 232);
+            this.labelMembresia.Location = new System.Drawing.Point(482, 232);
             this.labelMembresia.Name = "labelMembresia";
             this.labelMembresia.Size = new System.Drawing.Size(107, 24);
             this.labelMembresia.TabIndex = 59;
@@ -177,17 +178,19 @@
             // 
             // comboBoxMembresia
             // 
+            this.comboBoxMembresia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBoxMembresia.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxMembresia.FormattingEnabled = true;
-            this.comboBoxMembresia.Location = new System.Drawing.Point(611, 232);
+            this.comboBoxMembresia.Location = new System.Drawing.Point(660, 232);
             this.comboBoxMembresia.Name = "comboBoxMembresia";
-            this.comboBoxMembresia.Size = new System.Drawing.Size(200, 24);
+            this.comboBoxMembresia.Size = new System.Drawing.Size(200, 31);
             this.comboBoxMembresia.TabIndex = 57;
             // 
             // labelObservaciones
             // 
             this.labelObservaciones.AutoSize = true;
             this.labelObservaciones.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelObservaciones.Location = new System.Drawing.Point(166, 437);
+            this.labelObservaciones.Location = new System.Drawing.Point(166, 353);
             this.labelObservaciones.Name = "labelObservaciones";
             this.labelObservaciones.Size = new System.Drawing.Size(139, 24);
             this.labelObservaciones.TabIndex = 55;
@@ -196,9 +199,10 @@
             // 
             // comboBoxCoach
             // 
+            this.comboBoxCoach.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBoxCoach.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxCoach.FormattingEnabled = true;
-            this.comboBoxCoach.Location = new System.Drawing.Point(611, 277);
+            this.comboBoxCoach.Location = new System.Drawing.Point(658, 275);
             this.comboBoxCoach.Name = "comboBoxCoach";
             this.comboBoxCoach.Size = new System.Drawing.Size(202, 31);
             this.comboBoxCoach.TabIndex = 54;
@@ -207,7 +211,7 @@
             // 
             this.labelCoach.AutoSize = true;
             this.labelCoach.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCoach.Location = new System.Drawing.Point(464, 282);
+            this.labelCoach.Location = new System.Drawing.Point(482, 275);
             this.labelCoach.Name = "labelCoach";
             this.labelCoach.Size = new System.Drawing.Size(63, 24);
             this.labelCoach.TabIndex = 53;
@@ -218,7 +222,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(464, 185);
+            this.label5.Location = new System.Drawing.Point(482, 185);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(122, 24);
             this.label5.TabIndex = 0;
@@ -237,15 +241,18 @@
             // 
             // comboBoxPlan
             // 
+            this.comboBoxPlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBoxPlan.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxPlan.FormattingEnabled = true;
-            this.comboBoxPlan.Location = new System.Drawing.Point(611, 185);
+            this.comboBoxPlan.Location = new System.Drawing.Point(660, 185);
             this.comboBoxPlan.Name = "comboBoxPlan";
-            this.comboBoxPlan.Size = new System.Drawing.Size(200, 24);
+            this.comboBoxPlan.Size = new System.Drawing.Size(200, 31);
             this.comboBoxPlan.TabIndex = 8;
             this.comboBoxPlan.SelectedIndexChanged += new System.EventHandler(this.comboBoxPlan_SelectedIndexChanged);
             // 
             // comboBoxSexo
             // 
+            this.comboBoxSexo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBoxSexo.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxSexo.FormattingEnabled = true;
             this.comboBoxSexo.Location = new System.Drawing.Point(170, 192);
@@ -257,7 +264,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(464, 131);
+            this.label4.Location = new System.Drawing.Point(482, 130);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(188, 24);
             this.label4.TabIndex = 47;
@@ -265,11 +272,11 @@
             // 
             // datePickerNacimiento
             // 
-            this.datePickerNacimiento.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.datePickerNacimiento.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.datePickerNacimiento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.datePickerNacimiento.Location = new System.Drawing.Point(690, 132);
+            this.datePickerNacimiento.Location = new System.Drawing.Point(739, 125);
             this.datePickerNacimiento.Name = "datePickerNacimiento";
-            this.datePickerNacimiento.Size = new System.Drawing.Size(121, 30);
+            this.datePickerNacimiento.Size = new System.Drawing.Size(121, 29);
             this.datePickerNacimiento.TabIndex = 46;
             // 
             // label3
@@ -286,7 +293,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(464, 76);
+            this.label2.Location = new System.Drawing.Point(482, 73);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 24);
             this.label2.TabIndex = 44;
@@ -304,46 +311,46 @@
             // 
             // txtTelefono
             // 
-            this.txtTelefono.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTelefono.Location = new System.Drawing.Point(170, 138);
+            this.txtTelefono.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTelefono.Location = new System.Drawing.Point(170, 136);
             this.txtTelefono.Name = "txtTelefono";
-            this.txtTelefono.Size = new System.Drawing.Size(238, 31);
+            this.txtTelefono.Size = new System.Drawing.Size(238, 29);
             this.txtTelefono.TabIndex = 42;
             this.txtTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTelefono_KeyPress);
             // 
             // txtEmail
             // 
-            this.txtEmail.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmail.Location = new System.Drawing.Point(615, 76);
+            this.txtEmail.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEmail.Location = new System.Drawing.Point(664, 69);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(196, 31);
+            this.txtEmail.Size = new System.Drawing.Size(196, 29);
             this.txtEmail.TabIndex = 41;
             this.txtEmail.Leave += new System.EventHandler(this.txtEmail_Leave);
             // 
             // txtDNI
             // 
-            this.txtDNI.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDNI.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDNI.Location = new System.Drawing.Point(170, 73);
             this.txtDNI.Name = "txtDNI";
-            this.txtDNI.Size = new System.Drawing.Size(238, 31);
+            this.txtDNI.Size = new System.Drawing.Size(238, 29);
             this.txtDNI.TabIndex = 40;
             this.txtDNI.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDNI_KeyPress);
             // 
             // txtApellidoAlumno
             // 
-            this.txtApellidoAlumno.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtApellidoAlumno.Location = new System.Drawing.Point(615, 24);
+            this.txtApellidoAlumno.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtApellidoAlumno.Location = new System.Drawing.Point(664, 20);
             this.txtApellidoAlumno.Name = "txtApellidoAlumno";
-            this.txtApellidoAlumno.Size = new System.Drawing.Size(196, 31);
+            this.txtApellidoAlumno.Size = new System.Drawing.Size(196, 29);
             this.txtApellidoAlumno.TabIndex = 39;
             this.txtApellidoAlumno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtApellidoAlumno_KeyPress);
             // 
             // txtNombreAlumno
             // 
-            this.txtNombreAlumno.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombreAlumno.Location = new System.Drawing.Point(170, 24);
+            this.txtNombreAlumno.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombreAlumno.Location = new System.Drawing.Point(170, 25);
             this.txtNombreAlumno.Name = "txtNombreAlumno";
-            this.txtNombreAlumno.Size = new System.Drawing.Size(238, 31);
+            this.txtNombreAlumno.Size = new System.Drawing.Size(238, 29);
             this.txtNombreAlumno.TabIndex = 38;
             this.txtNombreAlumno.TextChanged += new System.EventHandler(this.txtNombreAlumno_TextChanged);
             this.txtNombreAlumno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombreAlumno_KeyPress);
@@ -352,7 +359,7 @@
             // 
             this.labelApellido.AutoSize = true;
             this.labelApellido.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelApellido.Location = new System.Drawing.Point(464, 27);
+            this.labelApellido.Location = new System.Drawing.Point(482, 22);
             this.labelApellido.Name = "labelApellido";
             this.labelApellido.Size = new System.Drawing.Size(83, 24);
             this.labelApellido.TabIndex = 37;
@@ -370,12 +377,12 @@
             // 
             // BConfirmar
             // 
-            this.BConfirmar.BackColor = System.Drawing.Color.Green;
+            this.BConfirmar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(133)))), ((int)(((byte)(71)))), ((int)(((byte)(152)))));
             this.BConfirmar.FlatAppearance.BorderSize = 0;
             this.BConfirmar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BConfirmar.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BConfirmar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BConfirmar.Location = new System.Drawing.Point(611, 614);
+            this.BConfirmar.Location = new System.Drawing.Point(660, 507);
             this.BConfirmar.Name = "BConfirmar";
             this.BConfirmar.Size = new System.Drawing.Size(200, 40);
             this.BConfirmar.TabIndex = 35;
@@ -390,9 +397,9 @@
             this.BCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BCancelar.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BCancelar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BCancelar.Location = new System.Drawing.Point(170, 614);
+            this.BCancelar.Location = new System.Drawing.Point(431, 507);
             this.BCancelar.Name = "BCancelar";
-            this.BCancelar.Size = new System.Drawing.Size(168, 40);
+            this.BCancelar.Size = new System.Drawing.Size(173, 40);
             this.BCancelar.TabIndex = 34;
             this.BCancelar.Text = "Cancelar";
             this.BCancelar.UseVisualStyleBackColor = false;
@@ -402,7 +409,7 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ClientSize = new System.Drawing.Size(912, 795);
+            this.ClientSize = new System.Drawing.Size(927, 704);
             this.Controls.Add(this.panel1);
             this.Name = "AgregarAlumno";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

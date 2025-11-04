@@ -33,8 +33,10 @@
             this.labelCoach = new System.Windows.Forms.Label();
             this.BSalir = new System.Windows.Forms.Button();
             this.homeContainer = new System.Windows.Forms.SplitContainer();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.contentContainer = new System.Windows.Forms.SplitContainer();
             this.contentPanel = new System.Windows.Forms.Panel();
+            this.BRefresh = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.textBoxBusqueda = new System.Windows.Forms.TextBox();
@@ -42,21 +44,19 @@
             this.labelTitulo = new System.Windows.Forms.Label();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.labelTextoBienvenida = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.BRefresh = new System.Windows.Forms.Button();
             this.BVerRutinas = new System.Windows.Forms.Button();
             this.BVerAlumnos = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.homeContainer)).BeginInit();
             this.homeContainer.Panel1.SuspendLayout();
             this.homeContainer.Panel2.SuspendLayout();
             this.homeContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.contentContainer)).BeginInit();
             this.contentContainer.Panel1.SuspendLayout();
             this.contentContainer.Panel2.SuspendLayout();
             this.contentContainer.SuspendLayout();
             this.contentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // labelCoach
@@ -76,12 +76,15 @@
             this.BSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BSalir.BackColor = System.Drawing.SystemColors.MenuText;
             this.BSalir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BSalir.FlatAppearance.BorderSize = 0;
             this.BSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BSalir.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BSalir.Image = global::Taller2_G34.Properties.Resources.salida;
+            this.BSalir.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BSalir.Location = new System.Drawing.Point(831, 20);
             this.BSalir.Name = "BSalir";
-            this.BSalir.Size = new System.Drawing.Size(157, 50);
+            this.BSalir.Size = new System.Drawing.Size(130, 50);
             this.BSalir.TabIndex = 5;
             this.BSalir.Text = "Salir";
             this.BSalir.UseVisualStyleBackColor = false;
@@ -110,6 +113,17 @@
             this.homeContainer.Size = new System.Drawing.Size(1000, 595);
             this.homeContainer.SplitterDistance = 76;
             this.homeContainer.TabIndex = 6;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Taller2_G34.Properties.Resources.ChatGPT_Image_1_sept_2025__17_46_04;
+            this.pictureBox1.Location = new System.Drawing.Point(12, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(71, 73);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // contentContainer
             // 
@@ -154,6 +168,19 @@
             this.contentPanel.TabIndex = 3;
             this.contentPanel.Visible = false;
             this.contentPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.contentPanel_Paint);
+            // 
+            // BRefresh
+            // 
+            this.BRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BRefresh.FlatAppearance.BorderSize = 0;
+            this.BRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BRefresh.Image = global::Taller2_G34.Properties.Resources.refresh_page_option;
+            this.BRefresh.Location = new System.Drawing.Point(293, 450);
+            this.BRefresh.Name = "BRefresh";
+            this.BRefresh.Size = new System.Drawing.Size(73, 53);
+            this.BRefresh.TabIndex = 11;
+            this.BRefresh.UseVisualStyleBackColor = true;
+            this.BRefresh.Click += new System.EventHandler(this.BRefresh_Click);
             // 
             // btnEliminar
             // 
@@ -273,30 +300,6 @@
             this.labelTextoBienvenida.Text = "Por favor selecciona \r\nla sección que deseas ver";
             this.labelTextoBienvenida.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Taller2_G34.Properties.Resources.ChatGPT_Image_1_sept_2025__17_46_04;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(71, 73);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
-            // BRefresh
-            // 
-            this.BRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BRefresh.FlatAppearance.BorderSize = 0;
-            this.BRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BRefresh.Image = global::Taller2_G34.Properties.Resources.refresh_page_option;
-            this.BRefresh.Location = new System.Drawing.Point(293, 450);
-            this.BRefresh.Name = "BRefresh";
-            this.BRefresh.Size = new System.Drawing.Size(73, 53);
-            this.BRefresh.TabIndex = 11;
-            this.BRefresh.UseVisualStyleBackColor = true;
-            this.BRefresh.Click += new System.EventHandler(this.BRefresh_Click);
-            // 
             // BVerRutinas
             // 
             this.BVerRutinas.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -352,6 +355,7 @@
             this.homeContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.homeContainer)).EndInit();
             this.homeContainer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.contentContainer.Panel1.ResumeLayout(false);
             this.contentContainer.Panel1.PerformLayout();
             this.contentContainer.Panel2.ResumeLayout(false);
@@ -360,7 +364,6 @@
             this.contentPanel.ResumeLayout(false);
             this.contentPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
