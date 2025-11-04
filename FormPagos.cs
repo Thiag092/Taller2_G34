@@ -172,6 +172,7 @@ namespace Taller2_G34
                         comboMedioPago.Text);
 
                     MessageBox.Show("Pago con éxito. Generando comprobante, aguarde...");
+                    this.DialogResult = DialogResult.OK;
                     this.Close();
 
                 }
@@ -213,103 +214,144 @@ namespace Taller2_G34
             txtTotal.Text = (montoBase * (1 + recargo / 100)).ToString("0.00");
         }
 
-       
 
-private void GenerarComprobantePDF(string alumno, string membresia, string plan,
-    decimal monto, decimal recargo, decimal total, string medioPago)
-    {
-        // Carpeta donde se guarda
-        string carpeta = Path.Combine(Application.StartupPath, "Comprobantes");
-        if (!Directory.Exists(carpeta))
-            Directory.CreateDirectory(carpeta);
 
-        // Nombre del archivo
-        string nombreArchivo = $"Comprobante_{alumno.Replace(" ", "_")}_{DateTime.Now:yyyyMMdd_HHmm}.pdf";
-        string ruta = Path.Combine(carpeta, nombreArchivo);
-
-        // Crear el documento
-        using (var doc = new iTextSharp.text.Document(PageSize.A4, 50, 50, 50, 50))
+        private void GenerarComprobantePDF(string alumno, string membresia, string plan,
+            decimal monto, decimal recargo, decimal total, string medioPago)
         {
-            PdfWriter.GetInstance(doc, new FileStream(ruta, FileMode.Create));
-            doc.Open();
+            // 🧩 Carpeta Comprobantes en raíz del proyecto
+            string carpetaProyecto = Path.GetFullPath(Path.Combine(Application.StartupPath, @"..\..\Comprobantes"));
+            if (!Directory.Exists(carpetaProyecto))
+                Directory.CreateDirectory(carpetaProyecto);
 
-            // Fuentes
-            var fuenteTitulo = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 18, BaseColor.BLACK);
-            var fuenteSubtitulo = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 12, BaseColor.DARK_GRAY);
-            var fuenteTexto = FontFactory.GetFont(FontFactory.HELVETICA, 11, BaseColor.BLACK);
-
-            // Encabezado centrado
-            Paragraph titulo = new Paragraph("🏋️‍♂️ ENERGYM", fuenteTitulo)
+            // 🧮 Generar número de factura correlativo
+            string contadorPath = Path.Combine(carpetaProyecto, "contador.txt");
+            int numeroFactura = 1;
+            if (File.Exists(contadorPath))
             {
-                Alignment = Element.ALIGN_CENTER,
-                SpacingAfter = 10f
-            };
-            doc.Add(titulo);
+                int.TryParse(File.ReadAllText(contadorPath), out numeroFactura);
+                numeroFactura++;
+            }
+            File.WriteAllText(contadorPath, numeroFactura.ToString());
 
-            Paragraph subtitulo = new Paragraph("Comprobante de Pago", fuenteSubtitulo)
+            string numeroFormateado = $"0001-{numeroFactura.ToString("D7")}";
+
+            // 🧾 Nombre del archivo
+            string nombreArchivo = $"Factura_{alumno.Replace(" ", "_")}_{DateTime.Now:yyyyMMdd_HHmm}.pdf";
+            string ruta = Path.Combine(carpetaProyecto, nombreArchivo);
+
+            // 🎨 Crear el documento
+            using (var doc = new Document(PageSize.A4, 50, 50, 40, 40))
             {
-                Alignment = Element.ALIGN_CENTER,
-                SpacingAfter = 20f
-            };
-            doc.Add(subtitulo);
+                PdfWriter.GetInstance(doc, new FileStream(ruta, FileMode.Create));
+                doc.Open();
 
-            // Línea divisoria
-            var linea = new Paragraph(new Chunk(new iTextSharp.text.pdf.draw.LineSeparator(1f, 100f, BaseColor.LIGHT_GRAY, Element.ALIGN_CENTER, -1)));
-            doc.Add(linea);
-            doc.Add(new Paragraph("\n"));
+                // Fuentes
+                var fuenteTitulo = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 18, BaseColor.BLACK);
+                var fuenteTexto = FontFactory.GetFont(FontFactory.HELVETICA, 10, BaseColor.BLACK);
+                var fuenteTablaHeader = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 10, BaseColor.WHITE);
+                var fuenteTablaTexto = FontFactory.GetFont(FontFactory.HELVETICA, 10, BaseColor.BLACK);
 
-            // Fecha
-            doc.Add(new Paragraph($"Fecha de emisión: {DateTime.Now:dd/MM/yyyy}", fuenteTexto));
-            doc.Add(new Paragraph("\n"));
+                // === Encabezado con logo ===
+                string logoPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "logo_taller2.png");
+                if (File.Exists(logoPath))
+                {
+                    iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(logoPath);
+                    logo.ScaleAbsolute(100, 100);
+                    logo.Alignment = Element.ALIGN_LEFT;
+                    doc.Add(logo);
+                }
 
-            // Tabla de información principal
-            PdfPTable tabla = new PdfPTable(2)
-            {
-                WidthPercentage = 90,
-                HorizontalAlignment = Element.ALIGN_CENTER
-            };
-            tabla.SpacingBefore = 10f;
-            tabla.SpacingAfter = 20f;
+                Paragraph encabezado = new Paragraph("ENERGYM FITNESS CLUB", fuenteTitulo);
+                encabezado.Alignment = Element.ALIGN_RIGHT;
+                doc.Add(encabezado);
+                doc.Add(new Paragraph("CUIT: 30-99999999-7", fuenteTexto) { Alignment = Element.ALIGN_RIGHT });
+                doc.Add(new Paragraph("Av. Sarmiento 2345, Resistencia, Chaco", fuenteTexto) { Alignment = Element.ALIGN_RIGHT });
+                doc.Add(new Paragraph("Tel: (362) 444-1234 | contacto@energygym.com", fuenteTexto) { Alignment = Element.ALIGN_RIGHT });
+                doc.Add(new Paragraph("\n"));
 
-            tabla.AddCell(new PdfPCell(new Phrase("Alumno:", fuenteSubtitulo)) { Border = 0 });
-            tabla.AddCell(new PdfPCell(new Phrase(alumno, fuenteTexto)) { Border = 0 });
+                // Línea divisoria
+                doc.Add(new Chunk(new iTextSharp.text.pdf.draw.LineSeparator(1f, 100f, BaseColor.GRAY, Element.ALIGN_CENTER, -1)));
 
-            tabla.AddCell(new PdfPCell(new Phrase("Membresía:", fuenteSubtitulo)) { Border = 0 });
-            tabla.AddCell(new PdfPCell(new Phrase(membresia, fuenteTexto)) { Border = 0 });
+                // Info de factura
+                PdfPTable tablaFactura = new PdfPTable(2) { WidthPercentage = 100 };
+                tablaFactura.SpacingBefore = 10;
+                tablaFactura.AddCell(new PdfPCell(new Phrase($"Factura Nº {numeroFormateado}", fuenteTexto)) { Border = 0 });
+                tablaFactura.AddCell(new PdfPCell(new Phrase($"Fecha de emisión: {DateTime.Now:dd/MM/yyyy}", fuenteTexto)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT });
+                tablaFactura.AddCell(new PdfPCell(new Phrase("Tipo: B", fuenteTexto)) { Border = 0 });
+                tablaFactura.AddCell(new PdfPCell(new Phrase("", fuenteTexto)) { Border = 0 });
+                doc.Add(tablaFactura);
+                doc.Add(new Paragraph("\n"));
 
-            tabla.AddCell(new PdfPCell(new Phrase("Plan:", fuenteSubtitulo)) { Border = 0 });
-            tabla.AddCell(new PdfPCell(new Phrase(plan, fuenteTexto)) { Border = 0 });
+                // === Datos del cliente ===
+                PdfPTable tablaCliente = new PdfPTable(2) { WidthPercentage = 100 };
+                tablaCliente.AddCell(new PdfPCell(new Phrase("Alumno:", fuenteTexto)) { Border = 0 });
+                tablaCliente.AddCell(new PdfPCell(new Phrase(alumno, fuenteTexto)) { Border = 0 });
+                tablaCliente.AddCell(new PdfPCell(new Phrase("DNI:", fuenteTexto)) { Border = 0 });
+                tablaCliente.AddCell(new PdfPCell(new Phrase(dni, fuenteTexto)) { Border = 0 });
+                tablaCliente.AddCell(new PdfPCell(new Phrase("Membresía:", fuenteTexto)) { Border = 0 });
+                tablaCliente.AddCell(new PdfPCell(new Phrase(membresia, fuenteTexto)) { Border = 0 });
+                tablaCliente.AddCell(new PdfPCell(new Phrase("Plan:", fuenteTexto)) { Border = 0 });
+                tablaCliente.AddCell(new PdfPCell(new Phrase(plan, fuenteTexto)) { Border = 0 });
+                tablaCliente.AddCell(new PdfPCell(new Phrase("Medio de pago:", fuenteTexto)) { Border = 0 });
+                tablaCliente.AddCell(new PdfPCell(new Phrase(medioPago, fuenteTexto)) { Border = 0 });
+                doc.Add(tablaCliente);
+                doc.Add(new Paragraph("\n"));
 
-            tabla.AddCell(new PdfPCell(new Phrase("Medio de pago:", fuenteSubtitulo)) { Border = 0 });
-            tabla.AddCell(new PdfPCell(new Phrase(medioPago, fuenteTexto)) { Border = 0 });
+                // === Detalle de factura ===
+                PdfPTable tablaDetalle = new PdfPTable(5);
+                tablaDetalle.WidthPercentage = 100;
+                tablaDetalle.SetWidths(new float[] { 3, 1, 2, 2, 2 });
 
-            tabla.AddCell(new PdfPCell(new Phrase("Monto base:", fuenteSubtitulo)) { Border = 0 });
-            tabla.AddCell(new PdfPCell(new Phrase($"${monto:0.00}", fuenteTexto)) { Border = 0 });
+                string[] headers = { "Concepto", "Cant.", "Precio Unit.", "Recargo", "Total" };
+                foreach (var h in headers)
+                {
+                    PdfPCell cell = new PdfPCell(new Phrase(h, fuenteTablaHeader))
+                    {
+                        BackgroundColor = BaseColor.DARK_GRAY,
+                        HorizontalAlignment = Element.ALIGN_CENTER,
+                        Padding = 5
+                    };
+                    tablaDetalle.AddCell(cell);
+                }
 
-            tabla.AddCell(new PdfPCell(new Phrase("Recargo aplicado:", fuenteSubtitulo)) { Border = 0 });
-            tabla.AddCell(new PdfPCell(new Phrase($"${recargo:0.00}", fuenteTexto)) { Border = 0 });
+                tablaDetalle.AddCell(new PdfPCell(new Phrase("Cuota mensual del plan seleccionado", fuenteTablaTexto)) { Padding = 5 });
+                tablaDetalle.AddCell(new PdfPCell(new Phrase("1", fuenteTablaTexto)) { Padding = 5, HorizontalAlignment = Element.ALIGN_CENTER });
+                tablaDetalle.AddCell(new PdfPCell(new Phrase($"${monto:0.00}", fuenteTablaTexto)) { Padding = 5, HorizontalAlignment = Element.ALIGN_RIGHT });
+                tablaDetalle.AddCell(new PdfPCell(new Phrase($"${recargo:0.00}", fuenteTablaTexto)) { Padding = 5, HorizontalAlignment = Element.ALIGN_RIGHT });
+                tablaDetalle.AddCell(new PdfPCell(new Phrase($"${total:0.00}", fuenteTablaTexto)) { Padding = 5, HorizontalAlignment = Element.ALIGN_RIGHT });
 
-            tabla.AddCell(new PdfPCell(new Phrase("TOTAL a pagar:", fuenteSubtitulo)) { Border = 0 });
-            tabla.AddCell(new PdfPCell(new Phrase($"${total:0.00}", fuenteTexto)) { Border = 0 });
+                doc.Add(tablaDetalle);
+                doc.Add(new Paragraph("\n"));
 
-            doc.Add(tabla);
+                // === Totales ===
+                PdfPTable tablaTotales = new PdfPTable(2) { WidthPercentage = 40, HorizontalAlignment = Element.ALIGN_RIGHT };
+                tablaTotales.AddCell(new PdfPCell(new Phrase("Subtotal:", fuenteTexto)) { Border = 0 });
+                tablaTotales.AddCell(new PdfPCell(new Phrase($"${monto:0.00}", fuenteTexto)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT });
+                tablaTotales.AddCell(new PdfPCell(new Phrase("Recargo:", fuenteTexto)) { Border = 0 });
+                tablaTotales.AddCell(new PdfPCell(new Phrase($"${recargo:0.00}", fuenteTexto)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT });
+                tablaTotales.AddCell(new PdfPCell(new Phrase("TOTAL:", fuenteTitulo)) { Border = 0 });
+                tablaTotales.AddCell(new PdfPCell(new Phrase($"${total:0.00}", fuenteTitulo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT });
+                doc.Add(tablaTotales);
 
-            // Línea divisoria inferior
-            doc.Add(linea);
+                doc.Add(new Paragraph("\n"));
+                doc.Add(new Chunk(new iTextSharp.text.pdf.draw.LineSeparator(1f, 100f, BaseColor.GRAY, Element.ALIGN_CENTER, -1)));
 
-            // Mensaje final
-            Paragraph agradecimiento = new Paragraph("¡Gracias por tu confianza en EnerGym!\n\nMantén este comprobante como constancia de pago.", fuenteTexto)
-            {
-                Alignment = Element.ALIGN_CENTER
-            };
-            doc.Add(agradecimiento);
+                // === Pie ===
+                Paragraph pie = new Paragraph("Comprobante no válido como factura fiscal.\nConstancia de pago emitida por EnerGym Fitness Club.\n\n¡Gracias por elegirnos!", fuenteTexto)
+                {
+                    Alignment = Element.ALIGN_CENTER,
+                    SpacingBefore = 15f
+                };
+                doc.Add(pie);
 
-            doc.Close();
+                doc.Close();
+            }
+
+            // Abrir automáticamente el PDF generado
+            System.Diagnostics.Process.Start("explorer.exe", ruta);
         }
 
-        // Abrir automáticamente el PDF generado
-        System.Diagnostics.Process.Start("explorer.exe", ruta);
-    }
 
         private decimal ObtenerCostoMembresia(int idMembresia)
         {
