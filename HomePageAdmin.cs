@@ -1,189 +1,121 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Configuration; // para leer la cadena de conexión del App.config
-using System.Data.SqlClient; // para usar SqlConnection, SqlCommand, SqlDataReader
-
+using System.Configuration;
+using System.Data.SqlClient;
 
 namespace Taller2_G34
 {
     public partial class HomePageAdmin : Form
     {
+        // El botón de detalles debe ser un campo a nivel de clase para ser reutilizable
+        private DataGridViewButtonColumn btnDetalles = new DataGridViewButtonColumn();
+
         public HomePageAdmin()
         {
             InitializeComponent();
-            // Suscribo el evento para detectar clicks en las celdas del DataGridView
-            dataGridView.CellContentClick += dataGridView_CellContentClick;
             btnVerEntrenadores.Visible = false;
             btnVerAdministradores.Visible = false;
+            
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        // --- MÉTODOS DE CONEXIÓN Y ACCESO A DATOS (Lógica Central) ---
+
+        private SqlDataReader EjecutarConsultaYDevolverDatos(string query, string tipo, out SqlConnection connection)
         {
+            string connectionString = ConfigurationManager.ConnectionStrings["EnerGymDB"].ConnectionString;
+            connection = new SqlConnection(connectionString);
 
-        }
-
-        private void BSalir_Click(object sender, EventArgs e)
-        {
-            DialogResult respuesta = MessageBox.Show(
-               "¿Está seguro que desea cerrar la sesión?",
-               "Confirmación",
-               MessageBoxButtons.YesNo,
-               MessageBoxIcon.Question
-           );
-
-            if (respuesta == DialogResult.Yes)
+            try
             {
-                login f = new login();
-                f.Show();          // vuelve al formulario de login
-                this.Close();
+                connection.Open();
+                SqlCommand cmd = new SqlCommand(query, connection);
+                // CommandBehavior.CloseConnection asegura que la conexión se cierre
+                // cuando el DataReader sea cerrado o descartado.
+                return cmd.ExecuteReader(CommandBehavior.CloseConnection);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar {tipo}: {ex.Message}", "Error de Base de Datos");
+                connection.Dispose();
+                return null;
             }
         }
 
-        private void Form2_Load(object sender, EventArgs e)
+        // --- MÉTODOS DE CONFIGURACIÓN Y POBLACIÓN DE VISTAS ---
+
+        private void DefinirColumnas(string tipo)
         {
-
-        }
-
-        private void splitContainer1_Panel1_Paint_1(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void splitContainer1_Panel2_Paint_1(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            /* Verifico que la columna clickeada sea la de "Detalles"
-            if (e.ColumnIndex >= 0 && dataGridView.Columns[e.ColumnIndex].Name == "Detalles" && e.RowIndex >= 0)
-            {
-                
-                // Obtengo el DNI de la fila seleccionada
-                string dniSeleccionado = dataGridView.Rows[e.RowIndex].Cells["DNI"].Value.ToString();
-
-                // Abro el formulario de edición pasando el DNI
-                EditPersonal formEditar = new EditPersonal(dniSeleccionado);
-                formEditar.ShowDialog(); // ShowDialog para que sea modal
-            }*/
-            if (e.ColumnIndex >= 0 && dataGridView.Columns[e.ColumnIndex].Name == "Detalles" && e.RowIndex >= 0)
-            {
-                string valorClave = null;
-
-                // Si existe la columna DNI la uso
-                if (dataGridView.Columns.Contains("DNI"))
-                {
-                    valorClave = dataGridView.Rows[e.RowIndex].Cells["DNI"].Value.ToString();
-                    EditPersonal formEditar = new EditPersonal(valorClave);
-                    formEditar.ShowDialog();
-                }
-                // Si no, intento con ID
-                else if (dataGridView.Columns.Contains("ID")) {
-                    valorClave = dataGridView.Rows[e.RowIndex].Cells["ID"].Value.ToString();
-                }
-            }
-
-
-        }
-
-        private void contentContainer_Panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void contentPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void BVerPersonal_Click(object sender, EventArgs e)
-        {
-            MostrarVista("Personal");
-        }
-        private void MostrarVista(string tipo)
-        {
-            // Oculto el label de bienvenida
-            labelTextoBienvenida.Visible = false;
-            // Hago visible el panel de contenido
-            contentPanel.Visible = true;
-
-            // Limpio el DataGridView antes de cargar nuevos datos
+            // Limpiar y preparar las columnas
             dataGridView.Columns.Clear();
             dataGridView.Rows.Clear();
+            dataGridView.AutoGenerateColumns = false;
 
-            // Columna de botón
-            DataGridViewButtonColumn btnDetalles = new DataGridViewButtonColumn();
+            // Re-inicializamos el botón de detalles
+            btnDetalles = new DataGridViewButtonColumn();
             btnDetalles.HeaderText = "Detalles";
             btnDetalles.Text = "Ver más";
-            btnDetalles.Name = "Detalles";
-            btnAgregar.Visible = true;
-            btnEliminar.Visible = true;
+            btnDetalles.UseColumnTextForButtonValue = true;
 
-
-            if (tipo == "alumnos")
+            switch (tipo)
             {
-                // Limpio columnas y filas previas
-                dataGridView.Columns.Clear();
-                dataGridView.Rows.Clear();
+                case "alumnos":
+                    // Definición de columnas
+                    dataGridView.Columns.Add("DNI", "DNI");
+                    dataGridView.Columns.Add("Nombre", "Nombre");
+                    dataGridView.Columns.Add("Apellido", "Apellido");
+                    dataGridView.Columns.Add("Telefono", "Teléfono");
+                    dataGridView.Columns.Add("Sexo", "Sexo");
+                    dataGridView.Columns.Add("Membresia", "Membresía");
+                    dataGridView.Columns.Add("Plan", "Plan");
+                    dataGridView.Columns.Add("Coach", "Coach");
+                    btnDetalles.Name = "btnDetallesAlumnos";
+                    break;
 
-                // Defino las columnas a mostrar
-                dataGridView.Columns.Add("DNI", "DNI");
-                dataGridView.Columns.Add("Nombre", "Nombre");
-                dataGridView.Columns.Add("Apellido", "Apellido");
-                dataGridView.Columns.Add("Telefono", "Teléfono");
-                dataGridView.Columns.Add("Sexo", "Sexo");
-                dataGridView.Columns.Add("Membresia", "Membresía");
-                dataGridView.Columns.Add("Plan", "Plan");
-                dataGridView.Columns.Add("Coach", "Coach");
+                case "Personal":
+                    dataGridView.Columns.Add("DNI", "DNI");
+                    dataGridView.Columns.Add("Nombre", "Nombre");
+                    dataGridView.Columns.Add("Apellido", "Apellido");
+                    dataGridView.Columns.Add("Email", "Email");
+                    dataGridView.Columns.Add("TipoUsuario", "Tipo de usuario");
+                    btnDetalles.Name = "btnDetallesUsuario";
+                    break;
 
-                // Columna de botón "Ver más"
-                btnDetalles = new DataGridViewButtonColumn();
-                btnDetalles.HeaderText = "Detalles";
-                btnDetalles.Text = "Ver más";
-                btnDetalles.Name = "btnDetallesAlumnos";
-                btnDetalles.UseColumnTextForButtonValue = true;
-                dataGridView.Columns.Add(btnDetalles);
+                case "Administradores":
+                case "entrenadores":
+                    dataGridView.Columns.Add("DNI", "DNI");
+                    dataGridView.Columns.Add("Nombre", "Nombre");
+                    dataGridView.Columns.Add("Apellido", "Apellido");
+                    dataGridView.Columns.Add("Email", "Email");
+                    dataGridView.Columns.Add("Telefono", "Teléfono");
+                    btnDetalles.Name = "btnDetallesUsuario";
+                    break;
 
-                // Leo la cadena de conexión
-                string connectionString = ConfigurationManager.ConnectionStrings["EnerGymDB"].ConnectionString;
+                case "rutinas":
+                case "Avanzados": // Misma estructura que Rutinas
+                    dataGridView.Columns.Add("ID", "ID");
+                    dataGridView.Columns.Add("Nombre", "Nombre");
+                    btnDetalles.Name = "btnDetallesRutina";
+                    break;
+            }
 
-                // Consulta SQL uniendo Alumno, Membresia, PlanEntrenamiento y Usuario (coach)
-                string query = @"
-                SELECT 
-                    a.dni,
-                    a.nombre,
-                    a.apellido,
-                    a.telefono,
-                    a.sexo,
-                    m.nombre AS Membresia,
-                    p.nombre AS [Plan],
-                    u.nombre + ' ' + u.apellido AS Coach
-                FROM Alumno a
-                INNER JOIN Membresia m ON a.id_membresia = m.id_membresia
-                INNER JOIN PlanEntrenamiento p ON a.id_plan = p.id_plan
-                INNER JOIN Usuario u ON a.id_coach = u.id_usuario
-                WHERE a.estado = 1;
-            ";
+            dataGridView.Columns.Add(btnDetalles);
+        }
 
-                // Cargo los datos desde la BD
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                using (SqlCommand cmd = new SqlCommand(query, conn))
+        private void PoblarDatos(string tipo, SqlDataReader reader)
+        {
+            if (reader == null) return;
+
+            using (reader)
+            {
+                while (reader.Read())
                 {
-                    try
+                    switch (tipo)
                     {
-                        conn.Open();
-                        SqlDataReader reader = cmd.ExecuteReader();
-
-                        while (reader.Read())
-                        {
+                        case "alumnos":
                             dataGridView.Rows.Add(
                                 reader["dni"].ToString(),
                                 reader["nombre"].ToString(),
@@ -194,63 +126,9 @@ namespace Taller2_G34
                                 reader["Plan"].ToString(),
                                 reader["Coach"].ToString()
                             );
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error al cargar alumnos: " + ex.Message);
-                    }
-                }
+                            break;
 
-                // Ajustes visuales
-                labelTitulo.Text = "Alumnos";
-                btnAgregar.Text = "Agregar Alumno";
-                btnEliminar.Text = "Eliminar Alumno";
-                dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                btnVerAdministradores.Visible = false;
-                btnVerEntrenadores.Visible = false;
-            }
-
-            if (tipo == "Personal")
-            {
-                // Defino las columnas que quiero ver en la grilla
-                dataGridView.Columns.Add("DNI", "DNI");
-                dataGridView.Columns.Add("Nombre", "Nombre");
-                dataGridView.Columns.Add("Apellido", "Apellido");
-                dataGridView.Columns.Add("Email", "Email");
-                dataGridView.Columns.Add("TipoUsuario", "Tipo de usuario");
-
-                // Botón de detalles
-                btnDetalles.UseColumnTextForButtonValue = true;
-                dataGridView.Columns.Add(btnDetalles);
-
-                // Leo la cadena de conexión "EnerGymDB" desde App.config
-                string connectionString = ConfigurationManager.ConnectionStrings["EnerGymDB"].ConnectionString;
-
-
-                //Consulta que trae SOLO Administradores (2) y Coaches (3)
-                //    Además hago JOIN con Rol para mostrar la descripción del rol.
-                string query = @"SELECT U.dni, U.nombre, U.apellido, U.email, R.descripcion 
-                 FROM Usuario U
-                 INNER JOIN Rol R ON U.id_rol = R.id_rol
-                 WHERE U.id_rol IN (2, 3) 
-                   AND U.estado = 1";  // Solo admins y coaches ACTIVOS
-
-
-
-                //  Abro la conexión y recorro cada fila con un DataReader
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    try
-                    {
-                        conn.Open();
-                        SqlDataReader reader = cmd.ExecuteReader();
-
-
-                        // Por cada registro devuelto, agrego una fila al DataGridView
-                        while (reader.Read())
-                        {
+                        case "Personal":
                             dataGridView.Rows.Add(
                                 reader["dni"].ToString(),
                                 reader["nombre"].ToString(),
@@ -258,70 +136,10 @@ namespace Taller2_G34
                                 reader["email"].ToString(),
                                 reader["descripcion"].ToString()
                             );
-                        }
-                    }
+                            break;
 
-                    // Si algo falla (DB caída, cadena mal, etc.), muestro el error
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error al cargar personal: " + ex.Message);
-                    }
-                }
-
-                // Ajusto títulos y botones específicos de esta vista
-                labelTitulo.Text = "Personal";
-                btnAgregar.Text = "Agregar Usuario";
-                btnEliminar.Text = "Eliminar Usuario";
-                btnVerEntrenadores.Visible = true;
-                btnVerAdministradores.Visible = true;
-            }
-
-
-            //---------------- TIPO ADMINISTRADORES -----------------
-
-            if (tipo == "Administradores")
-            {
-               
-                // Limpio columnas y filas del DataGridView
-                dataGridView.Columns.Clear();
-                dataGridView.Rows.Clear();
-
-                // Defino las columnas a mostrar
-                dataGridView.Columns.Add("DNI", "DNI");
-                dataGridView.Columns.Add("Nombre", "Nombre");
-                dataGridView.Columns.Add("Apellido", "Apellido");
-                dataGridView.Columns.Add("Email", "Email");
-                dataGridView.Columns.Add("Telefono", "Teléfono");
-
-                // Agrego columna de botones "Ver más"
-                btnDetalles = new DataGridViewButtonColumn();
-                btnDetalles.HeaderText = "Detalles";
-                btnDetalles.Text = "Ver más";
-                btnDetalles.Name = "Detalles";
-                btnDetalles.UseColumnTextForButtonValue = true;
-                dataGridView.Columns.Add(btnDetalles);
-
-
-                // Conexión a la BD (cadena del App.config)
-                string connectionString = ConfigurationManager.ConnectionStrings["EnerGymDB"].ConnectionString;
-
-                // Consulta SQL → solo usuarios con rol 3 (Coachs) y que estén activos
-                string query = @"SELECT U.dni, U.nombre, U.apellido, U.email, U.telefono
-                     FROM Usuario U
-                     INNER JOIN Rol R ON U.id_rol = R.id_rol
-                     WHERE U.id_rol = 2 AND U.estado = 1";
-
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    try
-                    {
-                        conn.Open();
-                        SqlDataReader reader = cmd.ExecuteReader();
-
-                        // Cargo los datos en la grilla
-                        while (reader.Read())
-                        {
+                        case "Administradores":
+                        case "entrenadores":
                             dataGridView.Rows.Add(
                                 reader["dni"].ToString(),
                                 reader["nombre"].ToString(),
@@ -329,141 +147,135 @@ namespace Taller2_G34
                                 reader["email"].ToString(),
                                 reader["telefono"].ToString()
                             );
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error al cargar administradores: " + ex.Message);
-                    }
-                }
+                            break;
 
-                // Ajusto título y botones específicos de esta vista
-                labelTitulo.Text = "administradores";
-                btnAgregar.Visible = false;
-                btnEliminar.Visible = false;
-                btnVerEntrenadores.Visible = true;
-                btnVerAdministradores.Visible = true;
-                // Ajusto visual → que las columnas ocupen todo el ancho
-                dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            }
-
-            // ---------- ENTRENADORES ----------
-            if (tipo == "entrenadores")
-            {
-                // Limpio columnas y filas del DataGridView
-                dataGridView.Columns.Clear();
-                dataGridView.Rows.Clear();
-
-                // Defino las columnas a mostrar
-                dataGridView.Columns.Add("DNI", "DNI");
-                dataGridView.Columns.Add("Nombre", "Nombre");
-                dataGridView.Columns.Add("Apellido", "Apellido");
-                dataGridView.Columns.Add("Email", "Email");
-                dataGridView.Columns.Add("Telefono", "Teléfono");
-
-                // Agrego columna de botones "Ver más"
-                btnDetalles = new DataGridViewButtonColumn();
-                btnDetalles.HeaderText = "Detalles";
-                btnDetalles.Text = "Ver más";
-                btnDetalles.Name = "Detalles";
-                btnDetalles.UseColumnTextForButtonValue = true;
-                dataGridView.Columns.Add(btnDetalles);
-
-
-                // Conexión a la BD (cadena del App.config)
-                string connectionString = ConfigurationManager.ConnectionStrings["EnerGymDB"].ConnectionString;
-
-                // Consulta SQL → solo usuarios con rol 3 (Coachs) y que estén activos
-                string query = @"SELECT U.dni, U.nombre, U.apellido, U.email, U.telefono
-                     FROM Usuario U
-                     INNER JOIN Rol R ON U.id_rol = R.id_rol
-                     WHERE U.id_rol = 3 AND U.estado = 1";
-
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    try
-                    {
-                        conn.Open();
-                        SqlDataReader reader = cmd.ExecuteReader();
-
-                        // Cargo los datos en la grilla
-                        while (reader.Read())
-                        {
-                            dataGridView.Rows.Add(
-                                reader["dni"].ToString(),
-                                reader["nombre"].ToString(),
-                                reader["apellido"].ToString(),
-                                reader["email"].ToString(),
-                                reader["telefono"].ToString()
-                            );
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error al cargar entrenadores: " + ex.Message);
-                    }
-                }
-
-                // Ajusto título y botones específicos de esta vista
-                labelTitulo.Text = "Entrenadores";
-                btnAgregar.Visible = false;
-                btnEliminar.Visible = false;
-                btnVerEntrenadores.Visible = true;
-                btnVerAdministradores.Visible = true;
-                // Ajusto visual → que las columnas ocupen todo el ancho
-                dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            }
-
-
-            if (tipo == "rutinas")
-            {
-                dataGridView.Columns.Add("ID", "ID");
-                dataGridView.Columns.Add("Nombre", "Nombre");
-                btnDetalles.UseColumnTextForButtonValue = true;
-                dataGridView.Columns.Add(btnDetalles);
-
-                string connectionString = ConfigurationManager.ConnectionStrings["EnerGymDB"].ConnectionString;
-
-                string query = @"SELECT id_plan, nombre
-                 FROM PlanEntrenamiento
-                 WHERE estado = 1";
-
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    try
-                    {
-                        conn.Open();
-                        SqlDataReader reader = cmd.ExecuteReader();
-
-                        while (reader.Read())
-                        {
+                        case "rutinas":
+                        case "Avanzados":
                             dataGridView.Rows.Add(
                                 reader["id_plan"],
                                 reader["nombre"]
                             );
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error al cargar rutinas: " + ex.Message);
+                            break;
                     }
                 }
-
-                labelTitulo.Text = "Rutinas";
-                btnDetalles.Name = "btnDetallesRutina";
-                btnAgregar.Text = "Nueva Rutina";
-                btnEliminar.Text = "Eliminar Rutina";
-                btnVerEntrenadores.Visible = false;
-                btnVerAdministradores.Visible = false;
-                dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
         }
 
-        private void btnVerEntrenadores_Click(object sender, EventArgs e)
+        // --- ORQUESTADOR PRINCIPAL (MostrarVista) ---
+
+        private void MostrarVista(string tipo)
         {
-            MostrarVista("entrenadores");
+            // Configuración de UI común
+            labelTextoBienvenida.Visible = false;
+            contentPanel.Visible = true;
+            btnAgregar.Visible = true;
+            btnEliminar.Visible = true;
+
+            // Se asume que btnVerAvanzados existe en el Designer
+            bool isRutinasSubmenu = (tipo == "rutinas" || tipo == "Avanzados");
+            bool isPersonalSubmenu = (tipo == "Personal" || tipo == "entrenadores" || tipo == "Administradores");
+            btnVerEntrenadores.Visible = isPersonalSubmenu;
+            btnVerAdministradores.Visible = isPersonalSubmenu;
+            btnVerTodos.Visible = (isPersonalSubmenu || isRutinasSubmenu);
+            btnVerAvanzados.Visible = (isRutinasSubmenu); // Solo mostrar "Avanzados" cuando la vista principal es "Rutinas"
+
+            string query;
+
+            // 1. Obtener Consulta y Títulos
+            switch (tipo)
+            {
+                case "alumnos":
+                    labelTitulo.Text = "Alumnos";
+                    btnAgregar.Text = "Agregar Alumno";
+                    btnEliminar.Text = "Eliminar Alumno";
+                    query = @"SELECT a.dni, a.nombre, a.apellido, a.telefono, a.sexo, m.nombre AS Membresia, 
+                                     p.nombre AS [Plan], u.nombre + ' ' + u.apellido AS Coach
+                              FROM Alumno a
+                              INNER JOIN Membresia m ON a.id_membresia = m.id_membresia
+                              INNER JOIN PlanEntrenamiento p ON a.id_plan = p.id_plan
+                              INNER JOIN Usuario u ON a.id_coach = u.id_usuario
+                              WHERE a.estado = 1;";
+                    break;
+
+                case "Personal":
+                    labelTitulo.Text = "Personal";
+                    btnAgregar.Text = "Agregar Usuario";
+                    btnEliminar.Text = "Eliminar Usuario";
+                    query = @"SELECT U.dni, U.nombre, U.apellido, U.email, U.telefono, R.descripcion 
+                              FROM Usuario U INNER JOIN Rol R ON U.id_rol = R.id_rol
+                              WHERE U.id_rol IN (2, 3) AND U.estado = 1";
+                    break;
+
+                case "Administradores":
+                    labelTitulo.Text = "Administradores";
+                    btnAgregar.Visible = false;
+                    btnEliminar.Visible = false;
+                    query = @"SELECT U.dni, U.nombre, U.apellido, U.email, U.telefono 
+                              FROM Usuario U INNER JOIN Rol R ON U.id_rol = R.id_rol
+                              WHERE U.id_rol = 2 AND U.estado = 1";
+                    break;
+
+                case "entrenadores":
+                    labelTitulo.Text = "Entrenadores";
+                    btnAgregar.Visible = false;
+                    btnEliminar.Visible = false;
+                    query = @"SELECT U.dni, U.nombre, U.apellido, U.email, U.telefono
+                              FROM Usuario U INNER JOIN Rol R ON U.id_rol = R.id_rol
+                              WHERE U.id_rol = 3 AND U.estado = 1";
+                    break;
+
+                case "rutinas":
+                    labelTitulo.Text = "Rutinas";
+                    btnAgregar.Text = "Nueva Rutina";
+                    btnEliminar.Text = "Eliminar Rutina";
+                    query = "SELECT id_plan, nombre FROM PlanEntrenamiento WHERE estado = 1";
+                    break;
+
+                case "Avanzados":
+                    labelTitulo.Text = "Avanzados";
+                    btnAgregar.Text = "Nueva Rutina";
+                    btnEliminar.Text = "Eliminar Rutina";
+                    //  Consulta específica para Plan Avanzado
+                    query = "SELECT id_plan, nombre FROM PlanEntrenamiento WHERE id_tipoPlan = 3 AND estado = 1";
+                    break;
+
+                default:
+                    return;
+            }
+
+            // 2. Definir Columnas y Estilo
+            DefinirColumnas(tipo);
+            dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            // 3. Ejecutar Consulta y Poblar DataGridView
+            SqlConnection conn;
+            SqlDataReader reader = EjecutarConsultaYDevolverDatos(query, tipo, out conn);
+
+            PoblarDatos(tipo, reader);
+        }
+
+        // --- MANEJO DE EVENTOS DE NAVEGACIÓN Y ACCIÓN ---
+
+        private void BSalir_Click(object sender, EventArgs e)
+        {
+            DialogResult respuesta = MessageBox.Show(
+               "¿Está seguro que desea cerrar la sesión?",
+               "Confirmación",
+               MessageBoxButtons.YesNo,
+               MessageBoxIcon.Question
+            );
+
+            if (respuesta == DialogResult.Yes)
+            {
+                login f = new login();
+                f.Show();
+                this.Close();
+            }
+        }
+
+        private void BVerPersonal_Click(object sender, EventArgs e)
+        {
+            MostrarVista("Personal");
         }
 
         private void BVerAlumnos_Click(object sender, EventArgs e)
@@ -471,56 +283,80 @@ namespace Taller2_G34
             MostrarVista("alumnos");
         }
 
-
-        private void BBuscar_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnAgregar_Click(object sender, EventArgs e)
-        {
-            if (btnAgregar.Text == "Agregar Usuario")
-            {
-                AgregarPersonal formulario = new AgregarPersonal();
-                formulario.Show();
-            }
-            if(btnAgregar.Text == "Agregar Alumno")
-            {
-                AgregarAlumno formulario = new AgregarAlumno();
-                formulario.Show();
-            }
-            if (btnAgregar.Text == "Nueva Rutina"){ 
-                VerPlanPlantilla formulario = new VerPlanPlantilla();
-                formulario.Show();
-            }
-
-        }
-
         private void BVerRutinas_Click(object sender, EventArgs e)
         {
             MostrarVista("rutinas");
         }
 
+        private void btnVerEntrenadores_Click(object sender, EventArgs e)
+        {
+            MostrarVista("entrenadores");
+        }
+
+        private void btnVerAdministradores_Click(object sender, EventArgs e)
+        {
+            MostrarVista("Administradores");
+        }
+
+        private void btnVerTodos_Click(object sender, EventArgs e)
+        {
+            if (labelTitulo.Text == "Personal" || labelTitulo.Text == "Entrenadores" || labelTitulo.Text == "Administradores")
+            {
+                MostrarVista("Personal");
+            }
+            if(labelTitulo.Text == "Rutinas" || labelTitulo.Text == "Avanzados")
+            {
+                MostrarVista("rutinas");
+            }
+
+
+        }
+
+        private void btnVerAvanzados_Click(object sender, EventArgs e)
+        {
+            MostrarVista("Avanzados");
+        }
+
         private void BRefresh_Click(object sender, EventArgs e)
         {
-            if (labelTitulo.Text == "Personal")
+            string vistaActual = labelTitulo.Text;
+            string tipoVista = null;
+
+            
+            if (vistaActual.Contains("Alumnos")) tipoVista = "alumnos";
+            else if (vistaActual.Contains("Entrenadores")) tipoVista = "entrenadores";
+            else if (vistaActual.Contains("Administradores")) tipoVista = "Administradores";
+            else if (vistaActual.Contains("Personal")) tipoVista = "Personal";
+            else if (vistaActual.Contains("Rutinas")) tipoVista = "rutinas";
+            else if (vistaActual.Contains("Avanzados")) tipoVista = "Avanzados";
+
+            if (tipoVista != null)
             {
-                MostrarVista("Personal"); 
-            }
-            if (labelTitulo.Text == "Alumnos")
-            {
-                MostrarVista("alumnos"); 
-            }
-            if (labelTitulo.Text == "Entrenadores")
-            {
-                MostrarVista("entrenadores"); 
-            }
-            if (labelTitulo.Text == "Rutinas")
-            {
-                MostrarVista("rutinas"); 
+                MostrarVista(tipoVista);
             }
         }
-        
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            string btnText = btnAgregar.Text;
+
+            if (btnText.Contains("Usuario"))
+            {
+                AgregarPersonal formulario = new AgregarPersonal();
+                formulario.Show();
+            }
+            else if (btnText.Contains("Alumno"))
+            {
+                AgregarAlumno formulario = new AgregarAlumno();
+                formulario.Show();
+            }
+            else if (btnText.Contains("Rutina"))
+            {
+                VerPlanPlantilla formulario = new VerPlanPlantilla();
+                formulario.Show();
+            }
+        }
+
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 0)
@@ -536,10 +372,13 @@ namespace Taller2_G34
             string mensajeError = "";
             string mensajeConfirmacion = "";
 
-            // Determina la acción basandose en la vista actual
+            bool isRutinaOrAvanzada = vistaActual.Contains("Rutina") || vistaActual.Contains("Avanzados");
+
             switch (vistaActual)
             {
                 case "Personal":
+                case "Administradores":
+                case "Entrenadores":
                     valorClave = dataGridView.SelectedRows[0].Cells["DNI"].Value.ToString();
                     query = "UPDATE Usuario SET estado = 0 WHERE dni = @dni";
                     mensajeExito = "El personal fue dado de baja correctamente.";
@@ -556,6 +395,7 @@ namespace Taller2_G34
                     break;
 
                 case "Rutinas":
+                case "Avanzados": // Maneja Rutinas y Avanzados
                     valorClave = dataGridView.SelectedRows[0].Cells["ID"].Value.ToString();
                     query = "UPDATE PlanEntrenamiento SET estado = 0 WHERE id_plan = @id";
                     mensajeExito = "La rutina fue desactivada correctamente.";
@@ -568,7 +408,6 @@ namespace Taller2_G34
                     return;
             }
 
-            // Confirmación de accion con mensaje adaptado según la vista actual
             DialogResult confirmacion = MessageBox.Show(
                 mensajeConfirmacion,
                 "Confirmación",
@@ -584,8 +423,7 @@ namespace Taller2_G34
             using (SqlConnection connection = new SqlConnection(connectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
             {
-                //según la vista actual uso @id o @dni como parametro
-                if (vistaActual == "Rutinas")
+                if (isRutinaOrAvanzada)
                     command.Parameters.AddWithValue("@id", valorClave);
                 else
                     command.Parameters.AddWithValue("@dni", valorClave);
@@ -599,19 +437,15 @@ namespace Taller2_G34
                     {
                         MessageBox.Show(mensajeExito, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        // Carga nuevamente la vista actual
-                        switch (vistaActual)
-                        {
-                            case "Personal":
-                                MostrarVista("Personal");
-                                break;
-                            case "Alumnos":
-                                MostrarVista("alumnos");
-                                break;
-                            case "Rutinas":
-                                MostrarVista("rutinas");
-                                break;
-                        }
+                        // Recargar la vista actual basada en el título
+                        if (vistaActual.Contains("Alumnos"))
+                            MostrarVista("alumnos");
+                        else if (vistaActual.Contains("Rutinas"))
+                            MostrarVista("rutinas");
+                        else if (vistaActual.Contains("Avanzados"))
+                            MostrarVista("Avanzados");
+                        else
+                            MostrarVista("Personal");
                     }
                     else
                     {
@@ -627,35 +461,62 @@ namespace Taller2_G34
 
         private void dataGridView_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            // Verificamos que sea la columna del botón y no el header
-            if (e.RowIndex >= 0 && dataGridView.Columns[e.ColumnIndex].Name == "btnDetallesUsuario")
-            {
-                // Obtenemos el valor de una celda (ej. ID del cliente)
-                string dniUsuario = dataGridView.Rows[e.RowIndex].Cells["dni"].Value.ToString();
-                EditUser frm = new EditUser(dniUsuario);
-                frm.ShowDialog(); // abre como ventana modal
-            }
-            //verifico que sea un datagridview de alumno
-            if (e.RowIndex >= 0 && dataGridView.Columns[e.ColumnIndex].Name == "btnDetallesAlumnos")
-            {
-                // Obtenemos el valor de una celda (ej. ID del cliente)
-                string dniAlumno= dataGridView.Rows[e.RowIndex].Cells["dni"].Value.ToString();
+            if (e.RowIndex < 0) return;
 
-                // Abrimos un nuevo formulario y le pasamos el ID
-                EditAlumno frm = new EditAlumno(dniAlumno);
-                frm.ShowDialog(); // abre como ventana modal
-            }
-            if (e.RowIndex >= 0 && dataGridView.Columns[e.ColumnIndex].Name == "btnDetallesRutina")
+            string colName = dataGridView.Columns[e.ColumnIndex].Name;
+
+            if (colName.Contains("btnDetalles"))
             {
-                int idPlan = Convert.ToInt32(dataGridView.Rows[e.RowIndex].Cells["ID"].Value);
-                FormEditarPlan frm = new FormEditarPlan(idPlan); // modo edición
-                frm.ShowDialog();
+                string valorClave = null;
+                string vista = colName.Replace("btnDetalles", "").ToLower();
+
+                // Determinar la clave (DNI o ID)
+                if (dataGridView.Columns.Contains("DNI"))
+                {
+                    valorClave = dataGridView.Rows[e.RowIndex].Cells["DNI"].Value.ToString();
+                }
+                else if (dataGridView.Columns.Contains("ID"))
+                {
+                    valorClave = dataGridView.Rows[e.RowIndex].Cells["ID"].Value.ToString();
+                }
+
+                if (string.IsNullOrEmpty(valorClave)) return;
+
+                // Enrutar al formulario de edición correcto
+                if (vista.Contains("alumnos"))
+                {
+                     EditAlumno frm = new EditAlumno(valorClave);
+                    frm.ShowDialog();
+                }
+                else if (vista.Contains("rutina")) // Captura rutinas y avanzados
+                {
+                    int idPlan = Convert.ToInt32(valorClave);
+                    FormEditarPlan frm = new FormEditarPlan(idPlan);
+                    frm.ShowDialog();
+                }
+                else // Personal / Administradores / Entrenadores
+                {
+                    EditPersonal frm = new EditPersonal(valorClave);
+                    frm.ShowDialog();
+                }
             }
         }
 
-        private void btnVerAdministradores_Click(object sender, EventArgs e)
+        private void BSalir_Click_1(object sender, EventArgs e)
         {
-            MostrarVista("Administradores");
+            DialogResult respuesta = MessageBox.Show(
+                "¿Está seguro que desea cerrar la sesión?",
+                "Confirmación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (respuesta == DialogResult.Yes)
+            {
+                login f = new login();
+                f.Show();          // vuelve al formulario de login
+                this.Close();
+            }
         }
     }
 }

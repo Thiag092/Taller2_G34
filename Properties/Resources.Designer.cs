@@ -123,6 +123,16 @@ namespace Taller2_G34.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap lista1 {
+            get {
+                object obj = ResourceManager.GetObject("lista1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap metodos_pago {
             get {
                 object obj = ResourceManager.GetObject("metodos_pago", resourceCulture);

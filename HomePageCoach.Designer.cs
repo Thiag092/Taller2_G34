@@ -31,12 +31,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.labelCoach = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.BSalir = new System.Windows.Forms.Button();
             this.homeContainer = new System.Windows.Forms.SplitContainer();
             this.contentContainer = new System.Windows.Forms.SplitContainer();
             this.contentPanel = new System.Windows.Forms.Panel();
-            this.BRefresh = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.textBoxBusqueda = new System.Windows.Forms.TextBox();
@@ -44,9 +42,10 @@
             this.labelTitulo = new System.Windows.Forms.Label();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.labelTextoBienvenida = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.BRefresh = new System.Windows.Forms.Button();
             this.BVerRutinas = new System.Windows.Forms.Button();
             this.BVerAlumnos = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.homeContainer)).BeginInit();
             this.homeContainer.Panel1.SuspendLayout();
             this.homeContainer.Panel2.SuspendLayout();
@@ -57,6 +56,7 @@
             this.contentContainer.SuspendLayout();
             this.contentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // labelCoach
@@ -70,17 +70,6 @@
             this.labelCoach.TabIndex = 4;
             this.labelCoach.Text = "Bienvenido, Coach ";
             this.labelCoach.Click += new System.EventHandler(this.label2_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Taller2_G34.Properties.Resources.ChatGPT_Image_1_sept_2025__17_46_04;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(71, 73);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // BSalir
             // 
@@ -100,7 +89,7 @@
             // 
             // homeContainer
             // 
-            this.homeContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(201)))), ((int)(((byte)(19)))));
+            this.homeContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(175)))), ((int)(((byte)(46)))));
             this.homeContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.homeContainer.Location = new System.Drawing.Point(0, 0);
             this.homeContainer.Name = "homeContainer";
@@ -127,7 +116,7 @@
             this.contentContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.contentContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(201)))), ((int)(((byte)(19)))));
+            this.contentContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(175)))), ((int)(((byte)(46)))));
             this.contentContainer.Location = new System.Drawing.Point(0, 0);
             this.contentContainer.Name = "contentContainer";
             // 
@@ -140,7 +129,7 @@
             // 
             // contentContainer.Panel2
             // 
-            this.contentContainer.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(201)))), ((int)(((byte)(19)))));
+            this.contentContainer.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(175)))), ((int)(((byte)(46)))));
             this.contentContainer.Panel2.Controls.Add(this.BVerRutinas);
             this.contentContainer.Panel2.Controls.Add(this.BVerAlumnos);
             this.contentContainer.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint_1);
@@ -166,22 +155,9 @@
             this.contentPanel.Visible = false;
             this.contentPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.contentPanel_Paint);
             // 
-            // BRefresh
-            // 
-            this.BRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BRefresh.FlatAppearance.BorderSize = 0;
-            this.BRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BRefresh.Image = global::Taller2_G34.Properties.Resources.refresh_page_option;
-            this.BRefresh.Location = new System.Drawing.Point(293, 450);
-            this.BRefresh.Name = "BRefresh";
-            this.BRefresh.Size = new System.Drawing.Size(73, 53);
-            this.BRefresh.TabIndex = 11;
-            this.BRefresh.UseVisualStyleBackColor = true;
-            this.BRefresh.Click += new System.EventHandler(this.BRefresh_Click);
-            // 
             // btnEliminar
             // 
-            this.btnEliminar.BackColor = System.Drawing.Color.Maroon;
+            this.btnEliminar.BackColor = System.Drawing.Color.Black;
             this.btnEliminar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEliminar.FlatAppearance.BorderSize = 0;
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -197,7 +173,7 @@
             // 
             // btnAgregar
             // 
-            this.btnAgregar.BackColor = System.Drawing.Color.Green;
+            this.btnAgregar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(133)))), ((int)(((byte)(71)))), ((int)(((byte)(152)))));
             this.btnAgregar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAgregar.FlatAppearance.BorderSize = 0;
             this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -297,18 +273,45 @@
             this.labelTextoBienvenida.Text = "Por favor selecciona \r\nla sección que deseas ver";
             this.labelTextoBienvenida.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Taller2_G34.Properties.Resources.ChatGPT_Image_1_sept_2025__17_46_04;
+            this.pictureBox1.Location = new System.Drawing.Point(12, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(71, 73);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // BRefresh
+            // 
+            this.BRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BRefresh.FlatAppearance.BorderSize = 0;
+            this.BRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BRefresh.Image = global::Taller2_G34.Properties.Resources.refresh_page_option;
+            this.BRefresh.Location = new System.Drawing.Point(293, 450);
+            this.BRefresh.Name = "BRefresh";
+            this.BRefresh.Size = new System.Drawing.Size(73, 53);
+            this.BRefresh.TabIndex = 11;
+            this.BRefresh.UseVisualStyleBackColor = true;
+            this.BRefresh.Click += new System.EventHandler(this.BRefresh_Click);
+            // 
             // BVerRutinas
             // 
             this.BVerRutinas.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.BVerRutinas.BackColor = System.Drawing.Color.Black;
+            this.BVerRutinas.BackColor = System.Drawing.Color.Transparent;
             this.BVerRutinas.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BVerRutinas.FlatAppearance.BorderSize = 0;
             this.BVerRutinas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BVerRutinas.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BVerRutinas.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BVerRutinas.Location = new System.Drawing.Point(39, 265);
+            this.BVerRutinas.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.BVerRutinas.Image = global::Taller2_G34.Properties.Resources.lista1;
+            this.BVerRutinas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BVerRutinas.Location = new System.Drawing.Point(3, 249);
             this.BVerRutinas.Name = "BVerRutinas";
-            this.BVerRutinas.Size = new System.Drawing.Size(189, 69);
+            this.BVerRutinas.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.BVerRutinas.Size = new System.Drawing.Size(256, 80);
             this.BVerRutinas.TabIndex = 1;
             this.BVerRutinas.Text = "Ver rutinas";
             this.BVerRutinas.UseVisualStyleBackColor = false;
@@ -317,15 +320,18 @@
             // BVerAlumnos
             // 
             this.BVerAlumnos.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.BVerAlumnos.BackColor = System.Drawing.Color.Black;
+            this.BVerAlumnos.BackColor = System.Drawing.Color.Transparent;
             this.BVerAlumnos.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BVerAlumnos.FlatAppearance.BorderSize = 0;
             this.BVerAlumnos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BVerAlumnos.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BVerAlumnos.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BVerAlumnos.Location = new System.Drawing.Point(39, 133);
+            this.BVerAlumnos.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.BVerAlumnos.Image = global::Taller2_G34.Properties.Resources.publico_objetivo;
+            this.BVerAlumnos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BVerAlumnos.Location = new System.Drawing.Point(3, 113);
             this.BVerAlumnos.Name = "BVerAlumnos";
-            this.BVerAlumnos.Size = new System.Drawing.Size(189, 66);
+            this.BVerAlumnos.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.BVerAlumnos.Size = new System.Drawing.Size(257, 77);
             this.BVerAlumnos.TabIndex = 0;
             this.BVerAlumnos.Text = "Ver alumnos";
             this.BVerAlumnos.UseVisualStyleBackColor = false;
@@ -341,7 +347,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home page";
             this.Load += new System.EventHandler(this.homePageCoach_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.homeContainer.Panel1.ResumeLayout(false);
             this.homeContainer.Panel1.PerformLayout();
             this.homeContainer.Panel2.ResumeLayout(false);
@@ -355,6 +360,7 @@
             this.contentPanel.ResumeLayout(false);
             this.contentPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }

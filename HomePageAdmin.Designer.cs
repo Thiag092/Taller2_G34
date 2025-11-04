@@ -30,11 +30,20 @@ namespace Taller2_G34
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.homeContainer = new System.Windows.Forms.SplitContainer();
+            this.BSalir = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.labelAdmin = new System.Windows.Forms.Label();
             this.contentContainer = new System.Windows.Forms.SplitContainer();
             this.contentPanel = new System.Windows.Forms.Panel();
+            this.btnVerIntermedio = new System.Windows.Forms.Button();
+            this.btnVerAvanzados = new System.Windows.Forms.Button();
+            this.btnVerPrincipiantes = new System.Windows.Forms.Button();
+            this.btnVerTodos = new System.Windows.Forms.Button();
+            this.btnVerAdministradores = new System.Windows.Forms.Button();
+            this.BRefresh = new System.Windows.Forms.Button();
+            this.btnVerEntrenadores = new System.Windows.Forms.Button();
             this.textBoxBusqueda = new System.Windows.Forms.TextBox();
             this.BBuscar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
@@ -42,25 +51,20 @@ namespace Taller2_G34
             this.labelTitulo = new System.Windows.Forms.Label();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.labelTextoBienvenida = new System.Windows.Forms.Label();
-            this.btnVerEntrenadores = new System.Windows.Forms.Button();
-            this.BSalir = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.BRefresh = new System.Windows.Forms.Button();
             this.BVerRutinas = new System.Windows.Forms.Button();
             this.BVerPersonal = new System.Windows.Forms.Button();
             this.BVerAlumnos = new System.Windows.Forms.Button();
-            this.btnVerAdministradores = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.homeContainer)).BeginInit();
             this.homeContainer.Panel1.SuspendLayout();
             this.homeContainer.Panel2.SuspendLayout();
             this.homeContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.contentContainer)).BeginInit();
             this.contentContainer.Panel1.SuspendLayout();
             this.contentContainer.Panel2.SuspendLayout();
             this.contentContainer.SuspendLayout();
             this.contentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // homeContainer
@@ -77,7 +81,6 @@ namespace Taller2_G34
             this.homeContainer.Panel1.Controls.Add(this.BSalir);
             this.homeContainer.Panel1.Controls.Add(this.pictureBox1);
             this.homeContainer.Panel1.Controls.Add(this.labelAdmin);
-            this.homeContainer.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint_1);
             // 
             // homeContainer.Panel2
             // 
@@ -86,6 +89,35 @@ namespace Taller2_G34
             this.homeContainer.Size = new System.Drawing.Size(1087, 620);
             this.homeContainer.SplitterDistance = 79;
             this.homeContainer.TabIndex = 7;
+            // 
+            // BSalir
+            // 
+            this.BSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BSalir.BackColor = System.Drawing.SystemColors.MenuText;
+            this.BSalir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BSalir.FlatAppearance.BorderSize = 0;
+            this.BSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BSalir.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BSalir.Image = global::Taller2_G34.Properties.Resources.salida;
+            this.BSalir.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BSalir.Location = new System.Drawing.Point(927, 23);
+            this.BSalir.Name = "BSalir";
+            this.BSalir.Size = new System.Drawing.Size(124, 50);
+            this.BSalir.TabIndex = 5;
+            this.BSalir.Text = "Salir";
+            this.BSalir.UseVisualStyleBackColor = false;
+            this.BSalir.Click += new System.EventHandler(this.BSalir_Click_1);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Taller2_G34.Properties.Resources.ChatGPT_Image_1_sept_2025__17_46_04;
+            this.pictureBox1.Location = new System.Drawing.Point(24, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(71, 73);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
             // 
             // labelAdmin
             // 
@@ -109,7 +141,6 @@ namespace Taller2_G34
             // 
             this.contentContainer.Panel1.Controls.Add(this.contentPanel);
             this.contentContainer.Panel1.Controls.Add(this.labelTextoBienvenida);
-            this.contentContainer.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.contentContainer_Panel1_Paint);
             this.contentContainer.Panel1MinSize = 550;
             // 
             // contentContainer.Panel2
@@ -118,7 +149,6 @@ namespace Taller2_G34
             this.contentContainer.Panel2.Controls.Add(this.BVerRutinas);
             this.contentContainer.Panel2.Controls.Add(this.BVerPersonal);
             this.contentContainer.Panel2.Controls.Add(this.BVerAlumnos);
-            this.contentContainer.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint_1);
             this.contentContainer.Panel2MinSize = 200;
             this.contentContainer.Size = new System.Drawing.Size(1087, 537);
             this.contentContainer.SplitterDistance = 778;
@@ -127,6 +157,10 @@ namespace Taller2_G34
             // contentPanel
             // 
             this.contentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(175)))), ((int)(((byte)(46)))));
+            this.contentPanel.Controls.Add(this.btnVerIntermedio);
+            this.contentPanel.Controls.Add(this.btnVerAvanzados);
+            this.contentPanel.Controls.Add(this.btnVerPrincipiantes);
+            this.contentPanel.Controls.Add(this.btnVerTodos);
             this.contentPanel.Controls.Add(this.btnVerAdministradores);
             this.contentPanel.Controls.Add(this.BRefresh);
             this.contentPanel.Controls.Add(this.btnVerEntrenadores);
@@ -142,7 +176,128 @@ namespace Taller2_G34
             this.contentPanel.Size = new System.Drawing.Size(778, 537);
             this.contentPanel.TabIndex = 2;
             this.contentPanel.Visible = false;
-            this.contentPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.contentPanel_Paint);
+            // 
+            // btnVerIntermedio
+            // 
+            this.btnVerIntermedio.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnVerIntermedio.AutoSize = true;
+            this.btnVerIntermedio.BackColor = System.Drawing.Color.Transparent;
+            this.btnVerIntermedio.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVerIntermedio.FlatAppearance.BorderSize = 0;
+            this.btnVerIntermedio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVerIntermedio.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVerIntermedio.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnVerIntermedio.Location = new System.Drawing.Point(438, 57);
+            this.btnVerIntermedio.Name = "btnVerIntermedio";
+            this.btnVerIntermedio.Size = new System.Drawing.Size(143, 38);
+            this.btnVerIntermedio.TabIndex = 15;
+            this.btnVerIntermedio.Text = "Intermedios";
+            this.btnVerIntermedio.UseVisualStyleBackColor = false;
+            this.btnVerIntermedio.Visible = false;
+            // 
+            // btnVerAvanzados
+            // 
+            this.btnVerAvanzados.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnVerAvanzados.AutoSize = true;
+            this.btnVerAvanzados.BackColor = System.Drawing.Color.Transparent;
+            this.btnVerAvanzados.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVerAvanzados.FlatAppearance.BorderSize = 0;
+            this.btnVerAvanzados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVerAvanzados.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVerAvanzados.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnVerAvanzados.Location = new System.Drawing.Point(587, 57);
+            this.btnVerAvanzados.Name = "btnVerAvanzados";
+            this.btnVerAvanzados.Size = new System.Drawing.Size(143, 38);
+            this.btnVerAvanzados.TabIndex = 14;
+            this.btnVerAvanzados.Text = "Avanzados";
+            this.btnVerAvanzados.UseVisualStyleBackColor = false;
+            this.btnVerAvanzados.Visible = false;
+            this.btnVerAvanzados.Click += new System.EventHandler(this.btnVerAvanzados_Click);
+            // 
+            // btnVerPrincipiantes
+            // 
+            this.btnVerPrincipiantes.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnVerPrincipiantes.AutoSize = true;
+            this.btnVerPrincipiantes.BackColor = System.Drawing.Color.Transparent;
+            this.btnVerPrincipiantes.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVerPrincipiantes.FlatAppearance.BorderSize = 0;
+            this.btnVerPrincipiantes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVerPrincipiantes.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVerPrincipiantes.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnVerPrincipiantes.Location = new System.Drawing.Point(289, 57);
+            this.btnVerPrincipiantes.Name = "btnVerPrincipiantes";
+            this.btnVerPrincipiantes.Size = new System.Drawing.Size(143, 38);
+            this.btnVerPrincipiantes.TabIndex = 13;
+            this.btnVerPrincipiantes.Text = "Principiantes";
+            this.btnVerPrincipiantes.UseVisualStyleBackColor = false;
+            this.btnVerPrincipiantes.Visible = false;
+            // 
+            // btnVerTodos
+            // 
+            this.btnVerTodos.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnVerTodos.AutoSize = true;
+            this.btnVerTodos.BackColor = System.Drawing.Color.Transparent;
+            this.btnVerTodos.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVerTodos.FlatAppearance.BorderSize = 0;
+            this.btnVerTodos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVerTodos.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVerTodos.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnVerTodos.Location = new System.Drawing.Point(289, 57);
+            this.btnVerTodos.Name = "btnVerTodos";
+            this.btnVerTodos.Size = new System.Drawing.Size(115, 38);
+            this.btnVerTodos.TabIndex = 12;
+            this.btnVerTodos.Text = "Ver todos";
+            this.btnVerTodos.UseVisualStyleBackColor = false;
+            this.btnVerTodos.Click += new System.EventHandler(this.btnVerTodos_Click);
+            // 
+            // btnVerAdministradores
+            // 
+            this.btnVerAdministradores.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnVerAdministradores.AutoSize = true;
+            this.btnVerAdministradores.BackColor = System.Drawing.Color.Transparent;
+            this.btnVerAdministradores.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVerAdministradores.FlatAppearance.BorderSize = 0;
+            this.btnVerAdministradores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVerAdministradores.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVerAdministradores.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnVerAdministradores.Location = new System.Drawing.Point(438, 57);
+            this.btnVerAdministradores.Name = "btnVerAdministradores";
+            this.btnVerAdministradores.Size = new System.Drawing.Size(143, 38);
+            this.btnVerAdministradores.TabIndex = 11;
+            this.btnVerAdministradores.Text = "Administradores";
+            this.btnVerAdministradores.UseVisualStyleBackColor = false;
+            this.btnVerAdministradores.Click += new System.EventHandler(this.btnVerAdministradores_Click);
+            // 
+            // BRefresh
+            // 
+            this.BRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BRefresh.FlatAppearance.BorderSize = 0;
+            this.BRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BRefresh.Image = global::Taller2_G34.Properties.Resources.refresh_page_option;
+            this.BRefresh.Location = new System.Drawing.Point(331, 448);
+            this.BRefresh.Name = "BRefresh";
+            this.BRefresh.Size = new System.Drawing.Size(73, 53);
+            this.BRefresh.TabIndex = 9;
+            this.BRefresh.UseVisualStyleBackColor = true;
+            this.BRefresh.Click += new System.EventHandler(this.BRefresh_Click);
+            // 
+            // btnVerEntrenadores
+            // 
+            this.btnVerEntrenadores.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnVerEntrenadores.AutoSize = true;
+            this.btnVerEntrenadores.BackColor = System.Drawing.Color.Transparent;
+            this.btnVerEntrenadores.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVerEntrenadores.FlatAppearance.BorderSize = 0;
+            this.btnVerEntrenadores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVerEntrenadores.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVerEntrenadores.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnVerEntrenadores.Location = new System.Drawing.Point(586, 57);
+            this.btnVerEntrenadores.Name = "btnVerEntrenadores";
+            this.btnVerEntrenadores.Size = new System.Drawing.Size(142, 38);
+            this.btnVerEntrenadores.TabIndex = 2;
+            this.btnVerEntrenadores.Text = "Entrenadores";
+            this.btnVerEntrenadores.UseVisualStyleBackColor = false;
+            this.btnVerEntrenadores.Click += new System.EventHandler(this.btnVerEntrenadores_Click);
             // 
             // textBoxBusqueda
             // 
@@ -168,7 +323,6 @@ namespace Taller2_G34
             this.BBuscar.TabIndex = 6;
             this.BBuscar.Text = "Buscar";
             this.BBuscar.UseVisualStyleBackColor = false;
-            this.BBuscar.Click += new System.EventHandler(this.BBuscar_Click);
             // 
             // btnEliminar
             // 
@@ -216,14 +370,14 @@ namespace Taller2_G34
             this.dataGridView.AllowUserToDeleteRows = false;
             this.dataGridView.AllowUserToResizeRows = false;
             this.dataGridView.BackgroundColor = System.Drawing.Color.Goldenrod;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Goldenrod;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Goldenrod;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.GridColor = System.Drawing.Color.DarkGoldenrod;
             this.dataGridView.Location = new System.Drawing.Point(24, 101);
@@ -248,66 +402,6 @@ namespace Taller2_G34
             this.labelTextoBienvenida.TabIndex = 1;
             this.labelTextoBienvenida.Text = "Por favor selecciona la sección que deseas ver";
             this.labelTextoBienvenida.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnVerEntrenadores
-            // 
-            this.btnVerEntrenadores.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnVerEntrenadores.AutoSize = true;
-            this.btnVerEntrenadores.BackColor = System.Drawing.Color.Transparent;
-            this.btnVerEntrenadores.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnVerEntrenadores.FlatAppearance.BorderSize = 0;
-            this.btnVerEntrenadores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVerEntrenadores.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVerEntrenadores.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnVerEntrenadores.Location = new System.Drawing.Point(586, 57);
-            this.btnVerEntrenadores.Name = "btnVerEntrenadores";
-            this.btnVerEntrenadores.Size = new System.Drawing.Size(142, 38);
-            this.btnVerEntrenadores.TabIndex = 2;
-            this.btnVerEntrenadores.Text = "Entrenadores";
-            this.btnVerEntrenadores.UseVisualStyleBackColor = false;
-            this.btnVerEntrenadores.Click += new System.EventHandler(this.btnVerEntrenadores_Click);
-            // 
-            // BSalir
-            // 
-            this.BSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BSalir.BackColor = System.Drawing.SystemColors.MenuText;
-            this.BSalir.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BSalir.FlatAppearance.BorderSize = 0;
-            this.BSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BSalir.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BSalir.Image = global::Taller2_G34.Properties.Resources.salida;
-            this.BSalir.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BSalir.Location = new System.Drawing.Point(951, 23);
-            this.BSalir.Name = "BSalir";
-            this.BSalir.Size = new System.Drawing.Size(124, 50);
-            this.BSalir.TabIndex = 5;
-            this.BSalir.Text = "Salir";
-            this.BSalir.UseVisualStyleBackColor = false;
-            this.BSalir.Click += new System.EventHandler(this.BSalir_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Taller2_G34.Properties.Resources.ChatGPT_Image_1_sept_2025__17_46_04;
-            this.pictureBox1.Location = new System.Drawing.Point(24, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(71, 73);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
-            // 
-            // BRefresh
-            // 
-            this.BRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BRefresh.FlatAppearance.BorderSize = 0;
-            this.BRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BRefresh.Image = global::Taller2_G34.Properties.Resources.refresh_page_option;
-            this.BRefresh.Location = new System.Drawing.Point(331, 448);
-            this.BRefresh.Name = "BRefresh";
-            this.BRefresh.Size = new System.Drawing.Size(73, 53);
-            this.BRefresh.TabIndex = 9;
-            this.BRefresh.UseVisualStyleBackColor = true;
-            this.BRefresh.Click += new System.EventHandler(this.BRefresh_Click);
             // 
             // BVerRutinas
             // 
@@ -373,24 +467,6 @@ namespace Taller2_G34
             this.BVerAlumnos.UseVisualStyleBackColor = false;
             this.BVerAlumnos.Click += new System.EventHandler(this.BVerAlumnos_Click);
             // 
-            // btnVerAdministradores
-            // 
-            this.btnVerAdministradores.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnVerAdministradores.AutoSize = true;
-            this.btnVerAdministradores.BackColor = System.Drawing.Color.Transparent;
-            this.btnVerAdministradores.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnVerAdministradores.FlatAppearance.BorderSize = 0;
-            this.btnVerAdministradores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVerAdministradores.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVerAdministradores.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnVerAdministradores.Location = new System.Drawing.Point(438, 57);
-            this.btnVerAdministradores.Name = "btnVerAdministradores";
-            this.btnVerAdministradores.Size = new System.Drawing.Size(143, 38);
-            this.btnVerAdministradores.TabIndex = 11;
-            this.btnVerAdministradores.Text = "Administradores";
-            this.btnVerAdministradores.UseVisualStyleBackColor = false;
-            this.btnVerAdministradores.Click += new System.EventHandler(this.btnVerAdministradores_Click);
-            // 
             // HomePageAdmin
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -400,12 +476,12 @@ namespace Taller2_G34
             this.Name = "HomePageAdmin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Panel de administrador";
-            this.Load += new System.EventHandler(this.Form2_Load);
             this.homeContainer.Panel1.ResumeLayout(false);
             this.homeContainer.Panel1.PerformLayout();
             this.homeContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.homeContainer)).EndInit();
             this.homeContainer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.contentContainer.Panel1.ResumeLayout(false);
             this.contentContainer.Panel1.PerformLayout();
             this.contentContainer.Panel2.ResumeLayout(false);
@@ -415,7 +491,6 @@ namespace Taller2_G34
             this.contentPanel.ResumeLayout(false);
             this.contentPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -441,5 +516,9 @@ namespace Taller2_G34
         private System.Windows.Forms.Button BVerRutinas;
         private System.Windows.Forms.Button BRefresh;
         private System.Windows.Forms.Button btnVerAdministradores;
+        private System.Windows.Forms.Button btnVerTodos;
+        private System.Windows.Forms.Button btnVerIntermedio;
+        private System.Windows.Forms.Button btnVerAvanzados;
+        private System.Windows.Forms.Button btnVerPrincipiantes;
     }
 }
