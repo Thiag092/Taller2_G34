@@ -25,8 +25,7 @@ namespace Taller2_G34
             dniAlumno = dni;
             modoSoloLectura = soloLectura; // guarda si está en modo lectura o edición
 
-            if (!modoSoloLectura)
-                CargarCombos(); //carga listas solo si se puede editar
+            CargarCombos();
 
             CargarDatosAlumno();
 
@@ -306,6 +305,10 @@ namespace Taller2_G34
             {
                 MessageBox.Show("Error al cargar los combos: " + ex.Message);
             }
+
+            if (txtSexo != null && txtSexo.Items.Count > 0)
+                txtSexo.SelectedItem = txtSexo.Text;
+
         }
 
 
