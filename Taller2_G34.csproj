@@ -318,5 +318,13 @@
   <ItemGroup>
     <None Include="Resources\publico-objetivo.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo_taller2.png.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\logo_taller2 - copia.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

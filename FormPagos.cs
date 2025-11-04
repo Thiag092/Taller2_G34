@@ -215,11 +215,10 @@ namespace Taller2_G34
         }
 
 
-
         private void GenerarComprobantePDF(string alumno, string membresia, string plan,
-            decimal monto, decimal recargo, decimal total, string medioPago)
+    decimal monto, decimal recargo, decimal total, string medioPago)
         {
-            // 🧩 Carpeta Comprobantes en raíz del proyecto
+            // 🧾 Carpeta Comprobantes en raíz del proyecto
             string carpetaProyecto = Path.GetFullPath(Path.Combine(Application.StartupPath, @"..\..\Comprobantes"));
             if (!Directory.Exists(carpetaProyecto))
                 Directory.CreateDirectory(carpetaProyecto);
@@ -233,10 +232,9 @@ namespace Taller2_G34
                 numeroFactura++;
             }
             File.WriteAllText(contadorPath, numeroFactura.ToString());
-
             string numeroFormateado = $"0001-{numeroFactura.ToString("D7")}";
 
-            // 🧾 Nombre del archivo
+            // 🧩 Nombre del archivo PDF
             string nombreArchivo = $"Factura_{alumno.Replace(" ", "_")}_{DateTime.Now:yyyyMMdd_HHmm}.pdf";
             string ruta = Path.Combine(carpetaProyecto, nombreArchivo);
 
@@ -246,34 +244,62 @@ namespace Taller2_G34
                 PdfWriter.GetInstance(doc, new FileStream(ruta, FileMode.Create));
                 doc.Open();
 
-                // Fuentes
+                // --- Fuentes ---
                 var fuenteTitulo = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 18, BaseColor.BLACK);
                 var fuenteTexto = FontFactory.GetFont(FontFactory.HELVETICA, 10, BaseColor.BLACK);
                 var fuenteTablaHeader = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 10, BaseColor.WHITE);
                 var fuenteTablaTexto = FontFactory.GetFont(FontFactory.HELVETICA, 10, BaseColor.BLACK);
 
-                // === Encabezado con logo ===
-                string logoPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "logo_taller2.png");
+                // === ENCABEZADO CON LOGO Y DATOS ===
+                PdfPTable tablaEncabezado = new PdfPTable(2);
+                tablaEncabezado.WidthPercentage = 100;
+                tablaEncabezado.SetWidths(new float[] { 1f, 3f }); // proporción logo-texto
+
+                // --- Celda de logo ---
+                string logoPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "logo_taller2 - copia.png");
+                PdfPCell celdaLogo = new PdfPCell();
+                celdaLogo.Border = 0;
+                celdaLogo.HorizontalAlignment = Element.ALIGN_LEFT;
+                celdaLogo.VerticalAlignment = Element.ALIGN_MIDDLE;
+
                 if (File.Exists(logoPath))
                 {
                     iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(logoPath);
-                    logo.ScaleAbsolute(100, 100);
+                    logo.ScaleToFit(90f, 90f);
                     logo.Alignment = Element.ALIGN_LEFT;
-                    doc.Add(logo);
+                    celdaLogo.AddElement(logo);
+                }
+                else
+                {
+                    celdaLogo.AddElement(new Phrase("ENERGYM", FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 16)));
                 }
 
-                Paragraph encabezado = new Paragraph("ENERGYM FITNESS CLUB", fuenteTitulo);
-                encabezado.Alignment = Element.ALIGN_RIGHT;
-                doc.Add(encabezado);
-                doc.Add(new Paragraph("CUIT: 30-99999999-7", fuenteTexto) { Alignment = Element.ALIGN_RIGHT });
-                doc.Add(new Paragraph("Av. Sarmiento 2345, Resistencia, Chaco", fuenteTexto) { Alignment = Element.ALIGN_RIGHT });
-                doc.Add(new Paragraph("Tel: (362) 444-1234 | contacto@energygym.com", fuenteTexto) { Alignment = Element.ALIGN_RIGHT });
-                doc.Add(new Paragraph("\n"));
+                tablaEncabezado.AddCell(celdaLogo);
+
+                // --- Celda de texto del comercio ---
+                PdfPCell celdaDatos = new PdfPCell();
+                celdaDatos.Border = 0;
+                celdaDatos.HorizontalAlignment = Element.ALIGN_RIGHT;
+                celdaDatos.VerticalAlignment = Element.ALIGN_MIDDLE;
+
+                Paragraph nombreGym = new Paragraph("ENERGYM FITNESS CLUB", fuenteTitulo) { Alignment = Element.ALIGN_RIGHT };
+                Paragraph cuit = new Paragraph("CUIT: 30-99999999-7", fuenteTexto) { Alignment = Element.ALIGN_RIGHT };
+                Paragraph direccion = new Paragraph("Av. Sarmiento 2345, Resistencia, Chaco", fuenteTexto) { Alignment = Element.ALIGN_RIGHT };
+                Paragraph contacto = new Paragraph("Tel: (362) 444-1234 | contacto@energygym.com", fuenteTexto) { Alignment = Element.ALIGN_RIGHT };
+
+                celdaDatos.AddElement(nombreGym);
+                celdaDatos.AddElement(cuit);
+                celdaDatos.AddElement(direccion);
+                celdaDatos.AddElement(contacto);
+                tablaEncabezado.AddCell(celdaDatos);
+
+                doc.Add(tablaEncabezado);
 
                 // Línea divisoria
+                doc.Add(new Paragraph("\n"));
                 doc.Add(new Chunk(new iTextSharp.text.pdf.draw.LineSeparator(1f, 100f, BaseColor.GRAY, Element.ALIGN_CENTER, -1)));
 
-                // Info de factura
+                // === DATOS DE FACTURA ===
                 PdfPTable tablaFactura = new PdfPTable(2) { WidthPercentage = 100 };
                 tablaFactura.SpacingBefore = 10;
                 tablaFactura.AddCell(new PdfPCell(new Phrase($"Factura Nº {numeroFormateado}", fuenteTexto)) { Border = 0 });
@@ -283,7 +309,7 @@ namespace Taller2_G34
                 doc.Add(tablaFactura);
                 doc.Add(new Paragraph("\n"));
 
-                // === Datos del cliente ===
+                // === DATOS DEL CLIENTE ===
                 PdfPTable tablaCliente = new PdfPTable(2) { WidthPercentage = 100 };
                 tablaCliente.AddCell(new PdfPCell(new Phrase("Alumno:", fuenteTexto)) { Border = 0 });
                 tablaCliente.AddCell(new PdfPCell(new Phrase(alumno, fuenteTexto)) { Border = 0 });
@@ -298,7 +324,7 @@ namespace Taller2_G34
                 doc.Add(tablaCliente);
                 doc.Add(new Paragraph("\n"));
 
-                // === Detalle de factura ===
+                // === DETALLE DE FACTURA ===
                 PdfPTable tablaDetalle = new PdfPTable(5);
                 tablaDetalle.WidthPercentage = 100;
                 tablaDetalle.SetWidths(new float[] { 3, 1, 2, 2, 2 });
@@ -320,11 +346,10 @@ namespace Taller2_G34
                 tablaDetalle.AddCell(new PdfPCell(new Phrase($"${monto:0.00}", fuenteTablaTexto)) { Padding = 5, HorizontalAlignment = Element.ALIGN_RIGHT });
                 tablaDetalle.AddCell(new PdfPCell(new Phrase($"${recargo:0.00}", fuenteTablaTexto)) { Padding = 5, HorizontalAlignment = Element.ALIGN_RIGHT });
                 tablaDetalle.AddCell(new PdfPCell(new Phrase($"${total:0.00}", fuenteTablaTexto)) { Padding = 5, HorizontalAlignment = Element.ALIGN_RIGHT });
-
                 doc.Add(tablaDetalle);
                 doc.Add(new Paragraph("\n"));
 
-                // === Totales ===
+                // === TOTALES ===
                 PdfPTable tablaTotales = new PdfPTable(2) { WidthPercentage = 40, HorizontalAlignment = Element.ALIGN_RIGHT };
                 tablaTotales.AddCell(new PdfPCell(new Phrase("Subtotal:", fuenteTexto)) { Border = 0 });
                 tablaTotales.AddCell(new PdfPCell(new Phrase($"${monto:0.00}", fuenteTexto)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT });
@@ -334,10 +359,9 @@ namespace Taller2_G34
                 tablaTotales.AddCell(new PdfPCell(new Phrase($"${total:0.00}", fuenteTitulo)) { Border = 0, HorizontalAlignment = Element.ALIGN_RIGHT });
                 doc.Add(tablaTotales);
 
+                // --- Pie de página ---
                 doc.Add(new Paragraph("\n"));
                 doc.Add(new Chunk(new iTextSharp.text.pdf.draw.LineSeparator(1f, 100f, BaseColor.GRAY, Element.ALIGN_CENTER, -1)));
-
-                // === Pie ===
                 Paragraph pie = new Paragraph("Comprobante no válido como factura fiscal.\nConstancia de pago emitida por EnerGym Fitness Club.\n\n¡Gracias por elegirnos!", fuenteTexto)
                 {
                     Alignment = Element.ALIGN_CENTER,
@@ -348,9 +372,10 @@ namespace Taller2_G34
                 doc.Close();
             }
 
-            // Abrir automáticamente el PDF generado
+            // 🧾 Abrir el PDF generado automáticamente
             System.Diagnostics.Process.Start("explorer.exe", ruta);
         }
+
 
 
         private decimal ObtenerCostoMembresia(int idMembresia)
