@@ -3,7 +3,19 @@
   "WorkspaceRootPath": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\editalumno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|c:\\users\\yago_\\lic\\taller 2\\proyecto 34\\taller2_g34\\authutils.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:authutils.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|c:\\users\\yago_\\lic\\taller 2\\proyecto 34\\taller2_g34\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|c:\\users\\yago_\\lic\\taller 2\\proyecto 34\\taller2_g34\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|c:\\users\\yago_\\lic\\taller 2\\proyecto 34\\taller2_g34\\editalumno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:editalumno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -11,11 +23,11 @@
       "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:homepagecoach.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|c:\\users\\yago_\\lic\\taller 2\\proyecto 34\\taller2_g34\\editalumno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\editalumno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:editalumno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|c:\\users\\yago_\\lic\\taller 2\\proyecto 34\\taller2_g34\\formpagos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\formpagos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7E21F082-C5CF-47AF-A754-691D170396FA}|Taller2_G34.csproj|solutionrelative:formpagos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -58,11 +70,49 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AuthUtils.cs",
+              "DocumentMoniker": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\AuthUtils.cs",
+              "RelativeDocumentMoniker": "AuthUtils.cs",
+              "ToolTip": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\AuthUtils.cs",
+              "RelativeToolTip": "AuthUtils.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-04T23:35:00.309Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "login.cs",
+              "DocumentMoniker": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\login.cs",
+              "RelativeDocumentMoniker": "login.cs",
+              "ToolTip": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\login.cs",
+              "RelativeToolTip": "login.cs",
+              "ViewState": "AgIAAK4AAAAAAAAAAAAAALcAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-04T23:25:45.966Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "login.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\login.cs",
+              "RelativeDocumentMoniker": "login.cs",
+              "ToolTip": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\login.cs [Dise\u00F1o]",
+              "RelativeToolTip": "login.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-04T23:25:43.276Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "EditAlumno.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\EditAlumno.cs",
               "RelativeDocumentMoniker": "EditAlumno.cs",
@@ -74,7 +124,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "HomePageAdmin.cs",
               "DocumentMoniker": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\HomePageAdmin.cs",
               "RelativeDocumentMoniker": "HomePageAdmin.cs",
@@ -86,7 +136,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "FormPagos.cs",
               "DocumentMoniker": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\FormPagos.cs",
               "RelativeDocumentMoniker": "FormPagos.cs",
@@ -94,12 +144,11 @@
               "RelativeToolTip": "FormPagos.cs",
               "ViewState": "AgIAAFQBAAAAAAAAAAAQwHkBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-04T20:11:39.458Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-04T20:11:39.458Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "FormPagos.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\FormPagos.cs",
               "RelativeDocumentMoniker": "FormPagos.cs",
@@ -110,7 +159,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 10,
               "Title": "HomePageAdmin.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\HomePageAdmin.cs",
               "RelativeDocumentMoniker": "HomePageAdmin.cs",
@@ -121,7 +170,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "HomePageCoach.cs",
               "DocumentMoniker": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\HomePageCoach.cs",
               "RelativeDocumentMoniker": "HomePageCoach.cs",
@@ -129,12 +178,11 @@
               "RelativeToolTip": "HomePageCoach.cs",
               "ViewState": "AgIAAAIBAAAAAAAAAAAAwCYBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-03T18:38:36.644Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-03T18:38:36.644Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "AgregarAlumno.cs",
               "DocumentMoniker": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\AgregarAlumno.cs",
               "RelativeDocumentMoniker": "AgregarAlumno.cs",
@@ -146,20 +194,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "EditAlumno.cs",
               "DocumentMoniker": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\EditAlumno.cs",
               "RelativeDocumentMoniker": "EditAlumno.cs",
               "ToolTip": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\EditAlumno.cs",
               "RelativeToolTip": "EditAlumno.cs",
-              "ViewState": "AgIAAG0BAAAAAAAAAAAQwJIBAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABUBAAAAAAAAAAAuwCUBAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-27T16:54:18.346Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
               "Title": "AgregarAlumno.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\AgregarAlumno.cs",
               "RelativeDocumentMoniker": "AgregarAlumno.cs",
@@ -170,7 +218,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 13,
               "Title": "PlanEntrenamientoService.cs",
               "DocumentMoniker": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\Services\\PlanEntrenamientoService.cs",
               "RelativeDocumentMoniker": "Services\\PlanEntrenamientoService.cs",
@@ -182,7 +230,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 12,
               "Title": "App.config",
               "DocumentMoniker": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\App.config",
               "RelativeDocumentMoniker": "App.config",
@@ -195,7 +243,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 14,
               "Title": "EjercicioTemporal.cs",
               "DocumentMoniker": "C:\\Users\\yago_\\LIC\\Taller 2\\Proyecto 34\\Taller2_G34\\EjercicioTemporal.cs",
               "RelativeDocumentMoniker": "EjercicioTemporal.cs",

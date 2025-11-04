@@ -82,6 +82,7 @@
     <Compile Include="AgregarU_Prop.Designer.cs">
       <DependentUpon>AgregarU_Prop.cs</DependentUpon>
     </Compile>
+    <Compile Include="AuthUtils.cs" />
     <Compile Include="EditAlumno.cs">
       <SubType>Form</SubType>
     </Compile>

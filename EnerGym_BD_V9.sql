@@ -359,3 +359,17 @@ CREATE TABLE HistorialBackup (
     fecha DATETIME DEFAULT GETDATE(),
     ruta NVARCHAR(255)
 );
+GO
+
+--*************************
+--		HASH DE LAS CONTRASEÑAS
+
+ALTER TABLE Usuario
+ALTER COLUMN contrasena NVARCHAR(64) NOT NULL;
+GO
+
+-- Convierte el texto plano actual a HASH SHA2_256 (HEX mayúscula) de las contraseñas ya guardadas antes
+UPDATE Usuario
+SET contrasena = CONVERT(VARCHAR(64), HASHBYTES('SHA2_256', CONVERT(VARBINARY(4000), contrasena)), 2);
+GO
+

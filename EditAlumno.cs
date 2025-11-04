@@ -299,6 +299,9 @@ namespace Taller2_G34
                         txtSexo.Items.Add("Otro");
                     }
 
+                    if (txtSexo != null && txtSexo.Items.Count > 0)
+                        txtSexo.SelectedItem = txtSexo.Text;
+
                 }
             }
             catch (Exception ex)
@@ -306,8 +309,7 @@ namespace Taller2_G34
                 MessageBox.Show("Error al cargar los combos: " + ex.Message);
             }
 
-            if (txtSexo != null && txtSexo.Items.Count > 0)
-                txtSexo.SelectedItem = txtSexo.Text;
+            
 
         }
 
