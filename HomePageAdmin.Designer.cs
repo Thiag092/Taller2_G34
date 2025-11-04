@@ -1,4 +1,6 @@
-﻿namespace Taller2_G34
+﻿
+
+namespace Taller2_G34
 {
     partial class HomePageAdmin
     {
@@ -28,14 +30,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.homeContainer = new System.Windows.Forms.SplitContainer();
-            this.BSalir = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.labelAdmin = new System.Windows.Forms.Label();
             this.contentContainer = new System.Windows.Forms.SplitContainer();
             this.contentPanel = new System.Windows.Forms.Panel();
-            this.BRefresh = new System.Windows.Forms.Button();
             this.textBoxBusqueda = new System.Windows.Forms.TextBox();
             this.BBuscar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
@@ -43,26 +42,30 @@
             this.labelTitulo = new System.Windows.Forms.Label();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.labelTextoBienvenida = new System.Windows.Forms.Label();
-            this.BVerRutinas = new System.Windows.Forms.Button();
             this.btnVerEntrenadores = new System.Windows.Forms.Button();
+            this.BSalir = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.BRefresh = new System.Windows.Forms.Button();
+            this.BVerRutinas = new System.Windows.Forms.Button();
             this.BVerPersonal = new System.Windows.Forms.Button();
             this.BVerAlumnos = new System.Windows.Forms.Button();
+            this.btnVerAdministradores = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.homeContainer)).BeginInit();
             this.homeContainer.Panel1.SuspendLayout();
             this.homeContainer.Panel2.SuspendLayout();
             this.homeContainer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.contentContainer)).BeginInit();
             this.contentContainer.Panel1.SuspendLayout();
             this.contentContainer.Panel2.SuspendLayout();
             this.contentContainer.SuspendLayout();
             this.contentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // homeContainer
             // 
-            this.homeContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(201)))), ((int)(((byte)(19)))));
+            this.homeContainer.BackColor = System.Drawing.Color.Black;
             this.homeContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.homeContainer.Location = new System.Drawing.Point(0, 0);
             this.homeContainer.Name = "homeContainer";
@@ -84,32 +87,6 @@
             this.homeContainer.SplitterDistance = 79;
             this.homeContainer.TabIndex = 7;
             // 
-            // BSalir
-            // 
-            this.BSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BSalir.BackColor = System.Drawing.SystemColors.MenuText;
-            this.BSalir.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BSalir.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BSalir.Location = new System.Drawing.Point(901, 23);
-            this.BSalir.Name = "BSalir";
-            this.BSalir.Size = new System.Drawing.Size(157, 50);
-            this.BSalir.TabIndex = 5;
-            this.BSalir.Text = "Salir";
-            this.BSalir.UseVisualStyleBackColor = false;
-            this.BSalir.Click += new System.EventHandler(this.BSalir_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Taller2_G34.Properties.Resources.ChatGPT_Image_1_sept_2025__17_46_04;
-            this.pictureBox1.Location = new System.Drawing.Point(24, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(71, 73);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
-            // 
             // labelAdmin
             // 
             this.labelAdmin.AutoSize = true;
@@ -123,7 +100,7 @@
             // 
             // contentContainer
             // 
-            this.contentContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(201)))), ((int)(((byte)(19)))));
+            this.contentContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(175)))), ((int)(((byte)(46)))));
             this.contentContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.contentContainer.Location = new System.Drawing.Point(0, 0);
             this.contentContainer.Name = "contentContainer";
@@ -137,9 +114,8 @@
             // 
             // contentContainer.Panel2
             // 
-            this.contentContainer.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(201)))), ((int)(((byte)(19)))));
+            this.contentContainer.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(175)))), ((int)(((byte)(46)))));
             this.contentContainer.Panel2.Controls.Add(this.BVerRutinas);
-            this.contentContainer.Panel2.Controls.Add(this.btnVerEntrenadores);
             this.contentContainer.Panel2.Controls.Add(this.BVerPersonal);
             this.contentContainer.Panel2.Controls.Add(this.BVerAlumnos);
             this.contentContainer.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint_1);
@@ -150,7 +126,10 @@
             // 
             // contentPanel
             // 
+            this.contentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(175)))), ((int)(((byte)(46)))));
+            this.contentPanel.Controls.Add(this.btnVerAdministradores);
             this.contentPanel.Controls.Add(this.BRefresh);
+            this.contentPanel.Controls.Add(this.btnVerEntrenadores);
             this.contentPanel.Controls.Add(this.textBoxBusqueda);
             this.contentPanel.Controls.Add(this.BBuscar);
             this.contentPanel.Controls.Add(this.btnEliminar);
@@ -164,19 +143,6 @@
             this.contentPanel.TabIndex = 2;
             this.contentPanel.Visible = false;
             this.contentPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.contentPanel_Paint);
-            // 
-            // BRefresh
-            // 
-            this.BRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BRefresh.FlatAppearance.BorderSize = 0;
-            this.BRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BRefresh.Image = global::Taller2_G34.Properties.Resources.refresh_page_option;
-            this.BRefresh.Location = new System.Drawing.Point(331, 448);
-            this.BRefresh.Name = "BRefresh";
-            this.BRefresh.Size = new System.Drawing.Size(73, 53);
-            this.BRefresh.TabIndex = 9;
-            this.BRefresh.UseVisualStyleBackColor = true;
-            this.BRefresh.Click += new System.EventHandler(this.BRefresh_Click);
             // 
             // textBoxBusqueda
             // 
@@ -206,7 +172,7 @@
             // 
             // btnEliminar
             // 
-            this.btnEliminar.BackColor = System.Drawing.Color.Maroon;
+            this.btnEliminar.BackColor = System.Drawing.Color.Black;
             this.btnEliminar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEliminar.FlatAppearance.BorderSize = 0;
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -221,7 +187,7 @@
             // 
             // btnAgregar
             // 
-            this.btnAgregar.BackColor = System.Drawing.Color.Green;
+            this.btnAgregar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(133)))), ((int)(((byte)(71)))), ((int)(((byte)(152)))));
             this.btnAgregar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAgregar.FlatAppearance.BorderSize = 0;
             this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -250,17 +216,17 @@
             this.dataGridView.AllowUserToDeleteRows = false;
             this.dataGridView.AllowUserToResizeRows = false;
             this.dataGridView.BackgroundColor = System.Drawing.Color.Goldenrod;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Goldenrod;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Goldenrod;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.GridColor = System.Drawing.Color.DarkGoldenrod;
-            this.dataGridView.Location = new System.Drawing.Point(24, 45);
+            this.dataGridView.Location = new System.Drawing.Point(24, 101);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
             this.dataGridView.RowHeadersWidth = 51;
@@ -268,7 +234,7 @@
             this.dataGridView.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.dataGridView.RowTemplate.Height = 24;
             this.dataGridView.RowTemplate.ReadOnly = true;
-            this.dataGridView.Size = new System.Drawing.Size(704, 400);
+            this.dataGridView.Size = new System.Drawing.Size(704, 344);
             this.dataGridView.TabIndex = 0;
             this.dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick_1);
             // 
@@ -283,57 +249,106 @@
             this.labelTextoBienvenida.Text = "Por favor selecciona la sección que deseas ver";
             this.labelTextoBienvenida.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // BVerRutinas
-            // 
-            this.BVerRutinas.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.BVerRutinas.AutoSize = true;
-            this.BVerRutinas.BackColor = System.Drawing.Color.Black;
-            this.BVerRutinas.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BVerRutinas.FlatAppearance.BorderSize = 0;
-            this.BVerRutinas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BVerRutinas.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BVerRutinas.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BVerRutinas.Location = new System.Drawing.Point(50, 360);
-            this.BVerRutinas.Name = "BVerRutinas";
-            this.BVerRutinas.Size = new System.Drawing.Size(197, 56);
-            this.BVerRutinas.TabIndex = 3;
-            this.BVerRutinas.Text = "Ver Rutinas";
-            this.BVerRutinas.UseVisualStyleBackColor = false;
-            this.BVerRutinas.Click += new System.EventHandler(this.BVerRutinas_Click);
-            // 
             // btnVerEntrenadores
             // 
             this.btnVerEntrenadores.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnVerEntrenadores.AutoSize = true;
-            this.btnVerEntrenadores.BackColor = System.Drawing.Color.Black;
+            this.btnVerEntrenadores.BackColor = System.Drawing.Color.Transparent;
             this.btnVerEntrenadores.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnVerEntrenadores.FlatAppearance.BorderSize = 0;
             this.btnVerEntrenadores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVerEntrenadores.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVerEntrenadores.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnVerEntrenadores.Location = new System.Drawing.Point(50, 259);
+            this.btnVerEntrenadores.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVerEntrenadores.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnVerEntrenadores.Location = new System.Drawing.Point(586, 57);
             this.btnVerEntrenadores.Name = "btnVerEntrenadores";
-            this.btnVerEntrenadores.Size = new System.Drawing.Size(197, 56);
+            this.btnVerEntrenadores.Size = new System.Drawing.Size(142, 38);
             this.btnVerEntrenadores.TabIndex = 2;
-            this.btnVerEntrenadores.Text = "Ver entrenadores";
+            this.btnVerEntrenadores.Text = "Entrenadores";
             this.btnVerEntrenadores.UseVisualStyleBackColor = false;
             this.btnVerEntrenadores.Click += new System.EventHandler(this.btnVerEntrenadores_Click);
+            // 
+            // BSalir
+            // 
+            this.BSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BSalir.BackColor = System.Drawing.SystemColors.MenuText;
+            this.BSalir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BSalir.FlatAppearance.BorderSize = 0;
+            this.BSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BSalir.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BSalir.Image = global::Taller2_G34.Properties.Resources.salida;
+            this.BSalir.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BSalir.Location = new System.Drawing.Point(951, 23);
+            this.BSalir.Name = "BSalir";
+            this.BSalir.Size = new System.Drawing.Size(124, 50);
+            this.BSalir.TabIndex = 5;
+            this.BSalir.Text = "Salir";
+            this.BSalir.UseVisualStyleBackColor = false;
+            this.BSalir.Click += new System.EventHandler(this.BSalir_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Taller2_G34.Properties.Resources.ChatGPT_Image_1_sept_2025__17_46_04;
+            this.pictureBox1.Location = new System.Drawing.Point(24, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(71, 73);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            // 
+            // BRefresh
+            // 
+            this.BRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BRefresh.FlatAppearance.BorderSize = 0;
+            this.BRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BRefresh.Image = global::Taller2_G34.Properties.Resources.refresh_page_option;
+            this.BRefresh.Location = new System.Drawing.Point(331, 448);
+            this.BRefresh.Name = "BRefresh";
+            this.BRefresh.Size = new System.Drawing.Size(73, 53);
+            this.BRefresh.TabIndex = 9;
+            this.BRefresh.UseVisualStyleBackColor = true;
+            this.BRefresh.Click += new System.EventHandler(this.BRefresh_Click);
+            // 
+            // BVerRutinas
+            // 
+            this.BVerRutinas.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.BVerRutinas.AutoSize = true;
+            this.BVerRutinas.BackColor = System.Drawing.Color.Transparent;
+            this.BVerRutinas.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BVerRutinas.FlatAppearance.BorderSize = 0;
+            this.BVerRutinas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BVerRutinas.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BVerRutinas.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.BVerRutinas.Image = global::Taller2_G34.Properties.Resources.lista;
+            this.BVerRutinas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BVerRutinas.Location = new System.Drawing.Point(2, 213);
+            this.BVerRutinas.Name = "BVerRutinas";
+            this.BVerRutinas.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.BVerRutinas.Size = new System.Drawing.Size(300, 79);
+            this.BVerRutinas.TabIndex = 3;
+            this.BVerRutinas.Text = "Rutinas";
+            this.BVerRutinas.UseVisualStyleBackColor = false;
+            this.BVerRutinas.Click += new System.EventHandler(this.BVerRutinas_Click);
             // 
             // BVerPersonal
             // 
             this.BVerPersonal.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.BVerPersonal.AutoSize = true;
-            this.BVerPersonal.BackColor = System.Drawing.Color.Black;
+            this.BVerPersonal.BackColor = System.Drawing.Color.Transparent;
             this.BVerPersonal.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BVerPersonal.FlatAppearance.BorderSize = 0;
+            this.BVerPersonal.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Cornsilk;
             this.BVerPersonal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BVerPersonal.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BVerPersonal.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BVerPersonal.Location = new System.Drawing.Point(50, 45);
+            this.BVerPersonal.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BVerPersonal.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.BVerPersonal.Image = global::Taller2_G34.Properties.Resources.id_insignia;
+            this.BVerPersonal.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BVerPersonal.Location = new System.Drawing.Point(2, 45);
             this.BVerPersonal.Name = "BVerPersonal";
-            this.BVerPersonal.Size = new System.Drawing.Size(197, 58);
+            this.BVerPersonal.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.BVerPersonal.Size = new System.Drawing.Size(300, 79);
             this.BVerPersonal.TabIndex = 1;
-            this.BVerPersonal.Text = "Ver Personal";
+            this.BVerPersonal.Text = "Personal";
             this.BVerPersonal.UseVisualStyleBackColor = false;
             this.BVerPersonal.Click += new System.EventHandler(this.BVerPersonal_Click);
             // 
@@ -341,19 +356,40 @@
             // 
             this.BVerAlumnos.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.BVerAlumnos.AutoSize = true;
-            this.BVerAlumnos.BackColor = System.Drawing.Color.Black;
+            this.BVerAlumnos.BackColor = System.Drawing.Color.Transparent;
             this.BVerAlumnos.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BVerAlumnos.FlatAppearance.BorderSize = 0;
             this.BVerAlumnos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BVerAlumnos.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BVerAlumnos.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BVerAlumnos.Location = new System.Drawing.Point(50, 152);
+            this.BVerAlumnos.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BVerAlumnos.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.BVerAlumnos.Image = global::Taller2_G34.Properties.Resources.publico_objetivo;
+            this.BVerAlumnos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BVerAlumnos.Location = new System.Drawing.Point(3, 128);
             this.BVerAlumnos.Name = "BVerAlumnos";
-            this.BVerAlumnos.Size = new System.Drawing.Size(197, 56);
+            this.BVerAlumnos.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.BVerAlumnos.Size = new System.Drawing.Size(302, 79);
             this.BVerAlumnos.TabIndex = 0;
-            this.BVerAlumnos.Text = "Ver alumnos";
+            this.BVerAlumnos.Text = "Alumnos";
             this.BVerAlumnos.UseVisualStyleBackColor = false;
             this.BVerAlumnos.Click += new System.EventHandler(this.BVerAlumnos_Click);
+            // 
+            // btnVerAdministradores
+            // 
+            this.btnVerAdministradores.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnVerAdministradores.AutoSize = true;
+            this.btnVerAdministradores.BackColor = System.Drawing.Color.Transparent;
+            this.btnVerAdministradores.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVerAdministradores.FlatAppearance.BorderSize = 0;
+            this.btnVerAdministradores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVerAdministradores.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVerAdministradores.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnVerAdministradores.Location = new System.Drawing.Point(438, 57);
+            this.btnVerAdministradores.Name = "btnVerAdministradores";
+            this.btnVerAdministradores.Size = new System.Drawing.Size(143, 38);
+            this.btnVerAdministradores.TabIndex = 11;
+            this.btnVerAdministradores.Text = "Administradores";
+            this.btnVerAdministradores.UseVisualStyleBackColor = false;
+            this.btnVerAdministradores.Click += new System.EventHandler(this.btnVerAdministradores_Click);
             // 
             // HomePageAdmin
             // 
@@ -370,7 +406,6 @@
             this.homeContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.homeContainer)).EndInit();
             this.homeContainer.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.contentContainer.Panel1.ResumeLayout(false);
             this.contentContainer.Panel1.PerformLayout();
             this.contentContainer.Panel2.ResumeLayout(false);
@@ -380,6 +415,7 @@
             this.contentPanel.ResumeLayout(false);
             this.contentPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -404,5 +440,6 @@
         private System.Windows.Forms.Button BBuscar;
         private System.Windows.Forms.Button BVerRutinas;
         private System.Windows.Forms.Button BRefresh;
+        private System.Windows.Forms.Button btnVerAdministradores;
     }
 }

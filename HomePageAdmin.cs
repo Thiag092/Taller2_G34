@@ -20,6 +20,8 @@ namespace Taller2_G34
             InitializeComponent();
             // Suscribo el evento para detectar clicks en las celdas del DataGridView
             dataGridView.CellContentClick += dataGridView_CellContentClick;
+            btnVerEntrenadores.Visible = false;
+            btnVerAdministradores.Visible = false;
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -205,6 +207,8 @@ namespace Taller2_G34
                 btnAgregar.Text = "Agregar Alumno";
                 btnEliminar.Text = "Eliminar Alumno";
                 dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                btnVerAdministradores.Visible = false;
+                btnVerEntrenadores.Visible = false;
             }
 
             if (tipo == "Personal")
@@ -268,8 +272,80 @@ namespace Taller2_G34
                 labelTitulo.Text = "Personal";
                 btnAgregar.Text = "Agregar Usuario";
                 btnEliminar.Text = "Eliminar Usuario";
+                btnVerEntrenadores.Visible = true;
+                btnVerAdministradores.Visible = true;
             }
 
+
+            //---------------- TIPO ADMINISTRADORES -----------------
+
+            if (tipo == "Administradores")
+            {
+               
+                // Limpio columnas y filas del DataGridView
+                dataGridView.Columns.Clear();
+                dataGridView.Rows.Clear();
+
+                // Defino las columnas a mostrar
+                dataGridView.Columns.Add("DNI", "DNI");
+                dataGridView.Columns.Add("Nombre", "Nombre");
+                dataGridView.Columns.Add("Apellido", "Apellido");
+                dataGridView.Columns.Add("Email", "Email");
+                dataGridView.Columns.Add("Telefono", "Teléfono");
+
+                // Agrego columna de botones "Ver más"
+                btnDetalles = new DataGridViewButtonColumn();
+                btnDetalles.HeaderText = "Detalles";
+                btnDetalles.Text = "Ver más";
+                btnDetalles.Name = "Detalles";
+                btnDetalles.UseColumnTextForButtonValue = true;
+                dataGridView.Columns.Add(btnDetalles);
+
+
+                // Conexión a la BD (cadena del App.config)
+                string connectionString = ConfigurationManager.ConnectionStrings["EnerGymDB"].ConnectionString;
+
+                // Consulta SQL → solo usuarios con rol 3 (Coachs) y que estén activos
+                string query = @"SELECT U.dni, U.nombre, U.apellido, U.email, U.telefono
+                     FROM Usuario U
+                     INNER JOIN Rol R ON U.id_rol = R.id_rol
+                     WHERE U.id_rol = 2 AND U.estado = 1";
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    try
+                    {
+                        conn.Open();
+                        SqlDataReader reader = cmd.ExecuteReader();
+
+                        // Cargo los datos en la grilla
+                        while (reader.Read())
+                        {
+                            dataGridView.Rows.Add(
+                                reader["dni"].ToString(),
+                                reader["nombre"].ToString(),
+                                reader["apellido"].ToString(),
+                                reader["email"].ToString(),
+                                reader["telefono"].ToString()
+                            );
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al cargar administradores: " + ex.Message);
+                    }
+                }
+
+                // Ajusto título y botones específicos de esta vista
+                labelTitulo.Text = "administradores";
+                btnAgregar.Visible = false;
+                btnEliminar.Visible = false;
+                btnVerEntrenadores.Visible = true;
+                btnVerAdministradores.Visible = true;
+                // Ajusto visual → que las columnas ocupen todo el ancho
+                dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            }
 
             // ---------- ENTRENADORES ----------
             if (tipo == "entrenadores")
@@ -333,6 +409,8 @@ namespace Taller2_G34
                 labelTitulo.Text = "Entrenadores";
                 btnAgregar.Visible = false;
                 btnEliminar.Visible = false;
+                btnVerEntrenadores.Visible = true;
+                btnVerAdministradores.Visible = true;
                 // Ajusto visual → que las columnas ocupen todo el ancho
                 dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
@@ -377,7 +455,8 @@ namespace Taller2_G34
                 btnDetalles.Name = "btnDetallesRutina";
                 btnAgregar.Text = "Nueva Rutina";
                 btnEliminar.Text = "Eliminar Rutina";
-
+                btnVerEntrenadores.Visible = false;
+                btnVerAdministradores.Visible = false;
                 dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
         }
@@ -572,6 +651,11 @@ namespace Taller2_G34
                 FormEditarPlan frm = new FormEditarPlan(idPlan); // modo edición
                 frm.ShowDialog();
             }
+        }
+
+        private void btnVerAdministradores_Click(object sender, EventArgs e)
+        {
+            MostrarVista("Administradores");
         }
     }
 }

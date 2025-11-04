@@ -29,7 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lblMensaje = new System.Windows.Forms.Label();
             this.btnQuitar = new System.Windows.Forms.Button();
             this.comboBoxTipoPlan = new System.Windows.Forms.ComboBox();
             this.lblTipoPlan = new System.Windows.Forms.Label();
@@ -62,7 +65,6 @@
             this.labelTitulo = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.lblMensaje = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cantSeries)).BeginInit();
@@ -77,6 +79,7 @@
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(175)))), ((int)(((byte)(46)))));
             this.panel2.Controls.Add(this.lblMensaje);
             this.panel2.Controls.Add(this.btnQuitar);
             this.panel2.Controls.Add(this.comboBoxTipoPlan);
@@ -93,26 +96,40 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1373, 569);
+            this.panel2.Size = new System.Drawing.Size(1290, 569);
             this.panel2.TabIndex = 0;
+            // 
+            // lblMensaje
+            // 
+            this.lblMensaje.AutoSize = true;
+            this.lblMensaje.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMensaje.ForeColor = System.Drawing.SystemColors.MenuText;
+            this.lblMensaje.Location = new System.Drawing.Point(526, 158);
+            this.lblMensaje.Name = "lblMensaje";
+            this.lblMensaje.Size = new System.Drawing.Size(518, 27);
+            this.lblMensaje.TabIndex = 59;
+            this.lblMensaje.Text = "Selecciona un tipo de plan y un día para comenzar";
             // 
             // btnQuitar
             // 
-            this.btnQuitar.BackColor = System.Drawing.Color.Black;
+            this.btnQuitar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnQuitar.BackColor = System.Drawing.SystemColors.MenuText;
             this.btnQuitar.FlatAppearance.BorderSize = 0;
             this.btnQuitar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnQuitar.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnQuitar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnQuitar.Location = new System.Drawing.Point(974, 358);
+            this.btnQuitar.Location = new System.Drawing.Point(969, 357);
             this.btnQuitar.Name = "btnQuitar";
-            this.btnQuitar.Size = new System.Drawing.Size(192, 46);
+            this.btnQuitar.Size = new System.Drawing.Size(197, 42);
             this.btnQuitar.TabIndex = 58;
-            this.btnQuitar.Text = "Eliminar ejercicio";
+            this.btnQuitar.Text = "🗑️ Quitar Ejercicio";
             this.btnQuitar.UseVisualStyleBackColor = false;
             this.btnQuitar.Click += new System.EventHandler(this.btnQuitar_Click);
             // 
             // comboBoxTipoPlan
             // 
+            this.comboBoxTipoPlan.BackColor = System.Drawing.Color.White;
+            this.comboBoxTipoPlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBoxTipoPlan.FormattingEnabled = true;
             this.comboBoxTipoPlan.Location = new System.Drawing.Point(55, 103);
             this.comboBoxTipoPlan.Name = "comboBoxTipoPlan";
@@ -124,6 +141,7 @@
             // 
             this.lblTipoPlan.AutoSize = true;
             this.lblTipoPlan.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTipoPlan.ForeColor = System.Drawing.SystemColors.MenuText;
             this.lblTipoPlan.Location = new System.Drawing.Point(50, 75);
             this.lblTipoPlan.Name = "lblTipoPlan";
             this.lblTipoPlan.Size = new System.Drawing.Size(123, 25);
@@ -132,21 +150,24 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancelar.BackColor = System.Drawing.SystemColors.MenuText;
             this.btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancelar.FlatAppearance.BorderSize = 0;
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnCancelar.Location = new System.Drawing.Point(816, 495);
+            this.btnCancelar.Location = new System.Drawing.Point(746, 489);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(147, 45);
+            this.btnCancelar.Size = new System.Drawing.Size(157, 45);
             this.btnCancelar.TabIndex = 52;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = false;
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.txtTiempo);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.label5);
@@ -158,119 +179,131 @@
             this.panel1.Controls.Add(this.lblEjercicioNuevo);
             this.panel1.Controls.Add(this.btnNuevoEjercicio);
             this.panel1.Controls.Add(this.cboEjercicioCatalogo);
-            this.panel1.Location = new System.Drawing.Point(55, 235);
+            this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panel1.Location = new System.Drawing.Point(55, 234);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(253, 261);
+            this.panel1.Size = new System.Drawing.Size(280, 316);
             this.panel1.TabIndex = 55;
             this.panel1.Visible = false;
             // 
             // txtTiempo
             // 
-            this.txtTiempo.Location = new System.Drawing.Point(147, 182);
+            this.txtTiempo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTiempo.Location = new System.Drawing.Point(207, 217);
             this.txtTiempo.Name = "txtTiempo";
-            this.txtTiempo.Size = new System.Drawing.Size(70, 22);
+            this.txtTiempo.Size = new System.Drawing.Size(55, 24);
             this.txtTiempo.TabIndex = 70;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 185);
+            this.label6.Location = new System.Drawing.Point(8, 220);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(135, 16);
+            this.label6.Size = new System.Drawing.Size(165, 18);
             this.label6.TabIndex = 69;
             this.label6.Text = "Tiempo en segundos";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 153);
+            this.label5.Location = new System.Drawing.Point(8, 175);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(46, 16);
+            this.label5.Size = new System.Drawing.Size(56, 18);
             this.label5.TabIndex = 68;
             this.label5.Text = "Series";
             // 
             // cantSeries
             // 
-            this.cantSeries.Location = new System.Drawing.Point(171, 153);
+            this.cantSeries.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.cantSeries.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cantSeries.Location = new System.Drawing.Point(218, 169);
             this.cantSeries.Name = "cantSeries";
-            this.cantSeries.Size = new System.Drawing.Size(46, 22);
+            this.cantSeries.Size = new System.Drawing.Size(44, 24);
             this.cantSeries.TabIndex = 67;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 123);
+            this.label4.Location = new System.Drawing.Point(8, 135);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(87, 16);
+            this.label4.Size = new System.Drawing.Size(106, 18);
             this.label4.TabIndex = 66;
             this.label4.Text = "Repeticiones";
             // 
             // cantRepeticiones
             // 
             this.cantRepeticiones.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cantRepeticiones.Location = new System.Drawing.Point(173, 123);
+            this.cantRepeticiones.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.cantRepeticiones.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cantRepeticiones.Location = new System.Drawing.Point(218, 133);
             this.cantRepeticiones.Name = "cantRepeticiones";
-            this.cantRepeticiones.Size = new System.Drawing.Size(44, 22);
+            this.cantRepeticiones.Size = new System.Drawing.Size(44, 24);
             this.cantRepeticiones.TabIndex = 65;
             // 
             // btnConfirmar
             // 
-            this.btnConfirmar.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnConfirmar.BackColor = System.Drawing.SystemColors.MenuText;
+            this.btnConfirmar.FlatAppearance.BorderSize = 0;
             this.btnConfirmar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConfirmar.Font = new System.Drawing.Font("Microsoft YaHei UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConfirmar.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnConfirmar.Location = new System.Drawing.Point(70, 216);
+            this.btnConfirmar.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConfirmar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnConfirmar.Location = new System.Drawing.Point(17, 260);
             this.btnConfirmar.Name = "btnConfirmar";
-            this.btnConfirmar.Size = new System.Drawing.Size(99, 30);
+            this.btnConfirmar.Size = new System.Drawing.Size(235, 36);
             this.btnConfirmar.TabIndex = 64;
-            this.btnConfirmar.Text = "Confirmar";
+            this.btnConfirmar.Text = "Confirmar y Agregar";
             this.btnConfirmar.UseVisualStyleBackColor = false;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 72);
+            this.label3.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(3, 69);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(166, 16);
+            this.label3.Size = new System.Drawing.Size(236, 19);
             this.label3.TabIndex = 63;
-            this.label3.Text = "Agregar ejercicio existente";
+            this.label3.Text = "Agregar ejercicio del Catálogo";
             // 
             // lblEjercicioNuevo
             // 
             this.lblEjercicioNuevo.AutoSize = true;
-            this.lblEjercicioNuevo.Location = new System.Drawing.Point(3, 26);
+            this.lblEjercicioNuevo.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEjercicioNuevo.Location = new System.Drawing.Point(3, 23);
             this.lblEjercicioNuevo.Name = "lblEjercicioNuevo";
-            this.lblEjercicioNuevo.Size = new System.Drawing.Size(150, 16);
+            this.lblEjercicioNuevo.Size = new System.Drawing.Size(146, 19);
             this.lblEjercicioNuevo.TabIndex = 62;
-            this.lblEjercicioNuevo.Text = "Agregar ejercicio nuevo";
+            this.lblEjercicioNuevo.Text = "Añadir al catálogo";
             // 
             // btnNuevoEjercicio
             // 
-            this.btnNuevoEjercicio.BackColor = System.Drawing.Color.Green;
+            this.btnNuevoEjercicio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(133)))), ((int)(((byte)(71)))), ((int)(((byte)(152)))));
             this.btnNuevoEjercicio.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnNuevoEjercicio.FlatAppearance.BorderSize = 0;
             this.btnNuevoEjercicio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNuevoEjercicio.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNuevoEjercicio.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNuevoEjercicio.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnNuevoEjercicio.Location = new System.Drawing.Point(171, 18);
+            this.btnNuevoEjercicio.Location = new System.Drawing.Point(231, 11);
             this.btnNuevoEjercicio.Name = "btnNuevoEjercicio";
-            this.btnNuevoEjercicio.Size = new System.Drawing.Size(31, 31);
+            this.btnNuevoEjercicio.Size = new System.Drawing.Size(31, 38);
             this.btnNuevoEjercicio.TabIndex = 61;
             this.btnNuevoEjercicio.Text = "+";
             this.btnNuevoEjercicio.UseVisualStyleBackColor = false;
             // 
             // cboEjercicioCatalogo
             // 
+            this.cboEjercicioCatalogo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboEjercicioCatalogo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboEjercicioCatalogo.FormattingEnabled = true;
-            this.cboEjercicioCatalogo.Location = new System.Drawing.Point(6, 91);
+            this.cboEjercicioCatalogo.Location = new System.Drawing.Point(7, 91);
             this.cboEjercicioCatalogo.Name = "cboEjercicioCatalogo";
-            this.cboEjercicioCatalogo.Size = new System.Drawing.Size(211, 24);
+            this.cboEjercicioCatalogo.Size = new System.Drawing.Size(255, 26);
             this.cboEjercicioCatalogo.TabIndex = 60;
+            this.cboEjercicioCatalogo.SelectedIndexChanged += new System.EventHandler(this.cboEjercicioCatalogo_SelectedIndexChanged);
             // 
             // btnAgregar
             // 
-            this.btnAgregar.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnAgregar.BackColor = System.Drawing.SystemColors.MenuText;
             this.btnAgregar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAgregar.FlatAppearance.BorderSize = 0;
             this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -278,9 +311,9 @@
             this.btnAgregar.ForeColor = System.Drawing.SystemColors.Control;
             this.btnAgregar.Location = new System.Drawing.Point(55, 202);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(253, 36);
+            this.btnAgregar.Size = new System.Drawing.Size(280, 36);
             this.btnAgregar.TabIndex = 54;
-            this.btnAgregar.Text = "Agregar ejercicios";
+            this.btnAgregar.Text = "➕ Agregar / Ocultar Panel";
             this.btnAgregar.UseVisualStyleBackColor = false;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
@@ -296,6 +329,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.MenuText;
             this.label1.Location = new System.Drawing.Point(50, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(163, 25);
@@ -304,22 +338,35 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGuardar.BackColor = System.Drawing.SystemColors.MenuText;
+            this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(133)))), ((int)(((byte)(71)))), ((int)(((byte)(152)))));
             this.btnGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGuardar.FlatAppearance.BorderSize = 0;
             this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuardar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnGuardar.Location = new System.Drawing.Point(1009, 495);
+            this.btnGuardar.Location = new System.Drawing.Point(969, 489);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(157, 45);
+            this.btnGuardar.Size = new System.Drawing.Size(197, 45);
             this.btnGuardar.TabIndex = 50;
-            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.Text = "💾 Crear Plan";
             this.btnGuardar.UseVisualStyleBackColor = false;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // dgvEjercicios
             // 
+            this.dgvEjercicios.BackgroundColor = System.Drawing.Color.Cornsilk;
+            this.dgvEjercicios.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvEjercicios.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvEjercicios.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.MenuText;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(175)))), ((int)(((byte)(46)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.MenuText;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvEjercicios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvEjercicios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEjercicios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColIdEjercicio,
@@ -327,17 +374,28 @@
             this.ColReps,
             this.colSeries,
             this.ColTiempo});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(200)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvEjercicios.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvEjercicios.EnableHeadersVisualStyles = false;
             this.dgvEjercicios.Location = new System.Drawing.Point(400, 31);
             this.dgvEjercicios.Name = "dgvEjercicios";
             this.dgvEjercicios.ReadOnly = true;
+            this.dgvEjercicios.RowHeadersVisible = false;
             this.dgvEjercicios.RowHeadersWidth = 51;
             this.dgvEjercicios.RowTemplate.Height = 24;
+            this.dgvEjercicios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvEjercicios.Size = new System.Drawing.Size(766, 320);
             this.dgvEjercicios.TabIndex = 46;
             // 
             // ColIdEjercicio
             // 
-            this.ColIdEjercicio.DataPropertyName = "id_ejercicio";
+            this.ColIdEjercicio.DataPropertyName = "IdEjercicio";
             this.ColIdEjercicio.HeaderText = "ID";
             this.ColIdEjercicio.MinimumWidth = 6;
             this.ColIdEjercicio.Name = "ColIdEjercicio";
@@ -347,7 +405,7 @@
             // 
             // ColNombre
             // 
-            this.ColNombre.DataPropertyName = "nombre";
+            this.ColNombre.DataPropertyName = "Nombre";
             this.ColNombre.HeaderText = "Ejercicio";
             this.ColNombre.MinimumWidth = 6;
             this.ColNombre.Name = "ColNombre";
@@ -356,7 +414,7 @@
             // 
             // ColReps
             // 
-            this.ColReps.DataPropertyName = "repeticiones";
+            this.ColReps.DataPropertyName = "Repeticiones";
             this.ColReps.HeaderText = "Repeticiones";
             this.ColReps.MinimumWidth = 6;
             this.ColReps.Name = "ColReps";
@@ -365,7 +423,7 @@
             // 
             // colSeries
             // 
-            this.colSeries.DataPropertyName = "cant_series";
+            this.colSeries.DataPropertyName = "Series";
             this.colSeries.HeaderText = "Series";
             this.colSeries.MinimumWidth = 6;
             this.colSeries.Name = "colSeries";
@@ -374,7 +432,7 @@
             // 
             // ColTiempo
             // 
-            this.ColTiempo.DataPropertyName = "tiempo";
+            this.ColTiempo.DataPropertyName = "Tiempo";
             this.ColTiempo.HeaderText = "Tiempo (Seg)";
             this.ColTiempo.MinimumWidth = 6;
             this.ColTiempo.Name = "ColTiempo";
@@ -383,6 +441,8 @@
             // 
             // cboDias
             // 
+            this.cboDias.BackColor = System.Drawing.Color.White;
+            this.cboDias.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboDias.FormattingEnabled = true;
             this.cboDias.Location = new System.Drawing.Point(55, 158);
             this.cboDias.Name = "cboDias";
@@ -394,16 +454,17 @@
             // 
             this.labelDia.AutoSize = true;
             this.labelDia.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDia.ForeColor = System.Drawing.SystemColors.MenuText;
             this.labelDia.Location = new System.Drawing.Point(50, 130);
             this.labelDia.Name = "labelDia";
             this.labelDia.Size = new System.Drawing.Size(117, 25);
             this.labelDia.TabIndex = 36;
-            this.labelDia.Text = "Dia del Plan";
+            this.labelDia.Text = "Día del Plan";
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Taller2_G34.Properties.Resources.ChatGPT_Image_1_sept_2025__17_46_04;
-            this.pictureBox1.Location = new System.Drawing.Point(543, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(531, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(126, 95);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -413,13 +474,13 @@
             // labelTitulo
             // 
             this.labelTitulo.AutoSize = true;
-            this.labelTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTitulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(201)))), ((int)(((byte)(19)))));
+            this.labelTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTitulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(175)))), ((int)(((byte)(46)))));
             this.labelTitulo.Location = new System.Drawing.Point(12, 42);
             this.labelTitulo.Name = "labelTitulo";
-            this.labelTitulo.Size = new System.Drawing.Size(93, 29);
+            this.labelTitulo.Size = new System.Drawing.Size(306, 31);
             this.labelTitulo.TabIndex = 56;
-            this.labelTitulo.Text = "Planes";
+            this.labelTitulo.Text = "CREAR DESDE BASE";
             // 
             // splitContainer1
             // 
@@ -437,27 +498,17 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.BackColor = System.Drawing.Color.Gold;
+            this.splitContainer1.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(175)))), ((int)(((byte)(46)))));
             this.splitContainer1.Panel2.Controls.Add(this.panel2);
-            this.splitContainer1.Size = new System.Drawing.Size(1373, 697);
+            this.splitContainer1.Size = new System.Drawing.Size(1290, 697);
             this.splitContainer1.SplitterDistance = 124;
             this.splitContainer1.TabIndex = 10;
-            // 
-            // lblMensaje
-            // 
-            this.lblMensaje.AutoSize = true;
-            this.lblMensaje.Font = new System.Drawing.Font("Microsoft YaHei UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMensaje.Location = new System.Drawing.Point(503, 182);
-            this.lblMensaje.Name = "lblMensaje";
-            this.lblMensaje.Size = new System.Drawing.Size(595, 31);
-            this.lblMensaje.TabIndex = 59;
-            this.lblMensaje.Text = "Selecciona un tipo de plan y un día para comenzar";
             // 
             // VerPlanPlantilla
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1373, 697);
+            this.ClientSize = new System.Drawing.Size(1290, 697);
             this.Controls.Add(this.splitContainer1);
             this.Name = "VerPlanPlantilla";
             this.Text = "VerPlanPlantilla";
@@ -492,14 +543,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.NumericUpDown cantSeries;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.NumericUpDown cantRepeticiones;
-        private System.Windows.Forms.Button btnConfirmar;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label lblEjercicioNuevo;
-        private System.Windows.Forms.Button btnNuevoEjercicio;
-        private System.Windows.Forms.ComboBox cboEjercicioCatalogo;
-        private System.Windows.Forms.Button btnAgregar;
-        private System.Windows.Forms.TextBox txtNombrePlan;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.DataGridView dgvEjercicios;
@@ -515,5 +558,13 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Label lblMensaje;
+        private System.Windows.Forms.NumericUpDown cantRepeticiones;
+        private System.Windows.Forms.Button btnConfirmar;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblEjercicioNuevo;
+        private System.Windows.Forms.Button btnNuevoEjercicio;
+        private System.Windows.Forms.ComboBox cboEjercicioCatalogo;
+        private System.Windows.Forms.Button btnAgregar;
+        private System.Windows.Forms.TextBox txtNombrePlan;
     }
 }
