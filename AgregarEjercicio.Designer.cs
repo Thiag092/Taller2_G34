@@ -38,6 +38,7 @@
             this.BCancelar = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.LEjercicio = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.labelEjercicios = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -46,14 +47,13 @@
             this.ColNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColRep = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColTiempo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridEjercicios)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // labelTiempo
@@ -121,7 +121,7 @@
             this.BConfirmar.Location = new System.Drawing.Point(28, 270);
             this.BConfirmar.Name = "BConfirmar";
             this.BConfirmar.Size = new System.Drawing.Size(173, 40);
-            this.BConfirmar.TabIndex = 35;
+            this.BConfirmar.TabIndex = 3;
             this.BConfirmar.Text = "Agregar ejercicio";
             this.BConfirmar.UseVisualStyleBackColor = false;
             this.BConfirmar.Click += new System.EventHandler(this.BConfirmar_Click);
@@ -137,7 +137,7 @@
             this.BCancelar.Location = new System.Drawing.Point(222, 270);
             this.BCancelar.Name = "BCancelar";
             this.BCancelar.Size = new System.Drawing.Size(147, 40);
-            this.BCancelar.TabIndex = 34;
+            this.BCancelar.TabIndex = 4;
             this.BCancelar.Text = "Cancelar";
             this.BCancelar.UseVisualStyleBackColor = false;
             // 
@@ -173,6 +173,16 @@
             this.LEjercicio.Size = new System.Drawing.Size(198, 29);
             this.LEjercicio.TabIndex = 56;
             this.LEjercicio.Text = "Nuevo Ejercicio";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Taller2_G34.Properties.Resources.ChatGPT_Image_1_sept_2025__17_46_04;
+            this.pictureBox1.Location = new System.Drawing.Point(495, -9);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(126, 95);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
             // 
             // panel2
             // 
@@ -270,16 +280,6 @@
             this.ColTiempo.Name = "ColTiempo";
             this.ColTiempo.ReadOnly = true;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Taller2_G34.Properties.Resources.ChatGPT_Image_1_sept_2025__17_46_04;
-            this.pictureBox1.Location = new System.Drawing.Point(495, -9);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(126, 95);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
-            // 
             // AgregarEjercicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -294,10 +294,10 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridEjercicios)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }

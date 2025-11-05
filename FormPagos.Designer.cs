@@ -18,6 +18,8 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.lblTitulo = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.labelMembresia = new System.Windows.Forms.Label();
             this.labelAlumno = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
@@ -32,8 +34,6 @@
             this.lblMedioPago = new System.Windows.Forms.Label();
             this.lblMembresia = new System.Windows.Forms.Label();
             this.lblAlumno = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.lblTitulo = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -72,8 +72,29 @@
             this.splitContainer1.Panel2.Controls.Add(this.lblAlumno);
             this.splitContainer1.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint);
             this.splitContainer1.Size = new System.Drawing.Size(617, 504);
-            this.splitContainer1.SplitterDistance = 98;
+            this.splitContainer1.SplitterDistance = 97;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // lblTitulo
+            // 
+            this.lblTitulo.AutoSize = true;
+            this.lblTitulo.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitulo.ForeColor = System.Drawing.Color.Goldenrod;
+            this.lblTitulo.Location = new System.Drawing.Point(38, 36);
+            this.lblTitulo.Name = "lblTitulo";
+            this.lblTitulo.Size = new System.Drawing.Size(149, 24);
+            this.lblTitulo.TabIndex = 6;
+            this.lblTitulo.Text = "Gestion de pago";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Taller2_G34.Properties.Resources.ChatGPT_Image_1_sept_2025__17_46_04;
+            this.pictureBox1.Location = new System.Drawing.Point(236, -1);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(126, 95);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 5;
+            this.pictureBox1.TabStop = false;
             // 
             // labelMembresia
             // 
@@ -105,7 +126,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(286, 316);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(114, 41);
-            this.btnCancelar.TabIndex = 28;
+            this.btnCancelar.TabIndex = 2;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = false;
             // 
@@ -119,7 +140,7 @@
             this.btnRegistrarPago.Location = new System.Drawing.Point(406, 316);
             this.btnRegistrarPago.Name = "btnRegistrarPago";
             this.btnRegistrarPago.Size = new System.Drawing.Size(130, 41);
-            this.btnRegistrarPago.TabIndex = 27;
+            this.btnRegistrarPago.TabIndex = 3;
             this.btnRegistrarPago.Text = "Registrar Pago";
             this.btnRegistrarPago.UseVisualStyleBackColor = false;
             this.btnRegistrarPago.Click += new System.EventHandler(this.btnRegistrarPago_Click);
@@ -188,7 +209,7 @@
             this.comboMedioPago.Location = new System.Drawing.Point(286, 100);
             this.comboMedioPago.Name = "comboMedioPago";
             this.comboMedioPago.Size = new System.Drawing.Size(250, 27);
-            this.comboMedioPago.TabIndex = 20;
+            this.comboMedioPago.TabIndex = 1;
             // 
             // lblMedioPago
             // 
@@ -219,27 +240,6 @@
             this.lblAlumno.Size = new System.Drawing.Size(73, 19);
             this.lblAlumno.TabIndex = 17;
             this.lblAlumno.Text = "Alumno:";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Taller2_G34.Properties.Resources.ChatGPT_Image_1_sept_2025__17_46_04;
-            this.pictureBox1.Location = new System.Drawing.Point(236, -1);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(126, 95);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 5;
-            this.pictureBox1.TabStop = false;
-            // 
-            // lblTitulo
-            // 
-            this.lblTitulo.AutoSize = true;
-            this.lblTitulo.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitulo.ForeColor = System.Drawing.Color.Goldenrod;
-            this.lblTitulo.Location = new System.Drawing.Point(38, 36);
-            this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(149, 24);
-            this.lblTitulo.TabIndex = 6;
-            this.lblTitulo.Text = "Gestion de pago";
             // 
             // FormPagos
             // 

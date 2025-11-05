@@ -75,7 +75,7 @@
             this.panel3.Location = new System.Drawing.Point(486, 238);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(248, 104);
-            this.panel3.TabIndex = 50;
+            this.panel3.TabIndex = 8;
             // 
             // RBPropietario
             // 
@@ -248,7 +248,7 @@
             this.BConfirmar.Location = new System.Drawing.Point(602, 365);
             this.BConfirmar.Name = "BConfirmar";
             this.BConfirmar.Size = new System.Drawing.Size(132, 40);
-            this.BConfirmar.TabIndex = 35;
+            this.BConfirmar.TabIndex = 10;
             this.BConfirmar.Text = "Confirmar";
             this.BConfirmar.UseVisualStyleBackColor = false;
             this.BConfirmar.Click += new System.EventHandler(this.BConfirmar_Click);
@@ -264,7 +264,7 @@
             this.BCancelar.Location = new System.Drawing.Point(159, 365);
             this.BCancelar.Name = "BCancelar";
             this.BCancelar.Size = new System.Drawing.Size(147, 40);
-            this.BCancelar.TabIndex = 34;
+            this.BCancelar.TabIndex = 9;
             this.BCancelar.Text = "Cancelar";
             this.BCancelar.UseVisualStyleBackColor = false;
             this.BCancelar.Click += new System.EventHandler(this.BCancelar_Click);
@@ -357,7 +357,7 @@
             this.textBox7.Location = new System.Drawing.Point(552, 170);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(182, 31);
-            this.textBox7.TabIndex = 54;
+            this.textBox7.TabIndex = 7;
             this.textBox7.UseSystemPasswordChar = true;
             this.textBox7.TextChanged += new System.EventHandler(this.textBox7_TextChanged);
             // 

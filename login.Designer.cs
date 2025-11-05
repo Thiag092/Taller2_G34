@@ -111,7 +111,7 @@
             this.TxUsuario.Location = new System.Drawing.Point(274, 331);
             this.TxUsuario.Name = "TxUsuario";
             this.TxUsuario.Size = new System.Drawing.Size(258, 27);
-            this.TxUsuario.TabIndex = 4;
+            this.TxUsuario.TabIndex = 0;
             this.TxUsuario.TextChanged += new System.EventHandler(this.TxUsuario_TextChanged);
             // 
             // TxContraseña
@@ -120,7 +120,7 @@
             this.TxContraseña.Location = new System.Drawing.Point(274, 421);
             this.TxContraseña.Name = "TxContraseña";
             this.TxContraseña.Size = new System.Drawing.Size(268, 27);
-            this.TxContraseña.TabIndex = 5;
+            this.TxContraseña.TabIndex = 1;
             this.TxContraseña.UseSystemPasswordChar = true;
             this.TxContraseña.TextChanged += new System.EventHandler(this.TxContraseña_TextChanged);
             // 
@@ -134,7 +134,7 @@
             this.BIngresar.Location = new System.Drawing.Point(224, 547);
             this.BIngresar.Name = "BIngresar";
             this.BIngresar.Size = new System.Drawing.Size(160, 60);
-            this.BIngresar.TabIndex = 6;
+            this.BIngresar.TabIndex = 3;
             this.BIngresar.Text = "Ingresar";
             this.BIngresar.UseVisualStyleBackColor = false;
             this.BIngresar.Click += new System.EventHandler(this.BIngresar_Click);
@@ -150,7 +150,7 @@
             this.BCancelar.Location = new System.Drawing.Point(432, 547);
             this.BCancelar.Name = "BCancelar";
             this.BCancelar.Size = new System.Drawing.Size(172, 60);
-            this.BCancelar.TabIndex = 7;
+            this.BCancelar.TabIndex = 4;
             this.BCancelar.Text = "Cancelar";
             this.BCancelar.UseVisualStyleBackColor = false;
             // 
@@ -182,7 +182,7 @@
             this.CBMostrarContraseña.Location = new System.Drawing.Point(557, 424);
             this.CBMostrarContraseña.Name = "CBMostrarContraseña";
             this.CBMostrarContraseña.Size = new System.Drawing.Size(177, 24);
-            this.CBMostrarContraseña.TabIndex = 8;
+            this.CBMostrarContraseña.TabIndex = 2;
             this.CBMostrarContraseña.Text = "Mostrar contraseña";
             this.CBMostrarContraseña.UseVisualStyleBackColor = true;
             // 

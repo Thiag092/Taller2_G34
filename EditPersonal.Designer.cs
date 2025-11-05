@@ -68,7 +68,7 @@
             this.panel3.Location = new System.Drawing.Point(486, 190);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(248, 77);
-            this.panel3.TabIndex = 50;
+            this.panel3.TabIndex = 6;
             // 
             // RBCoach
             // 
@@ -230,7 +230,7 @@
             this.BConfirmar.Location = new System.Drawing.Point(602, 365);
             this.BConfirmar.Name = "BConfirmar";
             this.BConfirmar.Size = new System.Drawing.Size(132, 40);
-            this.BConfirmar.TabIndex = 35;
+            this.BConfirmar.TabIndex = 8;
             this.BConfirmar.Text = "Confirmar";
             this.BConfirmar.UseVisualStyleBackColor = false;
             this.BConfirmar.Click += new System.EventHandler(this.BConfirmar_Click);
@@ -246,7 +246,7 @@
             this.BCancelar.Location = new System.Drawing.Point(159, 365);
             this.BCancelar.Name = "BCancelar";
             this.BCancelar.Size = new System.Drawing.Size(147, 40);
-            this.BCancelar.TabIndex = 34;
+            this.BCancelar.TabIndex = 7;
             this.BCancelar.Text = "Cancelar";
             this.BCancelar.UseVisualStyleBackColor = false;
             this.BCancelar.Click += new System.EventHandler(this.BCancelar_Click);

@@ -189,7 +189,7 @@
             this.comboBoxMembresia.Location = new System.Drawing.Point(714, 245);
             this.comboBoxMembresia.Name = "comboBoxMembresia";
             this.comboBoxMembresia.Size = new System.Drawing.Size(160, 24);
-            this.comboBoxMembresia.TabIndex = 67;
+            this.comboBoxMembresia.TabIndex = 9;
             // 
             // label6
             // 
@@ -207,7 +207,7 @@
             this.comboBoxPlan.Location = new System.Drawing.Point(714, 198);
             this.comboBoxPlan.Name = "comboBoxPlan";
             this.comboBoxPlan.Size = new System.Drawing.Size(160, 24);
-            this.comboBoxPlan.TabIndex = 66;
+            this.comboBoxPlan.TabIndex = 7;
             // 
             // textBoxObservaciones
             // 
@@ -215,7 +215,7 @@
             this.textBoxObservaciones.Multiline = true;
             this.textBoxObservaciones.Name = "textBoxObservaciones";
             this.textBoxObservaciones.Size = new System.Drawing.Size(620, 102);
-            this.textBoxObservaciones.TabIndex = 62;
+            this.textBoxObservaciones.TabIndex = 10;
             this.textBoxObservaciones.TextChanged += new System.EventHandler(this.textBoxObservaciones_TextChanged);
             // 
             // labelObservaciones
@@ -245,7 +245,7 @@
             this.txtEmail.Location = new System.Drawing.Point(647, 77);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(232, 29);
-            this.txtEmail.TabIndex = 50;
+            this.txtEmail.TabIndex = 3;
             // 
             // label4
             // 
@@ -265,7 +265,7 @@
             this.txtSexo.Location = new System.Drawing.Point(276, 190);
             this.txtSexo.Name = "txtSexo";
             this.txtSexo.Size = new System.Drawing.Size(181, 31);
-            this.txtSexo.TabIndex = 48;
+            this.txtSexo.TabIndex = 6;
             // 
             // LRol
             // 
@@ -322,7 +322,7 @@
             this.txtTelefono.Location = new System.Drawing.Point(276, 80);
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(218, 31);
-            this.txtTelefono.TabIndex = 3;
+            this.txtTelefono.TabIndex = 2;
             this.txtTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTelefono_KeyPress);
             // 
             // txtContactoEmergencia
@@ -331,7 +331,7 @@
             this.txtContactoEmergencia.Location = new System.Drawing.Point(276, 242);
             this.txtContactoEmergencia.Name = "txtContactoEmergencia";
             this.txtContactoEmergencia.Size = new System.Drawing.Size(218, 31);
-            this.txtContactoEmergencia.TabIndex = 2;
+            this.txtContactoEmergencia.TabIndex = 8;
             this.txtContactoEmergencia.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // txtDniAlumno

@@ -170,9 +170,18 @@ namespace Taller2_G34
 
         private void txtDNI_KeyPress(object sender, KeyPressEventArgs e)
         {
+            // Solo permitir dígitos y teclas de control (Backspace, etc.)
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
-                e.Handled = true; // Ignorar el carácter si no es dígito
+                e.Handled = true; // Ignorar si no es número o control
+                return;
+            }
+
+            // Limitar a 8 caracteres
+            TextBox txt = sender as TextBox;
+            if (!char.IsControl(e.KeyChar) && txt.Text.Length >= 8)
+            {
+                e.Handled = true; // Ignorar si ya hay 8 dígitos
             }
         }
 
@@ -226,6 +235,11 @@ namespace Taller2_G34
         }
 
         private void comboBoxPlan_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDNI_TextChanged(object sender, EventArgs e)
         {
 
         }

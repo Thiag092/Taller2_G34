@@ -80,7 +80,7 @@
             this.txtPasswordCheck.Location = new System.Drawing.Point(531, 170);
             this.txtPasswordCheck.Name = "txtPasswordCheck";
             this.txtPasswordCheck.Size = new System.Drawing.Size(203, 31);
-            this.txtPasswordCheck.TabIndex = 54;
+            this.txtPasswordCheck.TabIndex = 7;
             this.txtPasswordCheck.UseSystemPasswordChar = true;
             // 
             // chkVerClave
@@ -113,7 +113,7 @@
             this.panel3.Location = new System.Drawing.Point(486, 238);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(248, 77);
-            this.panel3.TabIndex = 50;
+            this.panel3.TabIndex = 8;
             // 
             // RBCoach
             // 
@@ -354,7 +354,7 @@
             this.BConfirmar.Location = new System.Drawing.Point(602, 365);
             this.BConfirmar.Name = "BConfirmar";
             this.BConfirmar.Size = new System.Drawing.Size(132, 40);
-            this.BConfirmar.TabIndex = 35;
+            this.BConfirmar.TabIndex = 10;
             this.BConfirmar.Text = "Confirmar";
             this.BConfirmar.UseVisualStyleBackColor = false;
             this.BConfirmar.Click += new System.EventHandler(this.BConfirmar_Click);
@@ -370,7 +370,7 @@
             this.BCancelar.Location = new System.Drawing.Point(159, 365);
             this.BCancelar.Name = "BCancelar";
             this.BCancelar.Size = new System.Drawing.Size(147, 40);
-            this.BCancelar.TabIndex = 34;
+            this.BCancelar.TabIndex = 9;
             this.BCancelar.Text = "Cancelar";
             this.BCancelar.UseVisualStyleBackColor = false;
             this.BCancelar.Click += new System.EventHandler(this.BCancelar_Click_1);
