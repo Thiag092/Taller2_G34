@@ -81,6 +81,26 @@ namespace Taller2_G34
                 // Cadena de conexión
                 string connectionString = ConfigurationManager.ConnectionStrings["EnerGymDB"].ConnectionString;
 
+
+                // Validar campos obligatorios
+                if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
+                    string.IsNullOrWhiteSpace(txtApellido.Text) ||
+                    string.IsNullOrWhiteSpace(textBox4.Text) ||
+                    string.IsNullOrWhiteSpace(txtTelefono.Text) ||
+                    string.IsNullOrWhiteSpace(txtDNI.Text))
+                {
+                    MessageBox.Show("Todos los campos son obligatorios.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Validar email
+                if (!EsEmailValido(textBox4.Text.Trim()))
+                {
+                    MessageBox.Show("Debe ingresar un e-mail válido (debe contener '@' y '.').",
+                        "E-mail incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 // Consulta UPDATE (sin incluir contraseña)
                 string query = @"UPDATE Usuario 
                          SET nombre = @nombre, 
@@ -190,6 +210,24 @@ namespace Taller2_G34
                 e.Handled = true;
             }
         }
+
+        private bool EsEmailValido(string email)
+        {
+            return email.Contains("@") && email.Contains(".");
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == (Keys.Control | Keys.V))
+            {
+                // Cancelar pegar si el control activo es DNI o teléfono
+                if (ActiveControl == txtDNI || ActiveControl == txtTelefono)
+                    return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+
     }
 
 }

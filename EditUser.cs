@@ -10,8 +10,6 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace Taller2_G34
 {
@@ -25,6 +23,8 @@ namespace Taller2_G34
             InitializeComponent();
             dniUsuario = dni;
             CargarDatosUsuario();
+            dateTimePicker1.MaxDate = DateTime.Today;
+
         }
 
         private void CargarDatosUsuario()
@@ -93,6 +93,62 @@ namespace Taller2_G34
 
                 string connectionString = ConfigurationManager.ConnectionStrings["EnerGymDB"].ConnectionString;
 
+
+                // Validar campos obligatorios
+                if (string.IsNullOrWhiteSpace(textBox1.Text) ||
+                    string.IsNullOrWhiteSpace(textBox2.Text) ||
+                    string.IsNullOrWhiteSpace(textBox4.Text) ||
+                    string.IsNullOrWhiteSpace(textBox5.Text) ||
+                    string.IsNullOrWhiteSpace(textBox3.Text))
+                {
+                    MessageBox.Show("Todos los campos son obligatorios.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                //  Validar email correcto
+                if (!EsEmailValido(textBox4.Text.Trim()))
+                {
+                    MessageBox.Show("Debe ingresar un e-mail válido que contenga '@' y '.'.",
+                        "Correo inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                //  Longitud de DNI
+                if (textBox3.Text.Length != 8)
+                {
+                    MessageBox.Show("El DNI debe tener exactamente 8 números.",
+                        "DNI incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                //  Teléfono mínimo 7 dígitos
+                if (textBox5.Text.Length < 7)
+                {
+                    MessageBox.Show("El teléfono debe tener al menos 7 números.",
+                        "Teléfono inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                //  Fecha futura NO permitida
+                if (dateTimePicker1.Value.Date > DateTime.Today)
+                {
+                    MessageBox.Show("La fecha de nacimiento no puede ser futura.",
+                        "Fecha inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                //  (Opcional) Edad mínima 18 años
+                int edad = DateTime.Today.Year - dateTimePicker1.Value.Year;
+                if (dateTimePicker1.Value.Date > DateTime.Today.AddYears(-edad))
+                    edad--;
+
+                if (edad < 18)
+                {
+                    MessageBox.Show("El usuario debe tener al menos 18 años.",
+                        "Edad insuficiente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 // Si hay una nueva contraseña
                 string query = @"UPDATE Usuario 
                  SET nombre = @nombre, 
@@ -151,6 +207,47 @@ namespace Taller2_G34
         {
 
         }
+
+        //validacion de nombre
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+                e.Handled = true;
+        }
+
+
+        //validacion apellido
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+                e.Handled = true;
+        }
+
+        //valida telefono
+        private void textBox5_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+                e.Handled = true;
+        }
+
+
+        //validacion dni
+        private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            TextBox txt = sender as TextBox;
+
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+                e.Handled = true;
+
+            if (!char.IsControl(e.KeyChar) && txt.Text.Length >= 8)
+                e.Handled = true;
+        }
+
+        private bool EsEmailValido(string email)
+        {
+            return email.Contains("@") && email.Contains(".");
+        }
+
     }
 
 }

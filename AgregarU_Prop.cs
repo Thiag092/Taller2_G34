@@ -31,11 +31,12 @@ namespace Taller2_G34
             this.Close();
         }
 
+
         private void BConfirmar_Click(object sender, EventArgs e)
         {
             try
             {
-                // Validar que se haya seleccionado un rol
+                //  VALIDAR ROL
                 int idRol = 0;
                 if (RBCoach.Checked) idRol = 3;
                 else if (RBAdmin.Checked) idRol = 2;
@@ -43,78 +44,82 @@ namespace Taller2_G34
 
                 if (idRol == 0)
                 {
-                    MessageBox.Show("Debe seleccionar un rol para el usuario.");
+                    MessageBox.Show("Debe seleccionar un rol.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                // Validar campos obligatorios
-                // Validar campos obligatorios
-                if (string.IsNullOrWhiteSpace(textBox1.Text) ||  // Nombre
-                    string.IsNullOrWhiteSpace(textBox2.Text) ||  // Apellido
-                    string.IsNullOrWhiteSpace(textBox4.Text) ||  // Email
-                    string.IsNullOrWhiteSpace(textBox5.Text) ||  // Teléfono
-                    string.IsNullOrWhiteSpace(textBox3.Text) ||  // DNI
-                    string.IsNullOrWhiteSpace(textBox6.Text))    // Contraseña
+                // VALIDAR CAMPOS VACÍOS
+                if (string.IsNullOrWhiteSpace(textBox1.Text) ||   // Nombre
+                    string.IsNullOrWhiteSpace(textBox2.Text) ||   // Apellido
+                    string.IsNullOrWhiteSpace(textBox4.Text) ||   // Email
+                    string.IsNullOrWhiteSpace(textBox5.Text) ||   // Teléfono
+                    string.IsNullOrWhiteSpace(textBox3.Text) ||   // DNI
+                    string.IsNullOrWhiteSpace(textBox6.Text) ||   // Contraseña
+                    string.IsNullOrWhiteSpace(textBox7.Text))     // Repetir contraseña
                 {
-                    MessageBox.Show("Todos los campos son obligatorios.");
+                    MessageBox.Show("Todos los campos son obligatorios.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-
-                // Validar formato de email
-    
-
-                if (!textBox4.Text.Contains("@"))
+                // VALIDAR EMAIL
+                if (!textBox4.Text.Contains("@") || !textBox4.Text.Contains("."))
                 {
-                    MessageBox.Show("El correo ingresado no es válido.");
+                    MessageBox.Show("Debe ingresar un e-mail válido.", "Correo inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-
-
-                // Validar que el DNI y Teléfono sean numéricos
-                if (!long.TryParse(textBox3.Text, out _))
+                //  VALIDAR DNI — SOLO NÚMEROS Y 8 DÍGITOS
+                if (!textBox3.Text.All(char.IsDigit) || textBox3.Text.Length != 8)
                 {
-                    MessageBox.Show("El DNI debe ser numérico.");
-                    return;
-                }
-                //se valida la longitud de la contraseña
-                if (textBox3.Text.Length < 6)
-                {
-                    MessageBox.Show("El DNI debe tener 8 caracteres.");
+                    MessageBox.Show("El DNI debe ser numérico y tener 8 dígitos.", "DNI inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                if (!long.TryParse(textBox5.Text, out _))
+                //  VALIDAR TELÉFONO
+                if (!textBox5.Text.All(char.IsDigit) || textBox5.Text.Length < 7)
                 {
-                    MessageBox.Show("El Teléfono debe ser numérico.");
+                    MessageBox.Show("El teléfono debe contener solo números y tener al menos 7 dígitos.", "Teléfono inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                // Validar longitud de contraseña
+                //  VALIDAR FECHA FUTURA
+                if (dateTimePicker1.Value.Date > DateTime.Today)
+                {
+                    MessageBox.Show("La fecha de nacimiento no puede ser futura.", "Fecha inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                //  (Opcional) VALIDAR EDAD MÍNIMA 18 AÑOS
+                int edad = DateTime.Today.Year - dateTimePicker1.Value.Year;
+                if (dateTimePicker1.Value.Date > DateTime.Today.AddYears(-edad)) edad--;
+
+                if (edad < 18)
+                {
+                    MessageBox.Show("El usuario debe tener al menos 18 años.", "Edad insuficiente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // VALIDAR CONTRASEÑA
                 if (textBox6.Text.Length < 6)
                 {
-                    MessageBox.Show("La contraseña debe tener al menos 6 caracteres.");
+                    MessageBox.Show("La contraseña debe tener al menos 6 caracteres.", "Contraseña débil", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-
-                // Validar que las contraseñas coincidan
                 if (textBox6.Text != textBox7.Text)
                 {
-                    MessageBox.Show("Las contraseñas no coinciden.");
+                    MessageBox.Show("Las contraseñas no coinciden.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-
-                // Si todo está ok, insertamos
+                //  INSERT A LA BD
                 string connectionString = ConfigurationManager
                                             .ConnectionStrings["EnerGymDB"]
                                             .ConnectionString;
 
                 string query = @"INSERT INTO Usuario 
-                        (id_rol, nombre, apellido, email, telefono, dni, fecha_nacimiento, estado, contrasena)
-                        VALUES (@id_rol, @nombre, @apellido, @correo, @telefono, @dni, @fecha, 1, @clave)";
+                (id_rol, nombre, apellido, email, telefono, dni, fecha_nacimiento, estado, contrasena)
+                VALUES (@id_rol, @nombre, @apellido, @correo, @telefono, @dni, @fecha, 1, @clave)";
 
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 using (SqlCommand command = new SqlCommand(query, connection))
@@ -129,24 +134,25 @@ namespace Taller2_G34
                     command.Parameters.AddWithValue("@clave", textBox6.Text.Trim());
 
                     connection.Open();
-                    int filasAfectadas = command.ExecuteNonQuery();
+                    int filas = command.ExecuteNonQuery();
 
-                    if (filasAfectadas > 0)
+                    if (filas > 0)
                     {
-                        MessageBox.Show("Usuario agregado correctamente!");
+                        MessageBox.Show("Usuario agregado correctamente!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Close();
                     }
                     else
                     {
-                        MessageBox.Show("No se pudo agregar el usuario - Error");
+                        MessageBox.Show("No se pudo agregar el usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al insertar usuario: " + ex.Message);
+                MessageBox.Show("Error al insertar usuario: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
 
 
@@ -168,35 +174,30 @@ namespace Taller2_G34
         {
             // Permite solo números y tecla de retroceso
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
-            {
-                e.Handled = true; // Bloquea la tecla
-            }
+                e.Handled = true;
+
+            if (!char.IsControl(e.KeyChar) && textBox3.Text.Length >= 8)
+                e.Handled = true;
         }
 
         private void textBox5_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
-            {
                 e.Handled = true;
-            }
         }
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Solo letras, espacio y retroceso
             if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
-            {
                 e.Handled = true;
-            }
         }
 
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Igual que para el nombre
             if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
-            {
                 e.Handled = true;
-            }
         }
 
         private void chkVerClave_CheckStateChanged(object sender, EventArgs e)

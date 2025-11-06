@@ -171,10 +171,10 @@ namespace Taller2_G34
             dataGridView.Columns.Add(btnDetalles);
 
             // Conexión y carga de datos
-            //string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
-            string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+            string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+            // string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
 
-            
+
             string query = @"
         SELECT u.dni, u.nombre, u.apellido, u.email, r.descripcion
         FROM Usuario u
@@ -239,8 +239,8 @@ namespace Taller2_G34
 
                 if (confirmacion == DialogResult.Yes)
                 {
-                    // string connectionString = "Data Source=alcachofio\\SQLEXPRESS;Initial Catalog=EnerGym_BD_V9;Integrated Security=True";
-                    string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+                     string connectionString = "Data Source=alcachofio\\SQLEXPRESS;Initial Catalog=EnerGym_BD_V9;Integrated Security=True";
+                    //  string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
 
                     string query = "UPDATE Usuario SET estado = 0 WHERE dni = @dni"; // Baja lógica
 
@@ -343,8 +343,8 @@ namespace Taller2_G34
             ChartArea area = new ChartArea("Area1");
             chartInscriptos.ChartAreas.Add(area);
 
-            // string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
-            string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+             string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+            // string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
 
             string query = @"
             SELECT tp.descripcion AS TipoPlan, COUNT(a.id_alumno) AS Cantidad
@@ -446,8 +446,8 @@ namespace Taller2_G34
             ChartArea area = new ChartArea("Area1");
             chartPagos.ChartAreas.Add(area);
 
-            // string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
-            string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+             string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+            // string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
 
             string query = @"
             SELECT 
@@ -515,8 +515,8 @@ namespace Taller2_G34
 
         private void CargarTablaPagos()
         {
-            //   string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
-            string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+               string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+            //  string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
 
             string query = @"
        SELECT 
@@ -579,8 +579,8 @@ ORDER BY p.fecha DESC;
         {
             try
             {
-                // string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
-                string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+                 string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+                // string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
 
                 string query = "SELECT COUNT(*) FROM Alumno WHERE estado = 1";
 
@@ -630,8 +630,8 @@ ORDER BY p.fecha DESC;
                         string rutaTemporal = Path.Combine(@"C:\BackupsTemp", Path.GetFileName(rutaDestinoFinal));
                         Directory.CreateDirectory(@"C:\BackupsTemp");
 
-                        // string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=master;Trusted_Connection=True;";
-                        string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+                         string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=master;Trusted_Connection=True;";
+                        //  string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
 
                         string query = $@"
                     BACKUP DATABASE EnerGym_BD_V9
@@ -691,8 +691,8 @@ ORDER BY p.fecha DESC;
         {
             try
             {
-                //string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
-                string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+                string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+                // string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
 
                 string query = "SELECT fecha AS [Fecha del Backup], ruta AS [Ubicación del Archivo] FROM HistorialBackup ORDER BY fecha DESC;";
 
@@ -723,8 +723,8 @@ ORDER BY p.fecha DESC;
             ChartArea area = new ChartArea("Area1");
             chartProfesores.ChartAreas.Add(area);
 
-            //string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
-            string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+            string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+            // string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
 
             string query = @"
         SELECT 
@@ -786,8 +786,8 @@ ORDER BY p.fecha DESC;
             dataGridAlumnosProfesor.Visible = true;
 
 
-            //string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
-            string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+            string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+            //  string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
 
             //  Consulta dinámica según el profesor seleccionado
             string query = @"
