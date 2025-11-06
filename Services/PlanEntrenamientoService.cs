@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq; 
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 
 namespace Taller2_G34.Services
 {
+    // [Se asume que la clase EjercicioTemporal está definida en otro archivo/ámbito]
 
     public class PlanEntrenamientoService
     {
@@ -71,11 +72,11 @@ namespace Taller2_G34.Services
             {
                 conn.Open();
                 string query = @"SELECT e.id_ejercicio, e.nombre AS Ejercicio, 
-                               pe.cant_series AS Series, pe.repeticiones AS Repeticiones, 
-                               pe.tiempo AS Tiempo
-                               FROM Plan_Ejercicio pe 
-                               INNER JOIN Ejercicio e ON pe.id_ejercicio = e.id_ejercicio
-                               WHERE pe.id_plan = @idPlan AND pe.id_dia = @idDia";
+                                 pe.cant_series AS Series, pe.repeticiones AS Repeticiones, 
+                                 pe.tiempo AS Tiempo
+                                 FROM Plan_Ejercicio pe 
+                                 INNER JOIN Ejercicio e ON pe.id_ejercicio = e.id_ejercicio
+                                 WHERE pe.id_plan = @idPlan AND pe.id_dia = @idDia";
                 var cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@idPlan", idPlan);
                 cmd.Parameters.AddWithValue("@idDia", idDia);
@@ -141,11 +142,11 @@ namespace Taller2_G34.Services
                  SELECT 
                     pd.id_dia, pd.nombreDia, e.id_ejercicio, e.nombre as nombre_ejercicio,
                     pe.cant_series, pe.repeticiones, pe.tiempo
-                 FROM Plan_Ejercicio pe
-                 INNER JOIN Ejercicio e ON pe.id_ejercicio = e.id_ejercicio
-                 INNER JOIN Plan_Dia pd ON pe.id_dia = pd.id_dia
-                 WHERE pe.id_plan = @idPlan
-                 ORDER BY pd.id_dia, e.nombre";
+                   FROM Plan_Ejercicio pe
+                   INNER JOIN Ejercicio e ON pe.id_ejercicio = e.id_ejercicio
+                   INNER JOIN Plan_Dia pd ON pe.id_dia = pd.id_dia
+                   WHERE pe.id_plan = @idPlan
+                   ORDER BY pd.id_dia, e.nombre";
 
                 using (var command = new SqlCommand(query, connection))
                 {
@@ -172,8 +173,8 @@ namespace Taller2_G34.Services
                     {
                         // 1. Insertar el plan principal y obtener su nuevo ID
                         var queryPlan = @"INSERT INTO PlanEntrenamiento (nombre, estado, id_tipoPlan) 
-                                        VALUES (@nombre, 1, @idTipoPlan);
-                                        SELECT SCOPE_IDENTITY();";
+                                         VALUES (@nombre, 1, @idTipoPlan);
+                                         SELECT SCOPE_IDENTITY();";
 
                         var cmdPlan = new SqlCommand(queryPlan, conn, transaction);
                         cmdPlan.Parameters.AddWithValue("@nombre", nombrePlan);
@@ -228,7 +229,7 @@ namespace Taller2_G34.Services
                             foreach (var nombreDia in diasFaltantes)
                             {
                                 var queryCrearDia = @"INSERT INTO Plan_Dia (id_plan, nombreDia) 
-                                                      VALUES (@idPlan, @nombreDia)";
+                                                     VALUES (@idPlan, @nombreDia)";
                                 var cmdCrearDia = new SqlCommand(queryCrearDia, conn, transaction);
                                 cmdCrearDia.Parameters.AddWithValue("@idPlan", idNuevoPlan);
                                 cmdCrearDia.Parameters.AddWithValue("@nombreDia", nombreDia);
@@ -252,8 +253,8 @@ namespace Taller2_G34.Services
                                 if (idDiaCorrespondiente > 0)
                                 {
                                     var queryEjercicio = @"INSERT INTO Plan_Ejercicio 
-                                                         (id_plan, id_ejercicio, id_dia, cant_series, repeticiones, tiempo) 
-                                                         VALUES (@idPlan, @idEjercicio, @idDia, @series, @repeticiones, @tiempo)";
+                                                           (id_plan, id_ejercicio, id_dia, cant_series, repeticiones, tiempo) 
+                                                           VALUES (@idPlan, @idEjercicio, @idDia, @series, @repeticiones, @tiempo)";
 
                                     var cmdEjercicio = new SqlCommand(queryEjercicio, conn, transaction);
                                     cmdEjercicio.Parameters.AddWithValue("@idPlan", idNuevoPlan);
@@ -276,6 +277,36 @@ namespace Taller2_G34.Services
                         throw new Exception($"Error al guardar plan completo: {ex.Message}", ex);
                     }
                 }
+            }
+        }
+
+        public int InsertarNuevoEjercicioCatalogo(string nombre, int series, int repeticiones, int tiempo)
+        {
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                conn.Open();
+
+                // CORRECCIÓN CLAVE: El esquema de la BD que proporcionaste (CREATE TABLE Ejercicio)
+                // SOLO tiene las columnas id_ejercicio y nombre.
+                // Se han eliminado las columnas de métricas (cant_series, repeticiones, tiempo)
+                // del INSERT para evitar un error de SQL.
+                string query = @"
+                    INSERT INTO Ejercicio (nombre) 
+                    VALUES (@nombre);
+                    SELECT SCOPE_IDENTITY();";
+
+                var cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@nombre", nombre);
+                // Los parámetros @series, @repeticiones, @tiempo de la firma se ignoran aquí
+                // porque la tabla Ejercicio no los almacena.
+
+                // Ejecuta la consulta y retorna el ID del ejercicio recién insertado
+                var result = cmd.ExecuteScalar();
+                if (result == null || result == DBNull.Value)
+                {
+                    throw new Exception("No se pudo obtener el ID del ejercicio recién insertado.");
+                }
+                return Convert.ToInt32(result);
             }
         }
 

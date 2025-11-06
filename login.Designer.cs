@@ -126,11 +126,12 @@
             // 
             // BIngresar
             // 
-            this.BIngresar.BackColor = System.Drawing.Color.OliveDrab;
+            this.BIngresar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(133)))), ((int)(((byte)(71)))), ((int)(((byte)(152)))));
             this.BIngresar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BIngresar.FlatAppearance.BorderSize = 0;
             this.BIngresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BIngresar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BIngresar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.BIngresar.Location = new System.Drawing.Point(224, 547);
             this.BIngresar.Name = "BIngresar";
             this.BIngresar.Size = new System.Drawing.Size(160, 60);
@@ -147,7 +148,7 @@
             this.BCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BCancelar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BCancelar.Location = new System.Drawing.Point(432, 547);
+            this.BCancelar.Location = new System.Drawing.Point(442, 547);
             this.BCancelar.Name = "BCancelar";
             this.BCancelar.Size = new System.Drawing.Size(172, 60);
             this.BCancelar.TabIndex = 4;
@@ -159,7 +160,7 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.AutoSize = true;
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(201)))), ((int)(((byte)(19)))));
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(175)))), ((int)(((byte)(46)))));
             this.panel1.Controls.Add(this.CBMostrarContraseña);
             this.panel1.Controls.Add(this.BCancelar);
             this.panel1.Controls.Add(this.BIngresar);
@@ -179,7 +180,7 @@
             // CBMostrarContraseña
             // 
             this.CBMostrarContraseña.AutoSize = true;
-            this.CBMostrarContraseña.Location = new System.Drawing.Point(557, 424);
+            this.CBMostrarContraseña.Location = new System.Drawing.Point(274, 463);
             this.CBMostrarContraseña.Name = "CBMostrarContraseña";
             this.CBMostrarContraseña.Size = new System.Drawing.Size(177, 24);
             this.CBMostrarContraseña.TabIndex = 2;

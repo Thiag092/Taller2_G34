@@ -1,15 +1,21 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace Taller2_G34
 {
     public partial class NuevoEjercicio : Form
     {
-        public int IdEjercicio { get; private set; } // Puede generarse temporal o usar un contador
+        // Propiedades públicas para acceder a los datos después de que se presione Aceptar
         public string NombreEjercicio => txtNombre.Text.Trim();
-        public int CantSeries => int.Parse(txtSeries.Text);
-        public int Repeticiones => string.IsNullOrWhiteSpace(txtRepeticiones.Text) ? 0 : int.Parse(txtRepeticiones.Text);
+
+        // Acceso directo a los valores de NumericUpDown
+        public int CantSeries => (int)cantSeries.Value;
+        public int Repeticiones => (int)cantRepeticiones.Value;
+
         public int Tiempo => string.IsNullOrWhiteSpace(txtTiempo.Text) ? 0 : int.Parse(txtTiempo.Text);
+
+
         public NuevoEjercicio()
         {
             InitializeComponent();
@@ -17,6 +23,7 @@ namespace Taller2_G34
 
         private void btnAceptar_Click_1(object sender, EventArgs e)
         {
+            // La validación ahora se concentra en ValidarCampos()
             if (!ValidarCampos())
                 return;
 
@@ -32,7 +39,7 @@ namespace Taller2_G34
 
         private bool ValidarCampos()
         {
-            // Validar campos obligatorios
+            // 1. Validar nombre obligatorio
             if (string.IsNullOrWhiteSpace(txtNombre.Text))
             {
                 MessageBox.Show("El nombre del ejercicio es obligatorio.", "Atención",
@@ -40,42 +47,42 @@ namespace Taller2_G34
                 return false;
             }
 
-            // Validar que al menos uno de los campos (repeticiones o tiempo) tenga valor
-            if (string.IsNullOrWhiteSpace(txtRepeticiones.Text) && string.IsNullOrWhiteSpace(txtTiempo.Text))
-            {
-                MessageBox.Show("Debe ingresar repeticiones o tiempo para el ejercicio.", "Atención",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            // Validar que las series sean numéricas y mayores a 0
-            if (!int.TryParse(txtSeries.Text, out int series) || series <= 0)
+            // 2. Validar que las series sean mayores a 0 (NumericUpDown no permite null, solo 0 si MinValue=0)
+            if (CantSeries <= 0)
             {
                 MessageBox.Show("Las series deben ser un número mayor a 0.", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            // Validar repeticiones si se ingresaron
-            if (!string.IsNullOrWhiteSpace(txtRepeticiones.Text))
+            // 3. Validar que al menos uno de los campos (Repeticiones o Tiempo) tenga un valor mayor a 0.
+            // Repeticiones se lee directamente del NumericUpDown.
+            if (Repeticiones < 0)
             {
-                if (!int.TryParse(txtRepeticiones.Text, out int repeticiones) || repeticiones <= 0)
+                MessageBox.Show("Las repeticiones deben ser un número positivo o cero.", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            int tiempoIngresado = 0;
+
+            // Validar si se ingresó tiempo (que sigue siendo un TextBox)
+            if (!string.IsNullOrWhiteSpace(txtTiempo.Text))
+            {
+                if (!int.TryParse(txtTiempo.Text, out tiempoIngresado) || tiempoIngresado < 0)
                 {
-                    MessageBox.Show("Las repeticiones deben ser un número mayor a 0.", "Error",
+                    MessageBox.Show("El tiempo debe ser un número entero (0 o más segundos).", "Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
             }
 
-            // Validar tiempo si se ingresó
-            if (!string.IsNullOrWhiteSpace(txtTiempo.Text))
+            // Validar la regla de negocio: Al menos Repeticiones > 0 O Tiempo > 0
+            if (Repeticiones <= 0 && tiempoIngresado <= 0)
             {
-                if (!int.TryParse(txtTiempo.Text, out int tiempo) || tiempo <= 0)
-                {
-                    MessageBox.Show("El tiempo debe ser un número mayor a 0.", "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
+                MessageBox.Show("Debe ingresar repeticiones (mayor a 0) o tiempo (mayor a 0) para el ejercicio.", "Atención",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
             }
 
             return true;
@@ -83,7 +90,7 @@ namespace Taller2_G34
 
         private void NuevoEjercicio_Load(object sender, EventArgs e)
         {
-            // No necesitamos cargar nada específico
+            // Inicializar o limpiar campos si es necesario
         }
     }
 }

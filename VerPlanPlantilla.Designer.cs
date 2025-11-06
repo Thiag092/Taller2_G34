@@ -289,6 +289,7 @@
             this.btnNuevoEjercicio.TabIndex = 61;
             this.btnNuevoEjercicio.Text = "+";
             this.btnNuevoEjercicio.UseVisualStyleBackColor = false;
+            this.btnNuevoEjercicio.Click += new System.EventHandler(this.btnNuevoEjercicio_Click);
             // 
             // cboEjercicioCatalogo
             // 

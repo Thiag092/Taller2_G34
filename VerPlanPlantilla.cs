@@ -299,7 +299,7 @@ namespace Taller2_G34
                     return;
                 }
 
-                // 4. Crear y agregar el ejercicio temporal (No es necesario EsTemporal)
+                // 4. Crear y agregar el ejercicio temporal 
                 var ejercicio = new EjercicioTemporal
                 {
                     IdEjercicio = idEjercicio,
@@ -330,7 +330,7 @@ namespace Taller2_G34
             }
         }
 
-        // Ahora obtiene el ID_Ejercicio del objeto seleccionado (gracias a la proyección)
+        // Ahora obtiene el ID_Ejercicio del objeto seleccionado
         // y lo usa para buscar y eliminar de la lista completa _ejerciciosTemporales.
         private void btnQuitar_Click(object sender, EventArgs e)
         {
@@ -464,5 +464,49 @@ namespace Taller2_G34
         }
         private void txtNombrePlan_TextChanged(object sender, EventArgs e) { }
         private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e) { }
+
+        private void btnNuevoEjercicio_Click(object sender, EventArgs e)
+        {
+            // Usar 'using' para asegurar que el formulario se destruya correctamente.
+            using (NuevoEjercicio frm = new NuevoEjercicio())
+            {
+                // Mostrar el formulario como un diálogo (modal)
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        // Obtener los datos validados del nuevo ejercicio
+                        string nombre = frm.NombreEjercicio;
+                        int series = frm.CantSeries;
+                        int repeticiones = frm.Repeticiones;
+                        int tiempo = frm.Tiempo;
+
+                        // Insertar el nuevo ejercicio en la Base de Datos (Catálogo)
+                        int idNuevoEjercicio = _planService.InsertarNuevoEjercicioCatalogo(nombre, series, repeticiones, tiempo);
+
+                        // Recargar el catálogo de ejercicios
+                        CargarEjerciciosCatalogo();
+
+                        // Seleccionar el nuevo ejercicio en el ComboBox (cboEjercicioCatalogo)
+                        if (cboEjercicioCatalogo.Items.Count > 0)
+                        {
+                            cboEjercicioCatalogo.SelectedValue = idNuevoEjercicio;
+                        }
+
+                        // Opcionalmente, puedes establecer los valores por defecto
+                        cantSeries.Value = series;
+                        cantRepeticiones.Value = repeticiones;
+                        txtTiempo.Text = tiempo.ToString();
+
+                        MessageBox.Show($"Ejercicio '{nombre}' agregado al catálogo y seleccionado para añadir al plan.",
+                                        "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error al crear y guardar nuevo ejercicio: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
     }
 }
