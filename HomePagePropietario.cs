@@ -148,9 +148,13 @@ namespace Taller2_G34
                 btnAgregar.Visible = false;
                 btnEliminar.Visible = false;
                 BRefresh.Visible = false;
-
+                chartPagos.Visible = true;
+                dataGridPagos.Visible = true;
                 //  aseguramos que el gráfico de pagos se vea encima del resto
                 chartPagos.BringToFront();
+
+                CargarGraficoPagos();
+                CargarTablaPagos();  
 
                 return; 
             }
@@ -220,7 +224,10 @@ namespace Taller2_G34
             dataGridView.Columns.Add(btnDetalles);
 
             // Conexión y carga de datos
-            string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+            //string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+            string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+
+            
             string query = @"
         SELECT u.dni, u.nombre, u.apellido, u.email, r.descripcion
         FROM Usuario u
@@ -283,7 +290,9 @@ namespace Taller2_G34
 
                 if (confirmacion == DialogResult.Yes)
                 {
-                    string connectionString = "Data Source=alcachofio\\SQLEXPRESS;Initial Catalog=EnerGym_BD_V9;Integrated Security=True";
+                    // string connectionString = "Data Source=alcachofio\\SQLEXPRESS;Initial Catalog=EnerGym_BD_V9;Integrated Security=True";
+                    string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+
                     string query = "UPDATE Usuario SET estado = 0 WHERE dni = @dni"; // Baja lógica
 
                     using (SqlConnection connection = new SqlConnection(connectionString))
@@ -385,7 +394,9 @@ namespace Taller2_G34
             ChartArea area = new ChartArea("Area1");
             chartInscriptos.ChartAreas.Add(area);
 
-            string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+            // string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+            string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+
             string query = @"
             SELECT tp.descripcion AS TipoPlan, COUNT(a.id_alumno) AS Cantidad
             FROM Alumno a
@@ -486,7 +497,9 @@ namespace Taller2_G34
             ChartArea area = new ChartArea("Area1");
             chartPagos.ChartAreas.Add(area);
 
-            string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+            // string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+            string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+
             string query = @"
             SELECT 
                 DATENAME(MONTH, p.fecha) AS Mes,
@@ -550,11 +563,73 @@ namespace Taller2_G34
 
         }
 
+
+        private void CargarTablaPagos()
+        {
+            //   string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+            string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+
+            string query = @"
+        SELECT 
+            p.id_pago,
+            p.fecha,
+            CONCAT(a.nombre, ' ', a.apellido) AS Alumno,
+            p.total AS Monto,
+            m.nombre AS MedioPago,
+            p.ruta_pdf
+        FROM Pago p
+        INNER JOIN Alumno a ON p.id_alumno = a.id_alumno
+        INNER JOIN MedioDePago m ON p.id_medioPago = m.id_medioPago
+        ORDER BY p.fecha DESC;";
+
+            DataTable dt = new DataTable();
+
+            using (SqlConnection cn = new SqlConnection(connectionString))
+            using (SqlDataAdapter da = new SqlDataAdapter(query, cn))
+            {
+                da.Fill(dt);
+            }
+
+            //  Insertamos columna de enumeración en la posición 0
+            dt.Columns.Add("N°", typeof(int));
+            int index = 1;
+            foreach (DataRow row in dt.Rows)
+                row["N°"] = index++;
+
+            //  Reordenamos la columna al principio
+            dt.Columns["N°"].SetOrdinal(0);
+
+            dataGridPagos.DataSource = dt;
+
+            // ocultamos columnas internas
+            if (dataGridPagos.Columns.Contains("id_pago"))
+                dataGridPagos.Columns["id_pago"].Visible = false;
+            if (dataGridPagos.Columns.Contains("ruta_pdf"))
+                dataGridPagos.Columns["ruta_pdf"].Visible = false;
+
+            //  botón de abrir PDF
+            if (!dataGridPagos.Columns.Contains("VerComprobante"))
+            {
+                DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
+                btn.Name = "VerComprobante";
+                btn.HeaderText = "Comprobante";
+                btn.Text = "Abrir PDF";
+                btn.UseColumnTextForButtonValue = true;
+                dataGridPagos.Columns.Add(btn);
+            }
+
+            dataGridPagos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
+
+
+
         private void CargarTotalAlumnosActivos()
         {
             try
             {
-                string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+                // string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+                string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+
                 string query = "SELECT COUNT(*) FROM Alumno WHERE estado = 1";
 
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -599,11 +674,13 @@ namespace Taller2_G34
                     {
                         string rutaDestinoFinal = dialog.FileName;
 
-                        // 🔹 1. Creamos una carpeta temporal segura (donde SQL sí puede escribir)
+                        //  Creamos una carpeta temporal segura (donde SQL sí puede escribir)
                         string rutaTemporal = Path.Combine(@"C:\BackupsTemp", Path.GetFileName(rutaDestinoFinal));
                         Directory.CreateDirectory(@"C:\BackupsTemp");
 
-                        string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=master;Trusted_Connection=True;";
+                        // string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=master;Trusted_Connection=True;";
+                        string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+
                         string query = $@"
                     BACKUP DATABASE EnerGym_BD_V9
                     TO DISK = '{rutaTemporal}'
@@ -617,7 +694,7 @@ namespace Taller2_G34
                             using (SqlCommand cmd = new SqlCommand(query, conn))
                                 cmd.ExecuteNonQuery();
 
-                            // 🔹 Registrar el backup en la base
+                            //  Registrar el backup en la base
                             string registrarBackup = "INSERT INTO EnerGym_BD_V9.dbo.HistorialBackup (ruta) VALUES (@ruta)";
                             using (SqlCommand logCmd = new SqlCommand(registrarBackup, conn))
                             {
@@ -626,11 +703,11 @@ namespace Taller2_G34
                             }
                         }
 
-                        // 🔹 2. Mover el backup desde la ruta temporal a la seleccionada por el usuario
+                        //   Mover el backup desde la ruta temporal a la seleccionada por el usuario
                         File.Copy(rutaTemporal, rutaDestinoFinal, overwrite: true);
                         File.Delete(rutaTemporal); // opcional, limpia el temporal
 
-                        // 🔹 3. Confirmación visual
+                        //  Confirmación visual
                         MessageBox.Show(
                             $"Copia de seguridad creada exitosamente.\n\nRuta:\n{rutaDestinoFinal}",
                             "Backup completado",
@@ -643,7 +720,7 @@ namespace Taller2_G34
             catch (Exception ex)
             {
                 MessageBox.Show(
-                    "❌ Ocurrió un error al generar el backup:\n\n" + ex.Message,
+                    " Ocurrió un error al generar el backup:\n\n" + ex.Message,
                     "Error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error
@@ -662,7 +739,9 @@ namespace Taller2_G34
         {
             try
             {
-                string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+                //string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+                string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+
                 string query = "SELECT fecha AS [Fecha del Backup], ruta AS [Ubicación del Archivo] FROM HistorialBackup ORDER BY fecha DESC;";
 
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -692,7 +771,9 @@ namespace Taller2_G34
             ChartArea area = new ChartArea("Area1");
             chartProfesores.ChartAreas.Add(area);
 
-            string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+            //string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+            string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+
             string query = @"
         SELECT 
             CONCAT(u.nombre, ' ', u.apellido) AS Profesor,
@@ -753,9 +834,10 @@ namespace Taller2_G34
             dataGridAlumnosProfesor.Visible = true;
 
 
-            string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+            //string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+            string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
 
-            // 🔹 Consulta dinámica según el profesor seleccionado
+            //  Consulta dinámica según el profesor seleccionado
             string query = @"
         SELECT a.nombre AS Nombre, a.apellido AS Apellido, a.dni AS DNI
         FROM Alumno a
@@ -793,6 +875,27 @@ namespace Taller2_G34
             }
         }
 
+        private void dataGridPagos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            if (dataGridPagos.Columns[e.ColumnIndex].Name == "VerComprobante")
+            {
+                string ruta = dataGridPagos.Rows[e.RowIndex].Cells["ruta_pdf"].Value.ToString();
+
+                if (File.Exists(ruta))
+                {
+                    System.Diagnostics.Process.Start("explorer.exe", ruta);
+                }
+                else
+                {
+                    MessageBox.Show("No se encontró el comprobante en:\n" + ruta,
+                        "Archivo no encontrado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+
 
         private void BProfesores_Click(object sender, EventArgs e)
         {
@@ -800,7 +903,15 @@ namespace Taller2_G34
 
         }
 
-        
+        private void chartProfesores_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridAlumnosProfesor_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
 

@@ -373,3 +373,9 @@ UPDATE Usuario
 SET contrasena = CONVERT(VARCHAR(64), HASHBYTES('SHA2_256', CONVERT(VARBINARY(4000), contrasena)), 2);
 GO
 
+--****************************
+--		Para el datagrid de pagos--
+
+ALTER TABLE Pago
+ADD ruta_pdf NVARCHAR(255) NULL;
+GO
