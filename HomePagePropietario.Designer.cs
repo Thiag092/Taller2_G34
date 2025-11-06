@@ -28,22 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.BUsuarios = new System.Windows.Forms.Button();
             this.labelTextoBienvenida = new System.Windows.Forms.Label();
             this.textBoxBusqueda = new System.Windows.Forms.TextBox();
             this.BBuscar = new System.Windows.Forms.Button();
             this.labelTitulo = new System.Windows.Forms.Label();
             this.contentPanel = new System.Windows.Forms.Panel();
+            this.dataGridPagos = new System.Windows.Forms.DataGridView();
             this.dataGridAlumnosProfesor = new System.Windows.Forms.DataGridView();
             this.chartProfesores = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.dataGridBackup = new System.Windows.Forms.DataGridView();
@@ -65,8 +66,8 @@
             this.labelAdmin = new System.Windows.Forms.Label();
             this.homeContainer = new System.Windows.Forms.SplitContainer();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.dataGridPagos = new System.Windows.Forms.DataGridView();
             this.contentPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridPagos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridAlumnosProfesor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartProfesores)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridBackup)).BeginInit();
@@ -83,7 +84,6 @@
             this.homeContainer.Panel2.SuspendLayout();
             this.homeContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridPagos)).BeginInit();
             this.SuspendLayout();
             // 
             // BUsuarios
@@ -123,6 +123,7 @@
             this.textBoxBusqueda.Name = "textBoxBusqueda";
             this.textBoxBusqueda.Size = new System.Drawing.Size(288, 24);
             this.textBoxBusqueda.TabIndex = 7;
+            this.textBoxBusqueda.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxBusqueda_KeyDown);
             // 
             // BBuscar
             // 
@@ -138,6 +139,7 @@
             this.BBuscar.TabIndex = 6;
             this.BBuscar.Text = "Buscar";
             this.BBuscar.UseVisualStyleBackColor = false;
+            this.BBuscar.Click += new System.EventHandler(this.BBuscar_Click);
             // 
             // labelTitulo
             // 
@@ -175,6 +177,17 @@
             this.contentPanel.Visible = false;
             this.contentPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.contentPanel_Paint);
             // 
+            // dataGridPagos
+            // 
+            this.dataGridPagos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridPagos.Location = new System.Drawing.Point(24, 433);
+            this.dataGridPagos.Name = "dataGridPagos";
+            this.dataGridPagos.RowHeadersWidth = 51;
+            this.dataGridPagos.RowTemplate.Height = 24;
+            this.dataGridPagos.Size = new System.Drawing.Size(883, 150);
+            this.dataGridPagos.TabIndex = 20;
+            this.dataGridPagos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridPagos_CellContentClick);
+            // 
             // dataGridAlumnosProfesor
             // 
             this.dataGridAlumnosProfesor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -184,24 +197,22 @@
             this.dataGridAlumnosProfesor.RowTemplate.Height = 24;
             this.dataGridAlumnosProfesor.Size = new System.Drawing.Size(775, 145);
             this.dataGridAlumnosProfesor.TabIndex = 19;
-            this.dataGridAlumnosProfesor.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridAlumnosProfesor_CellContentClick);
             // 
             // chartProfesores
             // 
-            chartArea4.Name = "ChartArea1";
-            this.chartProfesores.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.chartProfesores.Legends.Add(legend4);
+            chartArea1.Name = "ChartArea1";
+            this.chartProfesores.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartProfesores.Legends.Add(legend1);
             this.chartProfesores.Location = new System.Drawing.Point(97, 126);
             this.chartProfesores.Name = "chartProfesores";
-            series4.ChartArea = "ChartArea1";
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            this.chartProfesores.Series.Add(series4);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartProfesores.Series.Add(series1);
             this.chartProfesores.Size = new System.Drawing.Size(775, 257);
             this.chartProfesores.TabIndex = 18;
             this.chartProfesores.Text = "chart1";
-            this.chartProfesores.Click += new System.EventHandler(this.chartProfesores_Click);
             this.chartProfesores.MouseClick += new System.Windows.Forms.MouseEventHandler(this.chartProfesores_MouseClick);
             // 
             // dataGridBackup
@@ -248,33 +259,33 @@
             // 
             // chartPagos
             // 
-            chartArea5.Name = "ChartArea1";
-            this.chartPagos.ChartAreas.Add(chartArea5);
-            legend5.Name = "Legend1";
-            this.chartPagos.Legends.Add(legend5);
+            chartArea2.Name = "ChartArea1";
+            this.chartPagos.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chartPagos.Legends.Add(legend2);
             this.chartPagos.Location = new System.Drawing.Point(24, 126);
             this.chartPagos.Name = "chartPagos";
-            series5.ChartArea = "ChartArea1";
-            series5.Legend = "Legend1";
-            series5.Name = "Series1";
-            this.chartPagos.Series.Add(series5);
-            this.chartPagos.Size = new System.Drawing.Size(883, 386);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chartPagos.Series.Add(series2);
+            this.chartPagos.Size = new System.Drawing.Size(883, 313);
             this.chartPagos.TabIndex = 14;
             this.chartPagos.Text = "chart1";
             this.chartPagos.Visible = false;
             // 
             // chartInscriptos
             // 
-            chartArea6.Name = "ChartArea1";
-            this.chartInscriptos.ChartAreas.Add(chartArea6);
-            legend6.Name = "Legend1";
-            this.chartInscriptos.Legends.Add(legend6);
+            chartArea3.Name = "ChartArea1";
+            this.chartInscriptos.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chartInscriptos.Legends.Add(legend3);
             this.chartInscriptos.Location = new System.Drawing.Point(24, 109);
             this.chartInscriptos.Name = "chartInscriptos";
-            series6.ChartArea = "ChartArea1";
-            series6.Legend = "Legend1";
-            series6.Name = "Series1";
-            this.chartInscriptos.Series.Add(series6);
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.chartInscriptos.Series.Add(series3);
             this.chartInscriptos.Size = new System.Drawing.Size(883, 409);
             this.chartInscriptos.TabIndex = 13;
             this.chartInscriptos.Text = "chart1";
@@ -339,14 +350,14 @@
             this.dataGridView.AllowUserToDeleteRows = false;
             this.dataGridView.AllowUserToResizeRows = false;
             this.dataGridView.BackgroundColor = System.Drawing.Color.Goldenrod;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Goldenrod;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Goldenrod;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.GridColor = System.Drawing.Color.DarkGoldenrod;
             this.dataGridView.Location = new System.Drawing.Point(24, 112);
@@ -372,7 +383,6 @@
             // 
             this.contentContainer.Panel1.Controls.Add(this.contentPanel);
             this.contentContainer.Panel1.Controls.Add(this.labelTextoBienvenida);
-            this.contentContainer.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.contentContainer_Panel1_Paint);
             this.contentContainer.Panel1MinSize = 550;
             // 
             // contentContainer.Panel2
@@ -383,7 +393,6 @@
             this.contentContainer.Panel2.Controls.Add(this.BPagos);
             this.contentContainer.Panel2.Controls.Add(this.BUsuarios);
             this.contentContainer.Panel2.Controls.Add(this.BEstadisticas);
-            this.contentContainer.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint_1);
             this.contentContainer.Panel2MinSize = 200;
             this.contentContainer.Size = new System.Drawing.Size(1296, 639);
             this.contentContainer.SplitterDistance = 957;
@@ -483,7 +492,6 @@
             this.labelAdmin.Size = new System.Drawing.Size(301, 32);
             this.labelAdmin.TabIndex = 4;
             this.labelAdmin.Text = "Panel del Propietario";
-            this.labelAdmin.Click += new System.EventHandler(this.labelAdmin_Click);
             // 
             // homeContainer
             // 
@@ -499,7 +507,6 @@
             this.homeContainer.Panel1.Controls.Add(this.BSalir);
             this.homeContainer.Panel1.Controls.Add(this.pictureBox1);
             this.homeContainer.Panel1.Controls.Add(this.labelAdmin);
-            this.homeContainer.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint_1);
             // 
             // homeContainer.Panel2
             // 
@@ -519,17 +526,6 @@
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
-            // dataGridPagos
-            // 
-            this.dataGridPagos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridPagos.Location = new System.Drawing.Point(24, 524);
-            this.dataGridPagos.Name = "dataGridPagos";
-            this.dataGridPagos.RowHeadersWidth = 51;
-            this.dataGridPagos.RowTemplate.Height = 24;
-            this.dataGridPagos.Size = new System.Drawing.Size(883, 150);
-            this.dataGridPagos.TabIndex = 20;
-            this.dataGridPagos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridPagos_CellContentClick);
-            // 
             // HomePagePropietario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -540,6 +536,7 @@
             this.Text = "Panel del Propietario";
             this.contentPanel.ResumeLayout(false);
             this.contentPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridPagos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridAlumnosProfesor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartProfesores)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridBackup)).EndInit();
@@ -559,7 +556,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.homeContainer)).EndInit();
             this.homeContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridPagos)).EndInit();
             this.ResumeLayout(false);
 
         }

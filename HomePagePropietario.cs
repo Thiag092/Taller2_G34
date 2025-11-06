@@ -24,27 +24,10 @@ namespace Taller2_G34
         public HomePagePropietario()
         {
             InitializeComponent();
+            dataGridPagos.Visible = false;
+            chartPagos.Visible = false;
         }
 
-        private void contentContainer_Panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void splitContainer1_Panel2_Paint_1(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void splitContainer1_Panel1_Paint_1(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void labelAdmin_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
@@ -75,47 +58,6 @@ namespace Taller2_G34
 
         }
 
-        /*************************************************************************************/
-        /* Version anterior del metodo MostrarVista para mostrar los usuarios estaticos
-        private void MostrarVista(string tipo)
-        {
-            // Oculto el label de bienvenida
-            labelTextoBienvenida.Visible = false;
-            // Hago visible el panel de contenido
-            contentPanel.Visible = true;
-
-            // Limpio el DataGridView antes de cargar nuevos datos
-            dataGridView.Columns.Clear();
-            dataGridView.Rows.Clear();
-
-            // Columna de botón
-            DataGridViewButtonColumn btnDetalles = new DataGridViewButtonColumn();
-            btnDetalles.HeaderText = "Detalles";
-            btnDetalles.Text = "Ver más";
-            btnDetalles.Name = "Detalles";
-
-            {
-                dataGridView.Columns.Add("DNI", "DNI");
-                dataGridView.Columns.Add("Nombre", "Nombre");
-                dataGridView.Columns.Add("Apellido", "Apellido");
-                dataGridView.Columns.Add("Email", "Email");
-                dataGridView.Columns.Add("TipoUsuario", "Tipo de usuario");
-                // importante para identificar la columna
-                btnDetalles.UseColumnTextForButtonValue = true;
-                dataGridView.Columns.Add(btnDetalles);
-                dataGridView.Rows.Add(11111111, "Carlos", "Gómez", "carlosgomez@gmail.com", "coach");
-                dataGridView.Rows.Add(22222222, "María", "López", "marilo@outlook.com", "alumno");
-
-                labelTitulo.Text = "Personal";
-                btnAgregar.Text = "Agregar Usuario";
-                btnEliminar.Text = "Eliminar Usuario";
-            }
-            
-
-            // Ajustes visuales opcionales
-            dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-        } */
-        /*************************************************************************************/
 
 
         private void MostrarVista(string tipo)
@@ -135,6 +77,11 @@ namespace Taller2_G34
             BBackUp.Visible = false;  // OCULTA SIEMPRE POR DEFECTO
             chartProfesores.Visible = false;
             dataGridAlumnosProfesor.Visible = false;
+            dataGridPagos.Visible = false;
+            textBoxBusqueda.Visible = false;
+            BBuscar.Visible = false;
+
+
 
 
 
@@ -263,6 +210,8 @@ namespace Taller2_G34
                 btnEliminar.Text = "Eliminar Usuario";
                 btnAgregar.Visible = true;
                 btnEliminar.Visible = true;
+                textBoxBusqueda.Visible = true;
+                BBuscar.Visible = true;
             }
             else if (tipo == "entrenadores")
             {
@@ -570,17 +519,20 @@ namespace Taller2_G34
             string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
 
             string query = @"
-        SELECT 
-            p.id_pago,
-            p.fecha,
-            CONCAT(a.nombre, ' ', a.apellido) AS Alumno,
-            p.total AS Monto,
-            m.nombre AS MedioPago,
-            p.ruta_pdf
-        FROM Pago p
-        INNER JOIN Alumno a ON p.id_alumno = a.id_alumno
-        INNER JOIN MedioDePago m ON p.id_medioPago = m.id_medioPago
-        ORDER BY p.fecha DESC;";
+       SELECT 
+    p.id_pago,
+    p.fecha,
+    CONCAT(a.nombre, ' ', a.apellido) AS Alumno,
+    p.total AS Monto,
+    m.nombre AS MedioPago,
+    p.ruta_pdf
+FROM Pago p
+INNER JOIN Alumno a ON p.id_alumno = a.id_alumno
+INNER JOIN MedioDePago m ON p.id_medioPago = m.id_medioPago
+WHERE p.ruta_pdf IS NOT NULL
+  AND p.ruta_pdf LIKE '%Factura_%'
+ORDER BY p.fecha DESC;
+";
 
             DataTable dt = new DataTable();
 
@@ -896,6 +848,59 @@ namespace Taller2_G34
         }
 
 
+        private void BuscarUsuario()
+        {
+            string filtro = textBoxBusqueda.Text.Trim();
+
+            if (string.IsNullOrEmpty(filtro))
+            {
+                // vuelvo a cargar todos los usuarios
+                MostrarVista("Personal");
+                return;
+            }
+
+            // conexión
+            string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+
+            string query = @"
+    SELECT u.dni, u.nombre, u.apellido, u.email, r.descripcion
+    FROM Usuario u
+    INNER JOIN Rol r ON u.id_rol = r.id_rol
+    WHERE u.estado = 1
+    AND (
+            u.dni LIKE @filtro
+         OR u.nombre LIKE @filtro
+         OR u.apellido LIKE @filtro
+         OR r.descripcion LIKE @filtro   -- ✅ Buscar también por el tipo de usuario
+    )";
+
+
+            DataTable tabla = new DataTable();
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                cmd.Parameters.AddWithValue("@filtro", "%" + filtro + "%");
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(tabla);
+            }
+
+            dataGridView.Rows.Clear();
+
+            foreach (DataRow row in tabla.Rows)
+            {
+                dataGridView.Rows.Add(
+                    row["dni"],
+                    row["nombre"],
+                    row["apellido"],
+                    row["email"],
+                    row["descripcion"]
+                );
+            }
+        }
+
+
 
         private void BProfesores_Click(object sender, EventArgs e)
         {
@@ -903,14 +908,21 @@ namespace Taller2_G34
 
         }
 
-        private void chartProfesores_Click(object sender, EventArgs e)
+       
+
+        private void BBuscar_Click(object sender, EventArgs e)
         {
+            BuscarUsuario();
 
         }
 
-        private void dataGridAlumnosProfesor_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void textBoxBusqueda_KeyDown(object sender, KeyEventArgs e)
         {
-
+            if (e.KeyCode == Keys.Enter)
+            {
+                BBuscar.PerformClick();  // ✅ Ejecuta exactamente lo mismo que el botón Buscar
+                e.SuppressKeyPress = true; // ✅ evita el sonido y que aparezca un salto de línea
+            }
         }
     }
 }
