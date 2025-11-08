@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient; 
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
-using System.Linq; 
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -21,11 +21,22 @@ namespace Taller2_G34
     {
         private ToolTip tooltipActivo = new ToolTip();
 
+        // CONEXIÓN CENTRALIZADA
+        private const string ConnectionStringEnerGym = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+        private const string ConnectionStringMaster = "Server=alcachofio\\SQLEXPRESS;Database=master;Trusted_Connection=True;";
+        // private const string ConnectionStringEnerGym_Alt = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+        // private const string ConnectionStringEnerGym_Alt = "Server=YAGO_DELL\\SQLEXPRESS01;Database=master;Trusted_Connection=True;";
+
+
         public HomePagePropietario()
         {
             InitializeComponent();
             dataGridPagos.Visible = false;
             chartPagos.Visible = false;
+            lblMensaje.Visible = true; // Se mantiene visible al inicio (lógica original)
+            BEstadisticas.Visible = false;
+            BPagos.Visible = false;
+            BProfesores.Visible = false;
         }
 
 
@@ -42,12 +53,12 @@ namespace Taller2_G34
               "Confirmación",
               MessageBoxButtons.YesNo,
               MessageBoxIcon.Question
-          );
+            );
 
             if (respuesta == DialogResult.Yes)
             {
                 login f = new login();
-                f.Show();          // vuelve al formulario de login
+                f.Show();        // vuelve al formulario de login
                 this.Close();
             }
         }
@@ -58,102 +69,153 @@ namespace Taller2_G34
 
         }
 
-
-
+        // MÉTODO MOSTRAR VISTA PARA MEJORAR LA LEGIBILIDAD
         private void MostrarVista(string tipo)
         {
-            //  Ocultar todo por defecto
+            // Ocultar todo por defecto
+            OcultarTodosLosControles();
+
+            // Usamos switch para seleccionar la lógica específica de la vista
+            switch (tipo.ToLower())
+            {
+                case "pagos":
+                    ConfigurarVistaPagos();
+                    break;
+
+                case "historialbackup":
+                    ConfigurarVistaHistorialBackup();
+                    break;
+
+                case "profesores":
+                    ConfigurarVistaProfesores();
+                    break;
+
+                case "estadisticas":
+                    // Mostrar los botones de sub-sección
+                    BEstadisticas.Visible = true;
+                    BPagos.Visible = true;
+                    BProfesores.Visible = true;
+
+                    // Configura la sub-vista predeterminada (lblMensaje)
+                    ConfigurarVistaEstadisticas();
+                    break;
+
+                // Las vistas de Usuario (Personal, alumnos, entrenadores)
+                case "personal":
+                case "entrenadores":
+                case "alumnos":
+                default:
+                    ConfigurarVistaUsuarios(tipo);
+                    break;
+            }
+        }
+
+        // MÉTODOS PRIVADOS AUXILIARES PARA ENCAPSULAR LA LÓGICA DE VISTA
+
+        private void OcultarTodosLosControles()
+        {
+            // Ocultar todo por defecto
             labelTextoBienvenida.Visible = false;
             picBoxEstadisticas.Visible = false;
             dataGridView.Visible = false;
             btnAgregar.Visible = false;
             btnEliminar.Visible = false;
             BRefresh.Visible = false;
-            chartInscriptos.Visible = false; // importante
+            chartInscriptos.Visible = false;
             contentPanel.Visible = true;
             chartPagos.Visible = false;
             labelTotalAlumnos.Visible = false;
             dataGridBackup.Visible = false;
-            BBackUp.Visible = false;  // OCULTA SIEMPRE POR DEFECTO
+            BBackUp.Visible = false;
             chartProfesores.Visible = false;
             dataGridAlumnosProfesor.Visible = false;
             dataGridPagos.Visible = false;
             textBoxBusqueda.Visible = false;
             BBuscar.Visible = false;
 
+            // Ocultar siempre los botones de sub-estadísticas por defecto
+            BEstadisticas.Visible = false;
+            BPagos.Visible = false;
+            BProfesores.Visible = false;
 
+            // Ocultar el mensaje, se mostrará solo si es la vista predeterminada de Estadísticas
+            lblMensaje.Visible = false;
+        }
 
+        private void ConfigurarVistaPagos()
+        {
+            labelTitulo.Text = "Estadísticas de facturación";
 
+            // Ocultar elementos no necesarios
+            chartInscriptos.Visible = false;
+            dataGridView.Visible = false;
+            btnAgregar.Visible = false;
+            btnEliminar.Visible = false;
+            BRefresh.Visible = false;
 
+            // Mostrar elementos de Pagos
+            chartPagos.Visible = true;
+            dataGridPagos.Visible = true;
 
-            //  Si es PAGOS
-            if (tipo == "Pagos")
-            {
-                labelTitulo.Text = "Estadísticas de facturación";
-                chartInscriptos.Visible = false;
-                dataGridView.Visible = false;
-                btnAgregar.Visible = false;
-                btnEliminar.Visible = false;
-                BRefresh.Visible = false;
-                chartPagos.Visible = true;
-                dataGridPagos.Visible = true;
-                //  aseguramos que el gráfico de pagos se vea encima del resto
-                chartPagos.BringToFront();
+            chartPagos.BringToFront();
 
-                CargarGraficoPagos();
-                CargarTablaPagos();  
+            CargarGraficoPagos();
+            CargarTablaPagos();
+        }
 
-                return; 
-            }
+        private void ConfigurarVistaHistorialBackup()
+        {
+            labelTitulo.Text = "Historial de copias de seguridad";
+            chartInscriptos.Visible = false;
+            chartPagos.Visible = false;
+            dataGridView.Visible = false;
+            labelTotalAlumnos.Visible = false;
+            dataGridBackup.Visible = true;
 
-            // Si es BACKUPS
-            if (tipo == "HistorialBackup")
-            {
-                labelTitulo.Text = "Historial de copias de seguridad";
-                chartInscriptos.Visible = false;
-                chartPagos.Visible = false;
-                dataGridView.Visible = false;
-                labelTotalAlumnos.Visible = false;
-                dataGridBackup.Visible = true;
+            BBackUp.Visible = true;
 
-                // mostramos el botón para crear backup 👇
-                BBackUp.Visible = true;
+            CargarHistorialBackup();
+        }
 
-                CargarHistorialBackup();
-                return;
-            }
+        private void ConfigurarVistaProfesores()
+        {
+            labelTitulo.Text = "Distribución de alumnos por profesor";
 
-            if (tipo == "Profesores")
-            {
-                labelTitulo.Text = "Distribución de alumnos por profesor";
-                chartProfesores.Visible = true;
-                chartPagos.Visible = false;
-                chartInscriptos.Visible = false;
-                dataGridView.Visible = false;
-                dataGridBackup.Visible = false;
+            // Asegurar que solo el chart de Profesores y su tabla están visibles
+            chartProfesores.Visible = true;
+            chartPagos.Visible = false;
+            chartInscriptos.Visible = false;
+            dataGridPagos.Visible = false;
+            dataGridAlumnosProfesor.Visible = false;
 
-                CargarGraficoProfesores();
-                return;
-            }
+            CargarGraficoProfesores();
+        }
 
+        private void ConfigurarVistaEstadisticas()
+        {
+            labelTitulo.Text = "Estadísticas del gimnasio";
 
+            // Ocultar todos los charts/grillas y mostrar solo el mensaje
+            chartPagos.Visible = false;
+            chartProfesores.Visible = false;
+            chartInscriptos.Visible = false;
+            dataGridPagos.Visible = false;
+            dataGridAlumnosProfesor.Visible = false;
 
-            //  Si es ESTADÍSTICAS
-            if (tipo == "Estadisticas")
-            {
-                labelTitulo.Text = "Estadísticas del gimnasio";
+            // Muestra el mensaje de bienvenida/instrucción
+            lblMensaje.Visible = true;
+            labelTotalAlumnos.Visible = false;
+        }
 
-                // mostramos el chart real (se carga desde el botón BEstadisticas)
-                chartInscriptos.Visible = true;
+        private void ConfigurarVistaUsuarios(string tipo)
+        {
+            // Lógica original para cargar el DataGridView (Personal, Entrenadores, Alumnos)
 
-                return; // salgo, no sigo abajo
-            }
-
-            //  Si no es ni pagos ni estadísticas hay que mostrar DataGridView (Usuarios)
+            // 1. Limpiar y preparar DataGridView
             dataGridView.Columns.Clear();
             dataGridView.Rows.Clear();
 
-            // Botón de detalles
+            // 2. Definir Columnas
             DataGridViewButtonColumn btnDetalles = new DataGridViewButtonColumn
             {
                 HeaderText = "Detalles",
@@ -162,7 +224,6 @@ namespace Taller2_G34
                 UseColumnTextForButtonValue = true
             };
 
-            // Columnas del listado
             dataGridView.Columns.Add("DNI", "DNI");
             dataGridView.Columns.Add("Nombre", "Nombre");
             dataGridView.Columns.Add("Apellido", "Apellido");
@@ -170,18 +231,14 @@ namespace Taller2_G34
             dataGridView.Columns.Add("TipoUsuario", "Tipo de usuario");
             dataGridView.Columns.Add(btnDetalles);
 
-            // Conexión y carga de datos
-            string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
-            // string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
-
-
+            // 3. Conexión y carga de datos
             string query = @"
-        SELECT u.dni, u.nombre, u.apellido, u.email, r.descripcion
-        FROM Usuario u
-        INNER JOIN Rol r ON u.id_rol = r.id_rol
-        WHERE u.estado = 1";
+            SELECT u.dni, u.nombre, u.apellido, u.email, r.descripcion
+            FROM Usuario u
+            INNER JOIN Rol r ON u.id_rol = r.id_rol
+            WHERE u.estado = 1";
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = new SqlConnection(ConnectionStringEnerGym))
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand(query, conn);
@@ -199,11 +256,11 @@ namespace Taller2_G34
                 }
             }
 
+            // 4. Configuración visual y de botones
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView.Visible = true;
 
-            //  Configurar según tipo
-            if (tipo == "Personal")
+            if (tipo.ToLower() == "personal")
             {
                 labelTitulo.Text = "Personal";
                 btnAgregar.Text = "Agregar Usuario";
@@ -213,16 +270,65 @@ namespace Taller2_G34
                 textBoxBusqueda.Visible = true;
                 BBuscar.Visible = true;
             }
-            else if (tipo == "entrenadores")
+            else if (tipo.ToLower() == "entrenadores")
             {
                 labelTitulo.Text = "Entrenadores";
             }
-            else if (tipo == "alumnos")
-            {
-                labelTitulo.Text = "Alumnos";
-            }
         }
 
+        // MÉTODOS DE EVENTO 
+        private void BEstadisticas_Click(object sender, EventArgs e)
+        {
+            // Ocultar el mensaje y otros gráficos/grillas
+            lblMensaje.Visible = false;
+            chartPagos.Visible = false;
+            chartProfesores.Visible = false;
+            dataGridPagos.Visible = false;
+            dataGridAlumnosProfesor.Visible = false;
+            picBoxEstadisticas.Visible = false;
+
+            // Configurar la vista de Inscriptos
+            labelTitulo.Text = "Estadísticas del gimnasio - Distribución de planes";
+            chartInscriptos.Visible = true;
+            labelTotalAlumnos.Visible = true;
+            CargarGraficoInscriptos();
+            CargarTotalAlumnosActivos();
+        }
+
+        private void BPagos_Click(object sender, EventArgs e)
+        {
+            // Ocultar el mensaje y otros gráficos/grillas
+            lblMensaje.Visible = false;
+            chartInscriptos.Visible = false;
+            chartProfesores.Visible = false;
+            dataGridAlumnosProfesor.Visible = false;
+            picBoxEstadisticas.Visible = false;
+            labelTotalAlumnos.Visible = false;
+
+            // Configurar la vista de Pagos
+            ConfigurarVistaPagos();
+        }
+
+        private void BProfesores_Click(object sender, EventArgs e)
+        {
+            // Ocultar el mensaje y otros gráficos/grillas
+            lblMensaje.Visible = false;
+            chartInscriptos.Visible = false;
+            chartPagos.Visible = false;
+            dataGridPagos.Visible = false;
+            dataGridAlumnosProfesor.Visible = false;
+            picBoxEstadisticas.Visible = false;
+            labelTotalAlumnos.Visible = false;
+
+            // Configurar la vista de Profesores
+            ConfigurarVistaProfesores();
+        }
+
+        private void BCharts_Click(object sender, EventArgs e)
+        {
+            // Este botón abre la sección principal de Estadísticas, mostrando el mensaje
+            MostrarVista("Estadisticas");
+        }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
@@ -239,12 +345,10 @@ namespace Taller2_G34
 
                 if (confirmacion == DialogResult.Yes)
                 {
-                     string connectionString = "Data Source=alcachofio\\SQLEXPRESS;Initial Catalog=EnerGym_BD_V9;Integrated Security=True";
-                    //  string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
-
+                    // *** USO DE CONEXIÓN CENTRALIZADA ***
                     string query = "UPDATE Usuario SET estado = 0 WHERE dni = @dni"; // Baja lógica
 
-                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    using (SqlConnection connection = new SqlConnection(ConnectionStringEnerGym))
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@dni", dniUsuario);
@@ -276,8 +380,8 @@ namespace Taller2_G34
                 dataGridView.Columns[e.ColumnIndex].Name == "Detalles")
             {
                 string dni = dataGridView.Rows[e.RowIndex].Cells["DNI"].Value.ToString();
-                EditUser editForm = new EditUser(dni);
-                editForm.ShowDialog();
+                // EditUser editForm = new EditUser(dni); 
+                // editForm.ShowDialog();
             }
         }
 
@@ -286,48 +390,19 @@ namespace Taller2_G34
             MostrarVista("Personal");
         }
 
-        private void BPagos_Click(object sender, EventArgs e)
-        {
-            MostrarVista("Pagos");
-
-            // Ocultamos todo lo demás
-            chartInscriptos.Visible = false;
-            picBoxEstadisticas.Visible = false;
-
-            // Mostramos el gráfico de pagos
-            chartPagos.Visible = true;
-
-            // Cargamos los datos
-            CargarGraficoPagos();
-        }
-
-
-        private void BEstadisticas_Click(object sender, EventArgs e)
-        {
-            MostrarVista("Estadisticas");
-            CargarGraficoInscriptos();
-            // Mostrar la label
-            labelTotalAlumnos.Visible = true;
-
-            //  Cargar el total actual de alumnos activos
-            CargarTotalAlumnosActivos();
-
-        }
-
 
         private void BGraficoInscriptos_Click(object sender, EventArgs e)
         {
             picBoxEstadisticas.Visible = true;
-            picBoxEstadisticas.Image = Properties.Resources.inscriptos_mockup;
+            // picBoxEstadisticas.Image = Properties.Resources.inscriptos_mockup; 
         }
 
         private void BGraficoPagos_Click(object sender, EventArgs e)
         {
             picBoxEstadisticas.Visible = true;
-            picBoxEstadisticas.Image = Properties.Resources.metodos_pago;
+            // picBoxEstadisticas.Image = Properties.Resources.metodos_pago; 
         }
 
-        
 
         private void contentPanel_Paint(object sender, PaintEventArgs e)
         {
@@ -336,6 +411,11 @@ namespace Taller2_G34
 
         private void CargarGraficoInscriptos(string filtro = "Todos")
         {
+            // Ocultar mensaje si se carga el gráfico
+            lblMensaje.Visible = false;
+
+            chartInscriptos.Visible = true;
+            labelTotalAlumnos.Visible = true;
             chartInscriptos.Series.Clear();
             chartInscriptos.ChartAreas.Clear();
             chartInscriptos.Titles.Clear();
@@ -343,9 +423,7 @@ namespace Taller2_G34
             ChartArea area = new ChartArea("Area1");
             chartInscriptos.ChartAreas.Add(area);
 
-             string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
-            // string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
-
+            // *** USO DE CONEXIÓN CENTRALIZADA ***
             string query = @"
             SELECT tp.descripcion AS TipoPlan, COUNT(a.id_alumno) AS Cantidad
             FROM Alumno a
@@ -362,7 +440,7 @@ namespace Taller2_G34
             query = string.Format(query, filtroSQL);
 
             DataTable dt = new DataTable();
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = new SqlConnection(ConnectionStringEnerGym))
             {
                 SqlDataAdapter da = new SqlDataAdapter(query, conn);
                 da.Fill(dt);
@@ -446,9 +524,6 @@ namespace Taller2_G34
             ChartArea area = new ChartArea("Area1");
             chartPagos.ChartAreas.Add(area);
 
-             string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
-            // string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
-
             string query = @"
             SELECT 
                 DATENAME(MONTH, p.fecha) AS Mes,
@@ -461,7 +536,7 @@ namespace Taller2_G34
             ORDER BY MesN;";
 
             DataTable dt = new DataTable();
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = new SqlConnection(ConnectionStringEnerGym))
             {
                 SqlDataAdapter da = new SqlDataAdapter(query, conn);
                 da.Fill(dt);
@@ -474,7 +549,7 @@ namespace Taller2_G34
                 XValueMember = "Mes",
                 YValueMembers = "TotalRecaudado",
                 IsValueShownAsLabel = true,
-                LabelFormat = "C0"   // formateo de etiquetas de cada barra como moneda
+                LabelFormat = "C0"    // formateo de etiquetas de cada barra como moneda
             };
             chartPagos.Series.Add(serie);
 
@@ -492,7 +567,7 @@ namespace Taller2_G34
             chartPagos.Legends[0].Docking = Docking.Bottom;
 
 
-            //  Enlazamos los datos normalmente
+            // Enlazamos los datos normalmente
             chartPagos.DataSource = dt;
             chartPagos.DataBind();
 
@@ -502,11 +577,11 @@ namespace Taller2_G34
                 p.Label = "$" + p.YValues[0].ToString("N0"); // etiqueta sobre cada barra
             }
 
-            //  Cambiamos el formato del eje Y también
+            // Cambiamos el formato del eje Y también
             chartPagos.ChartAreas["Area1"].AxisY.LabelStyle.Format = "N0"; // números simples
             chartPagos.ChartAreas["Area1"].AxisY.LabelStyle.ForeColor = Color.Black;
 
-            //  Dibujamos el símbolo $ en el título del eje Y
+            // Dibujamos el símbolo $ en el título del eje Y
             chartPagos.ChartAreas["Area1"].AxisY.Title = "Total recaudado ($)";
 
 
@@ -515,40 +590,38 @@ namespace Taller2_G34
 
         private void CargarTablaPagos()
         {
-               string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
-            //  string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
-
+            // *** USO DE CONEXIÓN CENTRALIZADA ***
             string query = @"
-       SELECT 
-    p.id_pago,
-    p.fecha,
-    CONCAT(a.nombre, ' ', a.apellido) AS Alumno,
-    p.total AS Monto,
-    m.nombre AS MedioPago,
-    p.ruta_pdf
-FROM Pago p
-INNER JOIN Alumno a ON p.id_alumno = a.id_alumno
-INNER JOIN MedioDePago m ON p.id_medioPago = m.id_medioPago
-WHERE p.ruta_pdf IS NOT NULL
-  AND p.ruta_pdf LIKE '%Factura_%'
-ORDER BY p.fecha DESC;
-";
+            SELECT 
+                p.id_pago,
+                p.fecha,
+                CONCAT(a.nombre, ' ', a.apellido) AS Alumno,
+                p.total AS Monto,
+                m.nombre AS MedioPago,
+                p.ruta_pdf
+            FROM Pago p
+            INNER JOIN Alumno a ON p.id_alumno = a.id_alumno
+            INNER JOIN MedioDePago m ON p.id_medioPago = m.id_medioPago
+            WHERE p.ruta_pdf IS NOT NULL
+                AND p.ruta_pdf LIKE '%Factura_%'
+            ORDER BY p.fecha DESC;
+            ";
 
             DataTable dt = new DataTable();
 
-            using (SqlConnection cn = new SqlConnection(connectionString))
+            using (SqlConnection cn = new SqlConnection(ConnectionStringEnerGym))
             using (SqlDataAdapter da = new SqlDataAdapter(query, cn))
             {
                 da.Fill(dt);
             }
 
-            //  Insertamos columna de enumeración en la posición 0
+            // Insertamos columna de enumeración en la posición 0
             dt.Columns.Add("N°", typeof(int));
             int index = 1;
             foreach (DataRow row in dt.Rows)
                 row["N°"] = index++;
 
-            //  Reordenamos la columna al principio
+            // Reordenamos la columna al principio
             dt.Columns["N°"].SetOrdinal(0);
 
             dataGridPagos.DataSource = dt;
@@ -559,7 +632,7 @@ ORDER BY p.fecha DESC;
             if (dataGridPagos.Columns.Contains("ruta_pdf"))
                 dataGridPagos.Columns["ruta_pdf"].Visible = false;
 
-            //  botón de abrir PDF
+            // botón de abrir PDF
             if (!dataGridPagos.Columns.Contains("VerComprobante"))
             {
                 DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
@@ -579,12 +652,9 @@ ORDER BY p.fecha DESC;
         {
             try
             {
-                 string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
-                // string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
-
                 string query = "SELECT COUNT(*) FROM Alumno WHERE estado = 1";
 
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = new SqlConnection(ConnectionStringEnerGym))
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(query, conn);
@@ -599,7 +669,7 @@ ORDER BY p.fecha DESC;
                 MessageBox.Show("Error al cargar total de alumnos: " + ex.Message);
             }
         }
-      
+
 
         private void BBackUp_Click(object sender, EventArgs e)
         {
@@ -626,40 +696,42 @@ ORDER BY p.fecha DESC;
                     {
                         string rutaDestinoFinal = dialog.FileName;
 
-                        //  Creamos una carpeta temporal segura (donde SQL sí puede escribir)
+                        // CreaR una carpeta temporal segura
                         string rutaTemporal = Path.Combine(@"C:\BackupsTemp", Path.GetFileName(rutaDestinoFinal));
                         Directory.CreateDirectory(@"C:\BackupsTemp");
-
-                         string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=master;Trusted_Connection=True;";
-                        //  string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
 
                         string query = $@"
                     BACKUP DATABASE EnerGym_BD_V9
                     TO DISK = '{rutaTemporal}'
                     WITH FORMAT, MEDIANAME = 'EnerGymBackup', NAME = 'Copia de seguridad EnerGym';";
 
-                        using (SqlConnection conn = new SqlConnection(connectionString))
+                        using (SqlConnection conn = new SqlConnection(ConnectionStringMaster))
                         {
                             conn.Open();
 
-                            // Ejecuta el BACKUP en la ruta temporal
+                            // EjecutaR el BACKUP en la ruta temporal
                             using (SqlCommand cmd = new SqlCommand(query, conn))
                                 cmd.ExecuteNonQuery();
 
-                            //  Registrar el backup en la base
+                            // Registrar el backup en la base
                             string registrarBackup = "INSERT INTO EnerGym_BD_V9.dbo.HistorialBackup (ruta) VALUES (@ruta)";
-                            using (SqlCommand logCmd = new SqlCommand(registrarBackup, conn))
+                            using (SqlCommand logCmd = new SqlCommand(ConnectionStringEnerGym))
                             {
                                 logCmd.Parameters.AddWithValue("@ruta", rutaDestinoFinal);
-                                logCmd.ExecuteNonQuery();
+                                // CREAR una nueva conexión a EnerGym, ya que la actual es a Master.
+                                using (SqlConnection connLog = new SqlConnection(ConnectionStringEnerGym))
+                                {
+                                    connLog.Open();
+                                    logCmd.Connection = connLog;
+                                    logCmd.ExecuteNonQuery();
+                                }
                             }
                         }
-
-                        //   Mover el backup desde la ruta temporal a la seleccionada por el usuario
+                        // Mover el backup desde la ruta temporal a la seleccionada por el usuario
                         File.Copy(rutaTemporal, rutaDestinoFinal, overwrite: true);
-                        File.Delete(rutaTemporal); // opcional, limpia el temporal
+                        File.Delete(rutaTemporal); 
 
-                        //  Confirmación visual
+                        // Confirmación visual
                         MessageBox.Show(
                             $"Copia de seguridad creada exitosamente.\n\nRuta:\n{rutaDestinoFinal}",
                             "Backup completado",
@@ -691,12 +763,9 @@ ORDER BY p.fecha DESC;
         {
             try
             {
-                string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
-                // string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
-
                 string query = "SELECT fecha AS [Fecha del Backup], ruta AS [Ubicación del Archivo] FROM HistorialBackup ORDER BY fecha DESC;";
 
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = new SqlConnection(ConnectionStringEnerGym))
                 using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
                 {
                     DataTable dt = new DataTable();
@@ -723,21 +792,18 @@ ORDER BY p.fecha DESC;
             ChartArea area = new ChartArea("Area1");
             chartProfesores.ChartAreas.Add(area);
 
-            string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
-            // string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
-
             string query = @"
-        SELECT 
-            CONCAT(u.nombre, ' ', u.apellido) AS Profesor,
-            COUNT(a.id_alumno) AS CantidadAlumnos
-        FROM Alumno a
-        INNER JOIN Usuario u ON a.id_coach = u.id_usuario
-        WHERE a.estado = 1 AND u.estado = 1 AND u.id_rol = 3
-        GROUP BY u.nombre, u.apellido
-        ORDER BY CantidadAlumnos DESC;";
+            SELECT 
+                CONCAT(u.nombre, ' ', u.apellido) AS Profesor,
+                COUNT(a.id_alumno) AS CantidadAlumnos
+            FROM Alumno a
+            INNER JOIN Usuario u ON a.id_coach = u.id_usuario
+            WHERE a.estado = 1 AND u.estado = 1 AND u.id_rol = 3
+            GROUP BY u.nombre, u.apellido
+            ORDER BY CantidadAlumnos DESC;";
 
             DataTable dt = new DataTable();
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = new SqlConnection(ConnectionStringEnerGym))
             {
                 SqlDataAdapter da = new SqlDataAdapter(query, conn);
                 da.Fill(dt);
@@ -785,20 +851,15 @@ ORDER BY p.fecha DESC;
             dataGridAlumnosProfesor.DataSource = null;  // limpia el origen anterior
             dataGridAlumnosProfesor.Visible = true;
 
-
-            string connectionString = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
-            //  string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
-
-            //  Consulta dinámica según el profesor seleccionado
             string query = @"
-        SELECT a.nombre AS Nombre, a.apellido AS Apellido, a.dni AS DNI
-        FROM Alumno a
-        INNER JOIN Usuario u ON a.id_coach = u.id_usuario
-        WHERE u.estado = 1 AND a.estado = 1
-          AND CONCAT(u.nombre, ' ', u.apellido) = @nombreProfesor;";
+            SELECT a.nombre AS Nombre, a.apellido AS Apellido, a.dni AS DNI
+            FROM Alumno a
+            INNER JOIN Usuario u ON a.id_coach = u.id_usuario
+            WHERE u.estado = 1 AND a.estado = 1
+              AND CONCAT(u.nombre, ' ', u.apellido) = @nombreProfesor;";
 
             DataTable dt = new DataTable();
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = new SqlConnection(ConnectionStringEnerGym))
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {
                 cmd.Parameters.AddWithValue("@nombreProfesor", nombreProfesor);
@@ -823,7 +884,7 @@ ORDER BY p.fecha DESC;
                 // Llamar al método para mostrar los alumnos
                 CargarAlumnosDeProfesor(profesor);
 
-              
+
             }
         }
 
@@ -858,26 +919,22 @@ ORDER BY p.fecha DESC;
                 MostrarVista("Personal");
                 return;
             }
-
-            // conexión
-            string connectionString = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
-
             string query = @"
-    SELECT u.dni, u.nombre, u.apellido, u.email, r.descripcion
-    FROM Usuario u
-    INNER JOIN Rol r ON u.id_rol = r.id_rol
-    WHERE u.estado = 1
-    AND (
-            u.dni LIKE @filtro
-         OR u.nombre LIKE @filtro
-         OR u.apellido LIKE @filtro
-         OR r.descripcion LIKE @filtro   -- ✅ Buscar también por el tipo de usuario
-    )";
+            SELECT u.dni, u.nombre, u.apellido, u.email, r.descripcion
+            FROM Usuario u
+            INNER JOIN Rol r ON u.id_rol = r.id_rol
+            WHERE u.estado = 1
+            AND (
+                  u.dni LIKE @filtro
+                OR u.nombre LIKE @filtro
+                OR u.apellido LIKE @filtro
+                OR r.descripcion LIKE @filtro  
+            )";
 
 
             DataTable tabla = new DataTable();
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = new SqlConnection(ConnectionStringEnerGym))
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {
                 cmd.Parameters.AddWithValue("@filtro", "%" + filtro + "%");
@@ -902,14 +959,6 @@ ORDER BY p.fecha DESC;
 
 
 
-        private void BProfesores_Click(object sender, EventArgs e)
-        {
-            MostrarVista("Profesores");
-
-        }
-
-       
-
         private void BBuscar_Click(object sender, EventArgs e)
         {
             BuscarUsuario();
@@ -920,10 +969,14 @@ ORDER BY p.fecha DESC;
         {
             if (e.KeyCode == Keys.Enter)
             {
-                BBuscar.PerformClick();  // ✅ Ejecuta exactamente lo mismo que el botón Buscar
-                e.SuppressKeyPress = true; // ✅ evita el sonido y que aparezca un salto de línea
+                BBuscar.PerformClick();  // Ejecuta exactamente lo mismo que el botón Buscar
+                e.SuppressKeyPress = true; // evita el sonido y que aparezca un salto de línea
             }
+        }
+
+        private void contentContainer_Panel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
-

@@ -66,6 +66,8 @@
             this.labelAdmin = new System.Windows.Forms.Label();
             this.homeContainer = new System.Windows.Forms.SplitContainer();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.BCharts = new System.Windows.Forms.Button();
+            this.lblMensaje = new System.Windows.Forms.Label();
             this.contentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridPagos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridAlumnosProfesor)).BeginInit();
@@ -89,12 +91,12 @@
             // BUsuarios
             // 
             this.BUsuarios.AutoSize = true;
-            this.BUsuarios.BackColor = System.Drawing.Color.Black;
+            this.BUsuarios.BackColor = System.Drawing.Color.Transparent;
             this.BUsuarios.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BUsuarios.FlatAppearance.BorderSize = 0;
             this.BUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BUsuarios.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BUsuarios.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BUsuarios.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.BUsuarios.Location = new System.Drawing.Point(66, 56);
             this.BUsuarios.Name = "BUsuarios";
             this.BUsuarios.Size = new System.Drawing.Size(197, 58);
@@ -153,8 +155,13 @@
             // 
             // contentPanel
             // 
+            this.contentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(175)))), ((int)(((byte)(46)))));
+            this.contentPanel.Controls.Add(this.lblMensaje);
+            this.contentPanel.Controls.Add(this.BProfesores);
             this.contentPanel.Controls.Add(this.dataGridPagos);
             this.contentPanel.Controls.Add(this.dataGridAlumnosProfesor);
+            this.contentPanel.Controls.Add(this.BPagos);
+            this.contentPanel.Controls.Add(this.BEstadisticas);
             this.contentPanel.Controls.Add(this.chartProfesores);
             this.contentPanel.Controls.Add(this.dataGridBackup);
             this.contentPanel.Controls.Add(this.BBackUp);
@@ -179,6 +186,7 @@
             // 
             // dataGridPagos
             // 
+            this.dataGridPagos.BackgroundColor = System.Drawing.Color.Cornsilk;
             this.dataGridPagos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridPagos.Location = new System.Drawing.Point(24, 433);
             this.dataGridPagos.Name = "dataGridPagos";
@@ -190,6 +198,7 @@
             // 
             // dataGridAlumnosProfesor
             // 
+            this.dataGridAlumnosProfesor.BackgroundColor = System.Drawing.Color.Cornsilk;
             this.dataGridAlumnosProfesor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridAlumnosProfesor.Location = new System.Drawing.Point(97, 389);
             this.dataGridAlumnosProfesor.Name = "dataGridAlumnosProfesor";
@@ -218,6 +227,7 @@
             // dataGridBackup
             // 
             this.dataGridBackup.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridBackup.BackgroundColor = System.Drawing.Color.Cornsilk;
             this.dataGridBackup.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridBackup.Location = new System.Drawing.Point(176, 136);
             this.dataGridBackup.Name = "dataGridBackup";
@@ -374,7 +384,7 @@
             // 
             // contentContainer
             // 
-            this.contentContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(201)))), ((int)(((byte)(19)))));
+            this.contentContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(175)))), ((int)(((byte)(46)))));
             this.contentContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.contentContainer.Location = new System.Drawing.Point(0, 0);
             this.contentContainer.Name = "contentContainer";
@@ -387,12 +397,11 @@
             // 
             // contentContainer.Panel2
             // 
-            this.contentContainer.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(201)))), ((int)(((byte)(19)))));
-            this.contentContainer.Panel2.Controls.Add(this.BProfesores);
+            this.contentContainer.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(175)))), ((int)(((byte)(46)))));
+            this.contentContainer.Panel2.Controls.Add(this.BCharts);
             this.contentContainer.Panel2.Controls.Add(this.BHistorialBackup);
-            this.contentContainer.Panel2.Controls.Add(this.BPagos);
             this.contentContainer.Panel2.Controls.Add(this.BUsuarios);
-            this.contentContainer.Panel2.Controls.Add(this.BEstadisticas);
+            this.contentContainer.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.contentContainer_Panel2_Paint);
             this.contentContainer.Panel2MinSize = 200;
             this.contentContainer.Size = new System.Drawing.Size(1296, 639);
             this.contentContainer.SplitterDistance = 957;
@@ -401,15 +410,15 @@
             // BProfesores
             // 
             this.BProfesores.AutoSize = true;
-            this.BProfesores.BackColor = System.Drawing.Color.Black;
+            this.BProfesores.BackColor = System.Drawing.Color.Transparent;
             this.BProfesores.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BProfesores.FlatAppearance.BorderSize = 0;
             this.BProfesores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BProfesores.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BProfesores.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BProfesores.Location = new System.Drawing.Point(66, 297);
+            this.BProfesores.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.BProfesores.Location = new System.Drawing.Point(362, 56);
             this.BProfesores.Name = "BProfesores";
-            this.BProfesores.Size = new System.Drawing.Size(197, 56);
+            this.BProfesores.Size = new System.Drawing.Size(177, 42);
             this.BProfesores.TabIndex = 6;
             this.BProfesores.Text = "Profesores";
             this.BProfesores.UseVisualStyleBackColor = false;
@@ -418,32 +427,32 @@
             // BHistorialBackup
             // 
             this.BHistorialBackup.AutoSize = true;
-            this.BHistorialBackup.BackColor = System.Drawing.Color.Black;
+            this.BHistorialBackup.BackColor = System.Drawing.Color.Transparent;
             this.BHistorialBackup.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BHistorialBackup.FlatAppearance.BorderSize = 0;
             this.BHistorialBackup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BHistorialBackup.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BHistorialBackup.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BHistorialBackup.Location = new System.Drawing.Point(66, 372);
+            this.BHistorialBackup.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.BHistorialBackup.Location = new System.Drawing.Point(66, 228);
             this.BHistorialBackup.Name = "BHistorialBackup";
             this.BHistorialBackup.Size = new System.Drawing.Size(197, 56);
             this.BHistorialBackup.TabIndex = 5;
-            this.BHistorialBackup.Text = "Historial Backups";
+            this.BHistorialBackup.Text = "Backups";
             this.BHistorialBackup.UseVisualStyleBackColor = false;
             this.BHistorialBackup.Click += new System.EventHandler(this.BHistorialBackup_Click);
             // 
             // BPagos
             // 
             this.BPagos.AutoSize = true;
-            this.BPagos.BackColor = System.Drawing.Color.Black;
+            this.BPagos.BackColor = System.Drawing.Color.Transparent;
             this.BPagos.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BPagos.FlatAppearance.BorderSize = 0;
             this.BPagos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BPagos.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BPagos.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BPagos.Location = new System.Drawing.Point(66, 214);
+            this.BPagos.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.BPagos.Location = new System.Drawing.Point(195, 56);
             this.BPagos.Name = "BPagos";
-            this.BPagos.Size = new System.Drawing.Size(197, 56);
+            this.BPagos.Size = new System.Drawing.Size(161, 42);
             this.BPagos.TabIndex = 2;
             this.BPagos.Text = "Pagos";
             this.BPagos.UseVisualStyleBackColor = false;
@@ -452,17 +461,17 @@
             // BEstadisticas
             // 
             this.BEstadisticas.AutoSize = true;
-            this.BEstadisticas.BackColor = System.Drawing.Color.Black;
+            this.BEstadisticas.BackColor = System.Drawing.Color.Transparent;
             this.BEstadisticas.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BEstadisticas.FlatAppearance.BorderSize = 0;
             this.BEstadisticas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BEstadisticas.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BEstadisticas.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BEstadisticas.Location = new System.Drawing.Point(66, 136);
+            this.BEstadisticas.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.BEstadisticas.Location = new System.Drawing.Point(24, 56);
             this.BEstadisticas.Name = "BEstadisticas";
-            this.BEstadisticas.Size = new System.Drawing.Size(197, 56);
+            this.BEstadisticas.Size = new System.Drawing.Size(165, 42);
             this.BEstadisticas.TabIndex = 0;
-            this.BEstadisticas.Text = "Estadisticas";
+            this.BEstadisticas.Text = "Inscriptos";
             this.BEstadisticas.UseVisualStyleBackColor = false;
             this.BEstadisticas.Click += new System.EventHandler(this.BEstadisticas_Click);
             // 
@@ -486,7 +495,7 @@
             // 
             this.labelAdmin.AutoSize = true;
             this.labelAdmin.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAdmin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(201)))), ((int)(((byte)(19)))));
+            this.labelAdmin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(175)))), ((int)(((byte)(46)))));
             this.labelAdmin.Location = new System.Drawing.Point(125, 30);
             this.labelAdmin.Name = "labelAdmin";
             this.labelAdmin.Size = new System.Drawing.Size(301, 32);
@@ -495,7 +504,7 @@
             // 
             // homeContainer
             // 
-            this.homeContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(201)))), ((int)(((byte)(19)))));
+            this.homeContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(175)))), ((int)(((byte)(46)))));
             this.homeContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.homeContainer.Location = new System.Drawing.Point(0, 0);
             this.homeContainer.Name = "homeContainer";
@@ -525,6 +534,29 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
+            // 
+            // BCharts
+            // 
+            this.BCharts.FlatAppearance.BorderSize = 0;
+            this.BCharts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BCharts.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BCharts.Location = new System.Drawing.Point(94, 136);
+            this.BCharts.Name = "BCharts";
+            this.BCharts.Size = new System.Drawing.Size(150, 60);
+            this.BCharts.TabIndex = 6;
+            this.BCharts.Text = "Estadisticas";
+            this.BCharts.UseVisualStyleBackColor = true;
+            this.BCharts.Click += new System.EventHandler(this.BCharts_Click);
+            // 
+            // lblMensaje
+            // 
+            this.lblMensaje.AutoSize = true;
+            this.lblMensaje.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMensaje.Location = new System.Drawing.Point(205, 270);
+            this.lblMensaje.Name = "lblMensaje";
+            this.lblMensaje.Size = new System.Drawing.Size(495, 27);
+            this.lblMensaje.TabIndex = 21;
+            this.lblMensaje.Text = "Por favor selecciona que estadísticas deseas ver";
             // 
             // HomePagePropietario
             // 
@@ -590,5 +622,7 @@
         private System.Windows.Forms.Button BProfesores;
         private System.Windows.Forms.DataGridView dataGridAlumnosProfesor;
         private System.Windows.Forms.DataGridView dataGridPagos;
+        private System.Windows.Forms.Button BCharts;
+        private System.Windows.Forms.Label lblMensaje;
     }
 }
