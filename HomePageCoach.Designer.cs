@@ -69,7 +69,6 @@
             this.labelCoach.Size = new System.Drawing.Size(279, 32);
             this.labelCoach.TabIndex = 4;
             this.labelCoach.Text = "Bienvenido, Coach ";
-            this.labelCoach.Click += new System.EventHandler(this.label2_Click);
             // 
             // BSalir
             // 
@@ -104,7 +103,6 @@
             this.homeContainer.Panel1.Controls.Add(this.BSalir);
             this.homeContainer.Panel1.Controls.Add(this.pictureBox1);
             this.homeContainer.Panel1.Controls.Add(this.labelCoach);
-            this.homeContainer.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint_1);
             // 
             // homeContainer.Panel2
             // 
@@ -123,7 +121,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // contentContainer
             // 
@@ -138,7 +135,6 @@
             // 
             this.contentContainer.Panel1.Controls.Add(this.contentPanel);
             this.contentContainer.Panel1.Controls.Add(this.labelTextoBienvenida);
-            this.contentContainer.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.contentContainer_Panel1_Paint);
             this.contentContainer.Panel1MinSize = 550;
             // 
             // contentContainer.Panel2
@@ -146,7 +142,6 @@
             this.contentContainer.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(175)))), ((int)(((byte)(46)))));
             this.contentContainer.Panel2.Controls.Add(this.BVerRutinas);
             this.contentContainer.Panel2.Controls.Add(this.BVerAlumnos);
-            this.contentContainer.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint_1);
             this.contentContainer.Panel2MinSize = 200;
             this.contentContainer.Size = new System.Drawing.Size(1000, 515);
             this.contentContainer.SplitterDistance = 733;
@@ -223,6 +218,7 @@
             this.textBoxBusqueda.Name = "textBoxBusqueda";
             this.textBoxBusqueda.Size = new System.Drawing.Size(288, 24);
             this.textBoxBusqueda.TabIndex = 5;
+            this.textBoxBusqueda.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxBusqueda_KeyDown);
             // 
             // BBuscar
             // 

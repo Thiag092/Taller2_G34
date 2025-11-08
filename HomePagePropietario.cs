@@ -590,7 +590,6 @@ namespace Taller2_G34
 
         private void CargarTablaPagos()
         {
-            // *** USO DE CONEXIÓN CENTRALIZADA ***
             string query = @"
             SELECT 
                 p.id_pago,
