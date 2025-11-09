@@ -30,7 +30,7 @@ namespace Taller2_G34
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.homeContainer = new System.Windows.Forms.SplitContainer();
             this.BSalir = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -187,13 +187,13 @@ namespace Taller2_G34
             this.btnVerIntermedio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVerIntermedio.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVerIntermedio.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnVerIntermedio.Location = new System.Drawing.Point(438, 57);
+            this.btnVerIntermedio.Location = new System.Drawing.Point(437, 57);
             this.btnVerIntermedio.Name = "btnVerIntermedio";
             this.btnVerIntermedio.Size = new System.Drawing.Size(143, 38);
             this.btnVerIntermedio.TabIndex = 15;
             this.btnVerIntermedio.Text = "Intermedios";
             this.btnVerIntermedio.UseVisualStyleBackColor = false;
-            this.btnVerIntermedio.Visible = false;
+            this.btnVerIntermedio.Click += new System.EventHandler(this.btnVerIntermedio_Click);
             // 
             // btnVerAvanzados
             // 
@@ -205,7 +205,7 @@ namespace Taller2_G34
             this.btnVerAvanzados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVerAvanzados.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVerAvanzados.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnVerAvanzados.Location = new System.Drawing.Point(587, 57);
+            this.btnVerAvanzados.Location = new System.Drawing.Point(585, 57);
             this.btnVerAvanzados.Name = "btnVerAvanzados";
             this.btnVerAvanzados.Size = new System.Drawing.Size(143, 38);
             this.btnVerAvanzados.TabIndex = 14;
@@ -230,7 +230,7 @@ namespace Taller2_G34
             this.btnVerPrincipiantes.TabIndex = 13;
             this.btnVerPrincipiantes.Text = "Principiantes";
             this.btnVerPrincipiantes.UseVisualStyleBackColor = false;
-            this.btnVerPrincipiantes.Visible = false;
+            this.btnVerPrincipiantes.Click += new System.EventHandler(this.btnVerPrincipiante_Click);
             // 
             // btnVerTodos
             // 
@@ -242,7 +242,7 @@ namespace Taller2_G34
             this.btnVerTodos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVerTodos.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVerTodos.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnVerTodos.Location = new System.Drawing.Point(289, 57);
+            this.btnVerTodos.Location = new System.Drawing.Point(24, 57);
             this.btnVerTodos.Name = "btnVerTodos";
             this.btnVerTodos.Size = new System.Drawing.Size(115, 38);
             this.btnVerTodos.TabIndex = 12;
@@ -308,6 +308,7 @@ namespace Taller2_G34
             this.textBoxBusqueda.Name = "textBoxBusqueda";
             this.textBoxBusqueda.Size = new System.Drawing.Size(288, 24);
             this.textBoxBusqueda.TabIndex = 7;
+            this.textBoxBusqueda.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxBusqueda_KeyDown);
             // 
             // BBuscar
             // 
@@ -323,6 +324,7 @@ namespace Taller2_G34
             this.BBuscar.TabIndex = 6;
             this.BBuscar.Text = "Buscar";
             this.BBuscar.UseVisualStyleBackColor = false;
+            this.BBuscar.Click += new System.EventHandler(this.BBuscar_Click);
             // 
             // btnEliminar
             // 
@@ -370,14 +372,14 @@ namespace Taller2_G34
             this.dataGridView.AllowUserToDeleteRows = false;
             this.dataGridView.AllowUserToResizeRows = false;
             this.dataGridView.BackgroundColor = System.Drawing.Color.Goldenrod;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Goldenrod;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Goldenrod;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.GridColor = System.Drawing.Color.DarkGoldenrod;
             this.dataGridView.Location = new System.Drawing.Point(24, 101);
