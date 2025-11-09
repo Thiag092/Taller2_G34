@@ -223,37 +223,63 @@ namespace Taller2_G34
 
 
         // --- Búsqueda y Eventos del DataGridView ---
-
-        private void BuscarUsuario()
+        private void Buscar()
         {
             string filtro = textBoxBusqueda.Text.Trim();
+            string query = "";
 
+            // Si el filtro está vacío, recarga la vista actual (Alumnos o Rutinas)
             if (string.IsNullOrEmpty(filtro))
             {
-                // Vuelve a cargar la vista completa de "Alumnos" si el filtro está vacío
-                MostrarVista("alumnos");
+                MostrarVista(vistaActual);
                 return;
             }
 
-            // La lógica de búsqueda se mantiene sin cambios (asumiendo que buscas alumnos)
-            string query = @"
-            SELECT 
-                a.dni AS DNI, 
-                a.nombre AS Nombre, 
-                a.apellido AS Apellido, 
-                a.email AS Email, 
-                tp.descripcion AS TipoUsuario  
-            FROM Alumno a
-            INNER JOIN PlanEntrenamiento p ON a.id_plan = p.id_plan
-            INNER JOIN TipoPlan tp ON p.id_tipoPlan = tp.id_tipoPlan
-            WHERE a.estado = 1
-            AND (
-                  a.dni LIKE @filtro
-                OR a.nombre LIKE @filtro
-                OR a.apellido LIKE @filtro
-                OR tp.descripcion LIKE @filtro 
-            )";
+            // Determinar la consulta SQL basada en la vista actual (Alumnos o Rutinas)
+            if (vistaActual == "rutinas")
+            {
+                // ⭐️ LÓGICA DE BÚSQUEDA DE RUTINAS ⭐️
+                query = @"
+                SELECT 
+                    p.id_plan AS ID,
+                    p.nombre AS [Nombre del Plan],
+                    t.descripcion AS [Tipo],
+                    COUNT(DISTINCT d.id_dia) AS [Días],
+                    COUNT(DISTINCT pe.id_ejercicio) AS [Ejercicios Totales]
+                FROM PlanEntrenamiento p
+                INNER JOIN TipoPlan t ON p.id_tipoPlan = t.id_tipoPlan
+                LEFT JOIN Plan_Dia d ON p.id_plan = d.id_plan
+                LEFT JOIN Plan_Ejercicio pe ON pe.id_plan = p.id_plan
+                WHERE p.estado = 1
+                AND (
+                      CAST(p.id_plan AS NVARCHAR) LIKE @filtro  -- Buscar por ID
+                    OR p.nombre LIKE @filtro                    -- Buscar por Nombre del Plan
+                )
+                GROUP BY p.id_plan, p.nombre, t.descripcion
+                ORDER BY p.id_plan;";
+            }
+                    else
+                    {
+                        query = @"
+                    SELECT 
+                        a.dni AS DNI, 
+                        a.nombre AS Nombre, 
+                        a.apellido AS Apellido, 
+                        a.email AS Email, 
+                        tp.descripcion AS TipoUsuario  
+                    FROM Alumno a
+                    INNER JOIN PlanEntrenamiento p ON a.id_plan = p.id_plan
+                    INNER JOIN TipoPlan tp ON p.id_tipoPlan = tp.id_tipoPlan
+                    WHERE a.estado = 1
+                    AND (
+                          a.dni LIKE @filtro
+                        OR a.nombre LIKE @filtro
+                        OR a.apellido LIKE @filtro
+                        OR tp.descripcion LIKE @filtro  
+                    )";
+                }
 
+            //Ejecutar la consulta
             DataTable tabla = new DataTable();
 
             using (SqlConnection conn = new SqlConnection(ConnectionString))
@@ -265,10 +291,7 @@ namespace Taller2_G34
                 da.Fill(tabla);
             }
 
-            // Limpiar DataGridView y llenar con resultados de la búsqueda
-            // NOTA: Para la búsqueda, es más fácil limpiar y rellenar si trabajamos con AutoGenerateColumns=false
-            // pero mantendré tu lógica original de limpiar Rows y luego añadir
-            dataGridView.Columns.Clear(); // Limpia columnas para que AutoGenerateColumns funcione correctamente con el nuevo set de datos.
+            dataGridView.Columns.Clear();
             dataGridView.DataSource = tabla;
 
             // Re-agrego la columna de detalles después de la búsqueda si no existe
@@ -287,7 +310,7 @@ namespace Taller2_G34
 
         private void BBuscar_Click(object sender, EventArgs e)
         {
-            BuscarUsuario();
+            Buscar();
         }
 
         private void BRefresh_Click(object sender, EventArgs e)
@@ -347,7 +370,65 @@ namespace Taller2_G34
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            
+
+            // Verificar selección
+            if (dataGridView.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Por favor, seleccione la Plantilla de Entrenamiento a dar de baja.", "Error de selección", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Obtener el ID del Plan de Entrenamiento de la fila seleccionada
+            DataGridViewRow filaSeleccionada = dataGridView.SelectedRows[0];
+            string columnaID = "ID"; 
+            string identificador = filaSeleccionada.Cells[columnaID].Value.ToString();
+
+            string mensajeConfirmacion = $"¿Está seguro que desea DAR DE BAJA la Plantilla de Entrenamiento ID {identificador}?\n\n(Se realizará una baja lógica)";
+
+            // Query de Baja Lógica para PlanEntrenamiento
+            string query = "UPDATE PlanEntrenamiento SET estado = 0 WHERE id_plan = @id";
+
+
+            // Confirmación del usuario
+            DialogResult confirmacion = MessageBox.Show(
+                mensajeConfirmacion,
+                "Confirmación de Baja",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            );
+
+            if (confirmacion == DialogResult.Yes)
+            {
+                // Ejecutar la Baja Lógica en la BD
+                try
+                {
+                    // Usar la cadena de conexión centralizada
+                    using (SqlConnection conn = new SqlConnection(ConnectionString))
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", identificador);
+
+                        conn.Open();
+                        int filasAfectadas = cmd.ExecuteNonQuery();
+
+                        if (filasAfectadas > 0)
+                        {
+                            MessageBox.Show("Plantilla de Entrenamiento dada de baja correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            // Recargar la vista actual (rutinas)
+                            CargarRutinasDesdeBD();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error: No se encontró la plantilla o ya estaba inactiva.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error al intentar dar de baja la plantilla: {ex.Message}", "Error de Base de Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void textBoxBusqueda_KeyDown(object sender, KeyEventArgs e)
