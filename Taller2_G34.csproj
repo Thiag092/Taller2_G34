@@ -89,12 +89,6 @@
     <Compile Include="EditAlumno.Designer.cs">
       <DependentUpon>EditAlumno.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditEjercicio.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="EditEjercicio.Designer.cs">
-      <DependentUpon>EditEjercicio.cs</DependentUpon>
-    </Compile>
     <Compile Include="EditPersonal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,18 +100,6 @@
     </Compile>
     <Compile Include="EditUser.Designer.cs">
       <DependentUpon>EditUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="EditRutina.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="EditRutina.Designer.cs">
-      <DependentUpon>EditRutina.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AgregarEjercicio.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AgregarEjercicio.Designer.cs">
-      <DependentUpon>AgregarEjercicio.cs</DependentUpon>
     </Compile>
     <Compile Include="EjercicioTemporal.cs" />
     <Compile Include="FormEditarPlan.cs">
@@ -189,20 +171,11 @@
     <EmbeddedResource Include="EditAlumno.resx">
       <DependentUpon>EditAlumno.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditEjercicio.resx">
-      <DependentUpon>EditEjercicio.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="EditPersonal.resx">
       <DependentUpon>EditPersonal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditUser.resx">
       <DependentUpon>EditUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="EditRutina.resx">
-      <DependentUpon>EditRutina.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AgregarEjercicio.resx">
-      <DependentUpon>AgregarEjercicio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEditarPlan.resx">
       <DependentUpon>FormEditarPlan.cs</DependentUpon>
@@ -323,6 +296,8 @@
     <None Include="Resources\logo_taller2.png.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\grafico-circular.png" />
+    <None Include="Resources\copia-de-seguridad-de-archivos.png" />
     <Content Include="Resources\logo_taller2 - copia.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

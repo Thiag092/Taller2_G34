@@ -38,14 +38,17 @@
             System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.BUsuarios = new System.Windows.Forms.Button();
             this.labelTextoBienvenida = new System.Windows.Forms.Label();
             this.textBoxBusqueda = new System.Windows.Forms.TextBox();
             this.BBuscar = new System.Windows.Forms.Button();
             this.labelTitulo = new System.Windows.Forms.Label();
             this.contentPanel = new System.Windows.Forms.Panel();
+            this.lblMensaje = new System.Windows.Forms.Label();
+            this.BProfesores = new System.Windows.Forms.Button();
             this.dataGridPagos = new System.Windows.Forms.DataGridView();
             this.dataGridAlumnosProfesor = new System.Windows.Forms.DataGridView();
+            this.BPagos = new System.Windows.Forms.Button();
+            this.BEstadisticas = new System.Windows.Forms.Button();
             this.chartProfesores = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.dataGridBackup = new System.Windows.Forms.DataGridView();
             this.BBackUp = new System.Windows.Forms.Button();
@@ -58,16 +61,13 @@
             this.btnAgregar = new System.Windows.Forms.Button();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.contentContainer = new System.Windows.Forms.SplitContainer();
-            this.BProfesores = new System.Windows.Forms.Button();
+            this.BCharts = new System.Windows.Forms.Button();
             this.BHistorialBackup = new System.Windows.Forms.Button();
-            this.BPagos = new System.Windows.Forms.Button();
-            this.BEstadisticas = new System.Windows.Forms.Button();
-            this.BSalir = new System.Windows.Forms.Button();
+            this.BUsuarios = new System.Windows.Forms.Button();
             this.labelAdmin = new System.Windows.Forms.Label();
             this.homeContainer = new System.Windows.Forms.SplitContainer();
+            this.BSalir = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.BCharts = new System.Windows.Forms.Button();
-            this.lblMensaje = new System.Windows.Forms.Label();
             this.contentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridPagos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridAlumnosProfesor)).BeginInit();
@@ -87,23 +87,6 @@
             this.homeContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // BUsuarios
-            // 
-            this.BUsuarios.AutoSize = true;
-            this.BUsuarios.BackColor = System.Drawing.Color.Transparent;
-            this.BUsuarios.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BUsuarios.FlatAppearance.BorderSize = 0;
-            this.BUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BUsuarios.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BUsuarios.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.BUsuarios.Location = new System.Drawing.Point(66, 56);
-            this.BUsuarios.Name = "BUsuarios";
-            this.BUsuarios.Size = new System.Drawing.Size(197, 58);
-            this.BUsuarios.TabIndex = 1;
-            this.BUsuarios.Text = "Usuarios";
-            this.BUsuarios.UseVisualStyleBackColor = false;
-            this.BUsuarios.Click += new System.EventHandler(this.BUsuarios_Click);
             // 
             // labelTextoBienvenida
             // 
@@ -184,6 +167,33 @@
             this.contentPanel.Visible = false;
             this.contentPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.contentPanel_Paint);
             // 
+            // lblMensaje
+            // 
+            this.lblMensaje.AutoSize = true;
+            this.lblMensaje.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMensaje.Location = new System.Drawing.Point(205, 270);
+            this.lblMensaje.Name = "lblMensaje";
+            this.lblMensaje.Size = new System.Drawing.Size(495, 27);
+            this.lblMensaje.TabIndex = 21;
+            this.lblMensaje.Text = "Por favor selecciona que estadísticas deseas ver";
+            // 
+            // BProfesores
+            // 
+            this.BProfesores.AutoSize = true;
+            this.BProfesores.BackColor = System.Drawing.Color.Transparent;
+            this.BProfesores.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BProfesores.FlatAppearance.BorderSize = 0;
+            this.BProfesores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BProfesores.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BProfesores.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.BProfesores.Location = new System.Drawing.Point(362, 56);
+            this.BProfesores.Name = "BProfesores";
+            this.BProfesores.Size = new System.Drawing.Size(177, 42);
+            this.BProfesores.TabIndex = 6;
+            this.BProfesores.Text = "Profesores";
+            this.BProfesores.UseVisualStyleBackColor = false;
+            this.BProfesores.Click += new System.EventHandler(this.BProfesores_Click);
+            // 
             // dataGridPagos
             // 
             this.dataGridPagos.BackgroundColor = System.Drawing.Color.Cornsilk;
@@ -206,6 +216,40 @@
             this.dataGridAlumnosProfesor.RowTemplate.Height = 24;
             this.dataGridAlumnosProfesor.Size = new System.Drawing.Size(775, 145);
             this.dataGridAlumnosProfesor.TabIndex = 19;
+            // 
+            // BPagos
+            // 
+            this.BPagos.AutoSize = true;
+            this.BPagos.BackColor = System.Drawing.Color.Transparent;
+            this.BPagos.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BPagos.FlatAppearance.BorderSize = 0;
+            this.BPagos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BPagos.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BPagos.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.BPagos.Location = new System.Drawing.Point(195, 56);
+            this.BPagos.Name = "BPagos";
+            this.BPagos.Size = new System.Drawing.Size(161, 42);
+            this.BPagos.TabIndex = 2;
+            this.BPagos.Text = "Pagos";
+            this.BPagos.UseVisualStyleBackColor = false;
+            this.BPagos.Click += new System.EventHandler(this.BPagos_Click);
+            // 
+            // BEstadisticas
+            // 
+            this.BEstadisticas.AutoSize = true;
+            this.BEstadisticas.BackColor = System.Drawing.Color.Transparent;
+            this.BEstadisticas.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BEstadisticas.FlatAppearance.BorderSize = 0;
+            this.BEstadisticas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BEstadisticas.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BEstadisticas.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.BEstadisticas.Location = new System.Drawing.Point(24, 56);
+            this.BEstadisticas.Name = "BEstadisticas";
+            this.BEstadisticas.Size = new System.Drawing.Size(165, 42);
+            this.BEstadisticas.TabIndex = 0;
+            this.BEstadisticas.Text = "Inscriptos";
+            this.BEstadisticas.UseVisualStyleBackColor = false;
+            this.BEstadisticas.Click += new System.EventHandler(this.BEstadisticas_Click);
             // 
             // chartProfesores
             // 
@@ -326,7 +370,7 @@
             // 
             // btnEliminar
             // 
-            this.btnEliminar.BackColor = System.Drawing.Color.Maroon;
+            this.btnEliminar.BackColor = System.Drawing.Color.Black;
             this.btnEliminar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEliminar.FlatAppearance.BorderSize = 0;
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -341,7 +385,7 @@
             // 
             // btnAgregar
             // 
-            this.btnAgregar.BackColor = System.Drawing.Color.Green;
+            this.btnAgregar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(133)))), ((int)(((byte)(71)))), ((int)(((byte)(152)))));
             this.btnAgregar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAgregar.FlatAppearance.BorderSize = 0;
             this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -407,22 +451,20 @@
             this.contentContainer.SplitterDistance = 957;
             this.contentContainer.TabIndex = 7;
             // 
-            // BProfesores
+            // BCharts
             // 
-            this.BProfesores.AutoSize = true;
-            this.BProfesores.BackColor = System.Drawing.Color.Transparent;
-            this.BProfesores.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BProfesores.FlatAppearance.BorderSize = 0;
-            this.BProfesores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BProfesores.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BProfesores.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.BProfesores.Location = new System.Drawing.Point(362, 56);
-            this.BProfesores.Name = "BProfesores";
-            this.BProfesores.Size = new System.Drawing.Size(177, 42);
-            this.BProfesores.TabIndex = 6;
-            this.BProfesores.Text = "Profesores";
-            this.BProfesores.UseVisualStyleBackColor = false;
-            this.BProfesores.Click += new System.EventHandler(this.BProfesores_Click);
+            this.BCharts.FlatAppearance.BorderSize = 0;
+            this.BCharts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BCharts.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BCharts.Image = global::Taller2_G34.Properties.Resources.grafico_circular;
+            this.BCharts.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BCharts.Location = new System.Drawing.Point(24, 136);
+            this.BCharts.Name = "BCharts";
+            this.BCharts.Size = new System.Drawing.Size(299, 60);
+            this.BCharts.TabIndex = 6;
+            this.BCharts.Text = "Estadisticas";
+            this.BCharts.UseVisualStyleBackColor = true;
+            this.BCharts.Click += new System.EventHandler(this.BCharts_Click);
             // 
             // BHistorialBackup
             // 
@@ -433,63 +475,34 @@
             this.BHistorialBackup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BHistorialBackup.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BHistorialBackup.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.BHistorialBackup.Location = new System.Drawing.Point(66, 228);
+            this.BHistorialBackup.Image = global::Taller2_G34.Properties.Resources.copia_de_seguridad_de_archivos;
+            this.BHistorialBackup.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BHistorialBackup.Location = new System.Drawing.Point(24, 228);
             this.BHistorialBackup.Name = "BHistorialBackup";
-            this.BHistorialBackup.Size = new System.Drawing.Size(197, 56);
+            this.BHistorialBackup.Size = new System.Drawing.Size(299, 56);
             this.BHistorialBackup.TabIndex = 5;
             this.BHistorialBackup.Text = "Backups";
             this.BHistorialBackup.UseVisualStyleBackColor = false;
             this.BHistorialBackup.Click += new System.EventHandler(this.BHistorialBackup_Click);
             // 
-            // BPagos
+            // BUsuarios
             // 
-            this.BPagos.AutoSize = true;
-            this.BPagos.BackColor = System.Drawing.Color.Transparent;
-            this.BPagos.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BPagos.FlatAppearance.BorderSize = 0;
-            this.BPagos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BPagos.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BPagos.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.BPagos.Location = new System.Drawing.Point(195, 56);
-            this.BPagos.Name = "BPagos";
-            this.BPagos.Size = new System.Drawing.Size(161, 42);
-            this.BPagos.TabIndex = 2;
-            this.BPagos.Text = "Pagos";
-            this.BPagos.UseVisualStyleBackColor = false;
-            this.BPagos.Click += new System.EventHandler(this.BPagos_Click);
-            // 
-            // BEstadisticas
-            // 
-            this.BEstadisticas.AutoSize = true;
-            this.BEstadisticas.BackColor = System.Drawing.Color.Transparent;
-            this.BEstadisticas.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BEstadisticas.FlatAppearance.BorderSize = 0;
-            this.BEstadisticas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BEstadisticas.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BEstadisticas.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.BEstadisticas.Location = new System.Drawing.Point(24, 56);
-            this.BEstadisticas.Name = "BEstadisticas";
-            this.BEstadisticas.Size = new System.Drawing.Size(165, 42);
-            this.BEstadisticas.TabIndex = 0;
-            this.BEstadisticas.Text = "Inscriptos";
-            this.BEstadisticas.UseVisualStyleBackColor = false;
-            this.BEstadisticas.Click += new System.EventHandler(this.BEstadisticas_Click);
-            // 
-            // BSalir
-            // 
-            this.BSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BSalir.BackColor = System.Drawing.SystemColors.MenuText;
-            this.BSalir.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BSalir.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BSalir.Location = new System.Drawing.Point(1095, 23);
-            this.BSalir.Name = "BSalir";
-            this.BSalir.Size = new System.Drawing.Size(157, 50);
-            this.BSalir.TabIndex = 5;
-            this.BSalir.Text = "Salir";
-            this.BSalir.UseVisualStyleBackColor = false;
-            this.BSalir.Click += new System.EventHandler(this.BSalir_Click);
+            this.BUsuarios.AutoSize = true;
+            this.BUsuarios.BackColor = System.Drawing.Color.Transparent;
+            this.BUsuarios.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BUsuarios.FlatAppearance.BorderSize = 0;
+            this.BUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BUsuarios.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BUsuarios.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.BUsuarios.Image = global::Taller2_G34.Properties.Resources.publico_objetivo;
+            this.BUsuarios.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BUsuarios.Location = new System.Drawing.Point(24, 56);
+            this.BUsuarios.Name = "BUsuarios";
+            this.BUsuarios.Size = new System.Drawing.Size(299, 58);
+            this.BUsuarios.TabIndex = 1;
+            this.BUsuarios.Text = "Usuarios";
+            this.BUsuarios.UseVisualStyleBackColor = false;
+            this.BUsuarios.Click += new System.EventHandler(this.BUsuarios_Click);
             // 
             // labelAdmin
             // 
@@ -525,6 +538,25 @@
             this.homeContainer.SplitterDistance = 93;
             this.homeContainer.TabIndex = 8;
             // 
+            // BSalir
+            // 
+            this.BSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BSalir.BackColor = System.Drawing.SystemColors.MenuText;
+            this.BSalir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BSalir.FlatAppearance.BorderSize = 0;
+            this.BSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BSalir.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BSalir.Image = global::Taller2_G34.Properties.Resources.salida;
+            this.BSalir.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BSalir.Location = new System.Drawing.Point(1099, 23);
+            this.BSalir.Name = "BSalir";
+            this.BSalir.Size = new System.Drawing.Size(125, 50);
+            this.BSalir.TabIndex = 5;
+            this.BSalir.Text = "Salir";
+            this.BSalir.UseVisualStyleBackColor = false;
+            this.BSalir.Click += new System.EventHandler(this.BSalir_Click);
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Taller2_G34.Properties.Resources.ChatGPT_Image_1_sept_2025__17_46_04;
@@ -534,29 +566,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
-            // 
-            // BCharts
-            // 
-            this.BCharts.FlatAppearance.BorderSize = 0;
-            this.BCharts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BCharts.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BCharts.Location = new System.Drawing.Point(94, 136);
-            this.BCharts.Name = "BCharts";
-            this.BCharts.Size = new System.Drawing.Size(150, 60);
-            this.BCharts.TabIndex = 6;
-            this.BCharts.Text = "Estadisticas";
-            this.BCharts.UseVisualStyleBackColor = true;
-            this.BCharts.Click += new System.EventHandler(this.BCharts_Click);
-            // 
-            // lblMensaje
-            // 
-            this.lblMensaje.AutoSize = true;
-            this.lblMensaje.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMensaje.Location = new System.Drawing.Point(205, 270);
-            this.lblMensaje.Name = "lblMensaje";
-            this.lblMensaje.Size = new System.Drawing.Size(495, 27);
-            this.lblMensaje.TabIndex = 21;
-            this.lblMensaje.Text = "Por favor selecciona que estadísticas deseas ver";
             // 
             // HomePagePropietario
             // 

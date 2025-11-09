@@ -123,7 +123,7 @@
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnCancelar.Location = new System.Drawing.Point(286, 316);
+            this.btnCancelar.Location = new System.Drawing.Point(248, 316);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(114, 41);
             this.btnCancelar.TabIndex = 2;
@@ -133,14 +133,14 @@
             // 
             // btnRegistrarPago
             // 
-            this.btnRegistrarPago.BackColor = System.Drawing.Color.Black;
+            this.btnRegistrarPago.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(133)))), ((int)(((byte)(71)))), ((int)(((byte)(152)))));
             this.btnRegistrarPago.FlatAppearance.BorderSize = 0;
             this.btnRegistrarPago.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRegistrarPago.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRegistrarPago.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnRegistrarPago.Location = new System.Drawing.Point(406, 316);
+            this.btnRegistrarPago.Location = new System.Drawing.Point(385, 316);
             this.btnRegistrarPago.Name = "btnRegistrarPago";
-            this.btnRegistrarPago.Size = new System.Drawing.Size(130, 41);
+            this.btnRegistrarPago.Size = new System.Drawing.Size(151, 41);
             this.btnRegistrarPago.TabIndex = 3;
             this.btnRegistrarPago.Text = "Registrar Pago";
             this.btnRegistrarPago.UseVisualStyleBackColor = false;
@@ -189,6 +189,7 @@
             this.txtCantidad.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCantidad.Location = new System.Drawing.Point(286, 140);
             this.txtCantidad.Name = "txtCantidad";
+            this.txtCantidad.ReadOnly = true;
             this.txtCantidad.Size = new System.Drawing.Size(100, 27);
             this.txtCantidad.TabIndex = 22;
             // 

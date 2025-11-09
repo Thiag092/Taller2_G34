@@ -33,7 +33,7 @@ namespace Taller2_G34
             InitializeComponent();
             dataGridPagos.Visible = false;
             chartPagos.Visible = false;
-            lblMensaje.Visible = true; // Se mantiene visible al inicio (lógica original)
+            lblMensaje.Visible = true;
             BEstadisticas.Visible = false;
             BPagos.Visible = false;
             BProfesores.Visible = false;
@@ -380,8 +380,8 @@ namespace Taller2_G34
                 dataGridView.Columns[e.ColumnIndex].Name == "Detalles")
             {
                 string dni = dataGridView.Rows[e.RowIndex].Cells["DNI"].Value.ToString();
-                // EditUser editForm = new EditUser(dni); 
-                // editForm.ShowDialog();
+                EditUser editForm = new EditUser(dni); 
+                editForm.ShowDialog();
             }
         }
 

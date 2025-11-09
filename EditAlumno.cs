@@ -338,24 +338,29 @@ namespace Taller2_G34
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-
+                if (datePickerNacimiento.Value.Date >= DateTime.Today)
+                {
+                    MessageBox.Show("La fecha de nacimiento no es válida.", "Error de Fecha",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 string connectionString = ConfigurationManager.ConnectionStrings["EnerGymDB"].ConnectionString;
 
                 string query = @"
-    UPDATE Alumno
-    SET 
-        nombre = @nombre,
-        apellido = @apellido,
-        telefono = @telefono,
-        email = @correo,
-        contacto_emergencia = @contacto,
-        sexo = @sexo,
-        fecha_nacimiento = @fecha,
-        observaciones = @observaciones,
-        id_plan = @id_plan,
-        id_membresia = @id_membresia
-    WHERE dni = @dni;
-";
+                    UPDATE Alumno
+                    SET 
+                        nombre = @nombre,
+                        apellido = @apellido,
+                        telefono = @telefono,
+                        email = @correo,
+                        contacto_emergencia = @contacto,
+                        sexo = @sexo,
+                        fecha_nacimiento = @fecha,
+                        observaciones = @observaciones,
+                        id_plan = @id_plan,
+                        id_membresia = @id_membresia
+                    WHERE dni = @dni;
+                ";
 
 
 

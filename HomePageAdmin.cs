@@ -33,6 +33,7 @@ namespace Taller2_G34
             connection = new SqlConnection(ConnectionString);
 
             try
+            
             {
                 connection.Open();
                 SqlCommand cmd = new SqlCommand(query, connection);
