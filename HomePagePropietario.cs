@@ -24,8 +24,8 @@ namespace Taller2_G34
         // CONEXIÓN CENTRALIZADA
         private const string ConnectionStringEnerGym = "Server=alcachofio\\SQLEXPRESS;Database=EnerGym_BD_V9;Trusted_Connection=True;";
         private const string ConnectionStringMaster = "Server=alcachofio\\SQLEXPRESS;Database=master;Trusted_Connection=True;";
-        // private const string ConnectionStringEnerGym_Alt = "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
-        // private const string ConnectionStringEnerGym_Alt = "Server=YAGO_DELL\\SQLEXPRESS01;Database=master;Trusted_Connection=True;";
+        // private const string ConnectionStringEnerGym= "Server=YAGO_DELL\\SQLEXPRESS01;Database=EnerGym_BD_V9;Trusted_Connection=True;";
+        // private const string ConnectionStringMaster = "Server=YAGO_DELL\\SQLEXPRESS01;Database=master;Trusted_Connection=True;";
 
 
         public HomePagePropietario()
@@ -209,7 +209,7 @@ namespace Taller2_G34
 
         private void ConfigurarVistaUsuarios(string tipo)
         {
-            // Lógica original para cargar el DataGridView (Personal, Entrenadores, Alumnos)
+            
 
             // 1. Limpiar y preparar DataGridView
             dataGridView.Columns.Clear();
@@ -693,31 +693,40 @@ namespace Taller2_G34
 
                     if (dialog.ShowDialog() == DialogResult.OK)
                     {
-                        string rutaDestinoFinal = dialog.FileName;
+                        string rutaFinal = dialog.FileName;
 
-                        // CreaR una carpeta temporal segura
-                        string rutaTemporal = Path.Combine(@"C:\BackupsTemp", Path.GetFileName(rutaDestinoFinal));
+                        // Crear una carpeta temporal segura
+                        string rutaTemporal = Path.Combine(@"C:\BackupsTemp", Path.GetFileName(rutaFinal));
                         Directory.CreateDirectory(@"C:\BackupsTemp");
 
+                        // Corrección del error que existía. Era necesario asegurar que la ruta en la query SQL
+                        // esté bien formada.
+                        // Convierte la ruta de archivo para el formato SQL Server.
+                        // Reemplaza cada comilla simple con dos comillas simples para evitar
+                        // un cierre inesperado de la cadena de texto en la consulta.
+                        string sqlRutaTemporal = rutaTemporal.Replace("'", "''"); 
+
                         string query = $@"
-                    BACKUP DATABASE EnerGym_BD_V9
-                    TO DISK = '{rutaTemporal}'
-                    WITH FORMAT, MEDIANAME = 'EnerGymBackup', NAME = 'Copia de seguridad EnerGym';";
+                        BACKUP DATABASE EnerGym_BD_V9
+                        TO DISK = '{sqlRutaTemporal}' 
+                        WITH FORMAT, MEDIANAME = 'EnerGymBackup', NAME = 'Copia_de_seguridad_EnerGym';";
 
                         using (SqlConnection conn = new SqlConnection(ConnectionStringMaster))
                         {
                             conn.Open();
 
-                            // EjecutaR el BACKUP en la ruta temporal
+                            // Ejecutar el BACKUP en la ruta temporal
                             using (SqlCommand cmd = new SqlCommand(query, conn))
-                                cmd.ExecuteNonQuery();
-
-                            // Registrar el backup en la base
-                            string registrarBackup = "INSERT INTO EnerGym_BD_V9.dbo.HistorialBackup (ruta) VALUES (@ruta)";
-                            using (SqlCommand logCmd = new SqlCommand(ConnectionStringEnerGym))
                             {
-                                logCmd.Parameters.AddWithValue("@ruta", rutaDestinoFinal);
-                                // CREAR una nueva conexión a EnerGym, ya que la actual es a Master.
+                                cmd.ExecuteNonQuery();
+                            }
+
+                            // Registrar el backup en la bd
+                            string registrarBackup = "INSERT INTO EnerGym_BD_V9.dbo.HistorialBackup (ruta) VALUES (@ruta)";
+                            using (SqlCommand logCmd = new SqlCommand(registrarBackup))
+                            {
+                                logCmd.Parameters.AddWithValue("@ruta", rutaFinal);
+                                // Crea una nueva conexión a EnerGym porque la actual es a Master.
                                 using (SqlConnection connLog = new SqlConnection(ConnectionStringEnerGym))
                                 {
                                     connLog.Open();
@@ -726,13 +735,14 @@ namespace Taller2_G34
                                 }
                             }
                         }
+
                         // Mover el backup desde la ruta temporal a la seleccionada por el usuario
-                        File.Copy(rutaTemporal, rutaDestinoFinal, overwrite: true);
-                        File.Delete(rutaTemporal); 
+                        File.Copy(rutaTemporal, rutaFinal, overwrite: true);
+                        File.Delete(rutaTemporal);
 
                         // Confirmación visual
                         MessageBox.Show(
-                            $"Copia de seguridad creada exitosamente.\n\nRuta:\n{rutaDestinoFinal}",
+                            $"Copia de seguridad creada exitosamente.\n\nRuta:\n{rutaFinal}",
                             "Backup completado",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information

@@ -29,43 +29,6 @@ namespace Taller2_G34
 
         }
 
-        /*
-        private void BIngresar_Click(object sender, EventArgs e)
-        {
-            string usuario = TxUsuario.Text.Trim();
-            string contraseña = TxContraseña.Text.Trim();
-
-            // Validación de campos vacíos
-            if (string.IsNullOrEmpty(usuario) || string.IsNullOrEmpty(contraseña))
-            {
-                MessageBox.Show("No puede haber campos vacíos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (usuario.Length != 8)
-            {
-                MessageBox.Show("El DNI debe tener 8 dígitos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (usuario == "11111111" && contraseña == "coach")
-            {
-                homePageCoach f = new homePageCoach();
-                f.Show();
-                this.Hide();
-            }
-            else if (usuario == "22222222" && contraseña == "admin")
-            {
-                HomePageAdmin f = new HomePageAdmin();
-                f.Show();
-                this.Hide();
-            }
-            else
-            {
-                MessageBox.Show("Usuario o contraseña incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }*/
-
 
         private void BIngresar_Click(object sender, EventArgs e)
         {
@@ -94,11 +57,11 @@ namespace Taller2_G34
             {
                 // Comparamos contra el hash guardado (no contra texto plano)
                 string query = @"
-            SELECT id_rol
-            FROM Usuario
-            WHERE dni = @dni
-              AND contrasena = @contrasenaHash
-              AND estado = 1;";
+                SELECT id_rol
+                FROM Usuario
+                WHERE dni = @dni
+                  AND contrasena = @contrasenaHash
+                  AND estado = 1;";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@dni", usuario);
@@ -152,7 +115,7 @@ namespace Taller2_G34
         protected override void OnFormClosing(FormClosingEventArgs e) //esto es el aviso de confirmacion al apretar la X
         {
             DialogResult result = MessageBox.Show(
-                "¿Seguro que desea cerrar salir?",
+                "¿Seguro que desea cerrar la aplicación?",
                 "Confirmar salida",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
